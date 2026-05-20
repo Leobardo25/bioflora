@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, X, Send, Loader2, Bot, User, Trash2, MessageSquare } from 'lucide-react';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
 import { sendChatMessage } from '../../services/aiChatService';
-import { getProducts } from '../../services/productService';
-import { getOrders } from '../../services/orderService';
-import { getCustomers } from '../../services/customerService';
 
 const SUGGESTIONS = [
     '¿Cuántos productos tengo en catálogo?',
@@ -51,16 +50,57 @@ const formatMarkdown = (text) => {
     return html;
 };
 
-export default function AdminAIChat() {
+const AdminAIChat = memo(function AdminAIChat() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [businessContext, setBusinessContext] = useState(null);
-    const [contextLoading, setContextLoading] = useState(false);
     const [pulse, setPulse] = useState(true);
+
+    // Estado reactivo en RAM para almacenar los datos del negocio
+    const [liveData, setLiveData] = useState({
+        products: [],
+        orders: [],
+        customers: [],
+        loaded: false
+    });
+
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
+
+    // Suscripción reactiva en tiempo real (onSnapshot) al montar el componente
+    // Carga inicial = 1 lectura por documento. Futuras actualizaciones = Costo $0 si no cambian documentos.
+    useEffect(() => {
+        const unsubProducts = onSnapshot(collection(db, 'products'), (snap) => {
+            const productsList = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setLiveData(prev => ({ ...prev, products: productsList }));
+        }, (error) => {
+            console.error("Error en tiempo real en productos:", error);
+        });
+
+        const ordersQuery = query(collection(db, 'orders'), orderBy('createdAt', 'desc'));
+        const unsubOrders = onSnapshot(ordersQuery, (snap) => {
+            const ordersList = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setLiveData(prev => ({ ...prev, orders: ordersList }));
+        }, (error) => {
+            console.error("Error en tiempo real en pedidos:", error);
+        });
+
+        const unsubCustomers = onSnapshot(collection(db, 'customers'), (snap) => {
+            const customersList = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setLiveData(prev => ({ ...prev, customers: customersList }));
+        }, (error) => {
+            console.error("Error en tiempo real en clientes:", error);
+        });
+
+        setLiveData(prev => ({ ...prev, loaded: true }));
+
+        return () => {
+            unsubProducts();
+            unsubOrders();
+            unsubCustomers();
+        };
+    }, []);
 
     // Scroll al último mensaje
     const scrollToBottom = useCallback(() => {
@@ -71,104 +111,170 @@ export default function AdminAIChat() {
         scrollToBottom();
     }, [messages, scrollToBottom]);
 
-    // Cargar contexto del negocio — retorna el contexto para uso directo
-    const reloadContext = useCallback(async () => {
-        setContextLoading(true);
-        try {
-            const [products, orders, customers] = await Promise.all([
-                getProducts(),
-                getOrders(),
-                getCustomers(),
-            ]);
+    // Memoria Caché Reactiva en RAM
+    // Recalcula el texto estructurado del negocio a Costo $0 únicamente cuando cambia liveData
+    const businessContext = useMemo(() => {
+        const { products, orders, customers } = liveData;
+        if (!products.length && !orders.length) return null;
 
-            const available = products.filter(p => p.stock === 'Disponible').length;
-            const outOfStock = products.filter(p => p.stock === 'Agotado' || p.stock === 'Bóveda (Retirado)').length;
-            const lowStockProducts = products.filter(p => p.stock === 'Disponible' && typeof p.quantity === 'number' && p.quantity > 0 && p.quantity <= 3);
-            const pendingOrders = orders.filter(o => !['entregado', 'cancelado'].includes(o.status)).length;
-            const deliveredOrders = orders.filter(o => o.status === 'entregado');
+        const available = products.filter(p => p.stock === 'Disponible').length;
+        const outOfStock = products.filter(p => p.stock === 'Agotado' || p.stock === 'Bóveda (Retirado)').length;
+        const lowStockProducts = products.filter(p => p.stock === 'Disponible' && typeof p.quantity === 'number' && p.quantity > 0 && p.quantity <= 3);
+        const pendingOrders = orders.filter(o => !['entregado', 'cancelado'].includes(o.status)).length;
+        const deliveredOrders = orders.filter(o => o.status === 'entregado');
 
-            let revenue = 0;
-            deliveredOrders.forEach(o => {
-                if (o.items && o.items.length > 0) {
-                    o.items.forEach(item => {
-                        const price = Number(item.price) || 0;
-                        const qty = Number(item.quantity) || 1;
-                        if (item.currency !== 'USD') revenue += price * qty;
-                    });
-                } else if (o.total) {
-                    const cleaned = String(o.total).replace(/[^0-9.]/g, '');
-                    const val = parseFloat(cleaned);
-                    if (!isNaN(val)) revenue += val;
+        let revenue = 0;
+        deliveredOrders.forEach(o => {
+            if (o.items && o.items.length > 0) {
+                o.items.forEach(item => {
+                    const price = Number(item.price) || 0;
+                    const qty = Number(item.quantity) || 1;
+                    if (item.currency !== 'USD') revenue += price * qty;
+                });
+            } else if (o.total) {
+                const cleaned = String(o.total).replace(/[^0-9.]/g, '');
+                const val = parseFloat(cleaned);
+                if (!isNaN(val)) revenue += val;
+            }
+        });
+
+        const formatDate = (d) => {
+            const date = d?.toDate?.() || d;
+            if (!date) return 'Sin fecha';
+            const parsedDate = date instanceof Date ? date : new Date(date);
+            if (isNaN(parsedDate.getTime())) return 'Sin fecha';
+            return parsedDate.toLocaleDateString('es-CR', { day: '2-digit', month: 'short', year: 'numeric' });
+        };
+
+        const recentOrdersDetail = orders.slice(0, 10).map(o => {
+            const itemsList = o.items?.map(i => `${i.name || i.productName || 'Producto'} x${i.quantity || 1}`).join(', ') || 'Sin productos';
+            return `- ${o.orderId || 'Sin ID'} | Cliente: ${o.cliente || 'Desconocido'} | Tel: ${o.telefono || 'N/A'} | Estado: ${o.status} | Total: ${o.total || 'N/A'} | Fecha: ${formatDate(o.createdAt)} | Productos: ${itemsList}`;
+        }).join('\n') || 'No hay pedidos registrados';
+
+        const productsDetail = products.map(p => {
+            const price = p.price ? `₡${Number(p.price).toLocaleString('es-CR')}` : 'Sin precio';
+            const priceUSD = p.priceUSD ? ` / $${p.priceUSD}` : '';
+            return `- ${p.name} | ${price}${priceUSD} | Stock: ${p.stock} | Cantidad: ${p.quantity ?? 'N/A'} | Categoría: ${p.category || 'Sin categoría'}`;
+        }).join('\n') || 'No hay productos';
+
+        // Procesamiento CRM Relacional de Clientes en RAM
+        const customerMap = {};
+
+        // Poblar clientes iniciales desde base de datos
+        customers.forEach(c => {
+            customerMap[c.id] = {
+                id: c.id,
+                name: c.name || 'Desconocido',
+                phone: c.phone || c.id,
+                email: c.email || '',
+                totalOrders: 0,
+                orders: [],
+                ltvRaw: 0,
+                lastPurchaseDate: null,
+                notes: c.notes || '',
+                createdAt: c.createdAt?.toDate?.() || null,
+                hidden: c.hidden || false,
+            };
+        });
+
+        // Poblar clientes dinámicos desde las órdenes reales
+        orders.forEach(order => {
+            if (order.status !== 'entregado') return;
+
+            let key = order.telefono ? String(order.telefono).replace(/\D/g, '') : null;
+            if (!key) key = order.correo ? order.correo.toLowerCase() : null;
+            if (!key) return;
+            
+            if (!customerMap[key]) {
+                customerMap[key] = {
+                    id: key,
+                    name: order.cliente || 'Desconocido',
+                    phone: order.telefono || '',
+                    email: order.correo || '',
+                    totalOrders: 0,
+                    orders: [],
+                    ltvRaw: 0,
+                    lastPurchaseDate: null,
+                    notes: '',
+                    createdAt: new Date(),
+                    hidden: false,
+                };
+            }
+            
+            const cust = customerMap[key];
+            cust.totalOrders += 1;
+            cust.orders.push({
+                id: order.id,
+                orderId: order.orderId,
+                date: order.createdAt?.toDate?.() || new Date(),
+                total: order.total
+            });
+            
+            if (order.total) {
+                const numericString = String(order.total).replace(/[^\d.,]/g, '');
+                const normalized = numericString.replace(/,/g, '');
+                const val = parseFloat(normalized);
+                if (!isNaN(val)) {
+                    cust.ltvRaw += val;
                 }
+            }
+        });
+
+        // Ordenación e indexación
+        Object.values(customerMap).forEach(cust => {
+            cust.orders.sort((a, b) => b.date - a.date);
+            if (cust.orders.length > 0) {
+                cust.lastPurchaseDate = cust.orders[0].date;
+            }
+            if (cust.name === 'Desconocido' && cust.orders.length > 0) {
+                const lastO = orders.find(x => x.id === cust.orders[0].id);
+                if (lastO && lastO.cliente) cust.name = lastO.cliente;
+            }
+        });
+
+        const activeCustomers = Object.values(customerMap)
+            .filter(c => !c.hidden)
+            .sort((a, b) => {
+                const dateA = a.lastPurchaseDate || a.createdAt || new Date(0);
+                const dateB = b.lastPurchaseDate || b.createdAt || new Date(0);
+                return dateB - dateA;
             });
 
-            const formatDate = (d) => {
-                const date = d?.toDate?.() || d;
-                if (!date) return 'Sin fecha';
-                return date.toLocaleDateString('es-CR', { day: '2-digit', month: 'short', year: 'numeric' });
-            };
+        const topCusts = [...activeCustomers].sort((a, b) => b.ltvRaw - a.ltvRaw).slice(0, 5);
+        const topCustomersDetail = topCusts.map((c, i) => 
+            `- #${i + 1} ${c.name} | ${c.totalOrders} pedido(s) | LTV: ₡${c.ltvRaw.toLocaleString('es-CR')} | Tel: ${c.phone || 'N/A'}`
+        ).join('\n') || 'Sin datos de clientes';
 
-            const recentOrdersDetail = orders.slice(0, 10).map(o => {
-                const itemsList = o.items?.map(i => `${i.name || i.productName || 'Producto'} x${i.quantity || 1}`).join(', ') || 'Sin productos';
-                return `- ${o.orderId || 'Sin ID'} | Cliente: ${o.cliente || 'Desconocido'} | Tel: ${o.telefono || 'N/A'} | Estado: ${o.status} | Total: ${o.total || 'N/A'} | Fecha: ${formatDate(o.createdAt)} | Productos: ${itemsList}`;
-            }).join('\n') || 'No hay pedidos registrados';
+        const lowStockDetail = lowStockProducts.map(p => 
+            `- ${p.name}: ${p.quantity} unidad(es)`
+        ).join('\n') || 'Ningún producto con stock bajo';
 
-            const productsDetail = products.map(p => {
-                const price = p.price ? `₡${Number(p.price).toLocaleString('es-CR')}` : 'Sin precio';
-                const priceUSD = p.priceUSD ? ` / $${p.priceUSD}` : '';
-                return `- ${p.name} | ${price}${priceUSD} | Stock: ${p.stock} | Cantidad: ${p.quantity ?? 'N/A'} | Categoría: ${p.category || 'Sin categoría'}`;
-            }).join('\n') || 'No hay productos';
+        return {
+            totalProducts: products.length,
+            availableProducts: available,
+            outOfStock,
+            lowStock: lowStockProducts.length,
+            totalOrders: orders.length,
+            pendingOrders,
+            deliveredOrders: deliveredOrders.length,
+            revenue,
+            totalCustomers: activeCustomers.length,
+            recentOrdersDetail,
+            productsDetail,
+            topCustomersDetail,
+            lowStockDetail,
+        };
+    }, [liveData]);
 
-            const topCusts = [...customers].sort((a, b) => b.ltvRaw - a.ltvRaw).slice(0, 5);
-            const topCustomersDetail = topCusts.map((c, i) => 
-                `- #${i + 1} ${c.name} | ${c.totalOrders} pedido(s) | LTV: ₡${c.ltvRaw.toLocaleString('es-CR')} | Tel: ${c.phone || 'N/A'}`
-            ).join('\n') || 'Sin datos de clientes';
-
-            const lowStockDetail = lowStockProducts.map(p => 
-                `- ${p.name}: ${p.quantity} unidad(es)`
-            ).join('\n') || 'Ningún producto con stock bajo';
-
-            const ctx = {
-                totalProducts: products.length,
-                availableProducts: available,
-                outOfStock,
-                lowStock: lowStockProducts.length,
-                totalOrders: orders.length,
-                pendingOrders,
-                deliveredOrders: deliveredOrders.length,
-                revenue,
-                totalCustomers: customers.length,
-                recentOrdersDetail,
-                productsDetail,
-                topCustomersDetail,
-                lowStockDetail,
-            };
-
-            setBusinessContext(ctx);
-            return ctx;
-        } catch (err) {
-            console.error('Error cargando contexto para IA:', err);
-            return null;
-        } finally {
-            setContextLoading(false);
-        }
-    }, []);
-
-    // Al abrir, cargamos contexto y enfocamos input (solo en desktop)
+    // Al abrir enfocamos el input (solo en desktop)
     useEffect(() => {
-        if (isOpen && !businessContext) {
-            reloadContext();
-            setPulse(false);
-            if (window.innerWidth > 768) {
-                setTimeout(() => inputRef.current?.focus(), 300);
-            }
-        } else if (isOpen) {
+        if (isOpen) {
             setPulse(false);
             if (window.innerWidth > 768) {
                 setTimeout(() => inputRef.current?.focus(), 300);
             }
         }
-    }, [isOpen, businessContext, reloadContext]);
+    }, [isOpen]);
 
     const handleSend = async (text) => {
         const messageText = text || input.trim();
@@ -181,15 +287,10 @@ export default function AdminAIChat() {
         setIsLoading(true);
 
         try {
-            // Si el contexto fue limpiado, recargamos antes de enviar
-            let ctx = businessContext;
-            if (!ctx) {
-                ctx = await reloadContext();
-            }
-
+            // Latencia cero: el contexto ya está listo en RAM sin await reloadContext()
             const reply = await sendChatMessage(
                 updatedMessages.map(m => ({ role: m.role, content: m.content })),
-                ctx
+                businessContext
             );
             setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
         } catch (err) {
@@ -212,7 +313,6 @@ export default function AdminAIChat() {
 
     const clearChat = () => {
         setMessages([]);
-        setBusinessContext(null); // Fuerza recarga de datos frescos al siguiente mensaje
     };
 
     return (
@@ -231,7 +331,9 @@ export default function AdminAIChat() {
                         title="Asistente IA"
                     >
                         {/* Anillo de aura vibrante (Latido) */}
-                        <div className="absolute inset-0 rounded-full bg-white/30 animate-ping" style={{ animationDuration: '2.5s' }} />
+                        {pulse && (
+                            <div className="absolute inset-0 rounded-full bg-white/30 animate-ping" style={{ animationDuration: '2.5s' }} />
+                        )}
                         <Sparkles className="w-7 h-7 drop-shadow-md relative z-10 group-hover:rotate-12 transition-transform duration-300" />
                     </motion.button>
                 )}
@@ -269,7 +371,7 @@ export default function AdminAIChat() {
                                 <div>
                                     <h3 className="text-sm font-bold text-gray-800 dark:text-gray-100">Asistente Valex</h3>
                                     <p className="text-[10px] text-gray-400 dark:text-gray-500">
-                                        {contextLoading ? 'Cargando datos...' : 'Conectado a tu tienda'}
+                                        {!liveData.loaded ? 'Sincronizando...' : 'Conectado a tu tienda'}
                                     </p>
                                 </div>
                             </div>
@@ -302,7 +404,7 @@ export default function AdminAIChat() {
                                     </div>
                                     <h4 className="text-base font-bold text-gray-700 dark:text-gray-200 mb-1">¡Hola! 👋</h4>
                                     <p className="text-sm text-gray-400 dark:text-gray-500 mb-6 max-w-[280px]">
-                                        Soy Leo, tu asistente IA. Preguntame lo que quieras sobre tu tienda.
+                                        Soy Leo, tu asistente IA. Pregúntame lo que quieras sobre tu tienda.
                                     </p>
                                     <div className="w-full space-y-2">
                                         <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-600 mb-2">Sugerencias</p>
@@ -403,4 +505,7 @@ export default function AdminAIChat() {
             </AnimatePresence>
         </>
     );
-}
+});
+
+export default AdminAIChat;
+
