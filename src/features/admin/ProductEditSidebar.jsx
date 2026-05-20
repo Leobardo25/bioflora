@@ -47,36 +47,58 @@ export default function ProductEditSidebar({ productId, productName, onClose, on
                     transition={{ type: 'spring', stiffness: 320, damping: 32 }}
                 >
                     {/* Header */}
-                    <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/5 flex-shrink-0">
-                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 truncate">{displayName}</h2>
-                        <button onClick={handleClose} className="p-2 text-gray-400 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg transition-colors">
+                    <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-[#1A1A1B]/50 backdrop-blur-sm flex-shrink-0">
+                        <div className="flex flex-col gap-1 min-w-0">
+                            <span className={`text-[10px] font-black tracking-widest uppercase px-2 py-0.5 rounded-md w-max ${
+                                productId 
+                                    ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400' 
+                                    : 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                            }`}>
+                                {productId ? 'Modo Edición' : 'Nuevo Registro'}
+                            </span>
+                            <h2 className="text-base font-extrabold text-gray-800 dark:text-gray-100 truncate pr-4" title={displayName}>
+                                {displayName}
+                            </h2>
+                        </div>
+                        <button onClick={handleClose} className="p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer">
                             <X className="w-5 h-5" />
                         </button>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto scrollbar-admin p-6">
+                    {/* Form Container */}
+                    <div className="flex-1 overflow-y-auto scrollbar-admin p-6 bg-white dark:bg-[#1A1A1B]">
                         <ProductForm
                             productId={productId}
                             onClose={onClose}
                             onSaved={onSaved}
                             onDirtyChange={setIsDirty}
+                            onLoadingChange={setIsSubmitting}
                             formId={FORM_ID}
                         />
                     </div>
 
-                    <div className="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-[#111113] flex-shrink-0">
+                    {/* Footer con Botones Duales */}
+                    <div className="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/80 dark:bg-[#111113]/80 backdrop-blur-sm flex-shrink-0 flex items-center gap-3">
+                        <button
+                            type="button"
+                            onClick={handleClose}
+                            disabled={isSubmitting}
+                            className="flex-1 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 bg-white dark:bg-[#1A1A1B] hover:bg-gray-50 dark:hover:bg-[#252528] border border-gray-200 dark:border-white/10 font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer"
+                        >
+                            Cancelar
+                        </button>
                         <button
                             type="submit"
                             form={FORM_ID}
                             disabled={isSubmitting}
-                            className="w-full bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white py-2.5 rounded-lg font-medium text-sm transition-colors flex justify-center items-center gap-2 disabled:opacity-50"
+                            className="flex-1 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex justify-center items-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg shadow-indigo-600/10 dark:shadow-none"
                         >
                             {isSubmitting ? (
                                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                             ) : (
-                                <Check className="w-4 h-4" />
+                                <Check className="w-4.5 h-4.5" />
                             )}
-                            {productId ? 'Guardar Cambios' : 'Crear Producto'}
+                            {productId ? 'Guardar' : 'Crear'}
                         </button>
                     </div>
                 </motion.aside>

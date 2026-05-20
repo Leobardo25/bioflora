@@ -13,10 +13,10 @@ service cloud.firestore {
       allow write: if request.auth != null;
     }
 
-    // Pedidos: cualquiera puede crear (checkout), solo admins pueden leer/actualizar
+    // Pedidos: cualquiera puede crear (checkout), solo admins pueden leer/actualizar/borrar
     match /orders/{orderId} {
       allow create: if true;
-      allow read, update: if request.auth != null;
+      allow read, update, delete: if request.auth != null;
     }
 
     // Config del sitio: lectura pública, escritura solo para autenticados
