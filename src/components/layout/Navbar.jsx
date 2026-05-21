@@ -85,14 +85,14 @@ export default function Navbar({
                 <motion.div
                     className="absolute inset-0"
                     animate={{
-                        backgroundColor: scrolled ? 'rgba(26, 26, 27, 0.95)' : 'rgba(26, 26, 27, 0)',
+                        backgroundColor: scrolled ? 'rgba(7, 15, 10, 0.95)' : 'rgba(7, 15, 10, 0)',
                         backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
-                        borderBottom: scrolled ? '1px solid rgba(209, 209, 209, 0.1)' : '1px solid rgba(209, 209, 209, 0)',
+                        borderBottom: scrolled ? '1px solid rgba(163, 184, 153, 0.1)' : '1px solid rgba(163, 184, 153, 0)',
                     }}
                     transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                 />
 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="relative max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20 relative text-valex-hueso">
                         {/* Mobile left: Hamburger Menu */}
                         <div className="md:hidden flex items-center">
@@ -108,12 +108,12 @@ export default function Navbar({
                         {/* Mobile center: Logo | Desktop left: Logo */}
                         <div className="md:hidden absolute left-1/2 -translate-x-1/2 mt-1">
                             <Link to="/" onClick={scrollToTop} className="group">
-                                <Logo className="text-[1.3rem]" />
+                                <Logo className="h-11" />
                             </Link>
                         </div>
                         <div className="hidden md:block">
                             <Link to="/" className="group">
-                                <Logo className="text-3xl" />
+                                <Logo className="h-14" />
                             </Link>
                         </div>
 
@@ -123,7 +123,7 @@ export default function Navbar({
                                     key={link.href}
                                     href={getLinkHref(link.href)}
                                     onClick={(e) => handleNavClick(e, link)}
-                                    className="relative text-valex-gris hover:text-valex-hueso font-sans font-medium text-sm tracking-wide px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-white/5"
+                                    className="relative text-valex-hueso/80 hover:text-white font-sans font-medium text-sm tracking-wide px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-white/5"
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ ...VALEX_TRANSITION, delay: 0.1 + i * 0.05 }}
@@ -152,7 +152,7 @@ export default function Navbar({
 
                         {/* Mobile right: Shortcut Icons */}
                         <div className="md:hidden flex items-center gap-2">
-                            <button onClick={() => { setIsCartDrawerOpen(true); setMenuOpen(false); }} className="relative text-valex-bronce hover:text-valex-hueso transition-colors p-2" aria-label="Carrito">
+                            <button onClick={() => { setIsCartDrawerOpen(true); setMenuOpen(false); }} className="relative text-bioflora-naranja hover:text-bioflora-fucsia transition-colors p-2" aria-label="Carrito">
                                 <ShoppingBag className="w-[20px] h-[20px]" />
                                 <AnimatePresence>
                                     {cartItems.length > 0 && (
@@ -162,14 +162,14 @@ export default function Navbar({
                                             animate={{ scale: 1, opacity: 1 }}
                                             exit={{ scale: 0, opacity: 0 }}
                                             transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-                                            className="absolute -top-0.5 -right-0.5 bg-valex-bronce text-valex-negro text-[9px] w-[17px] h-[17px] rounded-full flex items-center justify-center font-bold shadow-[0_0_8px_rgba(166,137,102,0.4)]"
+                                            className="absolute -top-0.5 -right-0.5 bg-bioflora-fucsia text-bioflora-arena text-[9px] w-[17px] h-[17px] rounded-full flex items-center justify-center font-bold shadow-[0_0_8px_rgba(214,12,140,0.4)]"
                                         >
                                             {cartItems.length}
                                         </motion.span>
                                     )}
                                 </AnimatePresence>
                             </button>
-                            <Link to={currentUser ? (userData?.role === 'admin' ? '/admin' : '/') : '/login'} className="text-valex-bronce hover:text-valex-hueso transition-colors p-2 -mr-1" aria-label="Cuenta">
+                            <Link to={currentUser ? (userData?.role === 'admin' ? '/admin' : '/') : '/login'} className="text-bioflora-naranja hover:text-bioflora-fucsia transition-colors p-2 -mr-1" aria-label="Cuenta">
                                 <User className="w-[20px] h-[20px]" />
                             </Link>
                         </div>

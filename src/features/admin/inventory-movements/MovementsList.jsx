@@ -68,14 +68,14 @@ export default function MovementsList() {
             <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3">
-                        <ArrowLeftRight className="w-7 h-7 text-indigo-500 dark:text-indigo-400" />
+                        <ArrowLeftRight className="w-7 h-7 text-bioflora-verde" />
                         Entradas & Salidas
                     </h1>
                     <p className="text-gray-400 dark:text-gray-500 mt-1 text-sm">Trazabilidad completa del inventario.</p>
                 </div>
                 <button
                     onClick={() => setShowForm(true)}
-                    className="flex items-center gap-2 bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors self-start sm:self-auto shadow-sm"
+                    className="flex items-center gap-2 bg-bioflora-verde text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/90 transition-colors self-start sm:self-auto shadow-sm"
                 >
                     <Plus className="w-4 h-4" />
                     Registrar Movimiento
@@ -97,7 +97,7 @@ export default function MovementsList() {
             {/* Content */}
             {loading ? (
                 <div className="flex items-center justify-center h-64">
-                    <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+                    <div className="w-8 h-8 border-2 border-bioflora-verde border-t-transparent rounded-full animate-spin" />
                 </div>
             ) : filteredMovements.length === 0 ? (
                 <div className="text-center py-20 bg-white dark:bg-[#1e1e20] border border-gray-200 dark:border-white/5 rounded-xl">
@@ -105,7 +105,7 @@ export default function MovementsList() {
                     <p className="text-gray-500 dark:text-gray-400 font-medium">No hay movimientos registrados.</p>
                     <button
                         onClick={() => setShowForm(true)}
-                        className="mt-4 text-indigo-600 dark:text-indigo-400 hover:underline text-sm font-medium"
+                        className="mt-4 text-bioflora-verde hover:underline text-sm font-medium"
                     >
                         Registrar el primero
                     </button>

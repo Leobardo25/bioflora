@@ -51,7 +51,7 @@ export default function ProductEditSidebar({ productId, productName, onClose, on
                         <div className="flex flex-col gap-1 min-w-0">
                             <span className={`text-[10px] font-black tracking-widest uppercase px-2 py-0.5 rounded-md w-max ${
                                 productId 
-                                    ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400' 
+                                    ? 'bg-bioflora-verde/10 dark:bg-bioflora-verde/20 text-bioflora-verde' 
                                     : 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                             }`}>
                                 {productId ? 'Modo Edición' : 'Nuevo Registro'}
@@ -91,7 +91,7 @@ export default function ProductEditSidebar({ productId, productName, onClose, on
                             type="submit"
                             form={FORM_ID}
                             disabled={isSubmitting}
-                            className="flex-1 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex justify-center items-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg shadow-indigo-600/10 dark:shadow-none"
+                            className="flex-1 bg-bioflora-verde hover:bg-bioflora-verde/90 text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex justify-center items-center gap-2 disabled:opacity-50 cursor-pointer shadow-lg shadow-bioflora-verde/20 dark:shadow-none"
                         >
                             {isSubmitting ? (
                                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

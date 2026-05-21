@@ -4,17 +4,21 @@
 
 /*
  * ========================================
- *  🎨 VALEX PERFUMERÍA — CSS VARIABLES
- *  Concepto: "Lujo Silencioso"
+ *  🎨 BIOFLORA VIVERO BOUTIQUE — CSS VARIABLES
+ *  Concepto: "Lujo Botánico Vibrante"
  * ========================================
  */
 :root {
-  --negro-mate: #1A1A1B;
-  --bronce: #A68966;
-  --bronce-dark: #8A7050;
-  --bronce-light: #C4A87D;
-  --gris-piedra: #D1D1D1;
-  --blanco-hueso: #F5F5F5;
+  --negro-mate: #070F0A;        /* Verde Bosque Nocturno ultra-oscuro */
+  --bronce: #00A94F;           /* Verde Principal Jardín (Pantone 355C) */
+  --bronce-dark: #066E34;      /* Verde Selva Oscuro */
+  --bronce-light: #D60C8C;     /* Rosa/Fucsia Orquídea (Acento premium) */
+  --gris-piedra: #A3B899;      /* Verde Salvia Elegante (Texto secundario) */
+  --blanco-hueso: #F9F9F6;     /* Arena / Blanco Hueso (Zonas de respiro) */
+  --fucsia-orquidea: #D60C8C;
+  --morado-orquidea: #662D91;
+  --naranja-tucan: #F8971D;
+  --tarjeta-bosque: #0D1C13;
 }
 
 html {
@@ -22,7 +26,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', 'Outfit', system-ui, sans-serif;
   background-color: var(--negro-mate);
   color: var(--gris-piedra);
 }
@@ -37,12 +41,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--bronce), var(--bronce-dark));
+  background: linear-gradient(180deg, var(--bronce), var(--fucsia-orquidea));
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--bronce-light), var(--bronce));
+  background: linear-gradient(180deg, var(--fucsia-orquidea), var(--bronce));
 }
 
 * {
@@ -58,34 +62,34 @@ body {
   background: #f1f5f9;
 }
 .scrollbar-admin::-webkit-scrollbar-thumb {
-  background: #c7d2fe;
+  background: #a7f3d0; /* emerald tailwind */
   border-radius: 10px;
 }
 .scrollbar-admin::-webkit-scrollbar-thumb:hover {
-  background: #818cf8;
+  background: #10b981;
 }
 .scrollbar-admin {
   scrollbar-width: thin;
-  scrollbar-color: #c7d2fe #f1f5f9;
+  scrollbar-color: #a7f3d0 #f1f5f9;
 }
 
 /* ── Admin scrollbar — dark theme ── */
 .dark .scrollbar-admin::-webkit-scrollbar-track {
-  background: #1A1A1B;
+  background: #070F0A;
 }
 .dark .scrollbar-admin::-webkit-scrollbar-thumb {
-  background: #3f3f46;
+  background: #0D1C13;
   border-radius: 10px;
 }
 .dark .scrollbar-admin::-webkit-scrollbar-thumb:hover {
-  background: #52525b;
+  background: #00A94F;
 }
 .dark .scrollbar-admin {
-  scrollbar-color: #3f3f46 #1A1A1B;
+  scrollbar-color: #0D1C13 #070F0A;
 }
 
-/* ── Animated gradient text for VALEX logo ── */
-@keyframes bronceShimmer {
+/* ── Animated gradient text for BIOFLORA logo ── */
+@keyframes floraShimmer {
   0% {
     background-position: 200% 50%;
   }
@@ -99,7 +103,7 @@ body {
     90deg,
     var(--bronce) 0%,
     var(--bronce) 25%,
-    var(--blanco-hueso) 50%,
+    var(--fucsia-orquidea) 50%,
     var(--bronce) 75%,
     var(--bronce) 100%
   );
@@ -107,7 +111,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: bronceShimmer 5s linear infinite;
+  animation: floraShimmer 5s linear infinite;
 }
 
 /* ── Subtle fade-in on scroll ── */
@@ -129,12 +133,12 @@ body {
 /* ── Floating button glow ── */
 @keyframes glowPulse {
   0%, 100% {
-    box-shadow: 0 0 12px 2px rgba(166, 137, 102, 0.35),
-      0 0 24px 4px rgba(166, 137, 102, 0.15);
+    box-shadow: 0 0 12px 2px rgba(0, 169, 79, 0.35),
+      0 0 24px 4px rgba(214, 12, 140, 0.15);
   }
   50% {
-    box-shadow: 0 0 18px 4px rgba(166, 137, 102, 0.5),
-      0 0 36px 8px rgba(166, 137, 102, 0.25);
+    box-shadow: 0 0 18px 4px rgba(0, 169, 79, 0.5),
+      0 0 36px 8px rgba(214, 12, 140, 0.25);
   }
 }
 

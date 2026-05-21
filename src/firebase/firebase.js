@@ -5,12 +5,13 @@ import { getStorage } from 'firebase/storage';
 
 // Replace with your Firebase config or set up .env.local
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyBQIC4-pssHVaRCMAj51_ZOg_3z46Vprxw",
+  authDomain: "bioflora-edb38.firebaseapp.com",
+  projectId: "bioflora-edb38",
+  storageBucket: "bioflora-edb38.firebasestorage.app",
+  messagingSenderId: "363345581472",
+  appId: "1:363345581472:web:668255632516c9c70580c5",
+  measurementId: "G-HRPLX0NML0"
 };
 
 // Initialize Firebase

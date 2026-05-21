@@ -19,16 +19,16 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
         onLoadingChange?.(isLoading);
     }, [isLoading, onLoadingChange]);
     
-    // El esquema de datos de la perfumería
+    // El esquema de datos de la floristería
     const [formData, setFormData] = useState({
         name: '',
-        category: 'Unisex',
-        family: 'Amaderado', // Familia olfativa base
+        category: 'Exóticas',
+        family: 'Araceae', // Familia botánica base
         notes: '',
         description: '',
         price: '',
         currency: 'CRC',
-        ml: '100', // Valor por defecto común en perfumes
+        ml: 'Maceta 6"', // Representa el tamaño o maceta de la planta
         stock: 'Disponible',
         isFeatured: false,
         quantity: 0,
@@ -54,8 +54,9 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
     const initialDataRef = useRef(null);
     const dirtyInitRef = useRef(false);
 
-    // Familias Olfativas disponibles (Misma que en la tienda)
-    const FAMILIES = ['Amaderado', 'Floral', 'Cítrico', 'Dulce', 'Acuático', 'Oriental', 'Cuero'];
+    // Familias Botánicas disponibles
+    const FAMILIES = ['Araceae', 'Orchidaceae', 'Bromeliaceae', 'Arecaceae', 'Insumos Profesionales'];
+    const CATEGORIES = ['Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios'];
 
     const toggleSection = (key) => {
         setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
@@ -70,13 +71,13 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                     if (data) {
                         setFormData({
                             name: data.name || '',
-                            category: data.category || 'Unisex',
-                            family: data.family || 'Amaderado',
+                            category: data.category || 'Exóticas',
+                            family: data.family || 'Araceae',
                             notes: data.notes || '',
                             description: data.description || '',
                             price: data.price || '',
                             currency: data.currency || 'CRC',
-                            ml: data.ml || '100',
+                            ml: data.ml || 'Maceta 6"',
                             stock: data.stock || 'Disponible',
                             isFeatured: data.isFeatured || false,
                             quantity: data.quantity ?? 0,
@@ -250,21 +251,21 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
     /* ═══════════════════════════════════════
        Estilos reutilizables (tokens)
     ═══════════════════════════════════════ */
-    const inputBase = "w-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#111113] text-gray-800 dark:text-gray-100 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600";
+    const inputBase = "w-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#070F0A] text-gray-800 dark:text-gray-100 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bioflora-verde/40 focus:border-bioflora-verde transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600";
     const labelBase = "text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1.5";
     const sectionHeader = "flex items-center justify-between py-3 cursor-pointer select-none group";
     const sectionTitle = "flex items-center gap-2.5 text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider";
-    const sectionIcon = "w-4 h-4 text-indigo-500 dark:text-indigo-400";
+    const sectionIcon = "w-4 h-4 text-bioflora-verde";
 
     return (
         <div className={isSidebarMode ? '' : 'max-w-4xl mx-auto'}>
             {!isSidebarMode && (
                 <header className="mb-8 flex items-center justify-between">
                     <div>
-                        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">{isEditMode ? 'Editar Producto' : 'Nuevo Producto'}</h1>
-                        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Completa los detalles de esta fragancia.</p>
+                        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100 font-serif">{isEditMode ? 'Editar Planta / Producto' : 'Nueva Planta / Producto'}</h1>
+                        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Completa los detalles de esta especie botánica.</p>
                     </div>
-                    <button onClick={() => navigate('/admin/inventory')} className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm border border-gray-300 dark:border-white/10 px-4 py-2 rounded-lg transition-colors">
+                    <button onClick={() => navigate('/admin/inventory')} className="text-gray-500 dark:text-gray-400 hover:text-bioflora-verde text-sm border border-gray-300 dark:border-white/10 px-4 py-2 rounded-lg transition-colors bg-transparent">
                         Volver
                     </button>
                 </header>
@@ -303,38 +304,36 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                         <div className="px-4 pb-5 space-y-4">
                             {/* Nombre */}
                             <div>
-                                <label className={labelBase}>Nombre de la fragancia *</label>
-                                <input required type="text" name="name" value={formData.name} onChange={handleChange} className={inputBase} placeholder="Ej. Oud Mystique" />
+                                <label className={labelBase}>Nombre de la Planta / Producto *</label>
+                                <input required type="text" name="name" value={formData.name} onChange={handleChange} className={inputBase} placeholder="Ej. Monstera Variegata Albo" />
                             </div>
 
-                            {/* Género + Familia Olfativa: en una fila */}
+                            {/* Categoría + Familia Botánica: en una fila */}
                             <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label className={labelBase}>Género / Categoría</label>
+                                    <label className={labelBase}>Categoría Botánica</label>
                                     <select name="category" value={formData.category} onChange={handleChange} className={inputBase}>
-                                        <option value="Unisex">Unisex</option>
-                                        <option value="Femenino">Femenino</option>
-                                        <option value="Masculino">Masculino</option>
+                                        {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                                     </select>
                                 </div>
                                 <div>
-                                    <label className={labelBase}>Familia Olfativa</label>
+                                    <label className={labelBase}>Familia Botánica</label>
                                     <select name="family" value={formData.family} onChange={handleChange} className={inputBase}>
                                         {FAMILIES.map(fam => <option key={fam} value={fam}>{fam}</option>)}
                                     </select>
                                 </div>
                             </div>
 
-                            {/* Notas Olfativas */}
+                            {/* Ficha de Cuidados Rápidos */}
                             <div>
-                                <label className={labelBase}>Notas Olfativas</label>
-                                <input type="text" name="notes" value={formData.notes} onChange={handleChange} className={inputBase} placeholder="Ej. Madera de oud · Ámbar · Sándalo" />
+                                <label className={labelBase}>Ficha de Cuidados (Riego, Sol, Humedad)</label>
+                                <input type="text" name="notes" value={formData.notes} onChange={handleChange} className={inputBase} placeholder="Ej. Riego moderado · Sombra ligera · Humedad alta" />
                             </div>
 
                             {/* Descripción */}
                             <div>
-                                <label className={labelBase}>Descripción</label>
-                                <textarea name="description" value={formData.description} onChange={handleChange} rows="4" className={`${inputBase} resize-y min-h-[100px]`} placeholder="Descripción de la fragancia para el cliente..." />
+                                <label className={labelBase}>Descripción Botánica</label>
+                                <textarea name="description" value={formData.description} onChange={handleChange} rows="4" className={`${inputBase} resize-y min-h-[100px]`} placeholder="Características, origen o especificaciones botánicas..." />
                             </div>
                         </div>
                     )}
@@ -358,10 +357,10 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                             {/* Switch Múltiples Presentaciones */}
                             <div className="flex items-center justify-between bg-emerald-50/60 dark:bg-emerald-500/5 p-3.5 rounded-xl border border-emerald-200/50 dark:border-emerald-500/10">
                                 <div className="flex items-center gap-2.5">
-                                    <Layers className={`w-4 h-4 transition-colors ${formData.hasPresentations ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-300 dark:text-gray-600'}`} />
+                                    <Layers className={`w-4 h-4 transition-colors ${formData.hasPresentations ? 'text-bioflora-verde' : 'text-gray-300 dark:text-gray-600'}`} />
                                     <div>
                                         <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 block leading-tight">Múltiples presentaciones</span>
-                                        <span className="text-[11px] text-gray-400 dark:text-gray-500">Diferentes tamaños o volúmenes (ml) con precios independientes.</span>
+                                        <span className="text-[11px] text-gray-400 dark:text-gray-500">Diferentes tamaños de maceta o bolsa con precios independientes.</span>
                                     </div>
                                 </div>
                                 <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
@@ -374,7 +373,7 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                                 : prev.presentaciones
                                         }));
                                     }} className="sr-only peer" />
-                                    <div className="w-10 h-[22px] bg-gray-200 dark:bg-zinc-700 rounded-full peer peer-checked:after:translate-x-[18px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all after:shadow-sm peer-checked:bg-emerald-500" />
+                                    <div className="w-10 h-[22px] bg-gray-200 dark:bg-zinc-700 rounded-full peer peer-checked:after:translate-x-[18px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all after:shadow-sm peer-checked:bg-bioflora-verde" />
                                 </label>
                             </div>
 
@@ -424,14 +423,14 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                                     <div className="grid grid-cols-2 gap-2.5">
                                                         {/* Etiqueta */}
                                                         <div>
-                                                            <label className="text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-500 block mb-1">Etiqueta *</label>
+                                                            <label className="text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-500 block mb-1">Maceta / Bolsa *</label>
                                                             <input
                                                                 required
                                                                 type="text"
                                                                 value={pres.label}
                                                                 onChange={(e) => updatePresentation(index, 'label', e.target.value)}
                                                                 className={`${inputBase} !py-2 !text-xs`}
-                                                                placeholder="100 ml, 50 ml"
+                                                                placeholder='Maceta 6", Bolsa 2L'
                                                             />
                                                         </div>
                                                         {/* Precio */}
@@ -507,12 +506,11 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                         </div>
                                     </div>
 
-                                    {/* Contenido ml */}
+                                    {/* Tamaño Maceta / Bolsa */}
                                     <div>
-                                        <label className={labelBase}>Contenido (ml)</label>
+                                        <label className={labelBase}>Tamaño de Maceta o Bolsa</label>
                                         <div className="relative">
-                                            <input type="number" name="ml" value={formData.ml} onChange={handleChange} className={`${inputBase} pr-12`} placeholder="100" />
-                                            <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 dark:text-gray-500 font-medium pointer-events-none">ml</span>
+                                            <input type="text" name="ml" value={formData.ml} onChange={handleChange} className={inputBase} placeholder='Ej. Maceta 6"' />
                                         </div>
                                     </div>
                                 </div>
@@ -538,7 +536,7 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                             {/* Portada */}
                             <div>
                                 <label className={labelBase}>Portada Principal *</label>
-                                <p className="text-[11px] text-indigo-500 dark:text-indigo-400 mb-3 -mt-0.5">Se muestra en el catálogo y resultados de búsqueda de la tienda.</p>
+                                <p className="text-[11px] text-bioflora-verde mb-3 -mt-0.5 font-sans font-semibold">Se muestra en el catálogo y resultados de búsqueda de la tienda.</p>
                                 <div className="flex items-center gap-4">
                                     <div className="w-20 h-20 bg-gray-100 dark:bg-white/5 border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0">
                                         {coverPreview
@@ -547,7 +545,7 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                         }
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <label className="inline-flex items-center gap-2 cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-lg transition-colors shadow-sm">
+                                        <label className="inline-flex items-center gap-2 cursor-pointer bg-bioflora-verde hover:bg-bioflora-verde/80 text-white text-[11px] font-bold tracking-wider uppercase px-4 py-2 rounded-lg transition-colors shadow-sm">
                                             <ImagePlus className="w-3.5 h-3.5" />
                                             {coverPreview ? 'Cambiar' : 'Subir imagen'}
                                             <input type="file" accept="image/*" onChange={handleCoverChange} className="hidden" />
@@ -601,7 +599,7 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="bg-indigo-600 text-white px-6 py-2.5 text-sm rounded-lg font-medium hover:bg-indigo-700 transition-colors flex items-center gap-2 disabled:opacity-70"
+                            className="bg-bioflora-fucsia text-white px-6 py-2.5 text-sm rounded-lg font-medium hover:bg-bioflora-fucsia/80 transition-colors flex items-center gap-2 disabled:opacity-70 shadow-lg shadow-bioflora-fucsia/20"
                         >
                             {isLoading ? (
                                 <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Guardando...</>

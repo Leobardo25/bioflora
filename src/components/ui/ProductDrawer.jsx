@@ -159,11 +159,11 @@ export default function ProductDrawer() {
             theme={{
                 algorithm: antTheme.darkAlgorithm,
                 token: {
-                    colorPrimary: '#A68966',
-                    colorBgBase: '#151515',
-                    colorBgElevated: '#1a1a1b',
-                    colorTextBase: '#F5F5F5',
-                    fontFamily: '"Poppins", sans-serif',
+                    colorPrimary: '#7C3AED',
+                    colorBgBase: '#070F0A',
+                    colorBgElevated: '#0D1C13',
+                    colorTextBase: '#F9F9F6',
+                    fontFamily: '"Outfit", "Poppins", sans-serif',
                 }
             }}
         >
@@ -177,16 +177,16 @@ export default function ProductDrawer() {
                 zIndex={2000}
                 styles={{
                     header: { display: 'none' },
-                    body: { padding: '0', backgroundColor: '#111112', display: 'flex', flexDirection: 'column', height: '100dvh' },
+                    body: { padding: '0', backgroundColor: '#070F0A', display: 'flex', flexDirection: 'column', height: '100dvh' },
                     wrapper: { width: '100%', maxWidth: '1000px' }
                 }}
                 className="product-drawer-wide"
             >
                 {/* Header personalizado - Solo botón volver */}
-                <div className="flex items-center px-5 py-4 border-b border-valex-bronce/15 bg-[#111112] flex-shrink-0">
+                <div className="flex items-center px-5 py-4 border-b border-bioflora-morado/15 bg-[#070F0A] flex-shrink-0">
                     <button
                         onClick={handleClose}
-                        className="flex items-center gap-1.5 text-valex-gris hover:text-valex-hueso transition-colors p-1.5 -ml-1.5 rounded-lg hover:bg-white/5 group"
+                        className="flex items-center gap-1.5 text-bioflora-arena/70 hover:text-bioflora-arena transition-colors p-1.5 -ml-1.5 rounded-lg hover:bg-white/5 group"
                     >
                         <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
                         <span className="text-xs font-sans uppercase tracking-wider">
@@ -200,7 +200,7 @@ export default function ProductDrawer() {
                 <div className="flex-1 overflow-y-auto lg:overflow-hidden">
                     <div className="flex flex-col lg:flex-row lg:h-full">
                         {/* Nombre del producto - Solo en móvil */}
-                        <div className="lg:hidden px-5 py-3 bg-[#111112]">
+                        <div className="lg:hidden px-5 py-3 bg-[#070F0A]">
                             <AnimatePresence mode="wait">
                                 {!showCheckout ? (
                                     <motion.h1
@@ -208,7 +208,7 @@ export default function ProductDrawer() {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
-                                        className="font-serif font-bold text-lg text-valex-hueso text-center leading-tight"
+                                        className="font-serif font-bold text-lg text-bioflora-arena text-center leading-tight"
                                     >
                                         {selectedProduct.name}
                                     </motion.h1>
@@ -220,9 +220,9 @@ export default function ProductDrawer() {
                                         exit={{ opacity: 0, y: 8 }}
                                         className="flex flex-col gap-3"
                                     >
-                                        <span className="font-serif font-bold text-xl text-valex-hueso">Finalizar Compra</span>
+                                        <span className="font-serif font-bold text-xl text-bioflora-arena">Finalizar Compra</span>
                                         <div className="flex items-center gap-4">
-                                            <div className="w-20 h-20 rounded-xl overflow-hidden border border-valex-bronce/30 flex-shrink-0 shadow-lg">
+                                            <div className="w-20 h-20 rounded-xl overflow-hidden border border-bioflora-verde/30 flex-shrink-0 shadow-lg">
                                                 <img
                                                     src={images[0]}
                                                     alt={selectedProduct.name}
@@ -230,8 +230,8 @@ export default function ProductDrawer() {
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-1">
-                                                <span className="font-serif font-semibold text-sm text-valex-hueso leading-snug">{selectedProduct.name}</span>
-                                                <span className="text-valex-bronce font-sans font-bold text-lg">
+                                                <span className="font-serif font-semibold text-sm text-bioflora-arena leading-snug">{selectedProduct.name}</span>
+                                                <span className="text-bioflora-naranja font-sans font-bold text-lg">
                                                     {formatPrice(selectedProduct.price, selectedProduct.currency)}
                                                 </span>
                                             </div>
@@ -242,7 +242,7 @@ export default function ProductDrawer() {
                         </div>
 
                         {/* Columna Izquierda - Galería de Imágenes */}
-                        <div className={`relative bg-[#0d0d0d] lg:w-[55%] flex items-center justify-center lg:p-8 lg:py-12 transition-all duration-300 ${showCheckout ? 'lg:flex hidden' : ''}`}>
+                        <div className={`relative bg-[#050b07] lg:w-[55%] flex items-center justify-center lg:p-8 lg:py-12 transition-all duration-300 ${showCheckout ? 'lg:flex hidden' : ''}`}>
                             {/* Móvil: Imagen simple */}
                             <div className="lg:hidden relative w-full aspect-square">
                                 <AnimatePresence mode="wait">
@@ -266,8 +266,8 @@ export default function ProductDrawer() {
 
                             {/* Desktop: Marco elegante con imagen llena */}
                             <div className="hidden lg:block relative w-full aspect-[4/5] max-h-[580px] shadow-2xl shadow-black/50">
-                                {/* Borde bronce */}
-                                <div className="absolute inset-0 border-2 border-valex-bronce/30 pointer-events-none z-10" />
+                                {/* Borde verde */}
+                                <div className="absolute inset-0 border-2 border-bioflora-morado/30 pointer-events-none z-10" />
                                 
                                 <AnimatePresence mode="wait">
                                     <motion.div
@@ -287,11 +287,11 @@ export default function ProductDrawer() {
                                     </motion.div>
                                 </AnimatePresence>
                                 
-                                {/* Esquinas decorativas doradas */}
-                                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-valex-bronce -mt-0.5 -ml-0.5 z-20" />
-                                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-valex-bronce -mt-0.5 -mr-0.5 z-20" />
-                                <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-valex-bronce -mb-0.5 -ml-0.5 z-20" />
-                                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-valex-bronce -mb-0.5 -mr-0.5 z-20" />
+                                {/* Esquinas decorativas de Bioflora */}
+                                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-bioflora-morado -mt-0.5 -ml-0.5 z-20" />
+                                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-bioflora-morado -mt-0.5 -mr-0.5 z-20" />
+                                <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-bioflora-morado -mb-0.5 -ml-0.5 z-20" />
+                                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-bioflora-morado -mb-0.5 -mr-0.5 z-20" />
                             </div>
 
                         {/* Navegación Desktop/Tablet */}
@@ -299,13 +299,13 @@ export default function ProductDrawer() {
                             <>
                                 <button
                                     onClick={prevImage}
-                                    className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-valex-bronce/30 items-center justify-center text-valex-hueso hover:bg-valex-bronce hover:text-valex-negro transition-all z-20"
+                                    className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-bioflora-morado/30 items-center justify-center text-bioflora-arena hover:bg-bioflora-morado hover:text-white transition-all z-20"
                                 >
                                     <ChevronLeft className="w-5 h-5" />
                                 </button>
                                 <button
                                     onClick={nextImage}
-                                    className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-valex-bronce/30 items-center justify-center text-valex-hueso hover:bg-valex-bronce hover:text-valex-negro transition-all z-20"
+                                    className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-bioflora-morado/30 items-center justify-center text-bioflora-arena hover:bg-bioflora-morado hover:text-white transition-all z-20"
                                 >
                                     <ChevronRight className="w-5 h-5" />
                                 </button>
@@ -315,7 +315,7 @@ export default function ProductDrawer() {
                                     <div className="flex items-center justify-between">
                                         <button
                                             onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                                            className="w-9 h-9 rounded-full bg-valex-negro/80 backdrop-blur-sm border border-valex-bronce/40 flex items-center justify-center text-valex-hueso active:bg-valex-bronce active:text-valex-negro transition-all z-20 relative"
+                                            className="w-9 h-9 rounded-full bg-[#070F0A]/80 backdrop-blur-sm border border-bioflora-morado/40 flex items-center justify-center text-bioflora-arena active:bg-bioflora-morado active:text-white transition-all z-20 relative"
                                             type="button"
                                         >
                                             <ChevronLeft className="w-4 h-4" />
@@ -325,7 +325,7 @@ export default function ProductDrawer() {
                                             {images.map((_, idx) => (
                                                 <button
                                                     key={idx}
-                                                    className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex ? 'w-6 bg-valex-bronce' : 'w-1.5 bg-white/40'}`}
+                                                    className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex ? 'w-6 bg-bioflora-morado' : 'w-1.5 bg-white/40'}`}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         setCurrentImageIndex(idx);
@@ -337,7 +337,7 @@ export default function ProductDrawer() {
 
                                         <button
                                             onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                                            className="w-9 h-9 rounded-full bg-valex-negro/80 backdrop-blur-sm border border-valex-bronce/40 flex items-center justify-center text-valex-hueso active:bg-valex-bronce active:text-valex-negro transition-all z-20 relative"
+                                            className="w-9 h-9 rounded-full bg-[#070F0A]/80 backdrop-blur-sm border border-bioflora-morado/40 flex items-center justify-center text-bioflora-arena active:bg-bioflora-morado active:text-white transition-all z-20 relative"
                                             type="button"
                                         >
                                             <ChevronRight className="w-4 h-4" />
@@ -350,7 +350,7 @@ export default function ProductDrawer() {
                                     {images.map((_, idx) => (
                                         <button
                                             key={idx}
-                                            className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex ? 'w-5 bg-valex-bronce' : 'w-1.5 bg-white/30'}`}
+                                            className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex ? 'w-5 bg-bioflora-morado' : 'w-1.5 bg-white/30'}`}
                                             onClick={() => setCurrentImageIndex(idx)}
                                         />
                                     ))}
@@ -377,7 +377,7 @@ export default function ProductDrawer() {
                     </div>
 
                         {/* Columna Derecha - Info del Producto o Checkout */}
-                        <div className="p-5 sm:p-6 lg:w-[45%] bg-[#111112] flex flex-col lg:h-full lg:overflow-hidden relative">
+                        <div className="p-5 sm:p-6 lg:w-[45%] bg-[#070F0A] flex flex-col lg:h-full lg:overflow-hidden relative">
                             <AnimatePresence mode="wait">
                                 {!showCheckout ? (
                                     <motion.div
@@ -390,41 +390,41 @@ export default function ProductDrawer() {
                                     >
                                         {/* Nombre del producto - Solo en desktop, en la columna de texto */}
                                         <div className="hidden lg:block mb-4 flex-shrink-0">
-                                            <h1 className="font-serif font-bold text-xl text-valex-hueso leading-tight">
+                                            <h1 className="font-serif font-bold text-xl text-bioflora-arena leading-tight">
                                                 {selectedProduct.name}
                                             </h1>
                                         </div>
 
                                         {/* Categoría + ML + Rating en una línea */}
                                         <div className="flex items-center gap-2.5 mb-3 flex-shrink-0">
-                                            <span className="text-valex-bronce font-sans text-xs tracking-[0.2em] uppercase font-bold">
+                                            <span className="text-bioflora-naranja font-sans text-xs tracking-[0.2em] uppercase font-bold">
                                                 {selectedProduct.category}
                                             </span>
-                                            <span className="w-px h-3.5 bg-valex-gris/40" />
-                                            <span className="text-valex-gris/70 font-sans text-[11px] tracking-[0.1em] uppercase">
-                                                {selectedProduct.ml || '100'}ml
+                                            <span className="w-px h-3.5 bg-bioflora-arena/20" />
+                                            <span className="text-bioflora-arena/70 font-sans text-[11px] tracking-[0.1em] uppercase">
+                                                {selectedProduct.ml || 'Maceta 6"'}
                                             </span>
                                             <div className="ml-auto flex items-center gap-1.5">
-                                                <div className="flex text-valex-bronce text-[11px]">
+                                                <div className="flex text-bioflora-naranja text-[11px]">
                                                     {[...Array(5)].map((_, i) => (
                                                         <StarFilled key={i} />
                                                     ))}
                                                 </div>
-                                                <span className="text-valex-gris text-[10px] font-sans">(128)</span>
+                                                <span className="text-bioflora-arena/50 text-[10px] font-sans">(128)</span>
                                             </div>
                                         </div>
 
-                                        {/* Notas Olfativas */}
-                                        <span className="inline-block text-valex-gris/60 font-sans text-[10px] tracking-[0.2em] uppercase font-semibold mb-1 flex-shrink-0">
-                                            Notas Olfativas
+                                        {/* Ficha de Cuidados */}
+                                        <span className="inline-block text-bioflora-naranja/80 font-sans text-[10px] tracking-[0.2em] uppercase font-semibold mb-1 flex-shrink-0">
+                                            Ficha de Cuidados
                                         </span>
-                                        <p className="text-valex-bronce/90 italic font-serif text-[12px] mb-4 flex-shrink-0">
-                                            "{selectedProduct.notes || 'Una fragancia inolvidable.'}"
+                                        <p className="text-bioflora-arena/90 italic font-serif text-[12px] mb-4 flex-shrink-0">
+                                            "{selectedProduct.notes || 'Riego moderado, luz indirecta, humedad media.'}"
                                         </p>
 
                                         {/* Precio */}
                                         <div className="mb-5 flex-shrink-0">
-                                            <span className="font-serif font-bold text-2xl sm:text-3xl text-valex-bronce">
+                                            <span className="font-serif font-bold text-2xl sm:text-3xl text-bioflora-naranja">
                                                 {formatPrice(selectedProduct.price, selectedProduct.currency)}
                                             </span>
                                         </div>
@@ -434,18 +434,18 @@ export default function ProductDrawer() {
                                             <button
                                                 disabled={isOutOfStock}
                                                 onClick={handleAddToCart}
-                                                className="h-12 border-2 border-valex-bronce text-valex-hueso text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-valex-bronce hover:text-valex-negro transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="h-12 border-2 border-bioflora-naranja text-bioflora-arena text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-bioflora-naranja hover:text-white transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <ShoppingBag className="w-4 h-4" />
-                                                Añadir a Bolsa
+                                                Añadir a la Bolsa
                                             </button>
 
                                             <button
                                                 disabled={isOutOfStock}
                                                 onClick={handleBuyNow}
-                                                className="h-12 bg-valex-bronce text-valex-negro text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-valex-bronce-light transition-all flex items-center justify-center shadow-lg shadow-valex-bronce/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="h-12 bg-bioflora-morado text-white text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-bioflora-morado/80 transition-all flex items-center justify-center shadow-lg shadow-bioflora-morado/30 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
-                                                {isOutOfStock ? 'No disponible' : 'Comprar Ahora'}
+                                                {isOutOfStock ? 'Agotado' : 'Comprar Ahora'}
                                             </button>
                                         </div>
 
@@ -453,14 +453,14 @@ export default function ProductDrawer() {
                                         <Collapse
                                             ghost
                                             expandIconPlacement="end"
-                                            className="custom-boutique-collapse mb-5 flex-shrink-0"
+                                            className="custom-botanical-collapse mb-5 flex-shrink-0"
                                             items={[
                                                 {
                                                     key: '1',
-                                                    label: <span className="font-sans font-semibold text-valex-hueso text-xs uppercase tracking-wider">Descripción</span>,
+                                                    label: <span className="font-sans font-semibold text-bioflora-arena text-xs uppercase tracking-wider">Descripción Botánica</span>,
                                                     children: (
-                                                        <Paragraph className="!text-valex-gris !text-sm !font-light leading-relaxed !mb-0">
-                                                            {selectedProduct.description || "Inspirada en la exclusividad, esta fragancia ofrece una evolución aromática única."}
+                                                        <Paragraph className="!text-bioflora-arena/70 !text-sm !font-light leading-relaxed !mb-0">
+                                                            {selectedProduct.description || "Una especie botánica exótica, cultivada bajo los más altos estándares de calidad orgánica."}
                                                         </Paragraph>
                                                     )
                                                 }
@@ -468,18 +468,18 @@ export default function ProductDrawer() {
                                         />
 
                                         {/* Trust Badges - Mover al final */}
-                                        <div className="flex items-center justify-between py-4 border-y border-valex-gris/20 mt-auto flex-shrink-0">
+                                        <div className="flex items-center justify-between py-4 border-y border-bioflora-arena/10 mt-auto flex-shrink-0">
                                             <div className="flex flex-col items-center gap-1 flex-1">
-                                                <SafetyCertificateOutlined className="text-base text-valex-bronce" />
-                                                <span className="text-[9px] uppercase tracking-tighter text-valex-gris">Auténtico</span>
+                                                <SafetyCertificateOutlined className="text-base text-bioflora-verde" />
+                                                <span className="text-[9px] uppercase tracking-tighter text-bioflora-arena/70">100% Orgánico</span>
                                             </div>
-                                            <div className="flex flex-col items-center gap-1 flex-1 border-x border-valex-gris/20">
-                                                <CodeSandboxOutlined className="text-base text-valex-bronce" />
-                                                <span className="text-[9px] uppercase tracking-tighter text-valex-gris">Envío Gratis</span>
+                                            <div className="flex flex-col items-center gap-1 flex-1 border-x border-bioflora-arena/10">
+                                                <CodeSandboxOutlined className="text-base text-bioflora-verde" />
+                                                <span className="text-[9px] uppercase tracking-tighter text-bioflora-arena/70">Envío Seguro</span>
                                             </div>
                                             <div className="flex flex-col items-center gap-1 flex-1">
-                                                <StarFilled className="text-base text-valex-bronce" />
-                                                <span className="text-[9px] uppercase tracking-tighter text-valex-gris">Premium</span>
+                                                <StarFilled className="text-base text-bioflora-verde" />
+                                                <span className="text-[9px] uppercase tracking-tighter text-bioflora-arena/70">Exótica VIP</span>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -490,7 +490,7 @@ export default function ProductDrawer() {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -20 }}
                                         transition={{ duration: 0.3 }}
-                                        className="flex-1 overflow-hidden p-5 sm:p-6 bg-[#111112]"
+                                        className="flex-1 overflow-hidden p-5 sm:p-6 bg-[#070F0A]"
                                     >
                                         <CheckoutForm
                                             items={[{ ...selectedProduct, quantity: 1 }]}

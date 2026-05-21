@@ -1,8 +1,45 @@
 import { collection, doc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL, deleteObject, listAll } from 'firebase/storage';
-import { db, storage } from '../firebase/firebase';
+import { db } from '../firebase/firebase';
 
 const COLLECTION_NAME = 'products';
+
+// --- CLOUDINARY CONFIGURATION ---
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dwlziwajv/image/upload";
+const CLOUDINARY_API_KEY = "126569116362927";
+const CLOUDINARY_API_SECRET = "R0COINLHSSAmUSPDgYGJ8jtbZyc";
+
+/**
+ * Helper para subir imágenes a Cloudinary usando firmas SHA-1 nativas (Web Crypto API)
+ */
+export const uploadToCloudinary = async (file) => {
+    const timestamp = Math.round((new Date()).getTime() / 1000);
+    
+    // Cloudinary requiere que TODOS los parámetros adicionales se ordenen alfabéticamente en la firma
+    const strToSign = `folder=bioflora_products&timestamp=${timestamp}${CLOUDINARY_API_SECRET}`;
+    const buffer = new TextEncoder().encode(strToSign);
+    const hashBuffer = await crypto.subtle.digest('SHA-1', buffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const signature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("api_key", CLOUDINARY_API_KEY);
+    formData.append("timestamp", timestamp);
+    formData.append("signature", signature);
+    formData.append("folder", "bioflora_products"); // Carpeta en Cloudinary
+
+    const response = await fetch(CLOUDINARY_URL, {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error?.message || "Error al subir a Cloudinary");
+    }
+
+    return data.secure_url;
+};
 
 /**
  * Trae todos los productos desde Firestore
@@ -35,32 +72,25 @@ export const getProductById = async (id) => {
 };
 
 /**
- * Crea un producto nuevo, subiendo la imagen principal y las imágenes de galería si existen
+ * Crea un producto nuevo, subiendo la imagen principal y las imágenes de galería a Cloudinary
  */
 export const createProduct = async (productData, coverFile, galleryFiles = []) => {
     try {
         let coverImage = '';
         let galleryImages = [];
 
-        // 1. Generamos la referencia del documento ANTES de guardarlo
-        // para obtener el ID y usarlo como nombre de la carpeta en Storage
+        // Generamos la referencia del documento ANTES de guardarlo
         const newDocRef = doc(collection(db, COLLECTION_NAME));
         const productId = newDocRef.id;
 
-        // 2. Subir Portada Principal a su carpeta respectiva
+        // Subir Portada Principal a Cloudinary
         if (coverFile) {
-            const coverRef = ref(storage, `products/${productId}/cover_${Date.now()}_${coverFile.name}`);
-            const snapshot = await uploadBytes(coverRef, coverFile);
-            coverImage = await getDownloadURL(snapshot.ref);
+            coverImage = await uploadToCloudinary(coverFile);
         }
 
-        // 3. Subir Imágenes de Galería Concurrente a su carpeta
+        // Subir Imágenes de Galería Concurrente a Cloudinary
         if (galleryFiles && galleryFiles.length > 0) {
-            const uploadPromises = galleryFiles.map(async (file, index) => {
-                const galRef = ref(storage, `products/${productId}/gal_${index}_${Date.now()}_${file.name}`);
-                const snap = await uploadBytes(galRef, file);
-                return getDownloadURL(snap.ref);
-            });
+            const uploadPromises = galleryFiles.map(file => uploadToCloudinary(file));
             galleryImages = await Promise.all(uploadPromises);
         }
 
@@ -72,7 +102,7 @@ export const createProduct = async (productData, coverFile, galleryFiles = []) =
             updatedAt: serverTimestamp()
         };
 
-        // 4. Guardamos el producto con su ID reservado
+        // Guardamos el producto en Firestore
         await setDoc(newDocRef, finalProductData);
         
         return { id: productId, ...finalProductData };
@@ -83,30 +113,23 @@ export const createProduct = async (productData, coverFile, galleryFiles = []) =
 };
 
 /**
- * Actualiza un producto existente, y si hay imagen nueva, la sube.
+ * Actualiza un producto existente, y si hay imagen nueva, la sube a Cloudinary.
  */
 export const updateProduct = async (id, productData, newCoverFile, currentCoverUrl, newGalleryFiles = [], currentGalleryUrls = []) => {
     try {
         const docRef = doc(db, COLLECTION_NAME, id);
         let coverImage = currentCoverUrl || '';
-        let galleryImages = [...(currentGalleryUrls || [])]; // Mantenemos las previas inicialmente
+        let galleryImages = [...(currentGalleryUrls || [])]; // Mantenemos las previas
 
-        // 1. Si hay nueva Portada, la subimos a la carpeta del producto
+        // Si hay nueva Portada, la subimos a Cloudinary
         if (newCoverFile) {
-            const coverRef = ref(storage, `products/${id}/cover_${Date.now()}_${newCoverFile.name}`);
-            const snapshot = await uploadBytes(coverRef, newCoverFile);
-            coverImage = await getDownloadURL(snapshot.ref);
+            coverImage = await uploadToCloudinary(newCoverFile);
         }
 
-        // 2. Si se subieron nuevas imágenes para la galería, las añadimos
+        // Si se subieron nuevas imágenes para la galería, las subimos a Cloudinary
         if (newGalleryFiles && newGalleryFiles.length > 0) {
-            const uploadPromises = newGalleryFiles.map(async (file, index) => {
-                const galRef = ref(storage, `products/${id}/gal_${index}_${Date.now()}_${file.name}`);
-                const snap = await uploadBytes(galRef, file);
-                return getDownloadURL(snap.ref);
-            });
+            const uploadPromises = newGalleryFiles.map(file => uploadToCloudinary(file));
             const newUrls = await Promise.all(uploadPromises);
-            // Concatenamos las nuevas a las existentes (o podríamos reemplazarlas dependiendo de la UI)
             galleryImages = [...galleryImages, ...newUrls];
         }
 
@@ -126,7 +149,7 @@ export const updateProduct = async (id, productData, newCoverFile, currentCoverU
 };
 
 /**
- * Actualiza un campo específico de un producto (para ediciones rápidas inline)
+ * Actualiza un campo específico de un producto
  */
 export const updateProductField = async (id, field, value) => {
     try {
@@ -143,18 +166,9 @@ export const updateProductField = async (id, field, value) => {
  */
 export const deleteProduct = async (id) => {
     try {
-        // 1. Borramos todas las imágenes en la carpeta de Storage del producto
-        const folderRef = ref(storage, `products/${id}`);
-        try {
-            const folderContents = await listAll(folderRef);
-            const deletePromises = folderContents.items.map((itemRef) => deleteObject(itemRef));
-            await Promise.all(deletePromises);
-        } catch (storageError) {
-            // Ignorar errores si la carpeta no existe (por ejemplo productos viejos en la raiz)
-            console.log(`Carpeta de imágenes para el producto ${id} no encontrada o vacía.`, storageError);
-        }
-
-        // 2. Borramos el documento de Firestore
+        // Nota: Las imágenes en Cloudinary se mantienen por defecto para no romper
+        // historiales de pedidos que dependan de la URL, o pueden ser eliminadas 
+        // a través de un webhook/función cloud. Eliminamos solo el doc de Firestore.
         await deleteDoc(doc(db, COLLECTION_NAME, id));
         return true;
     } catch (error) {

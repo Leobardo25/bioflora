@@ -1,7 +1,7 @@
 import { Package, CheckCircle, AlertCircle, Archive } from 'lucide-react';
 
 const STATS = [
-    { label: 'Total',      key: null,                icon: Package,       bg: 'bg-indigo-50 dark:bg-indigo-500/15',   text: 'text-indigo-600 dark:text-indigo-400',  ring: 'ring-indigo-200 dark:ring-indigo-500/30'  },
+    { label: 'Total',      key: null,                icon: Package,       bg: 'bg-bioflora-verde/10 dark:bg-bioflora-verde/20',   text: 'text-bioflora-verde',  ring: 'ring-bioflora-verde/30'  },
     { label: 'Disponible', key: 'Disponible',         icon: CheckCircle,  bg: 'bg-emerald-50 dark:bg-emerald-500/15',  text: 'text-emerald-600 dark:text-emerald-400', ring: 'ring-emerald-200 dark:ring-emerald-500/30' },
     { label: 'Agotado',    key: 'Agotado',            icon: AlertCircle,  bg: 'bg-amber-50 dark:bg-amber-500/15',    text: 'text-amber-600 dark:text-amber-400',   ring: 'ring-amber-200 dark:ring-amber-500/30'   },
     { label: 'Retirado',   key: 'Bóveda (Retirado)',  icon: Archive,      bg: 'bg-gray-100 dark:bg-gray-500/15',    text: 'text-gray-500 dark:text-gray-400',    ring: 'ring-gray-200 dark:ring-gray-500/30'    },

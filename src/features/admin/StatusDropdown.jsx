@@ -53,8 +53,8 @@ export default function StatusDropdown({ productId, currentStatus, onUpdated }) 
                             className="w-full text-left px-3 py-2 text-xs flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-gray-700 dark:text-gray-300"
                         >
                             <span className={`w-2 h-2 rounded-full flex-shrink-0 ${DOT[s]}`} />
-                            <span className={s === currentStatus ? 'font-semibold text-indigo-600 dark:text-indigo-400' : ''}>{shortLabel(s)}</span>
-                            {s === currentStatus && <span className="ml-auto text-indigo-500 dark:text-indigo-400 text-[10px]">✓</span>}
+                            <span className={s === currentStatus ? 'font-semibold text-bioflora-verde' : ''}>{shortLabel(s)}</span>
+                            {s === currentStatus && <span className="ml-auto text-bioflora-verde text-[10px]">✓</span>}
                         </button>
                     ))}
                 </div>

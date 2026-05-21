@@ -19,7 +19,7 @@ const Field = ({ label, name, value, onChange, multiline = false, placeholder })
                 rows={2}
                 onInput={(e) => { e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
                 ref={(el) => { if (el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; } }}
-                className="w-full border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] focus:bg-white dark:focus:bg-[#1e1e20] focus:outline-none focus:ring-2 focus:ring-[#A68966]/40 focus:border-[#A68966]/60 transition resize-none overflow-hidden"
+                className="w-full border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] focus:bg-white dark:focus:bg-[#1e1e20] focus:outline-none focus:ring-2 focus:ring-[#00A94F]/40 focus:border-[#00A94F]/60 transition resize-none overflow-hidden"
             />
         ) : (
             <input
@@ -28,7 +28,7 @@ const Field = ({ label, name, value, onChange, multiline = false, placeholder })
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className="w-full border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] focus:bg-white dark:focus:bg-[#1e1e20] focus:outline-none focus:ring-2 focus:ring-[#A68966]/40 focus:border-[#A68966]/60 transition"
+                className="w-full border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] focus:bg-white dark:focus:bg-[#1e1e20] focus:outline-none focus:ring-2 focus:ring-[#00A94F]/40 focus:border-[#00A94F]/60 transition"
             />
         )}
     </div>
@@ -55,28 +55,26 @@ function SectionCard({ icon: Icon, title, accent, children }) {
 }
 
 const LANDING_DEFAULTS = {
-    heroTitle: 'El Arte de Oler Increíble',
-    heroSubtitle: 'Descubra fragancias exclusivas diseñadas para cautivar',
-    heroBadge: 'Valex Perfumería',
-    stat1Value: '50+', stat1Label: 'Fragancias',
-    stat2Value: '2K+', stat2Label: 'Clientes',
-    stat3Value: '8+',  stat3Label: 'Años',
-    collectionTitle: 'Nuestras Botellas',
-    collectionText: 'Explora las fragancias más exclusivas de nuestra bóveda, elaboradas meticulosamente para revelar tu identidad.',
-    pillar1Title: 'Ingredientes Nobles',   pillar1Text: 'Seleccionamos las materias primas más finas del mundo: oud de Laos, rosa de Grasse, bergamota de Calabria y sándalo de Mysore. Cada ingrediente es elegido por su pureza y profundidad aromática.',
-    pillar2Title: 'Artesanía Francesa',    pillar2Text: 'Nuestras fragancias son formuladas en colaboración con maestros perfumistas de la tradición francesa, herederos de técnicas centenarias que garantizan complejidad y armonía en cada composición.',
-    pillar3Title: 'Experiencia Sensorial', pillar3Text: 'Creemos que un perfume no solo se usa, se vive. Cada frasco de VALEX está diseñado para evocar emociones, despertar recuerdos y proyectar una identidad única e irrepetible.',
+    heroTitle: 'Exóticas Colecciones Botánicas',
+    heroSubtitle: '',
+    stat1Value: '150+', stat1Label: 'Especies',
+    stat2Value: '1K+', stat2Label: 'Coleccionistas',
+    stat3Value: '5+',  stat3Label: 'Años de Cultivo',
+    collectionTitle: 'Especies Selectas',
+    collectionText: 'Explore las orquídeas y plantas exóticas más exclusivas de nuestra colección, cultivadas con paciencia y rigor técnico.',
+    missionTitle: 'Misión', missionText: 'Caribbean Botanical Garden, es una empresa agro-turística innovadora la cual contribuye con la conservación del medio ambiente mediante la bio-alfabetización de nuestros visitantes y utilizando agro-tecnologías sostenibles.',
+    visionTitle: 'Visión', visionText: 'Caribbean Botanical Garden, será un empresa agro-turística líder en Costa Rica que promoverá mediante la bio-alfabetización y la recreación sana, contribuir a la conservación del medio ambiente, mitigar el cambio climático, preservar y reproducir especies de plantas tropicales en riesgo de extinción, especialmente orquídeas. Creando actividades productivas que fomenten un trabajo justo y solidarias el cual contribuya al crecimiento personal de nuestros colaboradores y el retorno del capital a sus accionistas.',
 };
 
 const DEFAULT_FAQ_ITEMS = [
-    { question: '¿Son originales los perfumes que venden?', answer: 'En VALEX, garantizamos un 100% de autenticidad en cada uno de nuestros productos. Sabemos que comprar fragancias online puede generar dudas, y para nosotros la reputación es la clave para sobresalir y mantenernos en esta industria a largo plazo. No estamos aquí para el corto plazo; queremos construir una relación de confianza y excelencia con nuestros clientes. Tu confianza es nuestra prioridad, y en VALEX puedes comprar con total tranquilidad.' },
-    { question: '¿Hacen envíos a todo Costa Rica?', answer: '¡Sí! Realizamos envíos a cualquier lugar de Costa Rica mediante Correos CR y mensajería privada en la zona de occidente, nada más. Nos esforzamos por entregarte tu fragancia favorita en el menor tiempo posible y en perfectas condiciones.' },
-    { question: '¿Cómo puedo realizar un pedido?', answer: 'Puedes realizar tu pedido directamente desde nuestra tienda online añadiendo los productos a tu bolsa, o si prefieres una atención más personalizada, contáctanos por WhatsApp y con gusto te asesoramos para encontrar la fragancia perfecta para ti.' },
+    { question: '¿Cómo garantizan el traslado seguro de las plantas exóticas?', answer: 'En Caribbean Botanical Garden, empaquetamos cada ejemplar de forma meticulosa utilizando soportes térmicos e hidratación controlada para proteger sus raíces y hojas. Realizamos los envíos de lunes a miércoles para evitar que los seres vivos queden retenidos durante el fin de semana.' },
+    { question: '¿Hacen envíos a todo Costa Rica?', answer: '¡Sí! Realizamos envíos express y seguros a todo el territorio nacional mediante Correos de Costa Rica y servicios de transporte especial para plantas de colección grandes.' },
+    { question: '¿Ofrecen asesoramiento para el cuidado de orquídeas y plantas exóticas?', answer: '¡Por supuesto! Su experiencia no termina con la compra. Le ofrecemos asesoramiento botánico post-venta continuo a través de WhatsApp para guiarle en el riego, iluminación, control de plagas y sustrato adecuado de su planta.' },
 ];
 
 const GLOBAL_DEFAULTS = {
-    whatsapp: '50687329055', instagram: 'https://www.instagram.com/valex.perfumeria?utm_source=qr&igsh=cDZ5YnBka241N2hv', facebook: 'https://www.facebook.com/profile.php?id=61574248779040', tiktok: 'https://www.tiktok.com/@valexperfum?_r=1&_t=ZS-95NmVfGvOvE',
-    brandName: '', brandTagline: '',
+    whatsapp: '', instagram: '', facebook: '', tiktok: '',
+    brandName: 'Caribbean Botanical Garden', brandTagline: 'Vivero Boutique & Especies Exóticas',
 };
 
 const LANDING_KEYS = new Set(Object.keys(LANDING_DEFAULTS));
@@ -154,7 +152,7 @@ function FaqItemEditor({ item, idx, onUpdate, onDelete }) {
                             name={`faq_q_${idx}`}
                             value={item.question}
                             onChange={(e) => onUpdate('question', e.target.value)}
-                            placeholder="Ej: ¿Son originales los perfumes?"
+                            placeholder="Ej: ¿Cómo cuido mi orquídea de colección?"
                         />
                     </div>
                     <Field
@@ -317,7 +315,7 @@ export default function LandingEditor() {
 
     if (loading) return (
         <div className="h-40 flex items-center justify-center">
-            <div className="w-6 h-6 border-2 border-[#A68966] border-t-transparent rounded-full animate-spin" />
+            <div className="w-6 h-6 border-2 border-[#00A94F] border-t-transparent rounded-full animate-spin" />
         </div>
     );
 
@@ -339,7 +337,7 @@ export default function LandingEditor() {
                     href="/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm font-medium text-gray-500 border border-gray-200 dark:border-white/10 px-3 py-2 rounded-xl hover:border-[#A68966]/50 hover:text-[#A68966] transition-colors flex-shrink-0"
+                    className="flex items-center gap-1.5 text-sm font-medium text-gray-500 border border-gray-200 dark:border-white/10 px-3 py-2 rounded-xl hover:border-[#00A94F]/50 hover:text-[#00A94F] transition-colors flex-shrink-0"
                 >
                     <ExternalLink className="w-3.5 h-3.5" />
                     Ver página
@@ -351,9 +349,9 @@ export default function LandingEditor() {
 
                 {/* Fila 1: Marca + Contacto */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <SectionCard icon={Tag} title="Marca" accent="#A68966">
-                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="VALEX" />
-                        <Field label="Tagline" name="brandTagline" value={form.brandTagline} onChange={handleChange} placeholder="Valex Perfumería" />
+                    <SectionCard icon={Tag} title="Marca" accent="#00A94F">
+                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="Caribbean Botanical Garden" />
+                        <Field label="Tagline" name="brandTagline" value={form.brandTagline} onChange={handleChange} placeholder="Vivero Boutique" />
                     </SectionCard>
 
                     <SectionCard icon={Phone} title="Contacto" accent="#0ea5e9">
@@ -375,9 +373,8 @@ export default function LandingEditor() {
                 {/* Fila 3: Hero + Estadísticas */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <SectionCard icon={Clapperboard} title="Hero" accent="#8b5cf6">
-                        <Field label="Badge" name="heroBadge" value={form.heroBadge} onChange={handleChange} placeholder="Valex Perfumería" />
-                        <Field label="Título principal" name="heroTitle" value={form.heroTitle} onChange={handleChange} placeholder="El Arte de Oler Increíble" />
-                        <Field label="Subtítulo" name="heroSubtitle" value={form.heroSubtitle} onChange={handleChange} multiline placeholder="Descubra fragancias exclusivas..." />
+                        <Field label="Título principal" name="heroTitle" value={form.heroTitle} onChange={handleChange} placeholder="El Esplendor del Trópico en su Hogar" />
+                        <Field label="Subtítulo" name="heroSubtitle" value={form.heroSubtitle} onChange={handleChange} multiline placeholder="Descubra orquídeas exóticas y flores tropicales..." />
                     </SectionCard>
 
                     <SectionCard icon={FlaskConical} title="Colección Selecta" accent="#6366f1">
@@ -397,21 +394,26 @@ export default function LandingEditor() {
                             value={form.collectionText}
                             onChange={handleChange}
                             multiline
-                            placeholder="Explora las fragancias más exclusivas..."
+                            placeholder="Explore las especies botánicas más exclusivas..."
                         />
                     </SectionCard>
                 </div>
 
-                {/* Fila 4: Pilares — ancho completo */}
-                <SectionCard icon={Sparkles} title="Pilares — Sobre Nosotros" accent="#10b981">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                        {[1, 2, 3].map(n => (
-                            <div key={n} className="space-y-3 p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
-                                <div className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Pilar {n}</div>
-                                <Field label="Título" name={`pillar${n}Title`} value={form[`pillar${n}Title`]} onChange={handleChange} placeholder="Ej. Ingredientes Nobles" />
-                                <Field label="Texto descriptivo" name={`pillar${n}Text`} value={form[`pillar${n}Text`]} onChange={handleChange} multiline placeholder="Describe brevemente este pilar..." />
-                            </div>
-                        ))}
+                {/* Fila 4: Misión y Visión — ancho completo */}
+                <SectionCard icon={Sparkles} title="Misión y Visión" accent="#10b981">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {/* Misión */}
+                        <div className="space-y-3 p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
+                            <div className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Sección 1</div>
+                            <Field label="Título" name="missionTitle" value={form.missionTitle} onChange={handleChange} placeholder="Misión" />
+                            <Field label="Texto descriptivo" name="missionText" value={form.missionText} onChange={handleChange} multiline placeholder="Escribe la misión de la empresa..." />
+                        </div>
+                        {/* Visión */}
+                        <div className="space-y-3 p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
+                            <div className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Sección 2</div>
+                            <Field label="Título" name="visionTitle" value={form.visionTitle} onChange={handleChange} placeholder="Visión" />
+                            <Field label="Texto descriptivo" name="visionText" value={form.visionText} onChange={handleChange} multiline placeholder="Escribe la visión de la empresa..." />
+                        </div>
                     </div>
                 </SectionCard>
 
@@ -483,7 +485,7 @@ export default function LandingEditor() {
                         onClick={handleSave}
                         disabled={saving || !isDirty}
                         className="flex items-center gap-2 text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-xl transition disabled:opacity-40"
-                        style={{ backgroundColor: '#A68966' }}
+                        style={{ backgroundColor: '#00A94F' }}
                     >
                         <Save className="w-4 h-4" />
                         {saving ? 'Guardando...' : 'Guardar cambios'}

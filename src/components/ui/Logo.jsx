@@ -1,11 +1,28 @@
 import React from 'react';
 
-// Nuevo diseño del Logo: "V" (Grande), "A" (Mediana), "lex" (Pequeña), 
-// todo con tipografía de Lujo (Playfair Display) y la animación dorada fluida.
 export default function Logo({ className = "" }) {
     return (
-        <span className={`animate-shimmer inline-block pt-1 pb-1 drop-shadow-md uppercase tracking-[0.2em] font-bold text-[1.8em] ${className}`} style={{ fontFamily: '"Montserrat", sans-serif' }}>
-            VALEX
-        </span>
+        <div className={`relative inline-flex items-center group ${className}`}>
+            {/* Resplandor cálido animado detrás del logo */}
+            <div 
+                className="absolute inset-0 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"
+                style={{
+                    background: 'radial-gradient(ellipse at 35% 50%, rgba(248,151,29,0.35) 0%, rgba(102,45,145,0.15) 50%, transparent 75%)',
+                    filter: 'blur(14px)',
+                    animation: 'logoGlow 3s ease-in-out infinite',
+                }}
+            />
+            <img 
+                src="/images/logo.webp" 
+                alt="Caribbean Botanical Garden Logo" 
+                className="relative w-auto h-full object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_8px_rgba(248,151,29,0.25)]" 
+            />
+            <style>{`
+                @keyframes logoGlow {
+                    0%, 100% { transform: scale(1); opacity: 0.4; }
+                    50% { transform: scale(1.08); opacity: 0.6; }
+                }
+            `}</style>
+        </div>
     );
 }

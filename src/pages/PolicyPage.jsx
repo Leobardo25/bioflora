@@ -10,100 +10,71 @@ const { Content } = Layout;
 
 export const DEFAULT_POLICIES = {
     refunds: {
-        title: 'Política de Reembolsos',
-        content: `En VALEX Perfumería, tu satisfacción es nuestra prioridad. A continuación, describimos las condiciones bajo las cuales ofrecemos reembolsos o cambios.
+        title: 'Política de Reembolsos y Garantía Botánica',
+        content: `En Caribbean Botanical Garden, nos esforzamos por ofrecer plantas y orquídeas exóticas de la más alta calidad. Debido a la naturaleza delicada de los seres vivos, aplicamos las siguientes políticas de reembolso y garantía.
 
-**Productos Elegibles para Reembolso**
-- Solo se aceptan devoluciones de productos sellados, sin abrir y en su empaque original.
-- El plazo máximo para solicitar un reembolso es de 7 días naturales a partir de la fecha de entrega.
-- Los productos personalizados, muestras o decants no son elegibles para devolución.
+**Garantía de Llegada Segura**
+- Garantizamos que todas nuestras plantas y orquídeas llegan sanas y salvas a su destino.
+- Si una planta sufre daños severos durante el transporte, debe reportarlo en las primeras 24 horas naturales tras la entrega enviando fotografías detalladas a nuestros canales oficiales.
+- Una vez verificado el daño, le ofreceremos un reemplazo de la especie (sujeto a disponibilidad) o un reembolso completo del valor de la planta.
 
-**Proceso de Solicitud**
-1. Contáctanos por WhatsApp o correo electrónico indicando tu número de pedido.
-2. Nuestro equipo evaluará tu solicitud en un plazo máximo de 48 horas hábiles.
-3. Si la devolución es aprobada, te indicaremos cómo enviar el producto de vuelta.
+**Exclusiones de Reembolso**
+- Por seguridad fitosanitaria y el bienestar de los ejemplares, no aceptamos devoluciones físicas de plantas sanas una vez entregadas.
+- La garantía no cubre daños causados por un cuidado inadecuado, riego excesivo o insuficiente, exposición a luz no recomendada o negligencia posterior a las 24 horas de la entrega.
+- Los insumos abiertos (sustratos, abonos) o plantas en oferta no son elegibles para reembolso.
 
-**Reembolso**
-- Una vez recibido y verificado el producto, el reembolso se procesará dentro de los 5 días hábiles siguientes.
-- El reembolso se realizará por el mismo método de pago utilizado en la compra original.
-- Los costos de envío de la devolución corren por cuenta del cliente, salvo que el producto haya llegado defectuoso o incorrecto.
-
-**Productos Defectuosos**
-Si recibes un producto dañado, defectuoso o diferente al que ordenaste, contáctanos de inmediato. Cubriremos el envío de devolución y te ofreceremos un reemplazo o reembolso completo.`
+**Proceso de Reembolso**
+- Si se aprueba su reembolso, este se procesará en un plazo de 5 días hábiles a través del mismo método de pago utilizado en la compra.`
     },
     shipping: {
-        title: 'Política de Envíos',
-        content: `En VALEX Perfumería optimizamos nuestro proceso logístico para que recibas tu fragancia favorita de la manera más segura y rápida posible.
+        title: 'Política de Envíos de Seres Vivos',
+        content: `En Caribbean Botanical Garden optimizamos nuestro proceso de embalaje y logística para que sus orquídeas y plantas exóticas viajen con el menor estrés posible.
+
+**Horarios y Logística de Envío**
+- Para proteger la salud de las plantas, los despachos de seres vivos se realizan de lunes a miércoles. Esto evita que los paquetes queden retenidos en bodegas de mensajería durante el fin de semana.
+- Los accesorios y sustratos pueden enviarse de lunes a viernes.
 
 **Cobertura**
-- Realizamos envíos a todo Costa Rica.
-- Las entregas se realizan mediante Correos de Costa Rica o mensajería privada según la zona.
+- Realizamos envíos de plantas y accesorios a todo el territorio nacional de Costa Rica.
+- Las entregas se realizan mediante servicios de mensajería especializada en el manejo seguro de seres vivos.
 
-**Tiempos de Entrega**
-- Gran Área Metropolitana (GAM): 1-3 días hábiles.
-- Fuera del GAM: 3-5 días hábiles.
-- Pedidos internacionales (importación): 10-15 días hábiles.
+**Tiempos Estimados**
+- Gran Área Metropolitana (GAM): 1-2 días hábiles después del despacho.
+- Fuera del GAM: 2-3 días hábiles después del despacho.
 
-**Costos de Envío**
-- El costo de envío se calcula al momento de la compra según la ubicación de entrega.
-- Promociones de envío gratuito aplican según condiciones vigentes.
-
-**Empaque**
-- Todos nuestros productos se envían en empaque de lujo con protección especial para fragancias.
-- Cada paquete incluye un sello de autenticidad y material de protección contra golpes.
-
-**Seguimiento**
-- Una vez despachado tu pedido, recibirás un número de seguimiento por WhatsApp para que puedas rastrear tu paquete en tiempo real.`
+**Empaque Especializado**
+- Cada orquídea y planta exótica se asegura individualmente, protegiendo las raíces y follaje para conservar la humedad idónea y evitar movimientos bruscos dentro del empaque.`
     },
     privacy: {
         title: 'Política de Privacidad',
-        content: `En VALEX Perfumería, respetamos y protegemos tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal.
+        content: `En Caribbean Botanical Garden, valoramos y respetamos su privacidad. Esta política detalla cómo recopilamos, protegemos y utilizamos su información personal.
 
 **Información que Recopilamos**
-- Datos de contacto: nombre, número de teléfono, dirección de entrega.
-- Información de pedido: productos adquiridos, historial de compras.
-- Datos de navegación: cookies y datos analíticos anónimos para mejorar tu experiencia.
+- Datos de contacto: nombre completo, número de teléfono, dirección física exacta para entregas y correo electrónico.
+- Historial de pedidos: plantas y accesorios adquiridos para brindar un mejor servicio de seguimiento botánico.
 
 **Uso de la Información**
-- Procesar y entregar tus pedidos correctamente.
-- Comunicarte el estado de tu pedido por WhatsApp o correo.
-- Mejorar nuestros productos y servicios.
-- Enviarte promociones exclusivas (solo si das tu consentimiento).
+- Procesar sus pedidos y coordinar las entregas seguras de seres vivos.
+- Brindarle asesoría y guías de cuidado post-compra personalizadas para sus plantas.
+- Comunicarle el estado de su pedido o coordinar detalles del envío mediante canales oficiales.
 
-**Protección de Datos**
-- Tu información personal nunca se vende ni se comparte con terceros para fines comerciales.
-- Utilizamos medidas de seguridad estándar de la industria para proteger tu información.
-- Los datos de pago son procesados por plataformas seguras certificadas.
-
-**Tus Derechos**
-- Puedes solicitar acceso, corrección o eliminación de tus datos personales en cualquier momento contactándonos directamente.
-- Puedes optar por dejar de recibir comunicaciones promocionales cuando lo desees.`
+**Protección y Confidencialidad**
+- Sus datos personales nunca serán compartidos, vendidos ni cedidos a terceros con fines comerciales.
+- Empleamos medidas de seguridad robustas para salvaguardar sus datos y los de sus transacciones en nuestra tienda.`
     },
     terms: {
         title: 'Términos de Servicio',
-        content: `Al acceder y utilizar el sitio web de VALEX Perfumería, aceptas los siguientes términos y condiciones. Te recomendamos leerlos detenidamente.
+        content: `Al acceder y utilizar la plataforma web de Caribbean Botanical Garden, usted acepta los siguientes términos y condiciones.
 
-**Uso del Sitio**
-- Este sitio web es operado por VALEX Perfumería. Al utilizarlo, confirmas que tienes al menos 18 años de edad o cuentas con el consentimiento de un tutor legal.
-- Nos reservamos el derecho de modificar estos términos en cualquier momento sin previo aviso.
+**Uso de la Plataforma**
+- Este sitio web es operado por Caribbean Botanical Garden. Al realizar compras de plantas y orquídeas exóticas, usted declara ser mayor de edad o contar con la supervisión de un tutor legal.
 
-**Productos y Precios**
-- Todos los productos ofrecidos son 100% originales y auténticos. Garantizamos la autenticidad de cada fragancia.
-- Los precios están sujetos a cambios sin previo aviso y se muestran en la moneda indicada (CRC o USD).
-- Las imágenes de los productos son referenciales y pueden variar ligeramente del producto real.
+**Productos Botánicos y Precios**
+- Las plantas y orquídeas son seres vivos, por lo que cada ejemplar es único en forma, cantidad de hojas, flores y color. Las imágenes mostradas en el catálogo son de carácter referencial y representan fielmente la especie y calidad que recibirá.
+- Los precios de las plantas se muestran en la moneda seleccionada (CRC o USD) y están sujetos a variación según disponibilidad o temporada de floración.
 
-**Pedidos**
-- Al realizar un pedido, estás haciendo una oferta de compra sujeta a disponibilidad de inventario.
-- Nos reservamos el derecho de cancelar pedidos en caso de errores de precio, inventario agotado o sospecha de fraude.
-- Una vez confirmado el pago, el pedido se considera en proceso y no puede ser cancelado.
-
-**Propiedad Intelectual**
-- Todo el contenido de este sitio (textos, imágenes, diseños, logotipos) es propiedad de VALEX Perfumería y está protegido por las leyes de propiedad intelectual.
-- Queda prohibida la reproducción total o parcial del contenido sin autorización previa.
-
-**Limitación de Responsabilidad**
-- VALEX Perfumería no se hace responsable de daños indirectos derivados del uso de este sitio web.
-- No garantizamos la disponibilidad ininterrumpida del sitio.`
+**Responsabilidad del Comprador**
+- El cultivo exitoso de plantas y orquídeas exóticas depende de factores ambientales y cuidados individuales. Una vez recibida la planta en buen estado, la responsabilidad de su mantenimiento, aclimatación y supervivencia recae plenamente en el comprador. Ofrecemos asesoría gratuita de soporte, pero no podemos hacernos responsables por el cuidado posterior.`
     }
 };
 
@@ -161,8 +132,8 @@ export default function PolicyPage() {
             theme={{
                 algorithm: antTheme.darkAlgorithm,
                 token: {
-                    colorPrimary: '#A68966',
-                    colorBgBase: '#1A1A1B',
+                    colorPrimary: '#00A94F',
+                    colorBgBase: '#070F0A',
                     fontFamily: '"Poppins", sans-serif',
                 }
             }}
@@ -198,7 +169,7 @@ export default function PolicyPage() {
                             {/* Última actualización */}
                             <div className="mt-16 pt-6 border-t border-valex-gris/10">
                                 <p className="text-valex-gris/30 text-xs">
-                                    Última actualización: Abril 2026 — VALEX Perfumería
+                                    Última actualización: Mayo 2026 — Caribbean Botanical Garden
                                 </p>
                             </div>
                         </div>

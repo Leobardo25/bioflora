@@ -33,7 +33,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
     };
 
     return (
-        <div className="bg-white dark:bg-[#1e1e20] border border-gray-150 dark:border-white/5 rounded-2xl shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md hover:border-indigo-100 dark:hover:border-indigo-500/30 p-3 md:p-0 gap-3 md:gap-0 h-full justify-between">
+        <div className="bg-white dark:bg-[#1e1e20] border border-gray-150 dark:border-white/5 rounded-2xl shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md hover:border-bioflora-verde/30 dark:hover:border-bioflora-verde/20 p-3 md:p-0 gap-3 md:gap-0 h-full justify-between">
             {/* Imagen Principal (Aspecto Cuadrado y Completa en Móvil, Cover en PC) */}
             <div className="relative aspect-square md:aspect-auto md:h-48 overflow-hidden rounded-xl md:rounded-none bg-black/5 dark:bg-black/40 md:bg-gray-50 md:dark:bg-[#131315] border border-gray-100 dark:border-white/5 md:border-b md:border-gray-100 md:dark:border-white/5 flex items-center justify-center p-0 flex-shrink-0">
                 {getProductImage(p) ? (
@@ -52,7 +52,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
                 <div className="absolute top-2 right-2 flex items-center gap-1 bg-white/95 dark:bg-black/70 backdrop-blur-md p-1 rounded-lg shadow-md border border-gray-250/20 dark:border-white/10 z-10">
                     <button 
                         onClick={onEdit} 
-                        className="p-1 text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/20 rounded-md transition-colors" 
+                        className="p-1 text-gray-500 dark:text-gray-400 hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-md transition-colors" 
                         title="Editar"
                     >
                         <Edit2 className="w-3.5 h-3.5" />
@@ -93,7 +93,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
 
                 {/* Marca flotante sobre la imagen (Estilo Boutique de la tienda, solo en móvil) */}
                 {p.brand && (
-                    <span className="absolute bottom-2 left-2 bg-black/75 backdrop-blur-md text-amber-500 dark:text-indigo-400 text-[8px] font-sans font-bold px-2 py-0.5 rounded-full shadow-sm tracking-wider uppercase border border-white/10 md:hidden">
+                    <span className="absolute bottom-2 left-2 bg-black/75 backdrop-blur-md text-amber-500 dark:text-bioflora-verde text-[8px] font-sans font-bold px-2 py-0.5 rounded-full shadow-sm tracking-wider uppercase border border-white/10 md:hidden">
                         {p.brand.split(' ')[0]}
                     </span>
                 )}
@@ -103,7 +103,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
             <div className="flex flex-col flex-1 px-1 md:p-4 gap-1 md:gap-0 justify-between h-full">
                 <div>
                     <div className="mb-0.5 md:mb-1">
-                        <span className="text-[8px] md:text-[10px] font-sans md:font-bold tracking-[0.2em] md:tracking-wider text-indigo-600 dark:text-indigo-400 md:text-gray-400 md:dark:text-gray-500 uppercase font-bold">
+                        <span className="text-[8px] md:text-[10px] font-sans md:font-bold tracking-[0.2em] md:tracking-wider text-bioflora-verde md:text-gray-400 md:dark:text-gray-500 uppercase font-bold">
                             {p.category || p.family || 'Sin Categoría'}
                         </span>
                     </div>
@@ -119,7 +119,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
                     <div className="mt-auto mb-2 md:mb-4 flex flex-col justify-end pt-2 md:pt-0 border-t border-gray-100 dark:border-white/5 md:border-t-0">
                         <div className="flex items-center gap-2">
                             {isEditingPrice ? (
-                                <div className="flex items-center gap-1 bg-gray-50 dark:bg-[#151517] p-1 rounded-lg border border-indigo-200 dark:border-indigo-500/30 w-full">
+                                <div className="flex items-center gap-1 bg-gray-50 dark:bg-[#151517] p-1 rounded-lg border border-bioflora-verde/35 w-full">
                                     <span className="text-gray-500 dark:text-gray-400 font-bold pl-1 text-[11px]">₡</span>
                                     <input 
                                         type="number" 
@@ -150,7 +150,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
                                 </div>
                             ) : (
                                 <div className="group/price flex items-center gap-1.5 cursor-pointer" onClick={() => { setTempPrice(p.price); setIsEditingPrice(true); }}>
-                                    <span className="font-sans font-bold text-indigo-600 dark:text-indigo-400 text-[14px] md:text-lg md:font-black tracking-tight md:tracking-wide">
+                                    <span className="font-sans font-bold text-bioflora-verde text-[14px] md:text-lg md:font-black tracking-tight md:tracking-wide">
                                         {formatPrice(p.price, p.currency || 'CRC')}
                                     </span>
                                     <Edit3 className="w-3 h-3 text-gray-400 dark:text-gray-500 opacity-60 md:opacity-0 md:group-hover/price:opacity-100 transition-opacity" />

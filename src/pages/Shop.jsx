@@ -18,15 +18,12 @@ const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
 // --- DICCIONARIO DE FILTROS ---
-const CATEGORIES = ['Todos', 'Masculino', 'Femenino', 'Unisex'];
+const CATEGORIES = ['Todos', 'Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios'];
 const FAMILIES = [
-    { label: 'Amaderado', value: 'Amaderado' },
-    { label: 'Floral', value: 'Floral' },
-    { label: 'Cítrico', value: 'Cítrico' },
-    { label: 'Dulce', value: 'Dulce' },
-    { label: 'Acuático', value: 'Acuático' },
-    { label: 'Oriental', value: 'Oriental' },
-    { label: 'Cuero', value: 'Cuero' },
+    { label: 'Orchidaceae (Orquídeas)', value: 'Orchidaceae' },
+    { label: 'Orchidaceae (Flor Nacional)', value: 'Orchidaceae (Flor Nacional)' },
+    { label: 'Araceae (Monsteras/Anturios)', value: 'Araceae' },
+    { label: 'Insumos Profesionales', value: 'Insumos Profesionales' },
 ];
 
 const formatPrice = (price, isCRC) => {
@@ -46,9 +43,8 @@ export default function Shop() {
     const [drawerVisible, setDrawerVisible] = useState(false);
     const [isCompactView, setIsCompactView] = useState(() => JSON.parse(sessionStorage.getItem('valex_isCompactView') ?? 'true'));
     const [useBgImages, setUseBgImages] = useState(() => JSON.parse(sessionStorage.getItem('valex_useBgImages') ?? 'true'));
-    
     const { whatsapp } = useSiteConfig();
-    const waNumber = whatsapp || '50687329055';
+    const waNumber = whatsapp;
     const [showFloatingBtn, setShowFloatingBtn] = useState(false);
 
     // --- ESTADO DE FILTROS ---
@@ -140,9 +136,9 @@ export default function Shop() {
         <div className="flex flex-col h-full w-full">
             <div className="flex-1 flex flex-col gap-8 overflow-y-auto pr-2 pb-6">
                 
-                {/* GÉNERO */}
+                {/* CATEGORÍA */}
                 <div className="space-y-4">
-                    <h3 className="text-valex-hueso font-serif tracking-widest text-lg border-b border-valex-gris/10 pb-2">GÉNERO</h3>
+                    <h3 className="text-valex-hueso font-serif tracking-widest text-lg border-b border-valex-gris/10 pb-2">CATEGORÍA</h3>
                     <Radio.Group 
                         className="grid grid-cols-2 gap-3 w-full" 
                         value={filterCategory} 
@@ -154,9 +150,9 @@ export default function Shop() {
                     </Radio.Group>
                 </div>
 
-                {/* FAMILIA OLFATIVA */}
+                {/* FAMILIA BOTÁNICA */}
                 <div className="space-y-4">
-                    <h3 className="text-valex-hueso font-serif tracking-widest text-lg border-b border-valex-gris/10 pb-2">FAMILIA OLFATIVA</h3>
+                    <h3 className="text-valex-hueso font-serif tracking-widest text-lg border-b border-valex-gris/10 pb-2">FAMILIA BOTÁNICA</h3>
                     <Checkbox.Group 
                         className="grid grid-cols-2 gap-3 w-full"
                         options={FAMILIES.map(f => ({ label: <span className="text-valex-gris">{f.label}</span>, value: f.value }))}
@@ -200,7 +196,7 @@ export default function Shop() {
                                 />
                             </div>
                         </div>
-                        <div className="flex justify-between text-valex-bronce text-sm mt-4 font-sans font-medium">
+                        <div className="flex justify-between text-bioflora-naranja text-sm mt-4 font-sans font-medium">
                             <span>{formatPrice(filterPrice[0], isColones)}</span>
                             <span>{formatPrice(filterPrice[1], isColones)}</span>
                         </div>
@@ -212,13 +208,13 @@ export default function Shop() {
             <div className="flex-shrink-0 pt-4 pb-4 mt-2 border-t border-valex-gris/10 flex gap-3">
                  <Button 
                     onClick={() => { setFilterCategory('Todos'); setFilterFamilies([]); setFilterPrice([0, maxBoundary]); setDrawerVisible(false); }} 
-                    className="flex-1 h-12 bg-transparent text-valex-gris border-valex-bronce/30 hover:!border-valex-hueso hover:!text-valex-hueso font-serif tracking-widest text-xs"
+                    className="flex-1 h-12 bg-transparent text-valex-gris border-bioflora-morado/30 hover:!border-bioflora-morado hover:!text-bioflora-morado font-serif tracking-widest text-xs"
                  >
                      LIMPIAR
                  </Button>
                  <Button 
                     onClick={() => setDrawerVisible(false)} 
-                    className="flex-1 h-12 bg-valex-bronce text-valex-negro hover:!bg-valex-hueso hover:!text-valex-negro border-none font-serif tracking-widest text-xs font-bold"
+                    className="flex-1 h-12 bg-bioflora-morado text-white hover:!bg-bioflora-morado/80 hover:!text-white border-none font-serif tracking-widest text-xs font-bold"
                  >
                      APLICAR FILTROS
                  </Button>
@@ -231,12 +227,12 @@ export default function Shop() {
             theme={{
                 algorithm: antTheme.darkAlgorithm,
                 token: {
-                    colorPrimary: '#A68966',       // Bronce
-                    colorBgBase: '#1A1A1B',        // Negro Mate
-                    colorBgContainer: '#1e1e1f',   // Cards background
-                    colorTextBase: '#F5F5F5',      // Blanco Hueso
-                    colorTextSecondary: '#D1D1D1', // Gris Piedra
-                    fontFamily: '"Poppins", sans-serif',
+                    colorPrimary: '#7C3AED',       // Morado Principal Bioflora
+                    colorBgBase: '#070F0A',        // Verde Bosque Nocturno ultra-oscuro
+                    colorBgContainer: '#0D1C13',   // Cards background (Tarjetas Bosque)
+                    colorTextBase: '#F9F9F6',      // Blanco Hueso / Arena
+                    colorTextSecondary: '#A3B899', // Verde Salvia Elegante
+                    fontFamily: '"Poppins", "Outfit", sans-serif',
                 },
                 components: {
                     Collapse: { headerPadding: '12px 0px' },
@@ -260,7 +256,7 @@ export default function Shop() {
                 
                 <main className="flex-1 pt-[140px] md:pt-[120px] bg-valex-negro max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-16">
                     <div className="w-full h-8" />
-
+ 
                         {/* Contenedor Flex para Contenido Principal */}
                         <div className="flex flex-row w-full items-start">
                             
@@ -270,7 +266,7 @@ export default function Shop() {
                                     <Row gutter={[16, 24]}>
                                         {[1, 2, 3, 4].map(i => (
                                             <Col xs={isCompactView ? 12 : 24} sm={12} xl={8} key={i}>
-                                                <Card style={{ backgroundColor: '#1e1e1f', border: '1px solid rgba(209,209,209,0.1)' }}>
+                                                <Card style={{ backgroundColor: '#0D1C13', border: '1px solid rgba(163,184,153,0.1)' }}>
                                                     <Skeleton.Image active className="w-full !h-[300px] mb-4" />
                                                     <Skeleton active paragraph={{ rows: 2 }} />
                                                 </Card>
@@ -278,8 +274,8 @@ export default function Shop() {
                                         ))}
                                     </Row>
                                 ) : filteredProducts.length === 0 ? (
-                                    <div className="text-center py-24 border border-valex-gris/10 rounded-2xl bg-[#1e1e1f]">
-                                        <p className="text-valex-gris text-xl font-serif">No se encontraron fragancias con esta selección.</p>
+                                    <div className="text-center py-24 border border-valex-gris/10 rounded-2xl bg-[#0D1C13]">
+                                        <p className="text-valex-gris text-xl font-serif">No se encontraron plantas exóticas con esta selección.</p>
                                         <Button type="link" onClick={() => { setFilterCategory('Todos'); setFilterFamilies([]); setFilterPrice([0, maxBoundary]); }}>
                                             Limpiar filtros
                                         </Button>
@@ -349,21 +345,20 @@ export default function Shop() {
                             </section>
                         </div>
 
-                    {/* Floating WhatsApp button */}
                     <AnimatePresence>
-                        {showFloatingBtn && !drawerVisible && !menuOpen && (
+                        {showFloatingBtn && !drawerVisible && !menuOpen && waNumber && (
                             <motion.a
                                 href={`https://wa.me/${waNumber}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="fixed bottom-6 right-4 z-30 flex items-center justify-center w-14 h-14 bg-valex-bronce rounded-full hover:scale-110 transition-transform duration-500 ease-out shadow-xl animate-glow-pulse"
+                                className="fixed bottom-6 right-4 z-30 flex items-center justify-center w-14 h-14 bg-bioflora-verde rounded-full hover:scale-110 transition-transform duration-500 ease-out shadow-xl animate-glow-pulse"
                                 initial={{ opacity: 0, y: 20, scale: 0.8 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 20, scale: 0.8 }}
                                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                                 aria-label="Contactar por WhatsApp"
                             >
-                                <FaWhatsapp className="w-7 h-7 text-valex-negro" />
+                                <FaWhatsapp className="w-7 h-7 text-white" />
                             </motion.a>
                         )}
                     </AnimatePresence>
@@ -380,7 +375,7 @@ const CardBadgeWrap = ({ product, children }) => {
         return <Badge.Ribbon text="Agotado" color="volcano">{children}</Badge.Ribbon>;
     }
     if (product.isFeatured) {
-        return <Badge.Ribbon text="Destacado" color="#A68966">{children}</Badge.Ribbon>;
+        return <Badge.Ribbon text="Destacado" color="#D60C8C">{children}</Badge.Ribbon>;
     }
     return children;
 };
@@ -399,7 +394,7 @@ const DesktopCard = ({ product, useBg, onAddToCart }) => {
         <Card
             hoverable
             onClick={() => openProductDrawer(product)}
-            className="overflow-hidden border-valex-gris/10 group bg-[#1e1e1f] h-full flex flex-col transition-all duration-500 hover:border-valex-bronce/30 shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)] cursor-pointer"
+            className="overflow-hidden border-valex-gris/10 group bg-bioflora-tarjeta h-full flex flex-col transition-all duration-500 hover:border-bioflora-verde/30 shadow-none hover:shadow-[0_8px_30px_rgba(0,169,79,0.2)] cursor-pointer"
             cover={
                 <div className="relative aspect-square overflow-hidden bg-transparent">
                     {imgUrl ? (
@@ -420,21 +415,21 @@ const DesktopCard = ({ product, useBg, onAddToCart }) => {
             styles={{ body: { flex: 1, display: 'flex', flexDirection: 'column', padding: '12px 16px' } }}
         >
             <div className="text-[10px] font-sans tracking-[0.2em] text-valex-gris uppercase mb-0.5">{product.category}</div>
-            <Typography.Title level={5} className="!font-sans !font-semibold !text-valex-hueso !mt-0 !mb-0.5 group-hover:!text-valex-bronce transition-colors !text-sm lg:!text-base">
+            <Typography.Title level={5} className="!font-sans !font-semibold !text-valex-hueso !mt-0 !mb-0.5 group-hover:!text-bioflora-fucsia transition-colors !text-sm lg:!text-base">
                 {product.name}
             </Typography.Title>
             <div className="text-[11px] text-valex-gris/60 font-sans tracking-wide mb-2">{product.family || '—'}</div>
             <div className="mt-auto flex items-center justify-between pt-2 border-t border-valex-gris/10">
-                <span className="font-sans font-medium text-valex-bronce text-base tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                <span className="font-sans font-medium text-bioflora-naranja text-base tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
                 <div className="flex items-center gap-3">
                     <button 
                         onClick={(e) => { e.stopPropagation(); openProductDrawer(product); }}
-                        className="bg-transparent border border-valex-bronce/60 text-valex-bronce hover:bg-valex-bronce hover:text-valex-negro rounded-full px-5 py-1.5 text-[9px] font-sans font-extrabold tracking-[0.2em] uppercase transition-all duration-300"
+                        className="bg-transparent border border-bioflora-naranja/60 text-bioflora-naranja hover:bg-bioflora-naranja hover:text-bioflora-bosque rounded-full px-5 py-1.5 text-[9px] font-sans font-extrabold tracking-[0.2em] uppercase transition-all duration-300"
                     >VER</button>
                     <button
                         onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
                         disabled={isOutOfStock}
-                        className="flex items-center justify-center bg-valex-bronce text-valex-negro h-8 w-8 rounded-full hover:bg-valex-hueso transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-valex-bronce/20"
+                        className="flex items-center justify-center bg-bioflora-naranja text-bioflora-bosque h-8 w-8 rounded-full hover:bg-bioflora-fucsia hover:text-bioflora-arena transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-bioflora-naranja/20"
                         title="Añadir a Bolsa"
                     >
                         <ShoppingBag className="w-[16px] h-[16px]" />
@@ -458,7 +453,7 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
 
     return (
         <div 
-            className="overflow-hidden rounded-lg border border-valex-gris/10 bg-[#1e1e1f] cursor-pointer group"
+            className="overflow-hidden rounded-lg border border-valex-gris/10 bg-bioflora-tarjeta cursor-pointer group"
             onClick={() => openProductDrawer(product)}
         >
             {/* Imagen — aspect ratio 4:5 */}
@@ -484,23 +479,23 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
                     <span className="text-[10px] font-sans tracking-[0.2em] text-valex-gris uppercase">{product.category}</span>
                     <span className="text-[10px] font-sans tracking-wide text-valex-gris/50">{product.family || ''}</span>
                 </div>
-                <h3 className="font-sans font-medium text-valex-hueso text-xs leading-snug group-hover:text-valex-bronce transition-colors line-clamp-2">
+                <h3 className="font-sans font-medium text-valex-hueso text-xs leading-snug group-hover:text-bioflora-fucsia transition-colors line-clamp-2">
                     {product.name}
                 </h3>
                 <p className="text-sm font-light text-valex-gris/60 line-clamp-3 leading-relaxed">
                     {product.description || product.notes || '—'}
                 </p>
                 <div className="flex items-center justify-between pt-3 border-t border-valex-gris/10 mt-2">
-                    <span className="font-sans font-semibold text-valex-bronce text-xl tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                    <span className="font-sans font-semibold text-bioflora-naranja text-xl tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
                     <div className="flex items-center gap-2">
                         <button 
                             onClick={(e) => { e.stopPropagation(); openProductDrawer(product); }}
-                            className="bg-transparent border border-valex-bronce/60 text-valex-bronce hover:bg-valex-bronce hover:text-valex-negro rounded-full px-5 h-8 flex items-center justify-center text-[9px] font-sans font-extrabold tracking-[0.2em] uppercase transition-all duration-300"
+                            className="bg-transparent border border-bioflora-naranja/60 text-bioflora-naranja hover:bg-bioflora-naranja hover:text-bioflora-bosque rounded-full px-5 h-8 flex items-center justify-center text-[9px] font-sans font-extrabold tracking-[0.2em] uppercase transition-all duration-300"
                         >VER</button>
                         <button 
                             onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
                             disabled={isOutOfStock}
-                            className="flex items-center justify-center bg-valex-bronce text-valex-negro h-8 px-5 rounded-full hover:bg-valex-hueso transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-valex-bronce/20"
+                            className="flex items-center justify-center bg-bioflora-naranja text-bioflora-bosque h-8 px-5 rounded-full hover:bg-bioflora-fucsia hover:text-bioflora-arena transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-bioflora-naranja/20"
                             title="Añadir a Bolsa"
                         >
                             <ShoppingBag className="w-[15px] h-[15px] mr-2" />
@@ -527,7 +522,7 @@ const MobileCompactCard = ({ product, useBg }) => {
         <Card
             hoverable
             onClick={() => openProductDrawer(product)}
-            className="overflow-hidden border-valex-gris/10 group bg-[#1e1e1f] h-full flex flex-col shadow-none cursor-pointer"
+            className="overflow-hidden border-valex-gris/10 group bg-bioflora-tarjeta h-full flex flex-col shadow-none cursor-pointer"
             cover={
                 <div className="relative aspect-square overflow-hidden bg-transparent">
                     {imgUrl ? (
@@ -551,8 +546,8 @@ const MobileCompactCard = ({ product, useBg }) => {
                 {product.name}
             </Typography.Title>
             <div className="flex items-center justify-between mt-1 border-t border-valex-gris/10 pt-2">
-                <span className="font-sans font-medium text-valex-bronce text-sm">{formatPrice(product.price, product.currency === 'CRC')}</span>
-                <button className="text-[8px] font-sans font-extrabold uppercase tracking-[0.2em] text-valex-bronce border border-valex-bronce/50 rounded-full px-3 py-1 hover:bg-valex-bronce hover:text-valex-negro transition-colors mt-1">VER</button>
+                <span className="font-sans font-medium text-bioflora-naranja text-sm">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                <button className="text-[8px] font-sans font-extrabold uppercase tracking-[0.2em] text-bioflora-naranja border border-bioflora-naranja/50 rounded-full px-3 py-1 hover:bg-bioflora-naranja hover:text-bioflora-bosque transition-colors mt-1">VER</button>
             </div>
         </Card>
     );

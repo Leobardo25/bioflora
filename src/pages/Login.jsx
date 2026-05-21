@@ -44,7 +44,7 @@ export default function Login() {
       >
         <motion.div variants={fadeInUp} transition={VALEX_TRANSITION} className="text-center mb-10">
           <a href="/" className="inline-block outline-none" tabIndex={-1}>
-            <Logo className="text-4xl justify-center cursor-pointer opacity-90 hover:opacity-100 transition-opacity" />
+            <Logo className="h-20 mx-auto cursor-pointer opacity-90 hover:opacity-100 transition-opacity" />
           </a>
           <p className="mt-4 text-valex-gris/60 font-sans text-sm tracking-widest uppercase">
             Acceso Autorizado

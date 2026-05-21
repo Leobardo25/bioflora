@@ -1,39 +1,79 @@
 import { Instagram, Mail } from 'lucide-react'
+import { FaFacebook, FaTiktok, FaWhatsapp } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { BRAND, NAV_LINKS } from '../../constants'
+import { useSiteConfig } from '../../context/SiteConfigContext'
+import Logo from '../ui/Logo'
 
 export default function Footer() {
+    const config = useSiteConfig()
+    const { whatsapp, instagram, facebook, tiktok } = config || {}
+
+    const hasSocials = whatsapp || instagram || facebook || tiktok
+
     return (
         <footer id="contacto" className="relative bg-valex-negro border-t border-valex-gris/10">
             {/* Top accent line */}
-            <div className="h-[2px] bg-gradient-to-r from-transparent via-valex-bronce to-transparent" />
+            <div className="h-[2px] bg-gradient-to-r from-transparent via-bioflora-naranja to-transparent opacity-80" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="grid md:grid-cols-3 gap-12">
                     {/* Brand column */}
                     <div className="space-y-5">
-                        <span className="font-serif font-bold text-3xl tracking-[0.15em] text-valex-bronce">
-                            {BRAND.name}
-                        </span>
+                        <div className="-ml-3 mb-2 block">
+                            <Logo className="h-16 w-auto" />
+                        </div>
                         <p className="text-valex-gris/80 leading-relaxed text-sm">
                             {BRAND.description}
                         </p>
-                        <div className="flex gap-3 pt-2">
-                            <a
-                                href="#"
-                                className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-valex-bronce hover:border-valex-bronce/30 transition-all duration-300"
-                                aria-label="Instagram"
-                            >
-                                <Instagram className="w-5 h-5" />
-                            </a>
-                            <a
-                                href="#"
-                                className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-valex-bronce hover:border-valex-bronce/30 transition-all duration-300"
-                                aria-label="Email"
-                            >
-                                <Mail className="w-5 h-5" />
-                            </a>
-                        </div>
+                        {hasSocials && (
+                            <div className="flex flex-wrap gap-3 pt-2">
+                                {instagram && (
+                                    <a
+                                        href={instagram.startsWith('http') ? instagram : `https://instagram.com/${instagram}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        aria-label="Instagram"
+                                    >
+                                        <Instagram className="w-5 h-5" />
+                                    </a>
+                                )}
+                                {facebook && (
+                                    <a
+                                        href={facebook.startsWith('http') ? facebook : `https://facebook.com/${facebook}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        aria-label="Facebook"
+                                    >
+                                        <FaFacebook className="w-5 h-5" />
+                                    </a>
+                                )}
+                                {tiktok && (
+                                    <a
+                                        href={tiktok.startsWith('http') ? tiktok : `https://tiktok.com/@${tiktok}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        aria-label="TikTok"
+                                    >
+                                        <FaTiktok className="w-5 h-5" />
+                                    </a>
+                                )}
+                                {whatsapp && (
+                                    <a
+                                        href={`https://wa.me/${whatsapp}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        aria-label="WhatsApp"
+                                    >
+                                        <FaWhatsapp className="w-5 h-5" />
+                                    </a>
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     {/* Navigation column */}
@@ -46,7 +86,7 @@ export default function Footer() {
                                 <a
                                     key={link.href}
                                     href={link.href}
-                                    className="text-valex-gris/70 hover:text-valex-bronce text-sm transition-colors duration-300"
+                                    className="text-valex-gris/70 hover:text-bioflora-naranja text-sm transition-colors duration-300"
                                 >
                                     {link.label}
                                 </a>
@@ -60,16 +100,16 @@ export default function Footer() {
                             Políticas de Tienda
                         </h3>
                         <div className="flex flex-col gap-3">
-                            <Link to="/politica/refunds" className="text-valex-gris/70 hover:text-valex-bronce text-sm transition-colors duration-300">
+                            <Link to="/politica/refunds" className="text-valex-gris/70 hover:text-bioflora-naranja text-sm transition-colors duration-300">
                                 Política de Reembolsos
                             </Link>
-                            <Link to="/politica/shipping" className="text-valex-gris/70 hover:text-valex-bronce text-sm transition-colors duration-300">
+                            <Link to="/politica/shipping" className="text-valex-gris/70 hover:text-bioflora-naranja text-sm transition-colors duration-300">
                                 Política de Envíos
                             </Link>
-                            <Link to="/politica/privacy" className="text-valex-gris/70 hover:text-valex-bronce text-sm transition-colors duration-300">
+                            <Link to="/politica/privacy" className="text-valex-gris/70 hover:text-bioflora-naranja text-sm transition-colors duration-300">
                                 Política de Privacidad
                             </Link>
-                            <Link to="/politica/terms" className="text-valex-gris/70 hover:text-valex-bronce text-sm transition-colors duration-300">
+                            <Link to="/politica/terms" className="text-valex-gris/70 hover:text-bioflora-naranja text-sm transition-colors duration-300">
                                 Términos de Servicio
                             </Link>
                         </div>

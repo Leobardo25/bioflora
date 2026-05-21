@@ -176,7 +176,7 @@ export default function MovementForm({ products, onClose, onSaved, adminName }) 
                                 placeholder="Buscar producto..."
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
-                                className="w-full pl-9 pr-4 py-1.5 border border-gray-200 dark:border-white/10 rounded-lg text-xs text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition"
+                                className="w-full pl-9 pr-4 py-1.5 border border-gray-200 dark:border-white/10 rounded-lg text-xs text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-bioflora-verde/50 transition"
                             />
                         </div>
 
@@ -190,7 +190,7 @@ export default function MovementForm({ products, onClose, onSaved, adminName }) 
                                         onClick={() => handleProductSelect(p.id)}
                                         className={`w-full flex items-center gap-2 px-3 py-2 text-left transition-colors ${
                                             productId === p.id
-                                                ? 'bg-indigo-50 dark:bg-indigo-500/10 border-l-2 border-l-indigo-500'
+                                                ? 'bg-bioflora-verde/10 dark:bg-bioflora-verde/20 border-l-2 border-l-bioflora-verde'
                                                 : 'hover:bg-gray-100 dark:hover:bg-white/5 border-l-2 border-l-transparent'
                                         }`}
                                     >
@@ -205,7 +205,7 @@ export default function MovementForm({ products, onClose, onSaved, adminName }) 
                                             <p className="text-[9px] text-gray-400 dark:text-gray-500">Stock: {p.quantity ?? 0} · {p.currency === 'CRC' ? '₡' : '$'}{Number(p.price || 0).toLocaleString()}</p>
                                         </div>
                                         {productId === p.id && (
-                                            <div className="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center flex-shrink-0">
+                                            <div className="w-5 h-5 rounded-full bg-bioflora-verde flex items-center justify-center flex-shrink-0">
                                                 <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                             </div>
                                         )}
@@ -215,10 +215,10 @@ export default function MovementForm({ products, onClose, onSaved, adminName }) 
                         </div>
 
                         {selectedProduct && (
-                            <div className="mt-2 flex items-center gap-2 px-3 py-2 rounded-lg bg-indigo-50/50 dark:bg-indigo-500/5 border border-indigo-200/50 dark:border-indigo-500/20">
-                                <Package className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-                                <span className="text-sm font-medium text-indigo-700 dark:text-indigo-400 truncate">{selectedProduct.name}</span>
-                                <span className="text-xs text-indigo-400 dark:text-indigo-500 flex-shrink-0 ml-auto">Stock: {selectedProduct.quantity ?? 0}</span>
+                            <div className="mt-2 flex items-center gap-2 px-3 py-2 rounded-lg bg-bioflora-verde/10 dark:bg-bioflora-verde/5 border border-bioflora-verde/20 dark:border-bioflora-verde/20">
+                                <Package className="w-4 h-4 text-bioflora-verde flex-shrink-0" />
+                                <span className="text-sm font-medium text-bioflora-verde truncate">{selectedProduct.name}</span>
+                                <span className="text-xs text-bioflora-verde flex-shrink-0 ml-auto">Stock: {selectedProduct.quantity ?? 0}</span>
                             </div>
                         )}
                     </div>
@@ -255,7 +255,7 @@ export default function MovementForm({ products, onClose, onSaved, adminName }) 
                                 value={quantity}
                                 onChange={e => handleQuantityChange(e.target.value)}
                                 placeholder="Ej: 5"
-                                className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-xl text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition"
+                                className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-xl text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-bioflora-verde/50 transition"
                             />
                         </div>
                         <div>
@@ -272,7 +272,7 @@ export default function MovementForm({ products, onClose, onSaved, adminName }) 
                                 value={amount}
                                 onChange={e => setAmount(e.target.value)}
                                 placeholder="Auto"
-                                className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-xl text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition"
+                                className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-xl text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-bioflora-verde/50 transition"
                             />
                         </div>
                     </div>
@@ -299,7 +299,7 @@ export default function MovementForm({ products, onClose, onSaved, adminName }) 
                             onInput={e => { e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
                             placeholder="Ej: Compra a proveedor X, factura #123..."
                             rows={1}
-                            className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-xl text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition resize-none overflow-hidden"
+                            className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 rounded-xl text-sm text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#1A1A1B] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-bioflora-verde/50 transition resize-none overflow-hidden"
                         />
                     </div>
                 </div>

@@ -130,7 +130,7 @@ export default function CustomersList() {
                 </div>
                 <button
                     onClick={openCreate}
-                    className="flex items-center gap-2 bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors self-start sm:self-auto"
+                    className="flex items-center gap-2 bg-bioflora-verde text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/90 transition-colors self-start sm:self-auto"
                 >
                     <Plus className="w-4 h-4" />
                     Nuevo Cliente
@@ -145,7 +145,7 @@ export default function CustomersList() {
                         placeholder="Buscar por nombre o teléfono..."
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
-                        className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-[#1A1A1B] focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                        className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-[#1A1A1B] focus:outline-none focus:ring-2 focus:ring-bioflora-verde/50 transition"
                     />
                 </div>
                 <CustomerFilters customers={customers} allTags={allTags} activeFilter={activeTagFilter} onFilterChange={setActiveTagFilter} />
@@ -153,15 +153,15 @@ export default function CustomersList() {
 
             {loading ? (
                 <div className="flex items-center justify-center h-64">
-                    <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+                    <div className="w-8 h-8 border-2 border-bioflora-verde border-t-transparent rounded-full animate-spin" />
                 </div>
             ) : filteredCustomers.length === 0 ? (
                 <div className="text-center py-20 bg-white dark:bg-[#1e1e20] border border-gray-200 dark:border-white/5 rounded-xl">
                     <User className="w-12 h-12 text-gray-300 mx-auto mb-3" />
                     <p className="text-gray-500 dark:text-gray-400 font-medium">No se encontraron clientes.</p>
                     {searchTerm 
-                        ? <button onClick={() => setSearchTerm('')} className="mt-3 text-indigo-600 dark:text-indigo-400 hover:underline text-sm">Limpiar búsqueda</button>
-                        : <button onClick={openCreate} className="mt-4 text-indigo-600 dark:text-indigo-400 hover:underline text-sm font-medium">Añadir cliente manual</button>
+                        ? <button onClick={() => setSearchTerm('')} className="mt-3 text-bioflora-verde hover:underline text-sm">Limpiar búsqueda</button>
+                        : <button onClick={openCreate} className="mt-4 text-bioflora-verde hover:underline text-sm font-medium">Añadir cliente manual</button>
                     }
                 </div>
             ) : (
@@ -201,7 +201,7 @@ export default function CustomersList() {
                                         <tr key={c.id} className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group">
                                             <td className="px-5 py-2.5">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-9 h-9 bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-bold font-serif shadow-sm border border-indigo-100/50 dark:border-indigo-500/20">
+                                                    <div className="w-9 h-9 bg-bioflora-verde/10 dark:bg-bioflora-verde/20 text-bioflora-verde rounded-xl flex items-center justify-center font-bold font-serif shadow-sm border border-bioflora-verde/20">
                                                         {c.name && c.name !== 'Desconocido' ? c.name.charAt(0).toUpperCase() : '?'}
                                                     </div>
                                                     <div className="flex flex-col">
@@ -214,7 +214,7 @@ export default function CustomersList() {
                                                 <div className="flex items-center gap-2">
                                                     {waPhone ? (
                                                         <a
-                                                            href={`https://wa.me/506${waPhone}?text=Hola ${c.name}, le contactamos de Valex Perfumería.`}
+                                                            href={`https://wa.me/506${waPhone}?text=Hola ${c.name}, le contactamos de Caribbean Botanical Garden.`}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className="flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-3 py-1.5 rounded-lg transition-colors font-medium text-[11px]"
@@ -252,7 +252,7 @@ export default function CustomersList() {
                                                         allTags={allTags}
                                                     />
                                                     <div className="flex items-center justify-end gap-1 transition-opacity">
-                                                        <button onClick={() => openEdit(c)} className="p-2 text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 rounded-lg transition-colors" title="Editar">
+                                                        <button onClick={() => openEdit(c)} className="p-2 text-gray-400 dark:text-gray-500 hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-lg transition-colors" title="Editar">
                                                             <Edit2 className="w-4 h-4" />
                                                         </button>
                                                         <button onClick={() => setDeleteTarget(c)} className="p-2 text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors" title="Eliminar">
@@ -300,7 +300,7 @@ export default function CustomersList() {
                                     value={form.name}
                                     onChange={e => setForm({...form, name: e.target.value})}
                                     placeholder="Ej. María Pérez"
-                                    className="w-full pl-9 pr-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-sm text-gray-900 dark:text-gray-200 bg-white dark:bg-[#1e1e20] font-medium focus:ring-2 focus:ring-indigo-500 outline-none transition"
+                                    className="w-full pl-9 pr-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-sm text-gray-900 dark:text-gray-200 bg-white dark:bg-[#1e1e20] font-medium focus:ring-2 focus:ring-bioflora-verde/50 outline-none transition"
                                 />
                             </div>
                         </div>
@@ -316,7 +316,7 @@ export default function CustomersList() {
                                         value={form.phone}
                                         onChange={e => setForm({...form, phone: e.target.value})}
                                         placeholder="8888-8888"
-                                        className="w-full pl-9 pr-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-sm text-gray-900 dark:text-gray-200 bg-white dark:bg-[#1e1e20] font-medium focus:ring-2 focus:ring-indigo-500 outline-none transition"
+                                        className="w-full pl-9 pr-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-sm text-gray-900 dark:text-gray-200 bg-white dark:bg-[#1e1e20] font-medium focus:ring-2 focus:ring-bioflora-verde/50 outline-none transition"
                                     />
                                 </div>
                             </div>
@@ -329,7 +329,7 @@ export default function CustomersList() {
                                         value={form.email}
                                         onChange={e => setForm({...form, email: e.target.value})}
                                         placeholder="correo@ejemplo.com"
-                                        className="w-full pl-9 pr-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-sm text-gray-900 dark:text-gray-200 bg-white dark:bg-[#1e1e20] font-medium focus:ring-2 focus:ring-indigo-500 outline-none transition"
+                                        className="w-full pl-9 pr-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-sm text-gray-900 dark:text-gray-200 bg-white dark:bg-[#1e1e20] font-medium focus:ring-2 focus:ring-bioflora-verde/50 outline-none transition"
                                     />
                                 </div>
                             </div>
@@ -348,7 +348,7 @@ export default function CustomersList() {
                                             onClick={() => toggleTag(tagVal)}
                                             className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all border ${
                                                 isActive 
-                                                    ? `${style.bg} ${style.border} ${style.text} ring-2 ring-indigo-500/30` 
+                                                    ? `${style.bg} ${style.border} ${style.text} ring-2 ring-bioflora-verde/30` 
                                                     : 'bg-white dark:bg-[#1e1e20] text-gray-500 dark:text-gray-400 border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5'
                                             }`}
                                         >
@@ -362,7 +362,7 @@ export default function CustomersList() {
                                 <input
                                     type="text"
                                     placeholder="+ Crear nueva etiqueta y enter"
-                                    className="w-full text-xs px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-[#1e1e20] font-medium focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                                    className="w-full text-xs px-3 py-2 border border-gray-200 dark:border-white/10 rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-[#1e1e20] font-medium focus:outline-none focus:border-bioflora-verde focus:ring-1 focus:ring-bioflora-verde"
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' && e.target.value.trim()) {
                                             e.preventDefault();
@@ -382,7 +382,7 @@ export default function CustomersList() {
                                 onChange={e => setForm({...form, notes: e.target.value})}
                                 placeholder="Preferencias de compra, alergias, direcciones alternas..."
                                 rows={4}
-                                className="w-full p-3 border border-gray-200 dark:border-white/10 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none resize-none bg-gray-50 dark:bg-black/20 text-gray-800 dark:text-gray-200 focus:bg-white dark:focus:bg-[#1e1e20]"
+                                className="w-full p-3 border border-gray-200 dark:border-white/10 rounded-lg text-sm focus:ring-2 focus:ring-bioflora-verde outline-none resize-none bg-gray-50 dark:bg-black/20 text-gray-800 dark:text-gray-200 focus:bg-white dark:focus:bg-[#1e1e20]"
                             />
                         </div>
 
@@ -399,7 +399,7 @@ export default function CustomersList() {
                                     <div key={o.id} className="flex items-center justify-between p-3 rounded-lg border border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-black/20">
                                         <div className="flex items-center gap-3">
                                             <div className="bg-white dark:bg-[#1e1e20] border border-gray-200 dark:border-white/5 rounded-md p-1.5 shadow-sm">
-                                                <FileText className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
+                                                <FileText className="w-4 h-4 text-bioflora-verde" />
                                             </div>
                                             <div>
                                                 <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{o.orderId || 'Sin ID'}</p>
@@ -421,7 +421,7 @@ export default function CustomersList() {
                         form="customer-form"
                         type="submit"
                         disabled={saving}
-                        className="w-full bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white py-2.5 rounded-lg font-medium text-sm transition-colors flex justify-center items-center gap-2 disabled:opacity-50"
+                        className="w-full bg-bioflora-verde text-white py-2.5 rounded-lg font-medium text-sm transition-colors flex justify-center items-center gap-2 disabled:opacity-50"
                     >
                         {saving ? (
                             <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

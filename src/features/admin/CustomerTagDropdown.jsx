@@ -64,8 +64,8 @@ export default function CustomerTagDropdown({ customer, onUpdated, allTags = [] 
                                     className="w-full text-left px-3 py-2 text-xs flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-gray-700 dark:text-gray-300 font-semibold"
                                 >
                                     <span className={`w-2 h-2 rounded-full flex-shrink-0 ${style.dot}`} />
-                                    <span className={tagVal === currentTag ? 'text-indigo-600 dark:text-indigo-400' : ''}>{tagVal}</span>
-                                    {tagVal === currentTag && <span className="ml-auto text-indigo-500 dark:text-indigo-400 text-[10px]">✓</span>}
+                                    <span className={tagVal === currentTag ? 'text-bioflora-verde font-bold' : ''}>{tagVal}</span>
+                                    {tagVal === currentTag && <span className="ml-auto text-bioflora-verde text-[10px]">✓</span>}
                                 </button>
                             );
                         })}
@@ -83,7 +83,7 @@ export default function CustomerTagDropdown({ customer, onUpdated, allTags = [] 
                                     handleSelect(newTagText.trim());
                                 }
                             }}
-                            className="w-full text-xs px-2 py-1.5 border border-gray-200 dark:border-white/10 rounded text-gray-700 dark:text-gray-300 bg-white dark:bg-[#1A1A1B] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                            className="w-full text-xs px-2 py-1.5 border border-gray-200 dark:border-white/10 rounded text-gray-700 dark:text-gray-300 bg-white dark:bg-[#1A1A1B] focus:outline-none focus:border-bioflora-verde focus:ring-1 focus:ring-bioflora-verde"
                         />
                     </div>
                 </div>

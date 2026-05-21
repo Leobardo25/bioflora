@@ -9,11 +9,11 @@ export default defineConfig({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
-                name: 'Valex Perfumería',
-                short_name: 'Valex',
-                description: 'Perfumería exclusiva y de lujo.',
-                theme_color: '#1A1A1B',
-                background_color: '#1A1A1B',
+                name: 'Caribbean Botanical Garden',
+                short_name: 'Caribbean BG',
+                description: 'Vivero boutique de orquídeas y plantas exóticas de colección.',
+                theme_color: '#070F0A',
+                background_color: '#070F0A',
                 display: 'standalone',
                 icons: [
                     {

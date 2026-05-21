@@ -15,10 +15,14 @@
  */
 
 const THEME = {
-    negro: '#1A1A1B',
-    bronce: '#A68966',
-    grisPiedra: '#D1D1D1',
-    blancoHueso: '#F5F5F5',
+    negro: '#070F0A',        // Verde Bosque Nocturno ultra-oscuro
+    bronce: '#00A94F',       // Verde Principal Jardín (Pantone 355C)
+    grisPiedra: '#A3B899',   // Verde Salvia Elegante (Texto secundario)
+    blancoHueso: '#F9F9F6',  // Arena / Blanco Hueso (Zonas de respiro)
+    fucsiaOrquidea: '#D60C8C', // Rosa/Fucsia Orquídea (Acento premium)
+    moradoOrquidea: '#662D91', // Morado Orquídea
+    naranjaTucan: '#F8971D',  // Naranja Tucán (Acento dinámico)
+    tarjetaBosque: '#0D1C13'  // Fondo de tarjetas
 }
 
 export default {
@@ -30,20 +34,29 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Semantic tokens — Lujo Silencioso
+                // Semantic tokens — Bioflora Vivero Boutique (aliases to preserve layout stability)
                 'valex-negro': THEME.negro,
                 'valex-bronce': THEME.bronce,
                 'valex-gris': THEME.grisPiedra,
                 'valex-hueso': THEME.blancoHueso,
 
-                // Functional aliases
-                'valex-bronce-dark': '#8A7050',
-                'valex-bronce-light': '#C4A87D',
-                'valex-negro-alt': '#222223',
+                // Functional aliases mapped to the tropical palette
+                'valex-bronce-dark': '#066E34',          // Verde Selva Oscuro (hover principal)
+                'valex-bronce-light': THEME.fucsiaOrquidea, // Rosa Fucsia Orquídea (acento dinámico / hover alt)
+                'valex-negro-alt': THEME.tarjetaBosque,   // Fondo de tarjetas
+
+                // Native Bioflora colors for new features
+                'bioflora-verde': THEME.bronce,
+                'bioflora-fucsia': THEME.fucsiaOrquidea,
+                'bioflora-morado': THEME.moradoOrquidea,
+                'bioflora-naranja': THEME.naranjaTucan,
+                'bioflora-bosque': THEME.negro,
+                'bioflora-tarjeta': THEME.tarjetaBosque,
+                'bioflora-arena': THEME.blancoHueso,
             },
             fontFamily: {
                 serif: ['Playfair Display', 'Georgia', 'serif'],
-                sans: ['Poppins', 'system-ui', 'sans-serif'],
+                sans: ['Poppins', 'Outfit', 'system-ui', 'sans-serif'],
             },
             keyframes: {
                 'slide-in-right': {

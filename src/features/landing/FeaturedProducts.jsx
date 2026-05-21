@@ -18,11 +18,10 @@ export default function FeaturedProducts() {
         const fetchFeatured = async () => {
             try {
                 const allProducts = await getProducts();
-                // Solo mostrar en destacados los que tienen fondo cinematográfico (galleryImages)
                 const featured = allProducts.filter(p => 
                     p.isFeatured && 
                     p.stock !== 'Bóveda (Retirado)' &&
-                    p.galleryImages?.length > 0
+                    (p.coverImage || (p.galleryImages && p.galleryImages.length > 0))
                 );
                 setFeaturedProducts(featured);
             } catch (error) {
@@ -46,17 +45,17 @@ export default function FeaturedProducts() {
         setCurrentIndex((prev) => (prev - 1 + featuredProducts.length) % featuredProducts.length)
     }, [featuredProducts.length])
 
-    // Autoplay de 6 segundos
+    // Autoplay de 12 segundos (ralentizado según solicitud)
     useEffect(() => {
         if (featuredProducts.length <= 1) return;
-        const timer = setInterval(handleNext, 6000); 
+        const timer = setInterval(handleNext, 12000); 
         return () => clearInterval(timer);
     }, [handleNext, featuredProducts.length])
 
     if (!loading && featuredProducts.length === 0) return null;
 
     return (
-        <section id="colecciones" className="relative h-auto lg:h-screen w-full bg-valex-hueso overflow-hidden border-t border-valex-bronce/10 flex items-center py-20 lg:py-0">
+        <section id="colecciones" className="relative h-auto lg:min-h-[85vh] w-full bg-valex-hueso overflow-hidden border-t border-valex-bronce/10 flex items-center py-16 lg:py-12">
             {/* Destellos de iluminación de fondo */}
             <div className="absolute top-1/2 right-1/4 w-[40vw] h-[40vw] rounded-full bg-valex-bronce/5 blur-[120px] pointer-events-none" />
 
@@ -66,28 +65,21 @@ export default function FeaturedProducts() {
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={{
                         hidden: { opacity: 0, x: -50 },
                         visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
                     }}
                     className="w-full lg:w-[35%] flex flex-col justify-center text-center lg:text-left"
                 >
-                    <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4 sm:mb-6">
+                    <div className="inline-block text-bioflora-naranja font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4 sm:mb-6">
                         Colección Selecta
-                    </span>
+                    </div>
                     <h2 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-valex-negro leading-[1.05] tracking-tight">
-                        {(() => {
-                            const title = collectionTitle || 'Nuestras Botellas'
-                            const words = title.trim().split(' ')
-                            const accent = words.pop()
-                            return (
-                                <>{words.join(' ')}{words.length > 0 ? ' ' : ''}<br className="hidden lg:block" /><span className="text-valex-bronce italic font-medium">{accent}</span></>
-                            )
-                        })()}
+                        Especies <span className="text-bioflora-morado italic font-medium">Selectas</span>
                     </h2>
                     <p className="hidden lg:block text-valex-negro/50 mt-6 text-sm sm:text-base font-light mx-auto lg:mx-0 max-w-sm leading-relaxed">
-                        {collectionText || 'Explora las fragancias más exclusivas de nuestra bóveda, elaboradas meticulosamente para revelar tu identidad.'}
+                        {collectionText || 'Explore las orquídeas y especies exóticas más exclusivas de nuestra colección, cultivadas con esmero para embellecer su entorno.'}
                     </p>
                     
                     {/* Botones de Navegación Exclusivos para Desktop */}
@@ -111,7 +103,7 @@ export default function FeaturedProducts() {
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={{
                         hidden: { opacity: 0, y: 50 },
                         visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut", delay: 0.2 } }
@@ -123,7 +115,7 @@ export default function FeaturedProducts() {
                             <div className="w-10 h-10 border-4 border-valex-bronce/30 border-t-valex-bronce rounded-full animate-spin" />
                         </div>
                     ) : (
-                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[950px] h-[75vh] lg:h-[480px] xl:h-[500px] min-h-[520px] lg:min-h-[480px]">
+                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[75vh] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] min-h-[520px] lg:min-h-[500px] w-full mx-auto">
                             <AnimatePresence custom={direction}>
                                 <motion.div
                                     key={currentIndex}
@@ -159,10 +151,7 @@ export default function FeaturedProducts() {
                 </motion.div>
                 
                 {/* Resumen descriptivo y Botón Ir a Tienda exclusivos para la base en móviles */}
-                <div className="lg:hidden w-full flex flex-col items-center text-center px-4">
-                    <p className="text-valex-negro/60 text-[13px] font-light leading-relaxed mb-6 max-w-sm">
-                        Descubre las botellas más exclusivas de nuestra bóveda, diseñadas para revelar la esencia de tu identidad.
-                    </p>
+                <div className="lg:hidden w-full flex flex-col items-center text-center px-4 mt-4">
                     <Link to="/tienda" className="inline-block py-3 px-10 border border-valex-bronce bg-transparent text-valex-negro font-sans hover:bg-valex-bronce hover:text-valex-hueso transition-all duration-500 tracking-[0.2em] text-[10px] font-bold uppercase rounded-full shadow-lg">
                         Ver Catálogo Completo
                     </Link>
@@ -211,20 +200,22 @@ function ProductCard({ product }) {
                 <img
                     src={displayImg}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transform-gpu group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
             </div>
             {/* Info — ajustada para que quepa todo el texto */}
             <div className="h-[45%] lg:h-full lg:w-[50%] w-full flex flex-col bg-white relative">
                 <div className="p-5 sm:p-6 lg:p-8 xl:p-10 flex flex-col h-full"> 
                     <div className="flex-1 flex flex-col justify-center min-w-0">
-                        <span className="inline-block text-valex-bronce font-sans text-[10px] lg:text-xs tracking-[0.25em] uppercase font-extrabold mb-2 lg:mb-3">
+                        <span className="inline-block text-bioflora-naranja font-sans text-[10px] lg:text-xs tracking-[0.25em] uppercase font-extrabold mb-2 lg:mb-3">
                             {product.category || 'Premium Collection'}
                         </span>
                         <h3 className="font-serif font-bold text-xl sm:text-2xl lg:text-3xl text-valex-negro mb-1 lg:mb-2 leading-tight line-clamp-2">
                             {product.name}
                         </h3>
-                        <p className="text-valex-bronce/90 italic font-serif text-xs lg:text-sm line-clamp-2 mb-3 lg:mb-4">
+                        <p className="text-bioflora-naranja/90 italic font-serif text-xs lg:text-sm line-clamp-2 mb-3 lg:mb-4">
                             "{product.notes}"
                         </p>
                         <p className="text-valex-negro/60 text-[12px] lg:text-[14px] font-light line-clamp-3 lg:line-clamp-5 leading-relaxed">
@@ -233,10 +224,10 @@ function ProductCard({ product }) {
                     </div>
 
                     <div className="mt-3 flex items-center justify-between border-t border-valex-gris/10 pt-4 lg:pt-6 w-full">
-                        <span className="font-serif font-bold text-xl lg:text-3xl text-valex-negro">
+                        <span className="font-serif font-bold text-xl lg:text-3xl text-bioflora-naranja">
                             {formattedPrice}
                         </span>
-                        <Link to="/tienda" className="font-sans text-[10px] lg:text-[11px] font-extrabold tracking-[0.15em] text-valex-negro uppercase hover:text-valex-bronce transition-colors bg-valex-bronce/5 px-5 lg:px-7 py-2.5 lg:py-3.5 rounded-full hover:bg-valex-bronce/10">
+                        <Link to="/tienda" className="font-sans text-[10px] lg:text-[11px] font-extrabold tracking-[0.15em] text-valex-negro uppercase hover:text-white transition-colors bg-valex-bronce/5 px-5 lg:px-7 py-2.5 lg:py-3.5 rounded-full hover:bg-bioflora-naranja">
                             Adquirir
                         </Link>
                     </div>

@@ -1,7 +1,7 @@
 /**
- * VALEX Perfumería — Motion Constants
+ * Caribbean Botanical Garden — Motion Constants
  * Curvas y transiciones de "Lujo Silencioso".
- * Movimiento pesado y deliberado, como un reloj de lujo.
+ * Movimiento pesado y deliberado, como el crecimiento de una especie de colección.
  */
 
 // Core transition — used across all components

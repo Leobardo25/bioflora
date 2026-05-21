@@ -29,8 +29,8 @@ export default function OrderFilters({ orders, activeFilter, onFilterChange }) {
                         onClick={() => onFilterChange(value)}
                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                             isActive
-                                ? 'bg-indigo-600 dark:bg-indigo-500 text-white shadow-sm'
-                                : 'bg-white dark:bg-[#1e1e20] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-indigo-300 dark:hover:border-indigo-500/40 hover:text-indigo-600 dark:hover:text-indigo-400'
+                                ? 'bg-bioflora-verde text-white shadow-sm'
+                                : 'bg-white dark:bg-[#1e1e20] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-bioflora-verde/40 hover:text-bioflora-verde'
                         }`}
                     >
                         {value && <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white/70' : DOT_COLOR[value]}`} />}

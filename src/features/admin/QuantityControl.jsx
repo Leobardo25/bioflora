@@ -41,14 +41,14 @@ export default function QuantityControl({ productId, quantity, onUpdated }) {
                     onChange={e => setValue(e.target.value)}
                     onBlur={() => { save(value); setEditing(false); }}
                     onKeyDown={e => { if (e.key === 'Enter') { save(value); setEditing(false); } if (e.key === 'Escape') setEditing(false); }}
-                    className="w-10 text-center text-xs border border-indigo-300 dark:border-indigo-500/40 rounded px-1 py-0.5 bg-white dark:bg-[#1A1A1B] text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                    className="w-10 text-center text-xs border border-bioflora-verde/40 dark:border-bioflora-verde/40 rounded px-1 py-0.5 bg-white dark:bg-[#1A1A1B] text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-1 focus:ring-bioflora-verde/50"
                     autoFocus
                 />
             ) : (
                 <button
                     onClick={() => setEditing(true)}
                     title="Clic para editar"
-                    className={`w-10 text-center text-xs font-semibold rounded px-1 py-0.5 transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 ${
+                    className={`w-10 text-center text-xs font-semibold rounded px-1 py-0.5 transition-colors hover:bg-bioflora-verde/10 dark:hover:bg-bioflora-verde/20 hover:text-bioflora-verde ${
                         value === 0 ? 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10' : 'text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-white/5'
                     }`}
                 >

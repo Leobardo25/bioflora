@@ -1,62 +1,62 @@
 /**
- * VALEX Perfumería — Constants
+ * BIOFLORA — Caribbean Botanical Garden
  * Centralized data for the landing page.
- * Prepared for future integration with Admin Panel.
+ * Prepared for integration with the Admin Panel.
  */
 
 export const NAV_LINKS = [
     { href: '#inicio', label: 'Inicio' },
     { href: '#colecciones', label: 'Colecciones' },
     { href: '#nosotros', label: 'Sobre Nosotros' },
-    { href: '#contacto', label: 'Contacto' },
+    { href: '#actividades', label: 'Actividades' },
+    { href: '#faq', label: 'Preguntas' },
 ]
 
 export const HERO_CONTENT = {
-    title: 'El Arte de Oler Increíble',
-    subtitle: 'Descubra fragancias exclusivas diseñadas para cautivar',
-    cta: 'Ver Catálogo',
+    title: 'El Esplendor del Trópico en su Hogar',
+    cta: 'Explorar Catálogo',
     ctaHref: '#colecciones',
 }
 
 export const HERO_STATS = [
-    { value: '50+', label: 'Fragancias' },
-    { value: '2K+', label: 'Clientes' },
-    { value: '8+', label: 'Años' },
+    { value: '100+', label: 'Especies' },
+    { value: '15K+', label: 'Visitantes' },
+    { value: '25+', label: 'Años' },
 ]
 
 export const PRODUCTS = [
     {
-        id: 'oud-mystique',
-        name: 'Oud Mystique',
-        category: 'Masculino',
-        notes: 'Madera de oud · Ámbar · Sándalo',
-        description: 'Una fragancia intensa y envolvente que evoca la profundidad de los bosques orientales.',
+        id: 'guaria-morada',
+        name: 'Guaria Morada (Guarianthe skinneri)',
+        category: 'Orquídeas',
+        notes: 'Sombra parcial · Riego 2 veces/semana · Alta humedad',
+        description: 'La flor nacional de Costa Rica. Una orquídea majestuosa con pétalos morados vibrantes que florece en ramilletes espectaculares.',
     },
     {
-        id: 'velvet-rose',
-        name: 'Velvet Rose',
-        category: 'Femenino',
-        notes: 'Rosa damascena · Peonía · Almizcle',
-        description: 'Elegancia atemporal en cada gota. Un bouquet floral sofisticado y sensual.',
+        id: 'monstera-variegata',
+        name: 'Monstera Deliciosa Variegata',
+        category: 'Exóticas',
+        notes: 'Luz indirecta · Riego moderado · Sustrato drenante',
+        description: 'Una joya botánica altamente codiciada. Sus hojas presentan patrones de variegación blanco puro únicos que evocan el lujo natural.',
     },
     {
-        id: 'citrus-aura',
-        name: 'Citrus Aura',
-        category: 'Unisex',
-        notes: 'Bergamota · Limón · Vetiver',
-        description: 'Frescura mediterránea para espíritus libres. Luminoso, vibrante y cautivador.',
+        id: 'anturio-negro',
+        name: 'Anturio Negro (Anthurium Black)',
+        category: 'Flores Tropicales',
+        notes: 'Sombra húmeda · Riego regular · Pet-friendly',
+        description: 'Elegancia gótica natural. Sus espatas oscuras de aspecto encerado ofrecen un contraste minimalista y sofisticado de larga duración.',
     },
 ]
 
 export const MOODBOARD_IMAGES = [
-    { id: 'mood-ingredients', alt: 'Ingredientes premium de perfumería artesanal' },
-    { id: 'mood-crystal', alt: 'Detalle de frasco de cristal con reflejos dorados' },
-    { id: 'mood-scene', alt: 'Escena minimalista de perfumes de lujo' },
+    { id: 'mood-orchids', alt: 'Colección de orquídeas exóticas cultivadas en Limón, Costa Rica' },
+    { id: 'mood-garden', alt: 'Senderos naturales de nuestro jardín botánico' },
+    { id: 'mood-care', alt: 'Propagación cuidadosa en invernaderos agro-tecnológicos' },
 ]
 
 export const BRAND = {
-    name: 'VALEX',
-    tagline: 'Valex Perfumería',
-    description: 'Fragancias exclusivas para quienes entienden que el aroma es la firma más íntima del estilo.',
-    copyright: `© ${new Date().getFullYear()} VALEX Perfumería. Todos los derechos reservados.`,
+    name: 'Caribbean Botanical Garden',
+    tagline: 'Vivero Boutique & Especies Exóticas',
+    description: 'Costa Rican Orchids and Tropical Flowers. Conservación ambiental y bio-alfabetización mediante tecnologías agrícolas sostenibles y turismo ecológico.',
+    copyright: `© ${new Date().getFullYear()} Caribbean Botanical Garden. Todos los derechos reservados.`,
 }

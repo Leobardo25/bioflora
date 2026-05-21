@@ -12,7 +12,7 @@ const Field = ({ label, name, value, onChange, placeholder, type = 'text' }) => 
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            className="w-full border border-gray-300 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-[#1A1A1B] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+            className="w-full border border-gray-300 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-[#1A1A1B] focus:outline-none focus:ring-2 focus:ring-bioflora-verde/50 focus:border-transparent transition"
         />
     </div>
 );
@@ -50,7 +50,7 @@ export default function SiteConfig() {
         }
     };
 
-    if (loading) return <div className="h-40 flex items-center justify-center"><div className="w-6 h-6 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>;
+    if (loading) return <div className="h-40 flex items-center justify-center"><div className="w-6 h-6 border-2 border-bioflora-verde border-t-transparent rounded-full animate-spin" /></div>;
 
     return (
         <div>
@@ -77,13 +77,13 @@ export default function SiteConfig() {
                 <section>
                     <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Marca</h2>
                     <div className="space-y-4">
-                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="VALEX" />
-                        <Field label="Tagline" name="brandTagline" value={form.brandTagline} onChange={handleChange} placeholder="Valex Perfumería" />
+                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="Caribbean Botanical Garden" />
+                        <Field label="Tagline" name="brandTagline" value={form.brandTagline} onChange={handleChange} placeholder="Vivero Boutique & Especies Exóticas" />
                     </div>
                 </section>
 
                 <div className="flex justify-end pt-2">
-                    <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-indigo-600 dark:bg-indigo-500 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition disabled:opacity-50">
+                    <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-bioflora-verde text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/90 transition disabled:opacity-50">
                         <Save className="w-4 h-4" />
                         {saving ? 'Guardando...' : 'Guardar cambios'}
                     </button>

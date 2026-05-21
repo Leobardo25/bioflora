@@ -23,7 +23,7 @@ export default function NavbarDesktopActions({
         <div className="flex items-center gap-4 ml-6 border-l border-valex-gris/10 pl-6 h-full py-4">
             {isShopPage ? (
                 <div className="flex items-center gap-2">
-                    <div className="w-56 xl:w-72 bg-[#151515] border border-valex-gris/20 rounded-lg h-9 flex items-center px-3 focus-within:border-valex-bronce transition-colors">
+                    <div className="w-56 xl:w-72 bg-bioflora-tarjeta border border-bioflora-verde/20 rounded-lg h-9 flex items-center px-3 focus-within:border-bioflora-verde transition-colors">
                         <Search className="w-3.5 h-3.5 text-valex-gris mr-2 flex-shrink-0" />
                         <input 
                             type="text"
@@ -43,8 +43,8 @@ export default function NavbarDesktopActions({
                         onClick={onToggleMobileFilters}
                         className={`h-9 px-4 border text-[10px] font-bold uppercase tracking-widest font-serif flex items-center justify-center rounded-lg transition-all duration-300 ${
                             isFilterMenuOpen 
-                                ? 'bg-valex-bronce text-valex-negro border-valex-bronce' 
-                                : 'bg-transparent border-valex-gris/20 text-valex-gris hover:text-valex-bronce hover:border-valex-bronce/50'
+                                ? 'bg-bioflora-verde text-bioflora-bosque border-bioflora-verde' 
+                                : 'bg-transparent border-bioflora-verde/20 text-valex-gris hover:text-bioflora-fucsia hover:border-bioflora-fucsia/50'
                         }`}
                     >
                         {isFilterMenuOpen ? <X className="w-3.5 h-3.5 mr-1.5" /> : <SlidersHorizontal className="w-3.5 h-3.5 mr-1.5" />}
@@ -54,7 +54,7 @@ export default function NavbarDesktopActions({
             ) : (
                 <Link
                     to="/tienda"
-                    className="bg-valex-bronce text-valex-negro font-sans font-semibold text-sm px-7 py-2.5 rounded-lg shadow-lg hover:shadow-valex-bronce/30 hover:bg-valex-bronce-dark transition-all duration-300"
+                    className="bg-bioflora-morado text-white font-sans font-semibold text-sm px-7 py-2.5 rounded-lg shadow-lg hover:shadow-bioflora-morado/30 hover:bg-bioflora-morado/80 transition-all duration-300"
                 >
                     Ir a la Tienda
                 </Link>
@@ -62,7 +62,7 @@ export default function NavbarDesktopActions({
 
             <button 
                 onClick={() => setIsCartDrawerOpen(true)}
-                className="relative text-valex-gris hover:text-valex-bronce transition-colors p-2 rounded-full hover:bg-valex-bronce/10 flex items-center justify-center cursor-pointer"
+                className="relative text-bioflora-naranja hover:text-bioflora-naranja transition-colors p-2 rounded-full hover:bg-bioflora-naranja/10 flex items-center justify-center cursor-pointer"
                 aria-label="Carrito"
             >
                 <ShoppingBag className="w-[18px] h-[18px]" />
@@ -74,7 +74,7 @@ export default function NavbarDesktopActions({
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
                             transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-                            className="absolute -top-0.5 -right-0.5 bg-valex-bronce text-valex-negro text-[9px] w-[17px] h-[17px] rounded-full flex items-center justify-center font-bold shadow-[0_0_8px_rgba(166,137,102,0.4)]"
+                            className="absolute -top-0.5 -right-0.5 bg-bioflora-fucsia text-bioflora-arena text-[9px] w-[17px] h-[17px] rounded-full flex items-center justify-center font-bold shadow-[0_0_8px_rgba(214,12,140,0.4)]"
                         >
                             {cartItems.length}
                         </motion.span>
@@ -89,7 +89,7 @@ export default function NavbarDesktopActions({
             >
                 <Link
                     to={currentUser ? (userData?.role === 'admin' ? '/admin' : '/') : '/login'}
-                    className="text-valex-gris hover:text-valex-bronce transition-colors p-2 rounded-full hover:bg-valex-bronce/10 flex items-center justify-center cursor-pointer"
+                    className="text-bioflora-naranja hover:text-bioflora-naranja transition-colors p-2 rounded-full hover:bg-bioflora-naranja/10 flex items-center justify-center cursor-pointer"
                     aria-label="Perfil"
                 >
                     <FaUser className="w-[18px] h-[18px]" />
@@ -102,13 +102,13 @@ export default function NavbarDesktopActions({
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute right-0 top-[40px] w-48 bg-[#1a1a1b] border border-valex-bronce/20 rounded-xl shadow-2xl py-2 z-50 pointer-events-auto before:content-[''] before:absolute before:-top-6 before:left-0 before:w-full before:h-6"
+                            className="absolute right-0 top-[40px] w-48 bg-[#121f16] border border-bioflora-verde/20 rounded-xl shadow-2xl py-2 z-50 pointer-events-auto before:content-[''] before:absolute before:-top-6 before:left-0 before:w-full before:h-6"
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
                         >
                             <div className="px-4 py-3 border-b border-valex-gris/10">
                                 <p className="text-valex-hueso text-xs font-serif italic mb-0.5">Bienvenido,</p>
-                                <p className="text-valex-bronce text-sm font-semibold truncate">{userData?.nombre || 'Usuario'}</p>
+                                <p className="text-bioflora-verde text-sm font-semibold truncate">{userData?.nombre || 'Usuario'}</p>
                             </div>
                             
                             <div className="py-2">

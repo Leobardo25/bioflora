@@ -16,11 +16,11 @@ const formatItemPrice = (item) => {
 };
 
 const buildWaMessage = (order) =>
-    encodeURIComponent(`Hola ${order.cliente}, te contactamos desde Valex Perfumería sobre tu pedido. 😊`);
+    encodeURIComponent(`Hola ${order.cliente}, le contactamos desde Caribbean Botanical Garden sobre su pedido. 😊`);
 
 const buildWaInvoiceMessage = (order) => {
     const url = `${window.location.origin}/factura/${order.id}`;
-    return encodeURIComponent(`Hola ${order.cliente}, aquí está tu factura de compra en Valex Perfumería 💜\n${url}`);
+    return encodeURIComponent(`Hola ${order.cliente}, aquí está su factura de compra en Caribbean Botanical Garden 🌿\n${url}`);
 };
 
 function OrderRow({ order, productImages, products, onStatusUpdated, adminName }) {
@@ -39,7 +39,7 @@ function OrderRow({ order, productImages, products, onStatusUpdated, adminName }
                     <div className="flex items-center gap-2">
                         <p className="font-semibold text-gray-800 dark:text-gray-100 truncate">{order.cliente || 'Sin nombre'}</p>
                         {order.orderId && (
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-500/15 text-indigo-500 dark:text-indigo-400 flex-shrink-0">{order.orderId}</span>
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-bioflora-verde/10 dark:bg-bioflora-verde/20 text-bioflora-verde flex-shrink-0">{order.orderId}</span>
                         )}
                     </div>
                     <p className="text-xs text-gray-400 mt-0.5">{date} · {order.items?.length ?? 0} producto(s)</p>
@@ -88,9 +88,9 @@ function OrderRow({ order, productImages, products, onStatusUpdated, adminName }
                                     <p className="text-sm text-gray-700 dark:text-gray-300 font-medium truncate">{order.correo}</p>
                                 </div>
                                 <a
-                                    href={`mailto:${order.correo}?subject=Tu pedido en Valex Perfumería`}
+                                    href={`mailto:${order.correo}?subject=Su pedido en Caribbean Botanical Garden`}
                                     onClick={e => e.stopPropagation()}
-                                    className="flex-shrink-0 ml-2 w-8 h-8 rounded-full bg-indigo-500 hover:bg-indigo-600 flex items-center justify-center transition-colors"
+                                    className="flex-shrink-0 ml-2 w-8 h-8 rounded-full bg-bioflora-verde hover:bg-bioflora-verde/90 flex items-center justify-center transition-colors"
                                     title="Enviar correo"
                                 >
                                     <Mail className="w-3.5 h-3.5 text-white" />
@@ -116,7 +116,7 @@ function OrderRow({ order, productImages, products, onStatusUpdated, adminName }
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={e => e.stopPropagation()}
-                            className="flex items-center gap-1.5 flex-1 justify-center px-3 py-2 text-xs font-medium text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors"
+                            className="flex items-center gap-1.5 flex-1 justify-center px-3 py-2 text-xs font-medium text-bioflora-verde border border-bioflora-verde/20 dark:border-bioflora-verde/20 rounded-xl hover:bg-bioflora-verde/10 dark:hover:bg-bioflora-verde/20 transition-colors"
                         >
                             <FileText className="w-3.5 h-3.5" />
                             Ver factura
@@ -233,7 +233,7 @@ export default function OrdersList() {
                     <button
                         onClick={handleSeed}
                         disabled={seeding}
-                        className="mt-5 flex items-center gap-2 mx-auto px-4 py-2 text-xs font-medium text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors disabled:opacity-50"
+                        className="mt-5 flex items-center gap-2 mx-auto px-4 py-2 text-xs font-medium text-bioflora-verde border border-bioflora-verde/20 dark:border-bioflora-verde/20 rounded-lg hover:bg-bioflora-verde/10 dark:hover:bg-bioflora-verde/20 transition-colors disabled:opacity-50"
                     >
                         <FlaskConical className="w-3.5 h-3.5" />
                         {seeding ? 'Generando...' : 'Generar datos de prueba'}
@@ -243,7 +243,7 @@ export default function OrdersList() {
                 <div className="text-center py-16 bg-white dark:bg-[#1e1e20] border border-gray-200 dark:border-white/5 rounded-xl">
                     <ShoppingBag className="w-10 h-10 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
                     <p className="text-gray-500 dark:text-gray-400 font-medium">Sin pedidos con este estado.</p>
-                    <button onClick={() => setActiveFilter(null)} className="mt-3 text-indigo-600 dark:text-indigo-400 hover:underline text-sm">
+                    <button onClick={() => setActiveFilter(null)} className="mt-3 text-bioflora-verde hover:underline text-sm">
                         Ver todos
                     </button>
                 </div>

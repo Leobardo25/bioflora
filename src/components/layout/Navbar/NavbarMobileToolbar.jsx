@@ -12,7 +12,7 @@ export default function NavbarMobileToolbar({
 }) {
     return (
         <div className="md:hidden w-full px-4 pb-4 flex justify-center items-center gap-2 transition-all duration-300">
-             <div className="flex-1 bg-[#151515] border border-valex-bronce/30 rounded-lg h-11 flex items-center px-4 focus-within:border-valex-bronce shadow-inner">
+             <div className="flex-1 bg-bioflora-tarjeta border border-bioflora-verde/30 rounded-lg h-11 flex items-center px-4 focus-within:border-bioflora-verde shadow-inner">
                  <Search className="w-4 h-4 text-valex-gris mr-3 flex-shrink-0" />
                  <input 
                      type="text"
@@ -31,7 +31,7 @@ export default function NavbarMobileToolbar({
 
              <button
                  onClick={onToggleMobileFilters}
-                 className={`h-11 px-6 border text-[11px] sm:text-xs font-bold uppercase tracking-widest font-serif flex items-center justify-center rounded-lg transition-all duration-300 ${isFilterMenuOpen ? 'bg-valex-bronce text-valex-negro border-valex-bronce shadow-[0_0_15px_rgba(166,137,102,0.3)]' : 'bg-transparent border-valex-bronce/40 text-valex-hueso hover:text-valex-bronce hover:border-valex-bronce'}`}
+                 className={`h-11 px-6 border text-[11px] sm:text-xs font-bold uppercase tracking-widest font-serif flex items-center justify-center rounded-lg transition-all duration-300 ${isFilterMenuOpen ? 'bg-bioflora-verde text-bioflora-bosque border-bioflora-verde shadow-[0_0_15px_rgba(0,169,79,0.3)]' : 'bg-transparent border-bioflora-verde/40 text-valex-hueso hover:text-bioflora-fucsia hover:border-bioflora-fucsia'}`}
              >
                  <AnimatePresence mode="wait">
                      <motion.div
@@ -51,7 +51,7 @@ export default function NavbarMobileToolbar({
 
              <button
                  onClick={() => setIsCompactView(!isCompactView)}
-                 className="h-11 w-11 flex-shrink-0 border border-valex-bronce/40 rounded-lg flex items-center justify-center text-valex-hueso hover:text-valex-bronce hover:border-valex-bronce transition-all duration-300"
+                 className="h-11 w-11 flex-shrink-0 border border-bioflora-verde/40 rounded-lg flex items-center justify-center text-valex-hueso hover:text-bioflora-fucsia hover:border-bioflora-fucsia transition-all duration-300"
                  aria-label="Cambiar vista"
              >
                  {isCompactView ? <AlignJustify className="w-4 h-4" /> : <LayoutGrid className="w-4 h-4" />}

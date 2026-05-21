@@ -66,7 +66,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                 total: formatPrice(total, items[0]?.currency || 'USD'),
             });
 
-            let message = `🌸 *Pedido ${orderId} — Perfumeria Valery*\n\n`;
+            let message = `🌸 *Pedido ${orderId} — Caribbean Botanical Garden*\n\n`;
             message += '*Información del Cliente:*\n';
             message += `👤 Nombre: ${formData.nombre}\n`;
             message += `📱 Teléfono: ${formData.telefono}\n`;
@@ -84,10 +84,10 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
             const currency = items.length > 0 ? items[0].currency : 'USD';
             message += `\n*Total: ${formatPrice(total, currency)}*\n`;
             message += `\n_Número de orden: ${orderId}_`;
-            message += '\n\n¡Gracias por tu compra! 💜';
+            message += '\n\n¡Gracias por su confianza! 🌿';
 
             // Codificar mensaje para WhatsApp
-            const waNumber = whatsapp || '50688888888';
+            const waNumber = whatsapp || '';
             const whatsappUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
             
             // Abrir WhatsApp
@@ -130,7 +130,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                     >
                         <div className="flex items-center justify-between mb-1.5">
                             <span className="font-serif font-semibold text-valex-hueso text-base flex items-center gap-2">
-                                <ShoppingBag className="w-4 h-4 text-valex-bronce" />
+                                <ShoppingBag className="w-4 h-4 text-bioflora-naranja" />
                                 Resumen del Pedido
                             </span>
                             <motion.div animate={{ rotate: summaryOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
@@ -141,7 +141,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             <span className="text-valex-gris/60 font-sans text-xs">
                                 {items.length} {items.length === 1 ? 'producto' : 'productos'}
                             </span>
-                            <span className="text-valex-bronce font-serif font-bold text-base">
+                            <span className="text-bioflora-naranja font-serif font-bold text-base">
                                 {formatPrice(total, items.length > 0 ? items[0].currency : 'USD')}
                             </span>
                         </div>
@@ -169,7 +169,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                                                     <p className="font-sans font-semibold text-valex-hueso text-xs leading-snug truncate">{item.name}</p>
                                                     <p className="text-valex-gris/60 text-xs font-sans mt-0.5">x{item.quantity}</p>
                                                 </div>
-                                                <span className="text-valex-bronce font-sans font-semibold text-sm flex-shrink-0">
+                                                <span className="text-bioflora-naranja font-sans font-semibold text-sm flex-shrink-0">
                                                     {formatPrice(item.price * item.quantity, item.currency)}
                                                 </span>
                                             </div>
@@ -188,20 +188,20 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                 {!showMobileSummary && items?.length > 0 && (
                     <div className="hidden lg:block mb-6 p-4 bg-[#1a1a1b] rounded-xl border border-valex-gris/10">
                         <h2 className="font-serif font-semibold text-valex-hueso text-base mb-3 flex items-center gap-2">
-                            <ShoppingBag className="w-4 h-4 text-valex-bronce" />
+                            <ShoppingBag className="w-4 h-4 text-bioflora-naranja" />
                             Resumen del Pedido
                         </h2>
                         <div className="space-y-3">
                             {items.map((item, index) => (
                                 <div key={index} className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-lg overflow-hidden border border-valex-bronce/20 flex-shrink-0">
+                                    <div className="w-12 h-12 rounded-lg overflow-hidden border border-bioflora-morado/20 flex-shrink-0">
                                         <img src={getItemImage(item)} alt={item.name} className="w-full h-full object-cover" />
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <p className="font-serif text-valex-hueso text-xs leading-snug truncate">{item.name}</p>
                                         <p className="text-valex-gris/60 text-xs font-sans mt-0.5">x{item.quantity}</p>
                                     </div>
-                                    <span className="text-valex-bronce font-sans font-semibold text-sm flex-shrink-0">
+                                    <span className="text-bioflora-naranja font-sans font-semibold text-sm flex-shrink-0">
                                         {formatPrice(item.price * item.quantity, item.currency)}
                                     </span>
                                 </div>
@@ -209,7 +209,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                         </div>
                         <div className="mt-4 pt-3 border-t border-valex-gris/15 flex justify-between items-center">
                             <span className="text-valex-gris/70 font-sans text-xs uppercase tracking-wider">Total</span>
-                            <span className="text-valex-bronce font-serif font-bold text-lg">
+                            <span className="text-bioflora-naranja font-serif font-bold text-lg">
                                 {formatPrice(total, items.length > 0 ? items[0].currency : 'USD')}
                             </span>
                         </div>
@@ -222,7 +222,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                     </h2>
                     <div>
                         <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <User className="w-3 h-3 text-valex-bronce" />
+                            <User className="w-3 h-3 text-bioflora-morado" />
                             Nombre Completo *
                         </label>
                         <Input
@@ -231,12 +231,12 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="Tu nombre completo"
                             size="large"
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-valex-bronce focus:border-valex-bronce placeholder:text-valex-gris/40"
+                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
                         />
                     </div>
                     <div>
                         <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <Phone className="w-3 h-3 text-valex-bronce" />
+                            <Phone className="w-3 h-3 text-bioflora-morado" />
                             Teléfono *
                         </label>
                         <Input
@@ -245,12 +245,12 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="+506 8888-8888"
                             size="large"
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-valex-bronce focus:border-valex-bronce placeholder:text-valex-gris/40"
+                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
                         />
                     </div>
                     <div>
                         <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <MapPin className="w-3 h-3 text-valex-bronce" />
+                            <MapPin className="w-3 h-3 text-bioflora-morado" />
                             Dirección *
                         </label>
                         <TextArea
@@ -259,12 +259,12 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="Tu dirección completa"
                             rows={3}
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-valex-bronce focus:border-valex-bronce placeholder:text-valex-gris/40"
+                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
                         />
                     </div>
                     <div className="mb-2">
                         <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <Mail className="w-3 h-3 text-valex-bronce" />
+                            <Mail className="w-3 h-3 text-bioflora-morado" />
                             Correo Electrónico (Opcional)
                         </label>
                         <Input
@@ -273,7 +273,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="tu@correo.com"
                             size="large"
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-valex-bronce focus:border-valex-bronce placeholder:text-valex-gris/40"
+                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
                         />
                     </div>
 
@@ -282,13 +282,13 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                         <Button
                             onClick={handleSubmit}
                             loading={isSubmitting}
-                            className="w-full h-12 bg-valex-bronce text-valex-negro text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-valex-bronce-light transition-all border-none shadow-lg shadow-valex-bronce/30 flex items-center justify-center gap-2"
+                            className="w-full h-12 bg-bioflora-morado text-white text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-bioflora-morado/80 transition-all border-none shadow-lg shadow-bioflora-morado/30 flex items-center justify-center gap-2"
                         >
                             <IoLogoWhatsapp size={18} />
                             Enviar Pedido por WhatsApp
                         </Button>
-                        <div className="flex gap-2.5 p-4 bg-valex-bronce/5 border border-valex-bronce/15 rounded-xl">
-                            <IoLogoWhatsapp size={16} className="text-valex-bronce/60 flex-shrink-0 mt-0.5" />
+                        <div className="flex gap-2.5 p-4 bg-bioflora-verde/5 border border-bioflora-verde/15 rounded-xl">
+                            <IoLogoWhatsapp size={16} className="text-bioflora-verde/60 flex-shrink-0 mt-0.5" />
                             <p className="text-valex-gris/70 font-sans text-xs leading-relaxed">
                                 Al confirmar, se abrirá WhatsApp con tu pedido listo para enviar.
                                 Una vez recibido, nos pondremos en contacto contigo a la brevedad.
@@ -305,11 +305,11 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                     background: transparent;
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(166, 137, 102, 0.3);
+                    background: rgba(124, 58, 237, 0.3);
                     border-radius: 4px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(166, 137, 102, 0.5);
+                    background: rgba(124, 58, 237, 0.5);
                 }
             `}</style>
         </div>

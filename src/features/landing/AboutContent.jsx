@@ -4,16 +4,16 @@ import useScrollReveal from '../../hooks/useScrollReveal'
 
 const pillars = [
     {
-        title: 'Ingredientes Nobles',
-        text: 'Seleccionamos las materias primas más finas del mundo: oud de Laos, rosa de Grasse, bergamota de Calabria y sándalo de Mysore. Cada ingrediente es elegido por su pureza y profundidad aromática.',
+        title: 'Especies de Colección',
+        text: 'Seleccionamos las orquídeas y plantas exóticas más extraordinarias y codiciadas. Especies cultivadas y aclimatadas con riguroso cuidado para garantizar su óptima salud y belleza en sus espacios.',
     },
     {
-        title: 'Artesanía Francesa',
-        text: 'Nuestras fragancias son formuladas en colaboración con maestros perfumistas de la tradición francesa, herederos de técnicas centenarias que garantizan complejidad y armonía en cada composición.',
+        title: 'Propagación Sostenible',
+        text: 'Nuestros ejemplares se propagan y cuidan respetando los ciclos naturales. Empleamos sustratos premium, control orgánico y técnicas avanzadas que aseguran plantas fuertes, vigorosas y duraderas.',
     },
     {
-        title: 'Experiencia Sensorial',
-        text: 'Creemos que un perfume no solo se usa, se vive. Cada frasco de VALEX está diseñado para evocar emociones, despertar recuerdos y proyectar una identidad única e irrepetible.',
+        title: 'Lujo Biofílico',
+        text: 'Diseñamos experiencias que integran la naturaleza en su día a día. Cada planta de Caribbean Botanical Garden está pensada para purificar su entorno, inspirar bienestar y proyectar elegancia natural.',
     },
 ]
 
