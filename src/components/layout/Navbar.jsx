@@ -95,7 +95,7 @@ export default function Navbar({
                 <div className="relative max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20 relative text-valex-hueso">
                         {/* Mobile left: Hamburger Menu */}
-                        <div className="md:hidden flex items-center">
+                        <div className="lg:hidden flex items-center">
                             <button
                                 onClick={() => setMenuOpen(!menuOpen)}
                                 className="text-valex-gris hover:text-valex-hueso p-2 -ml-2 rounded-lg transition-colors z-50"
@@ -106,18 +106,18 @@ export default function Navbar({
                         </div>
 
                         {/* Mobile center: Logo | Desktop left: Logo */}
-                        <div className="md:hidden absolute left-1/2 -translate-x-1/2 mt-1">
+                        <div className="lg:hidden absolute left-1/2 -translate-x-1/2 mt-1">
                             <Link to="/" onClick={scrollToTop} className="group">
                                 <Logo className="h-11" />
                             </Link>
                         </div>
-                        <div className="hidden md:block">
+                        <div className="hidden lg:block">
                             <Link to="/" className="group">
                                 <Logo className="h-14" />
                             </Link>
                         </div>
 
-                        <div className="hidden md:flex items-center gap-1">
+                        <div className="hidden lg:flex items-center gap-1">
                             {NAV_LINKS.map((link, i) => (
                                 <motion.a
                                     key={link.href}
@@ -151,7 +151,7 @@ export default function Navbar({
                         </div>
 
                         {/* Mobile right: Shortcut Icons */}
-                        <div className="md:hidden flex items-center gap-2">
+                        <div className="lg:hidden flex items-center gap-2">
                             <button onClick={() => { setIsCartDrawerOpen(true); setMenuOpen(false); }} className="relative text-bioflora-naranja hover:text-bioflora-fucsia transition-colors p-2" aria-label="Carrito">
                                 <ShoppingBag className="w-[20px] h-[20px]" />
                                 <AnimatePresence>

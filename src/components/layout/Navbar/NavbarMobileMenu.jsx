@@ -39,7 +39,7 @@ export default function NavbarMobileMenu({ menuOpen, setMenuOpen, scrollToTop, g
     
     return (
         <motion.div
-            className="md:hidden fixed inset-0 z-[100] flex"
+            className="lg:hidden fixed inset-0 z-[100] flex"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
