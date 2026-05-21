@@ -115,7 +115,7 @@ export default function FeaturedProducts() {
                             <div className="w-10 h-10 border-4 border-valex-bronce/30 border-t-valex-bronce rounded-full animate-spin" />
                         </div>
                     ) : (
-                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[75vh] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] min-h-[520px] lg:min-h-[500px] w-full mx-auto">
+                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[75vh] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] min-h-[600px] lg:min-h-[500px] mx-auto">
                             <AnimatePresence custom={direction}>
                                 <motion.div
                                     key={currentIndex}
@@ -196,7 +196,7 @@ function ProductCard({ product }) {
     return (
         <div className="w-full h-full bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl shadow-valex-negro/5 border border-valex-gris/10 flex flex-col lg:flex-row group hover:shadow-valex-bronce/20 hover:border-valex-bronce/40 transition-all duration-500 cursor-pointer">
             {/* Imagen — object-cover en todas las resoluciones para cubrir sin barras */}
-            <div className="h-[60%] lg:h-full lg:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b lg:border-b-0 lg:border-r border-valex-gris/5">
+            <div className="h-[50%] lg:h-full lg:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b lg:border-b-0 lg:border-r border-valex-gris/5">
                 <img
                     src={displayImg}
                     alt={product.name}
@@ -206,7 +206,7 @@ function ProductCard({ product }) {
                 />
             </div>
             {/* Info — ajustada para que quepa todo el texto */}
-            <div className="h-[45%] lg:h-full lg:w-[50%] w-full flex flex-col bg-white relative">
+            <div className="h-[50%] lg:h-full lg:w-[50%] w-full flex flex-col bg-white relative">
                 <div className="p-5 sm:p-6 lg:p-8 xl:p-10 flex flex-col h-full"> 
                     <div className="flex-1 flex flex-col justify-center min-w-0">
                         <span className="inline-block text-bioflora-naranja font-sans text-[10px] lg:text-xs tracking-[0.25em] uppercase font-extrabold mb-2 lg:mb-3">
