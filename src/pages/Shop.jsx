@@ -298,7 +298,7 @@ export default function Shop() {
                                         </div>
 
                                         {/* ── VISTA MÓVIL (animada entre lista y cuadrícula) ── */}
-                                        <div className="md:hidden overflow-hidden">
+                                        <div className="md:hidden overflow-visible pr-2">
                                             <AnimatePresence mode="wait">
                                                 {!isCompactView ? (
                                                     <motion.div
@@ -375,7 +375,7 @@ const CardBadgeWrap = ({ product, children }) => {
         return <Badge.Ribbon text="Agotado" color="volcano">{children}</Badge.Ribbon>;
     }
     if (product.isFeatured) {
-        return <Badge.Ribbon text="Destacado" color="#D60C8C">{children}</Badge.Ribbon>;
+        return <Badge.Ribbon text="Destacado" color="#7C3AED">{children}</Badge.Ribbon>;
     }
     return children;
 };
