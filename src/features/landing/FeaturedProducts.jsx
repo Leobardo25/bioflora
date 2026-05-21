@@ -194,9 +194,9 @@ function ProductCard({ product }) {
     }).format(Number(product.price));
 
     return (
-        <div className="w-full h-full bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl shadow-valex-negro/5 border border-valex-gris/10 flex flex-col lg:flex-row group hover:shadow-valex-bronce/20 hover:border-valex-bronce/40 transition-all duration-500 cursor-pointer">
+        <div className="w-full h-full bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-valex-negro/5 border border-valex-gris/10 flex flex-col md:flex-row group hover:shadow-valex-bronce/20 hover:border-valex-bronce/40 transition-all duration-500 cursor-pointer">
             {/* Imagen — object-cover en todas las resoluciones para cubrir sin barras */}
-            <div className="h-[40%] sm:h-[40%] lg:h-full lg:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b lg:border-b-0 lg:border-r border-valex-gris/5 shrink-0">
+            <div className="h-[40%] sm:h-[40%] md:h-full md:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b md:border-b-0 md:border-r border-valex-gris/5 shrink-0">
                 <img
                     src={displayImg}
                     alt={product.name}
@@ -206,28 +206,28 @@ function ProductCard({ product }) {
                 />
             </div>
             {/* Info — ajustada para que quepa todo el texto */}
-            <div className="flex-1 lg:h-full lg:w-[50%] w-full flex flex-col bg-white relative">
-                <div className="p-4 sm:p-6 lg:p-8 xl:p-10 flex flex-col h-full"> 
+            <div className="flex-1 md:h-full md:w-[50%] w-full flex flex-col bg-white relative">
+                <div className="p-4 sm:p-6 md:p-8 xl:p-10 flex flex-col h-full"> 
                     <div className="flex-1 flex flex-col justify-center min-w-0">
-                        <span className="inline-block text-bioflora-naranja font-sans text-[10px] lg:text-xs tracking-[0.25em] uppercase font-extrabold mb-1 lg:mb-3">
+                        <span className="inline-block text-bioflora-naranja font-sans text-[10px] md:text-xs tracking-[0.25em] uppercase font-extrabold mb-1 md:mb-3">
                             {product.category || 'Premium Collection'}
                         </span>
-                        <h3 className="font-serif font-bold text-xl sm:text-2xl lg:text-3xl text-valex-negro mb-1 lg:mb-2 leading-tight line-clamp-2">
+                        <h3 className="font-serif font-bold text-xl sm:text-2xl md:text-3xl text-valex-negro mb-1 md:mb-2 leading-tight line-clamp-2">
                             {product.name}
                         </h3>
-                        <p className="text-bioflora-naranja/90 italic font-serif text-xs lg:text-sm line-clamp-2 mb-2 lg:mb-4">
+                        <p className="text-bioflora-naranja/90 italic font-serif text-xs md:text-sm line-clamp-2 mb-2 md:mb-4">
                             "{product.notes}"
                         </p>
-                        <p className="text-valex-negro/60 text-[12px] lg:text-[14px] font-light line-clamp-3 lg:line-clamp-5 leading-relaxed">
+                        <p className="text-valex-negro/60 text-[12px] md:text-[14px] font-light line-clamp-3 md:line-clamp-5 leading-relaxed">
                             {product.description}
                         </p>
                     </div>
 
-                    <div className="mt-auto flex items-center justify-between border-t border-valex-gris/10 pt-3 lg:pt-6 w-full">
-                        <span className="font-serif font-bold text-xl lg:text-3xl text-bioflora-naranja">
+                    <div className="mt-auto flex items-center justify-between border-t border-valex-gris/10 pt-3 md:pt-6 w-full">
+                        <span className="font-serif font-bold text-xl md:text-3xl text-bioflora-naranja">
                             {formattedPrice}
                         </span>
-                        <Link to="/tienda" className="font-sans text-[10px] lg:text-[11px] font-extrabold tracking-[0.15em] text-valex-negro uppercase hover:text-white transition-colors bg-valex-bronce/5 px-5 lg:px-7 py-2.5 lg:py-3.5 rounded-full hover:bg-bioflora-naranja">
+                        <Link to="/tienda" className="font-sans text-[10px] md:text-[11px] font-extrabold tracking-[0.15em] text-valex-negro uppercase hover:text-white transition-colors bg-valex-bronce/5 px-5 md:px-7 py-2.5 md:py-3.5 rounded-full hover:bg-bioflora-naranja">
                             Adquirir
                         </Link>
                     </div>
