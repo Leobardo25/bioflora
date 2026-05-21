@@ -5,6 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
     plugins: [
         react(),
+        /* VitePWA momentáneamente desactivado
         VitePWA({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
@@ -38,5 +39,6 @@ export default defineConfig({
                 maximumFileSizeToCacheInBytes: 4000000 // Aumentado a 4MB
             }
         })
+        */
     ],
 })
