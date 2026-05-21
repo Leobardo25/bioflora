@@ -115,7 +115,7 @@ export default function FeaturedProducts() {
                             <div className="w-10 h-10 border-4 border-valex-bronce/30 border-t-valex-bronce rounded-full animate-spin" />
                         </div>
                     ) : (
-                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[620px] sm:h-[680px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] mx-auto">
+                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[650px] sm:h-[680px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] mx-auto">
                             <AnimatePresence custom={direction}>
                                 <motion.div
                                     key={currentIndex}
@@ -196,7 +196,7 @@ function ProductCard({ product }) {
     return (
         <div className="w-full h-full bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl shadow-valex-negro/5 border border-valex-gris/10 flex flex-col lg:flex-row group hover:shadow-valex-bronce/20 hover:border-valex-bronce/40 transition-all duration-500 cursor-pointer">
             {/* Imagen — object-cover en todas las resoluciones para cubrir sin barras */}
-            <div className="h-[40%] sm:h-[45%] lg:h-full lg:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b lg:border-b-0 lg:border-r border-valex-gris/5 shrink-0">
+            <div className="h-[35%] sm:h-[40%] lg:h-full lg:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b lg:border-b-0 lg:border-r border-valex-gris/5 shrink-0">
                 <img
                     src={displayImg}
                     alt={product.name}
@@ -209,13 +209,13 @@ function ProductCard({ product }) {
             <div className="flex-1 lg:h-full lg:w-[50%] w-full flex flex-col bg-white relative">
                 <div className="p-4 sm:p-6 lg:p-8 xl:p-10 flex flex-col h-full"> 
                     <div className="flex-1 flex flex-col justify-center min-w-0">
-                        <span className="inline-block text-bioflora-naranja font-sans text-[10px] lg:text-xs tracking-[0.25em] uppercase font-extrabold mb-2 lg:mb-3">
+                        <span className="inline-block text-bioflora-naranja font-sans text-[10px] lg:text-xs tracking-[0.25em] uppercase font-extrabold mb-1 lg:mb-3">
                             {product.category || 'Premium Collection'}
                         </span>
                         <h3 className="font-serif font-bold text-xl sm:text-2xl lg:text-3xl text-valex-negro mb-1 lg:mb-2 leading-tight line-clamp-2">
                             {product.name}
                         </h3>
-                        <p className="text-bioflora-naranja/90 italic font-serif text-xs lg:text-sm line-clamp-2 mb-3 lg:mb-4">
+                        <p className="text-bioflora-naranja/90 italic font-serif text-xs lg:text-sm line-clamp-2 mb-2 lg:mb-4">
                             "{product.notes}"
                         </p>
                         <p className="text-valex-negro/60 text-[12px] lg:text-[14px] font-light line-clamp-3 lg:line-clamp-5 leading-relaxed">
@@ -223,7 +223,7 @@ function ProductCard({ product }) {
                         </p>
                     </div>
 
-                    <div className="mt-3 flex items-center justify-between border-t border-valex-gris/10 pt-4 lg:pt-6 w-full">
+                    <div className="mt-2 lg:mt-3 flex items-center justify-between border-t border-valex-gris/10 pt-3 lg:pt-6 w-full">
                         <span className="font-serif font-bold text-xl lg:text-3xl text-bioflora-naranja">
                             {formattedPrice}
                         </span>
