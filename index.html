@@ -23,6 +23,19 @@
 
 <body>
   <div id="root"></div>
+  <!-- Desregistrar Service Workers viejos del PWA desactivado -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (var r of registrations) { r.unregister(); }
+      });
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          for (var name of names) { caches.delete(name); }
+        });
+      }
+    }
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
