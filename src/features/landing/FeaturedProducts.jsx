@@ -115,7 +115,7 @@ export default function FeaturedProducts() {
                             <div className="w-10 h-10 border-4 border-valex-bronce/30 border-t-valex-bronce rounded-full animate-spin" />
                         </div>
                     ) : (
-                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[600px] sm:h-[680px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] mx-auto">
+                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[580px] sm:h-[600px] lg:h-[450px] xl:h-[500px] 2xl:h-[580px] mx-auto">
                             <AnimatePresence custom={direction}>
                                 <motion.div
                                     key={currentIndex}
@@ -208,7 +208,7 @@ function ProductCard({ product }) {
             {/* Info — ajustada para que quepa todo el texto */}
             <div className="flex-1 lg:h-full lg:w-[50%] w-full flex flex-col bg-white relative">
                 <div className="p-4 sm:p-6 lg:p-8 xl:p-10 flex flex-col h-full"> 
-                    <div className="flex-1 flex flex-col justify-start min-w-0">
+                    <div className="flex-1 flex flex-col justify-center min-w-0">
                         <span className="inline-block text-bioflora-naranja font-sans text-[10px] lg:text-xs tracking-[0.25em] uppercase font-extrabold mb-1 lg:mb-3">
                             {product.category || 'Premium Collection'}
                         </span>
@@ -223,7 +223,7 @@ function ProductCard({ product }) {
                         </p>
                     </div>
 
-                    <div className="mt-2 lg:mt-3 flex items-center justify-between border-t border-valex-gris/10 pt-3 lg:pt-6 w-full">
+                    <div className="mt-auto flex items-center justify-between border-t border-valex-gris/10 pt-3 lg:pt-6 w-full">
                         <span className="font-serif font-bold text-xl lg:text-3xl text-bioflora-naranja">
                             {formattedPrice}
                         </span>
