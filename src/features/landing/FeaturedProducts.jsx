@@ -115,7 +115,7 @@ export default function FeaturedProducts() {
                             <div className="w-10 h-10 border-4 border-valex-bronce/30 border-t-valex-bronce rounded-full animate-spin" />
                         </div>
                     ) : (
-                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[80dvh] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] min-h-[680px] lg:min-h-[500px] mx-auto">
+                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[620px] sm:h-[680px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] mx-auto">
                             <AnimatePresence custom={direction}>
                                 <motion.div
                                     key={currentIndex}
