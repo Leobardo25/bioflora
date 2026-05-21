@@ -375,7 +375,7 @@ const CardBadgeWrap = ({ product, children }) => {
         return <Badge.Ribbon text="Agotado" color="volcano">{children}</Badge.Ribbon>;
     }
     if (product.isFeatured) {
-        return <Badge.Ribbon text="Destacado" color="#7C3AED">{children}</Badge.Ribbon>;
+        return <Badge.Ribbon text="Destacado" color="#D60C8C">{children}</Badge.Ribbon>;
     }
     return children;
 };
