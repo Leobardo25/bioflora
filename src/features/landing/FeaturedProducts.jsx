@@ -55,7 +55,7 @@ export default function FeaturedProducts() {
     if (!loading && featuredProducts.length === 0) return null;
 
     return (
-        <section id="colecciones" className="relative h-auto lg:min-h-[85vh] w-full bg-valex-hueso overflow-hidden border-t border-valex-bronce/10 flex items-center py-16 lg:py-12">
+        <section id="colecciones" className="relative lg:min-h-[85vh] w-full bg-valex-hueso overflow-x-hidden border-t border-valex-bronce/10 flex items-center py-16 lg:py-12">
             {/* Destellos de iluminación de fondo */}
             <div className="absolute top-1/2 right-1/4 w-[40vw] h-[40vw] rounded-full bg-valex-bronce/5 blur-[120px] pointer-events-none" />
 
@@ -115,7 +115,7 @@ export default function FeaturedProducts() {
                             <div className="w-10 h-10 border-4 border-valex-bronce/30 border-t-valex-bronce rounded-full animate-spin" />
                         </div>
                     ) : (
-                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[75vh] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] min-h-[650px] lg:min-h-[500px] mx-auto">
+                        <div className="relative w-full max-w-none lg:max-w-[850px] xl:max-w-[1050px] 2xl:max-w-[1300px] h-[80dvh] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] min-h-[680px] lg:min-h-[500px] mx-auto">
                             <AnimatePresence custom={direction}>
                                 <motion.div
                                     key={currentIndex}
