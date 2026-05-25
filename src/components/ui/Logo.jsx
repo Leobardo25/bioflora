@@ -7,15 +7,15 @@ export default function Logo({ className = "" }) {
             <div 
                 className="absolute inset-0 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"
                 style={{
-                    background: 'radial-gradient(ellipse at 35% 50%, rgba(248,151,29,0.35) 0%, rgba(102,45,145,0.15) 50%, transparent 75%)',
+                    background: 'radial-gradient(ellipse at 35% 50%, rgba(0,167,208,0.35) 0%, rgba(139,25,138,0.15) 50%, transparent 75%)',
                     filter: 'blur(14px)',
                     animation: 'logoGlow 3s ease-in-out infinite',
                 }}
             />
             <img 
-                src="/images/logo.webp" 
-                alt="Caribbean Botanical Garden Logo" 
-                className="relative w-auto h-full object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_8px_rgba(248,151,29,0.25)]" 
+                src="/Logo Bioflora CMYK.png" 
+                alt="Bioflora Garden Center Logo" 
+                className="relative w-auto h-full object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_8px_rgba(0,167,208,0.25)]" 
             />
             <style>{`
                 @keyframes logoGlow {

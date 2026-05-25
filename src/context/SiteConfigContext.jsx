@@ -7,17 +7,17 @@ const DEFAULTS = {
     instagram: '',
     facebook: '',
     tiktok: '',
-    brandName: 'Caribbean Botanical Garden',
-    brandTagline: 'Vivero Boutique & Especies Exóticas',
+    brandName: 'Bioflora Garden Center',
+    brandTagline: 'Innovación Agrobiotecnológica & Soluciones Verdes',
     storeCurrency: 'CRC',
-    heroTitle: 'Exóticas Colecciones Botánicas',
+    heroTitle: 'Innovación Agrobiotecnológica & *Soluciones Verdes',
     heroSubtitle: '',
-    collectionTitle: 'Especies Selectas',
-    collectionText: 'Explore las orquídeas y plantas exóticas más exclusivas de nuestra colección, cultivadas con paciencia y rigor técnico.',
+    collectionTitle: 'Producción Sostenible',
+    collectionText: 'Nuestra operación productiva se desarrolla en La Perla de Guácimo, Limón, donde producimos orquídeas, vainilla y plantas ornamentales tropicales bajo un enfoque de innovación y bioeconomía.',
     missionTitle: 'Misión',
-    missionText: 'Caribbean Botanical Garden, es una empresa agro-turística innovadora la cual contribuye con la conservación del medio ambiente mediante la bio-alfabetización de nuestros visitantes y utilizando agro-tecnologías sostenibles.',
+    missionText: 'Bioflora Centro de Jardinería es el brazo comercial de Flores y Follajes del Caribe S.A. Nuestra misión está orientada a la producción, comercialización y asesoría especializada en orquídeas, integrando investigación, innovación agrobiotecnológica y sostenibilidad.',
     visionTitle: 'Visión',
-    visionText: 'Caribbean Botanical Garden, será un empresa agro-turística líder en Costa Rica que promoverá mediante la bio-alfabetización y la recreación sana, contribuir a la conservación del medio ambiente, mitigar el cambio climático, preservar y reproducir especies de plantas tropicales en riesgo de extinción, especialmente orquídeas. Creando actividades productivas que fomenten un trabajo justo y solidarias el cual contribuya al crecimiento personal de nuestros colaboradores y el retorno del capital a sus accionistas.'
+    visionText: 'Consolidarse como una plataforma agroempresarial líder e innovadora en Costa Rica, reconocida por integrar investigación, producción ornamental sostenible, agronegocios y servicios especializados de jardinería, promoviendo el desarrollo territorial rural.'
 };
 
 const SiteConfigContext = createContext(DEFAULTS);

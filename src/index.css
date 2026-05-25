@@ -9,16 +9,16 @@
  * ========================================
  */
 :root {
-  --negro-mate: #070F0A;        /* Verde Bosque Nocturno ultra-oscuro */
-  --bronce: #00A94F;           /* Verde Principal Jardín (Pantone 355C) */
-  --bronce-dark: #066E34;      /* Verde Selva Oscuro */
-  --bronce-light: #D60C8C;     /* Rosa/Fucsia Orquídea (Acento premium) */
-  --gris-piedra: #A3B899;      /* Verde Salvia Elegante (Texto secundario) */
-  --blanco-hueso: #F9F9F6;     /* Arena / Blanco Hueso (Zonas de respiro) */
-  --fucsia-orquidea: #D60C8C;
-  --morado-orquidea: #662D91;
-  --naranja-tucan: #F8971D;
-  --tarjeta-bosque: #0D1C13;
+  --negro-mate: #050B14;        /* Azul noche/abismal súper oscuro */
+  --bronce: #00A7D0;           /* Cyan del logo Bioflora */
+  --bronce-dark: #007A99;      /* Cyan Oscuro */
+  --bronce-light: #5C115B;     /* Morado (Acento premium) */
+  --gris-piedra: #A5C8D4;      /* Gris azulado (Texto secundario) */
+  --blanco-hueso: #F4F9FA;     /* Arena / Blanco Hielo */
+  --fucsia-orquidea: #8B198A;  /* Magenta Logo */
+  --morado-orquidea: #5C115B;
+  --naranja-tucan: #F2A900;
+  --tarjeta-bosque: #0A1526;
 }
 
 html {

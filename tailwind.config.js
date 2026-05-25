@@ -15,14 +15,14 @@
  */
 
 const THEME = {
-    negro: '#070F0A',        // Verde Bosque Nocturno ultra-oscuro
-    bronce: '#00A94F',       // Verde Principal Jardín (Pantone 355C)
-    grisPiedra: '#A3B899',   // Verde Salvia Elegante (Texto secundario)
-    blancoHueso: '#F9F9F6',  // Arena / Blanco Hueso (Zonas de respiro)
-    fucsiaOrquidea: '#D60C8C', // Rosa/Fucsia Orquídea (Acento premium)
-    moradoOrquidea: '#662D91', // Morado Orquídea
-    naranjaTucan: '#F8971D',  // Naranja Tucán (Acento dinámico)
-    tarjetaBosque: '#0D1C13'  // Fondo de tarjetas
+    negro: '#050B14',        // Azul noche/abismal súper oscuro (Fondo)
+    bronce: '#00A7D0',       // Cyan del logo (Acento principal)
+    grisPiedra: '#A5C8D4',   // Gris azulado (Texto secundario)
+    blancoHueso: '#F4F9FA',  // Blanco frío hielo (Zonas de respiro)
+    fucsiaOrquidea: '#8B198A', // Magenta/Morado del logo (Texto Flora)
+    moradoOrquidea: '#5C115B', // Morado oscuro (Hover alt)
+    naranjaTucan: '#F2A900',  // Naranja/Amarillo (Acento secundario interior orquídea)
+    tarjetaBosque: '#0A1526'  // Fondo de tarjetas oscuro azulado
 }
 
 export default {

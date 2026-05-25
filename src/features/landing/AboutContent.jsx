@@ -4,16 +4,16 @@ import useScrollReveal from '../../hooks/useScrollReveal'
 
 const pillars = [
     {
-        title: 'Especies de Colección',
-        text: 'Seleccionamos las orquídeas y plantas exóticas más extraordinarias y codiciadas. Especies cultivadas y aclimatadas con riguroso cuidado para garantizar su óptima salud y belleza en sus espacios.',
+        title: 'Innovación Agrobiotecnológica',
+        text: 'Empleamos investigación aplicada y biotecnología moderna para el desarrollo de soluciones verdes, asegurando especies de la más alta calidad genética y fitosanitaria.',
     },
     {
-        title: 'Propagación Sostenible',
-        text: 'Nuestros ejemplares se propagan y cuidan respetando los ciclos naturales. Empleamos sustratos premium, control orgánico y técnicas avanzadas que aseguran plantas fuertes, vigorosas y duraderas.',
+        title: 'Producción Sostenible',
+        text: 'Nuestros ejemplares, desde orquídeas hasta vainilla, se propagan respetando los ciclos naturales, con sustratos orgánicos y prácticas que protegen la biodiversidad del trópico.',
     },
     {
-        title: 'Lujo Biofílico',
-        text: 'Diseñamos experiencias que integran la naturaleza en su día a día. Cada planta de Caribbean Botanical Garden está pensada para purificar su entorno, inspirar bienestar y proyectar elegancia natural.',
+        title: 'Bioeconomía Rural',
+        text: 'Bioflora promueve encadenamientos productivos que impulsan el desarrollo territorial rural en Guácimo, Limón, conectando nuestras comunidades con mercados especializados.',
     },
 ]
 
