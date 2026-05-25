@@ -55,15 +55,15 @@ function SectionCard({ icon: Icon, title, accent, children }) {
 }
 
 const LANDING_DEFAULTS = {
-    heroTitle: 'Exóticas Colecciones Botánicas',
+    heroTitle: 'Innovación Agrobiotecnológica & *Soluciones Verdes',
     heroSubtitle: '',
     stat1Value: '150+', stat1Label: 'Especies',
     stat2Value: '1K+', stat2Label: 'Coleccionistas',
     stat3Value: '5+',  stat3Label: 'Años de Cultivo',
-    collectionTitle: 'Especies Selectas',
-    collectionText: 'Explore las orquídeas y plantas exóticas más exclusivas de nuestra colección, cultivadas con paciencia y rigor técnico.',
-    missionTitle: 'Misión', missionText: 'Caribbean Botanical Garden, es una empresa agro-turística innovadora la cual contribuye con la conservación del medio ambiente mediante la bio-alfabetización de nuestros visitantes y utilizando agro-tecnologías sostenibles.',
-    visionTitle: 'Visión', visionText: 'Caribbean Botanical Garden, será un empresa agro-turística líder en Costa Rica que promoverá mediante la bio-alfabetización y la recreación sana, contribuir a la conservación del medio ambiente, mitigar el cambio climático, preservar y reproducir especies de plantas tropicales en riesgo de extinción, especialmente orquídeas. Creando actividades productivas que fomenten un trabajo justo y solidarias el cual contribuya al crecimiento personal de nuestros colaboradores y el retorno del capital a sus accionistas.',
+    collectionTitle: 'Producción Sostenible',
+    collectionText: 'Nuestra operación productiva se desarrolla en La Perla de Guácimo, Limón, donde producimos orquídeas, vainilla y plantas ornamentales tropicales bajo un enfoque de innovación y bioeconomía.',
+    missionTitle: 'Misión', missionText: 'Bioflora Centro de Jardinería es el brazo comercial de Flores y Follajes del Caribe S.A. Nuestra misión está orientada a la producción, comercialización y asesoría especializada en orquídeas, integrando investigación, innovación agrobiotecnológica y sostenibilidad.',
+    visionTitle: 'Visión', visionText: 'Consolidarse como una plataforma agroempresarial líder e innovadora en Costa Rica, reconocida por integrar investigación, producción ornamental sostenible, agronegocios y servicios especializados de jardinería, promoviendo el desarrollo territorial rural.',
 };
 
 const DEFAULT_FAQ_ITEMS = [
@@ -74,7 +74,7 @@ const DEFAULT_FAQ_ITEMS = [
 
 const GLOBAL_DEFAULTS = {
     whatsapp: '', instagram: '', facebook: '', tiktok: '',
-    brandName: 'Caribbean Botanical Garden', brandTagline: 'Vivero Boutique & Especies Exóticas',
+    brandName: 'Bioflora Garden Center', brandTagline: 'Innovación Agrobiotecnológica & Soluciones Verdes',
 };
 
 const LANDING_KEYS = new Set(Object.keys(LANDING_DEFAULTS));
