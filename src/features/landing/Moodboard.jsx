@@ -130,12 +130,12 @@ export default function Moodboard() {
             className="relative bg-white h-[150vh] md:h-[300vh]"
         >
             {/* Contenedor Sticky: Se detiene justo debajo del navbar y ocupa el resto de la pantalla */}
-            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-hidden border-t border-valex-bronce/10 pt-1 md:pt-8 lg:pt-10">
+            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-y-auto md:overflow-hidden border-t border-valex-bronce/10 pt-1 md:pt-8 lg:pt-10">
                 {/* Fondo limpio */}
                 <div className="absolute inset-0 bg-white pointer-events-none z-0" />
 
                 {/* Content on top */}
-                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-[6vh] lg:pt-0 pb-4 md:pb-8 h-full flex flex-col lg:justify-center">
+                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-[6vh] lg:pt-0 pb-4 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
                     
                     {/* Header */}
                     <div className="text-center mb-4 md:mb-10 shrink-0">
@@ -178,7 +178,7 @@ export default function Moodboard() {
                         </div>
 
                         {/* Columna Derecha: Animation Window */}
-                        <div className="order-1 lg:order-2 lg:col-span-5 bg-transparent rounded-2xl overflow-hidden relative flex items-center justify-center min-h-[200px] md:min-h-[250px] lg:min-h-[400px]">
+                        <div className="order-1 lg:order-2 lg:col-span-5 bg-transparent rounded-2xl overflow-hidden relative flex items-center justify-center min-h-[180px] sm:min-h-[220px] md:min-h-[250px] lg:min-h-[400px] shrink-0">
                             
                             {/* Fallback permanente: siempre visible debajo del canvas como red de seguridad */}
                             <img 

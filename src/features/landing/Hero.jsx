@@ -127,11 +127,11 @@ function HeroCTA() {
             transition={VALEX_SLOW}
             className="flex flex-col sm:flex-row gap-4 pt-4 justify-center"
         >
-            <Link to="/tienda" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-[#00A7D0]/35 backdrop-blur-md border border-[#00A7D0]/50 text-white hover:bg-[#00A7D0]/50 hover:border-[#00A7D0] shadow-lg hover:shadow-[#00A7D0]/20 transition-all duration-300 tracking-wide w-full sm:w-auto">
+            <Link to="/tienda" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-[#00A7D0]/40 border border-[#00A7D0]/50 text-white hover:bg-[#00A7D0]/55 hover:border-[#00A7D0] shadow-lg hover:shadow-[#00A7D0]/20 transition-all duration-300 tracking-wide w-full sm:w-auto">
                 Tienda
             </Link>
             {whatsapp && (
-                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-[#25D366]/20 backdrop-blur-md border border-[#25D366]/40 text-white hover:bg-[#25D366]/40 hover:border-[#25D366] shadow-lg hover:shadow-[#25D366]/20 transition-all duration-300 tracking-wide w-full sm:w-auto">
+                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-[#25D366]/25 border border-[#25D366]/40 text-white hover:bg-[#25D366]/40 hover:border-[#25D366] shadow-lg hover:shadow-[#25D366]/20 transition-all duration-300 tracking-wide w-full sm:w-auto">
                     <FaWhatsapp className="w-5 h-5 text-[#25D366]" />
                     Contactar por WhatsApp
                 </a>
