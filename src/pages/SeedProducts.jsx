@@ -87,7 +87,7 @@ const NEW_PRODUCTS = [
         ml: "Bolsa 2 Litros",
         stock: "Disponible",
         notes: "Corteza de pino premium · Carbón vegetal · Fibra de coco · Perlita.",
-        description: "Mezcla profesional aireada de grado botánico, idéntica a la utilizada en los invernaderos de Caribbean Botanical Garden. Garantiza un excelente drenaje y la oxigenación óptima que las raíces de las orquídeas epífitas necesitan para prosperar.",
+        description: "Mezcla profesional aireada de grado botánico, idéntica a la utilizada en los invernaderos de Bioflora. Garantiza un excelente drenaje y la oxigenación óptima que las raíces de las orquídeas epífitas necesitan para prosperar.",
         localImageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
         localGalleryUrls: [],
         isFeatured: false

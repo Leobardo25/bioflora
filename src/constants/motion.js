@@ -1,5 +1,5 @@
 /**
- * Caribbean Botanical Garden — Motion Constants
+ * Bioflora — Motion Constants
  * Curvas y transiciones de "Lujo Silencioso".
  * Movimiento pesado y deliberado, como el crecimiento de una especie de colección.
  */

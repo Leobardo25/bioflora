@@ -1,5 +1,5 @@
 // src/services/aiChatService.js
-// Servicio de IA para el Asistente Administrativo de Caribbean Botanical Garden — Powered by OpenRouter
+// Servicio de IA para el Asistente Administrativo de Bioflora — Powered by OpenRouter
 
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 // Lista de modelos en orden de prioridad. Si el primero falla, salta al siguiente automáticamente.
@@ -13,10 +13,10 @@ const FALLBACK_MODELS = [
  * @param {Object} ctx - Datos del negocio inyectados en tiempo real.
  */
 const buildSystemPrompt = (ctx) => {
-  return `Eres el asistente de IA del panel de administración de **Caribbean Botanical Garden**, un vivero boutique de alta gama en Costa Rica especializado en orquídeas exóticas y plantas de colección. Tu nombre es "Asistente de Caribbean Botanical Garden". Responde siempre en español de Costa Rica, de forma profesional pero amigable. Usa colones (₡) para moneda.
+  return `Eres el asistente de IA del panel de administración de **Bioflora**, un vivero boutique de alta gama en Costa Rica especializado en orquídeas exóticas y plantas de colección. Tu nombre es "Asistente de Bioflora". Responde siempre en español de Costa Rica, de forma profesional pero amigable. Usa colones (₡) para moneda.
 
 ## TU ROL
-Eres un experto en la plataforma de Caribbean Botanical Garden. Puedes:
+Eres un experto en la plataforma de Bioflora. Puedes:
 1. Explicar qué hace cada sección del panel de administración.
 2. Responder preguntas sobre los datos del negocio (plantas, pedidos, clientes, inventario).
 3. Dar recomendaciones de negocio botánico (cuidado de plantas, manejo de inventario vivo, control de mermas).
@@ -106,8 +106,8 @@ export const sendChatMessage = async (messages, businessContext = null) => {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${apiKey}`,
-          'HTTP-Referer': 'https://caribbeanbotanicalgarden.com',
-          'X-Title': 'Caribbean Botanical Garden Admin',
+          'HTTP-Referer': 'https://bioflora.com',
+          'X-Title': 'Bioflora Admin',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({

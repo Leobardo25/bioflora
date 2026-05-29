@@ -1,5 +1,5 @@
 /**
- * BIOFLORA — Caribbean Botanical Garden
+ * BIOFLORA
  * Centralized data for the landing page.
  * Prepared for integration with the Admin Panel.
  */
@@ -55,8 +55,8 @@ export const MOODBOARD_IMAGES = [
 ]
 
 export const BRAND = {
-    name: 'Caribbean Botanical Garden',
+    name: 'Bioflora',
     tagline: 'Vivero Boutique & Especies Exóticas',
     description: 'Costa Rican Orchids and Tropical Flowers. Conservación ambiental y bio-alfabetización mediante tecnologías agrícolas sostenibles y turismo ecológico.',
-    copyright: `© ${new Date().getFullYear()} Caribbean Botanical Garden. Todos los derechos reservados.`,
+    copyright: `© ${new Date().getFullYear()} Bioflora. Todos los derechos reservados.`,
 }

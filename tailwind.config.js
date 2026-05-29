@@ -19,8 +19,8 @@ const THEME = {
     bronce: '#00A7D0',       // Cyan del logo (Acento principal)
     grisPiedra: '#A5C8D4',   // Gris azulado (Texto secundario)
     blancoHueso: '#F4F9FA',  // Blanco frío hielo (Zonas de respiro)
-    fucsiaOrquidea: '#8B198A', // Magenta/Morado del logo (Texto Flora)
-    moradoOrquidea: '#5C115B', // Morado oscuro (Hover alt)
+    fucsiaOrquidea: '#69358C', // Morado clásico (Texto Flora y acentos)
+    moradoOrquidea: '#4E2869', // Morado oscuro (Hover)
     naranjaTucan: '#F2A900',  // Naranja/Amarillo (Acento secundario interior orquídea)
     tarjetaBosque: '#0A1526'  // Fondo de tarjetas oscuro azulado
 }
@@ -63,9 +63,19 @@ export default {
                     '0%': { transform: 'translateX(100%)' },
                     '100%': { transform: 'translateX(0)' },
                 },
+                'glow': {
+                    '0%, 100%': { filter: 'drop-shadow(0 2px 6px rgba(0, 167, 208, 0.35))' },
+                    '50%': { filter: 'drop-shadow(0 2px 20px rgba(0, 167, 208, 0.75))' },
+                },
+                'glow-white': {
+                    '0%, 100%': { filter: 'drop-shadow(0 2px 6px rgba(244, 249, 250, 0.35))' },
+                    '50%': { filter: 'drop-shadow(0 2px 20px rgba(244, 249, 250, 0.75))' },
+                }
             },
             animation: {
                 'slide-in-right': 'slide-in-right 0.25s ease-out',
+                'glow': 'glow 3s ease-in-out infinite',
+                'glow-white': 'glow-white 3s ease-in-out infinite',
             },
         },
     },

@@ -87,8 +87,8 @@ export default function App() {
                 position="top-center" 
                 autoClose={3000} 
                 hideProgressBar={false} 
-                theme="dark" 
-                toastClassName="bg-[#1e1e1f] text-valex-hueso border border-valex-bronce/30 font-sans"
+                theme="light" 
+                toastClassName="bg-white text-gray-900 border border-gray-100 font-sans shadow-md rounded-xl"
               />
             </CheckoutDrawerProvider>
           </ProductDrawerProvider>

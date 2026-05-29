@@ -10,8 +10,8 @@ export default defineConfig({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
-                name: 'Caribbean Botanical Garden',
-                short_name: 'Caribbean BG',
+                name: 'Bioflora',
+                short_name: 'Bioflora',
                 description: 'Vivero boutique de orquídeas y plantas exóticas de colección.',
                 theme_color: '#070F0A',
                 background_color: '#070F0A',

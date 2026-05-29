@@ -3,7 +3,7 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 import CustomerTagDropdown from './CustomerTagDropdown';
 
 const buildWaMessage = (customer) => 
-    encodeURIComponent(`Hola ${customer.nombre}, le contactamos desde Caribbean Botanical Garden. 😊`);
+    encodeURIComponent(`Hola ${customer.nombre}, le contactamos desde Bioflora. 😊`);
 
 export default function CustomerCardMobile({ customer, onEdit, onDelete, onStatusUpdated, allTags }) {
     const waPhone = customer.telefono?.replace(/\D/g, '');

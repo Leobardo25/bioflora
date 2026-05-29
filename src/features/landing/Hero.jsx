@@ -16,10 +16,12 @@ export default function Hero() {
                     loop
                     muted
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover select-none filter brightness-[0.62] contrast-[1.02] transform-gpu"
+                    className="absolute inset-0 w-full h-full object-cover select-none filter brightness-[0.85] contrast-[1.05] saturate-[1.1] transform-gpu"
                 >
                     <source src="/videos/hero_background_optimized.mp4" type="video/mp4" />
                 </video>
+                {/* Capa de desenfoque y tinte sutil para legibilidad sin oscurecer de más */}
+                <div className="absolute inset-0 w-full h-full bg-[#00A7D0]/10 mix-blend-overlay pointer-events-none" />
                 <div className="absolute inset-0 w-full h-full backdrop-blur-[2px] transform-gpu" />
             </div>
 
@@ -66,8 +68,9 @@ export default function Hero() {
 /* Sub-components to keep Hero clean */
 
 function HeroTitle() {
-    const { heroTitle } = useSiteConfig()
+    const { heroTitle, heroSubtitle } = useSiteConfig()
     const title = heroTitle || ''
+    const subtitle = heroSubtitle || ''
     
     // Mejor lógica de separación: Si el usuario usa un "*", lo usamos como separador de color.
     // Si no, tomamos las últimas 2 o 3 palabras para que sean naranjas, evitando que desaparezcan.
@@ -94,16 +97,21 @@ function HeroTitle() {
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
             transition={VALEX_SLOW}
-            className="flex items-center pt-6 justify-center w-full"
+            className="flex flex-col items-center pt-6 justify-center w-full"
         >
             <h1 className="text-valex-hueso leading-[1.15] tracking-tight drop-shadow-lg flex flex-col gap-2 sm:gap-4 w-full">
-                <span className="block font-serif font-bold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl break-words whitespace-normal">{main}</span>
+                <span className="block font-serif font-bold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl animate-glow-white break-words whitespace-normal">{main}</span>
                 {accent && (
-                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-bioflora-naranja drop-shadow-[0_2px_12px_rgba(248,151,29,0.45)] break-words whitespace-normal mt-[-0.2em] sm:mt-0">
+                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#00A7D0] animate-glow break-words whitespace-normal mt-[-0.2em] sm:mt-0">
                         {accent}
                     </span>
                 )}
             </h1>
+            {subtitle && (
+                <p className="mt-4 font-sans text-valex-hueso/70 text-xs sm:text-sm md:text-base tracking-[0.2em] uppercase max-w-2xl drop-shadow-md">
+                    {subtitle}
+                </p>
+            )}
         </motion.div>
     )
 }
@@ -119,12 +127,12 @@ function HeroCTA() {
             transition={VALEX_SLOW}
             className="flex flex-col sm:flex-row gap-4 pt-4 justify-center"
         >
-            <Link to="/tienda" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-bioflora-morado text-white hover:bg-bioflora-morado/80 shadow-lg hover:shadow-bioflora-morado/40 transition-all duration-300 tracking-wide w-full sm:w-auto">
-                Ver Catálogo
+            <Link to="/tienda" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-[#00A7D0]/35 backdrop-blur-md border border-[#00A7D0]/50 text-white hover:bg-[#00A7D0]/50 hover:border-[#00A7D0] shadow-lg hover:shadow-[#00A7D0]/20 transition-all duration-300 tracking-wide w-full sm:w-auto">
+                Tienda
             </Link>
             {whatsapp && (
-                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 font-sans font-medium text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg border border-bioflora-verde/40 text-valex-hueso/80 hover:text-white hover:border-bioflora-verde hover:bg-bioflora-verde/15 transition-all duration-300 tracking-wide w-full sm:w-auto">
-                    <FaWhatsapp className="w-5 h-5 text-bioflora-verde" />
+                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-[#25D366]/20 backdrop-blur-md border border-[#25D366]/40 text-white hover:bg-[#25D366]/40 hover:border-[#25D366] shadow-lg hover:shadow-[#25D366]/20 transition-all duration-300 tracking-wide w-full sm:w-auto">
+                    <FaWhatsapp className="w-5 h-5 text-[#25D366]" />
                     Contactar por WhatsApp
                 </a>
             )}

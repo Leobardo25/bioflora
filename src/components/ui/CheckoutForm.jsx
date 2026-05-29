@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Input, Button } from 'antd';
-import { MapPin, Mail, User, Phone, ShoppingBag, ChevronDown } from 'lucide-react';
+import { MapPin, Mail, User, Phone, ShoppingCart, ChevronDown } from 'lucide-react';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { toast } from 'react-toastify';
 import { useCart } from '../../context/CartContext';
@@ -66,7 +66,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                 total: formatPrice(total, items[0]?.currency || 'USD'),
             });
 
-            let message = `🌸 *Pedido ${orderId} — Caribbean Botanical Garden*\n\n`;
+            let message = `🌸 *Pedido ${orderId} — Bioflora*\n\n`;
             message += '*Información del Cliente:*\n';
             message += `👤 Nombre: ${formData.nombre}\n`;
             message += `📱 Teléfono: ${formData.telefono}\n`;
@@ -111,37 +111,37 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
     };
 
     return (
-        <div className="flex flex-col h-full overflow-hidden">
+        <div className="flex flex-col h-full overflow-hidden bg-white text-gray-900">
 
             {/* Título Finalizar Compra — solo en modo carrito */}
             {showMobileSummary && (
-                <h1 className="font-serif font-bold text-xl text-valex-hueso text-center mb-4 flex-shrink-0">
+                <h1 className="font-serif font-bold text-xl text-gray-900 text-center mb-4 flex-shrink-0">
                     Finalizar Compra
                 </h1>
             )}
 
             {/* Resumen del pedido — desplegable */}
             {items?.length > 0 && (
-                <div className={`flex-shrink-0 mb-4 bg-[#1a1a1b] rounded-xl border border-valex-gris/10 overflow-hidden ${showMobileSummary ? 'block' : 'hidden lg:block'}`}>
+                <div className={`flex-shrink-0 mb-4 bg-gray-50 rounded-xl border border-gray-100 overflow-hidden ${showMobileSummary ? 'block' : 'hidden lg:block'}`}>
                     {/* Cabecera siempre visible: título + total + cantidad */}
                     <button
                         onClick={() => setSummaryOpen(prev => !prev)}
-                        className="w-full px-4 py-3.5 hover:bg-white/3 transition-colors"
+                        className="w-full px-4 py-3.5 hover:bg-gray-100/50 transition-colors"
                     >
                         <div className="flex items-center justify-between mb-1.5">
-                            <span className="font-serif font-semibold text-valex-hueso text-base flex items-center gap-2">
-                                <ShoppingBag className="w-4 h-4 text-bioflora-naranja" />
+                            <span className="font-serif font-semibold text-gray-900 text-base flex items-center gap-2">
+                                <ShoppingCart className="w-4 h-4 text-[#69358C]" />
                                 Resumen del Pedido
                             </span>
                             <motion.div animate={{ rotate: summaryOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
-                                <ChevronDown className="w-4 h-4 text-valex-gris" />
+                                <ChevronDown className="w-4 h-4 text-gray-400" />
                             </motion.div>
                         </div>
                         <div className="flex items-center justify-between">
-                            <span className="text-valex-gris/60 font-sans text-xs">
+                            <span className="text-gray-500 font-sans text-xs">
                                 {items.length} {items.length === 1 ? 'producto' : 'productos'}
                             </span>
-                            <span className="text-bioflora-naranja font-serif font-bold text-base">
+                            <span className="text-[#69358C] font-serif font-bold text-base">
                                 {formatPrice(total, items.length > 0 ? items[0].currency : 'USD')}
                             </span>
                         </div>
@@ -158,18 +158,18 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                                 transition={{ duration: 0.28, ease: 'easeInOut' }}
                                 style={{ overflow: 'hidden' }}
                             >
-                                <div className="px-4 pb-4 border-t border-valex-gris/10 pt-3">
+                                <div className="px-4 pb-4 border-t border-gray-100 pt-3">
                                     <div className="max-h-[192px] overflow-y-auto space-y-3 pr-1 custom-scrollbar">
                                         {items.map((item, index) => (
                                             <div key={index} className="flex items-center gap-3">
-                                                <div className="w-12 h-12 rounded-lg overflow-hidden border border-valex-bronce/20 flex-shrink-0">
+                                                <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
                                                     <img src={getItemImage(item)} alt={item.name} className="w-full h-full object-cover" />
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="font-sans font-semibold text-valex-hueso text-xs leading-snug truncate">{item.name}</p>
-                                                    <p className="text-valex-gris/60 text-xs font-sans mt-0.5">x{item.quantity}</p>
+                                                    <p className="font-sans font-semibold text-gray-900 text-xs leading-snug truncate">{item.name}</p>
+                                                    <p className="text-gray-400 text-xs font-sans mt-0.5">x{item.quantity}</p>
                                                 </div>
-                                                <span className="text-bioflora-naranja font-sans font-semibold text-sm flex-shrink-0">
+                                                <span className="text-[#69358C] font-sans font-semibold text-sm flex-shrink-0">
                                                     {formatPrice(item.price * item.quantity, item.currency)}
                                                 </span>
                                             </div>
@@ -186,30 +186,30 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
             <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar min-h-0">
                 {/* Resumen solo desktop cuando no es modo carrito */}
                 {!showMobileSummary && items?.length > 0 && (
-                    <div className="hidden lg:block mb-6 p-4 bg-[#1a1a1b] rounded-xl border border-valex-gris/10">
-                        <h2 className="font-serif font-semibold text-valex-hueso text-base mb-3 flex items-center gap-2">
-                            <ShoppingBag className="w-4 h-4 text-bioflora-naranja" />
+                    <div className="hidden lg:block mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <h2 className="font-serif font-semibold text-gray-900 text-base mb-3 flex items-center gap-2">
+                            <ShoppingCart className="w-4 h-4 text-[#69358C]" />
                             Resumen del Pedido
                         </h2>
                         <div className="space-y-3">
                             {items.map((item, index) => (
                                 <div key={index} className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-lg overflow-hidden border border-bioflora-morado/20 flex-shrink-0">
+                                    <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-100 flex-shrink-0">
                                         <img src={getItemImage(item)} alt={item.name} className="w-full h-full object-cover" />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <p className="font-serif text-valex-hueso text-xs leading-snug truncate">{item.name}</p>
-                                        <p className="text-valex-gris/60 text-xs font-sans mt-0.5">x{item.quantity}</p>
+                                        <p className="font-serif text-gray-950 text-xs leading-snug truncate">{item.name}</p>
+                                        <p className="text-gray-400 text-xs font-sans mt-0.5">x{item.quantity}</p>
                                     </div>
-                                    <span className="text-bioflora-naranja font-sans font-semibold text-sm flex-shrink-0">
+                                    <span className="text-[#69358C] font-sans font-semibold text-sm flex-shrink-0">
                                         {formatPrice(item.price * item.quantity, item.currency)}
                                     </span>
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-4 pt-3 border-t border-valex-gris/15 flex justify-between items-center">
-                            <span className="text-valex-gris/70 font-sans text-xs uppercase tracking-wider">Total</span>
-                            <span className="text-bioflora-naranja font-serif font-bold text-lg">
+                        <div className="mt-4 pt-3 border-t border-gray-150 flex justify-between items-center">
+                            <span className="text-gray-500 font-sans text-xs uppercase tracking-wider">Total</span>
+                            <span className="text-[#69358C] font-serif font-bold text-lg">
                                 {formatPrice(total, items.length > 0 ? items[0].currency : 'USD')}
                             </span>
                         </div>
@@ -217,12 +217,12 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                 )}
 
                 <div className="space-y-4">
-                    <h2 className="font-serif font-semibold text-valex-hueso text-sm mb-4">
+                    <h2 className="font-serif font-semibold text-gray-900 text-sm mb-4">
                         Información de Envío
                     </h2>
                     <div>
-                        <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <User className="w-3 h-3 text-bioflora-morado" />
+                        <label className="block text-gray-500 text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <User className="w-3 h-3 text-[#69358C]" />
                             Nombre Completo *
                         </label>
                         <Input
@@ -231,12 +231,12 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="Tu nombre completo"
                             size="large"
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
+                            className="bg-white border-gray-200 text-gray-900 hover:border-[#69358C]/60 focus:border-[#69358C] placeholder:text-gray-400 focus:bg-white"
                         />
                     </div>
                     <div>
-                        <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <Phone className="w-3 h-3 text-bioflora-morado" />
+                        <label className="block text-gray-500 text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <Phone className="w-3 h-3 text-[#69358C]" />
                             Teléfono *
                         </label>
                         <Input
@@ -245,12 +245,12 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="+506 8888-8888"
                             size="large"
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
+                            className="bg-white border-gray-200 text-gray-900 hover:border-[#69358C]/60 focus:border-[#69358C] placeholder:text-gray-400 focus:bg-white"
                         />
                     </div>
                     <div>
-                        <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <MapPin className="w-3 h-3 text-bioflora-morado" />
+                        <label className="block text-gray-500 text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <MapPin className="w-3 h-3 text-[#69358C]" />
                             Dirección *
                         </label>
                         <TextArea
@@ -259,12 +259,12 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="Tu dirección completa"
                             rows={3}
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
+                            className="bg-white border-gray-200 text-gray-900 hover:border-[#69358C]/60 focus:border-[#69358C] placeholder:text-gray-400 focus:bg-white"
                         />
                     </div>
                     <div className="mb-2">
-                        <label className="block text-valex-gris text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <Mail className="w-3 h-3 text-bioflora-morado" />
+                        <label className="block text-gray-500 text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <Mail className="w-3 h-3 text-[#69358C]" />
                             Correo Electrónico (Opcional)
                         </label>
                         <Input
@@ -273,7 +273,7 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                             onChange={handleInputChange}
                             placeholder="tu@correo.com"
                             size="large"
-                            className="bg-[#1a1a1b] border-valex-gris/20 text-valex-hueso hover:border-bioflora-morado/60 focus:border-bioflora-morado placeholder:text-valex-gris/40"
+                            className="bg-white border-gray-200 text-gray-900 hover:border-[#69358C]/60 focus:border-[#69358C] placeholder:text-gray-400 focus:bg-white"
                         />
                     </div>
 
@@ -282,14 +282,14 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                         <Button
                             onClick={handleSubmit}
                             loading={isSubmitting}
-                            className="w-full h-12 bg-bioflora-morado text-white text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-bioflora-morado/80 transition-all border-none shadow-lg shadow-bioflora-morado/30 flex items-center justify-center gap-2"
+                            className="w-full h-12 bg-[#69358C] hover:!bg-[#69358C]/90 text-white hover:!text-white text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full transition-all border-none shadow-lg shadow-[#69358C]/30 flex items-center justify-center gap-2"
                         >
                             <IoLogoWhatsapp size={18} />
                             Enviar Pedido por WhatsApp
                         </Button>
                         <div className="flex gap-2.5 p-4 bg-bioflora-verde/5 border border-bioflora-verde/15 rounded-xl">
                             <IoLogoWhatsapp size={16} className="text-bioflora-verde/60 flex-shrink-0 mt-0.5" />
-                            <p className="text-valex-gris/70 font-sans text-xs leading-relaxed">
+                            <p className="text-gray-500 font-sans text-xs leading-relaxed">
                                 Al confirmar, se abrirá WhatsApp con tu pedido listo para enviar.
                                 Una vez recibido, nos pondremos en contacto contigo a la brevedad.
                             </p>
@@ -305,11 +305,11 @@ export default function CheckoutForm({ items, total, preserveCart = true, onSucc
                     background: transparent;
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(124, 58, 237, 0.3);
+                    background: rgba(105, 53, 140, 0.3);
                     border-radius: 4px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(124, 58, 237, 0.5);
+                    background: rgba(105, 53, 140, 0.5);
                 }
             `}</style>
         </div>

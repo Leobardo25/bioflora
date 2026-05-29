@@ -77,7 +77,7 @@ export default function SiteConfig() {
                 <section>
                     <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Marca</h2>
                     <div className="space-y-4">
-                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="Caribbean Botanical Garden" />
+                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="Bioflora" />
                         <Field label="Tagline" name="brandTagline" value={form.brandTagline} onChange={handleChange} placeholder="Vivero Boutique & Especies Exóticas" />
                     </div>
                 </section>

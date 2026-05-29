@@ -11,22 +11,22 @@ function SocialIcons() {
     return (
         <>
             {instagram && (
-                <a href={instagram.startsWith('http') ? instagram : `https://instagram.com/${instagram}`} target="_blank" rel="noopener noreferrer" className="text-valex-gris/50 hover:text-bioflora-naranja transition-colors duration-200">
+                <a href={instagram.startsWith('http') ? instagram : `https://instagram.com/${instagram}`} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bioflora-fucsia transition-colors duration-200">
                     <FaInstagram size={26} />
                 </a>
             )}
             {facebook && (
-                <a href={facebook.startsWith('http') ? facebook : `https://facebook.com/${facebook}`} target="_blank" rel="noopener noreferrer" className="text-valex-gris/50 hover:text-bioflora-naranja transition-colors duration-200">
+                <a href={facebook.startsWith('http') ? facebook : `https://facebook.com/${facebook}`} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bioflora-fucsia transition-colors duration-200">
                     <FaFacebook size={26} />
                 </a>
             )}
             {tiktok && (
-                <a href={tiktok.startsWith('http') ? tiktok : `https://tiktok.com/@${tiktok}`} target="_blank" rel="noopener noreferrer" className="text-valex-gris/50 hover:text-bioflora-naranja transition-colors duration-200">
+                <a href={tiktok.startsWith('http') ? tiktok : `https://tiktok.com/@${tiktok}`} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bioflora-fucsia transition-colors duration-200">
                     <FaTiktok size={26} />
                 </a>
             )}
             {whatsapp && (
-                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-valex-gris/50 hover:text-bioflora-naranja transition-colors duration-200">
+                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bioflora-fucsia transition-colors duration-200">
                     <FaWhatsapp size={26} />
                 </a>
             )}
@@ -51,17 +51,17 @@ export default function NavbarMobileMenu({ menuOpen, setMenuOpen, scrollToTop, g
             />
             
             <motion.div
-                className="relative w-[75vw] max-w-[320px] h-full bg-bioflora-bosque shadow-2xl flex flex-col border-r border-bioflora-verde/10"
+                className="relative w-[75vw] max-w-[320px] h-full bg-white shadow-2xl flex flex-col border-r border-gray-100"
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             >
                 <div className="h-full flex flex-col px-5 overflow-y-auto pb-8">
-                <div className="flex items-center justify-between pt-5 pb-8 border-b border-valex-gris/10">
+                <div className="flex items-center justify-between pt-5 pb-8 border-b border-gray-100">
                     <button
                         onClick={() => setMenuOpen(false)}
-                        className="text-valex-gris hover:text-valex-hueso p-2 rounded-lg transition-colors"
+                        className="text-gray-500 hover:text-gray-950 p-2 rounded-lg transition-colors"
                         aria-label="Cerrar menú"
                     >
                         <X className="w-6 h-6" />
@@ -70,14 +70,14 @@ export default function NavbarMobileMenu({ menuOpen, setMenuOpen, scrollToTop, g
                         <Logo className="h-10" />
                     </Link>
                 </div>
-
+ 
                 <nav className="flex flex-col gap-1 mt-6">
                     {NAV_LINKS.map((link, i) => (
                         <motion.a
                             key={link.href}
                             href={getLinkHref(link.href)}
                             onClick={(e) => handleNavClick(e, link)}
-                            className="text-valex-gris/70 hover:text-bioflora-naranja font-sans font-light text-2xl tracking-[0.12em] py-4 border-b border-valex-gris/8 transition-colors duration-200"
+                            className="text-gray-700 hover:text-bioflora-fucsia font-sans font-light text-2xl tracking-[0.12em] py-4 border-b border-gray-50 transition-colors duration-200"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.28, delay: 0.1 + i * 0.07 }}
@@ -86,7 +86,7 @@ export default function NavbarMobileMenu({ menuOpen, setMenuOpen, scrollToTop, g
                         </motion.a>
                     ))}
                 </nav>
-
+ 
                 <motion.div
                     className="mt-14"
                     initial={{ opacity: 0, y: 20 }}
@@ -102,7 +102,7 @@ export default function NavbarMobileMenu({ menuOpen, setMenuOpen, scrollToTop, g
                         Tienda
                     </Link>
                 </motion.div>
-
+ 
                 <motion.div
                     className="mt-12 flex items-center justify-center gap-8"
                     initial={{ opacity: 0 }}

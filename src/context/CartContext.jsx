@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { notification } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 
 const CartContext = createContext();
 
@@ -77,22 +77,22 @@ export function CartProvider({ children }) {
             description: (
                 <div className="flex items-center gap-4 -my-1">
                     {productImage ? (
-                        <div className="w-12 h-12 rounded-lg border border-valex-bronce/20 overflow-hidden flex-shrink-0 shadow-lg">
+                        <div className="w-12 h-12 rounded-lg border border-[#E6F6F9] overflow-hidden flex-shrink-0 shadow-sm">
                             <img src={productImage} alt={product.name} className="w-full h-full object-cover" />
                         </div>
                     ) : (
-                        <div className="w-12 h-12 rounded-lg bg-[#111] border border-valex-bronce/20 flex items-center justify-center flex-shrink-0 text-valex-bronce">
-                            <ShoppingBag className="w-5 h-5" />
+                        <div className="w-12 h-12 rounded-lg bg-[#F4F9FA] border border-gray-100 flex items-center justify-center flex-shrink-0 text-[#69358C]">
+                            <ShoppingCart className="w-5 h-5" />
                         </div>
                     )}
                     <div className="flex flex-col flex-1 justify-center">
-                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-valex-bronce font-bold mb-1">
-                            Añadido a la Bolsa
+                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#69358C] font-bold mb-1">
+                            Añadido al Carrito
                         </span>
-                        <span className="font-serif text-[13px] font-semibold text-valex-hueso leading-tight line-clamp-1">
+                        <span className="font-serif text-[13px] font-semibold text-gray-900 leading-tight line-clamp-1">
                             {product.name}
                         </span>
-                        <span className="font-sans text-[11px] text-valex-gris/60 mt-0.5 font-medium">
+                        <span className="font-sans text-[11px] text-gray-500 mt-0.5 font-medium">
                             {quantity} {quantity === 1 ? 'unidad' : 'unidades'} • {product.category}
                         </span>
                     </div>
@@ -101,16 +101,16 @@ export function CartProvider({ children }) {
             placement: 'bottomRight',
             icon: null,
             style: { 
-                backgroundColor: 'rgba(21, 21, 21, 0.95)', 
+                backgroundColor: 'rgba(255, 255, 255, 0.95)', 
                 backdropFilter: 'blur(12px)',
                 WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid #A68966', 
+                border: '1px solid rgba(105, 53, 140, 0.15)', 
                 borderRadius: '16px',
                 padding: '16px',
                 width: '340px',
-                boxShadow: '0 10px 30px -10px rgba(166,137,102,0.3)'
+                boxShadow: '0 10px 30px -10px rgba(105, 53, 140, 0.15)'
             },
-            closeIcon: <span className="text-valex-gris/40 hover:text-valex-hueso transition-colors mt-2 text-[16px]">✕</span>,
+            closeIcon: <span className="text-gray-400 hover:text-gray-700 transition-colors mt-2 text-[16px]">✕</span>,
             duration: 4,
         });
     }, []);
@@ -121,18 +121,18 @@ export function CartProvider({ children }) {
             message: null,
             description: (
                 <div className="flex items-center gap-4 -my-1">
-                    <div className="w-12 h-12 rounded-lg bg-[#151515] border border-valex-gris/15 flex items-center justify-center flex-shrink-0 text-valex-gris/60 shadow-lg">
+                    <div className="w-12 h-12 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center flex-shrink-0 text-red-500 shadow-sm">
                         <DeleteOutlined className="text-[18px]" />
                     </div>
                     <div className="flex flex-col flex-1 justify-center">
-                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-valex-gris font-bold mb-1">
+                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-red-500 font-bold mb-1">
                             Retirado
                         </span>
-                        <span className="font-serif text-[13px] font-semibold text-valex-hueso leading-tight">
+                        <span className="font-serif text-[13px] font-semibold text-gray-900 leading-tight">
                             Producto Eliminado
                         </span>
-                        <span className="font-sans text-[11px] text-valex-gris/60 mt-0.5 font-medium">
-                            Se ha quitado de la bolsa
+                        <span className="font-sans text-[11px] text-gray-500 mt-0.5 font-medium">
+                            Se ha quitado del carrito
                         </span>
                     </div>
                 </div>
@@ -140,16 +140,16 @@ export function CartProvider({ children }) {
             placement: 'bottomRight',
             icon: null,
             style: { 
-                backgroundColor: 'rgba(21, 21, 21, 0.95)', 
+                backgroundColor: 'rgba(255, 255, 255, 0.95)', 
                 backdropFilter: 'blur(12px)',
                 WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(209,209,209,0.15)', 
+                border: '1px solid rgba(239, 68, 68, 0.15)', 
                 borderRadius: '16px',
                 padding: '16px',
                 width: '340px',
-                boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)'
+                boxShadow: '0 10px 30px -10px rgba(239, 68, 68, 0.1)'
             },
-            closeIcon: <span className="text-valex-gris/40 hover:text-valex-hueso transition-colors mt-2 text-[16px]">✕</span>,
+            closeIcon: <span className="text-gray-400 hover:text-gray-700 transition-colors mt-2 text-[16px]">✕</span>,
             duration: 3,
         });
     }, []);

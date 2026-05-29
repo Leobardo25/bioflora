@@ -16,11 +16,11 @@ const formatItemPrice = (item) => {
 };
 
 const buildWaMessage = (order) =>
-    encodeURIComponent(`Hola ${order.cliente}, le contactamos desde Caribbean Botanical Garden sobre su pedido. 😊`);
+    encodeURIComponent(`Hola ${order.cliente}, le contactamos desde Bioflora sobre su pedido. 😊`);
 
 const buildWaInvoiceMessage = (order) => {
     const url = `${window.location.origin}/factura/${order.id}`;
-    return encodeURIComponent(`Hola ${order.cliente}, aquí está su factura de compra en Caribbean Botanical Garden 🌿\n${url}`);
+    return encodeURIComponent(`Hola ${order.cliente}, aquí está su factura de compra en Bioflora 🌿\n${url}`);
 };
 
 function OrderRow({ order, productImages, products, onStatusUpdated, adminName }) {
@@ -88,7 +88,7 @@ function OrderRow({ order, productImages, products, onStatusUpdated, adminName }
                                     <p className="text-sm text-gray-700 dark:text-gray-300 font-medium truncate">{order.correo}</p>
                                 </div>
                                 <a
-                                    href={`mailto:${order.correo}?subject=Su pedido en Caribbean Botanical Garden`}
+                                    href={`mailto:${order.correo}?subject=Su pedido en Bioflora`}
                                     onClick={e => e.stopPropagation()}
                                     className="flex-shrink-0 ml-2 w-8 h-8 rounded-full bg-bioflora-verde hover:bg-bioflora-verde/90 flex items-center justify-center transition-colors"
                                     title="Enviar correo"

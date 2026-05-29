@@ -37,7 +37,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--negro-mate);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -49,9 +49,9 @@ body {
   background: linear-gradient(180deg, var(--fucsia-orquidea), var(--bronce));
 }
 
-* {
+html, body {
   scrollbar-width: thin;
-  scrollbar-color: var(--bronce) var(--negro-mate);
+  scrollbar-color: var(--bronce) transparent;
 }
 
 /* ── Admin panel scrollbar (light theme override) ── */

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ShoppingBag, User, Search, SlidersHorizontal, LayoutGrid, AlignJustify, Store } from 'lucide-react'
+import { Menu, X, ShoppingCart, User, Search, SlidersHorizontal, LayoutGrid, AlignJustify, Store } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { useCart } from '../../context/CartContext'
@@ -35,6 +35,8 @@ export default function Navbar({
 
     // Comprobar si estamos en la Landing (hash links funcionan localmente) de lo contrario redirigir a /#hash
     const isHomePage = location.pathname === '/'
+
+    const showSolid = scrolled || !isHomePage
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -85,20 +87,22 @@ export default function Navbar({
                 <motion.div
                     className="absolute inset-0"
                     animate={{
-                        backgroundColor: scrolled ? 'rgba(7, 15, 10, 0.95)' : 'rgba(7, 15, 10, 0)',
-                        backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
-                        borderBottom: scrolled ? '1px solid rgba(163, 184, 153, 0.1)' : '1px solid rgba(163, 184, 153, 0)',
+                        backgroundColor: showSolid ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0)',
+                        backdropFilter: showSolid ? 'blur(12px)' : 'blur(0px)',
+                        borderBottom: showSolid ? '1px solid rgba(0, 0, 0, 0.05)' : '1px solid rgba(0, 0, 0, 0)',
                     }}
                     transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                 />
 
                 <div className="relative max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-20 relative text-valex-hueso">
+                    <div className={`flex items-center justify-between h-20 relative transition-colors duration-300 ${showSolid ? 'text-gray-900' : 'text-valex-hueso'}`}>
                         {/* Mobile left: Hamburger Menu */}
                         <div className="lg:hidden flex items-center">
                             <button
                                 onClick={() => setMenuOpen(!menuOpen)}
-                                className="text-valex-gris hover:text-valex-hueso p-2 -ml-2 rounded-lg transition-colors z-50"
+                                className={`p-2 -ml-2 rounded-lg transition-colors z-50 ${
+                                    showSolid ? 'text-gray-800 hover:text-bioflora-fucsia' : 'text-valex-gris hover:text-valex-hueso'
+                                }`}
                                 aria-label="Toggle menu"
                             >
                                 {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -123,7 +127,11 @@ export default function Navbar({
                                     key={link.href}
                                     href={getLinkHref(link.href)}
                                     onClick={(e) => handleNavClick(e, link)}
-                                    className="relative text-valex-hueso/80 hover:text-white font-sans font-medium text-sm tracking-wide px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-white/5"
+                                    className={`relative font-sans font-medium text-sm tracking-wide px-4 py-2 rounded-lg transition-colors duration-300 ${
+                                        showSolid 
+                                            ? 'text-gray-700 hover:text-bioflora-fucsia hover:bg-gray-100/50' 
+                                            : 'text-valex-hueso/80 hover:text-white hover:bg-white/5'
+                                    }`}
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ ...VALEX_TRANSITION, delay: 0.1 + i * 0.05 }}
@@ -133,6 +141,7 @@ export default function Navbar({
                             ))}
                                 {/* Extracted Desktop Actions (Search, Cart, User) */}
                                 <NavbarDesktopActions
+                                    scrolled={showSolid}
                                     isShopPage={isShopPage}
                                     shopSearchQuery={shopSearchQuery}
                                     setShopSearchQuery={setShopSearchQuery}
@@ -153,7 +162,7 @@ export default function Navbar({
                         {/* Mobile right: Shortcut Icons */}
                         <div className="lg:hidden flex items-center gap-2">
                             <button onClick={() => { setIsCartDrawerOpen(true); setMenuOpen(false); }} className="relative text-bioflora-naranja hover:text-bioflora-fucsia transition-colors p-2" aria-label="Carrito">
-                                <ShoppingBag className="w-[20px] h-[20px]" />
+                                <ShoppingCart className="w-[20px] h-[20px]" />
                                 <AnimatePresence>
                                     {cartItems.length > 0 && (
                                         <motion.span 

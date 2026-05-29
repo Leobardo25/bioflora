@@ -88,7 +88,7 @@ export default function InventoryList() {
             <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100 font-serif">Inventario Botánico</h1>
-                    <p className="text-gray-500 mt-1 text-sm">Gestiona plantas, stock y estados de Caribbean Botanical Garden.</p>
+                    <p className="text-gray-500 mt-1 text-sm">Gestiona plantas, stock y estados de Bioflora.</p>
                 </div>
                 <button
                     onClick={() => setSidebarProduct('new')}

@@ -214,7 +214,7 @@ export default function CustomersList() {
                                                 <div className="flex items-center gap-2">
                                                     {waPhone ? (
                                                         <a
-                                                            href={`https://wa.me/506${waPhone}?text=Hola ${c.name}, le contactamos de Caribbean Botanical Garden.`}
+                                                            href={`https://wa.me/506${waPhone}?text=Hola ${c.name}, le contactamos de Bioflora.`}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className="flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-3 py-1.5 rounded-lg transition-colors font-medium text-[11px]"

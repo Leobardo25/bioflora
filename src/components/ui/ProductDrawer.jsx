@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Drawer, ConfigProvider, theme as antTheme, Collapse, Typography } from 'antd';
 import { SafetyCertificateOutlined, CodeSandboxOutlined, StarFilled } from '@ant-design/icons';
-import { ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useProductDrawer } from '../../context/ProductDrawerContext';
 import { useCart } from '../../context/CartContext';
@@ -157,12 +157,12 @@ export default function ProductDrawer() {
     return (
         <ConfigProvider
             theme={{
-                algorithm: antTheme.darkAlgorithm,
+                algorithm: antTheme.defaultAlgorithm,
                 token: {
-                    colorPrimary: '#7C3AED',
-                    colorBgBase: '#070F0A',
-                    colorBgElevated: '#0D1C13',
-                    colorTextBase: '#F9F9F6',
+                    colorPrimary: '#69358C',
+                    colorBgBase: '#FFFFFF',
+                    colorBgElevated: '#FFFFFF',
+                    colorTextBase: '#050B14',
                     fontFamily: '"Outfit", "Poppins", sans-serif',
                 }
             }}
@@ -177,16 +177,16 @@ export default function ProductDrawer() {
                 zIndex={2000}
                 styles={{
                     header: { display: 'none' },
-                    body: { padding: '0', backgroundColor: '#070F0A', display: 'flex', flexDirection: 'column', height: '100dvh' },
+                    body: { padding: '0', backgroundColor: '#FFFFFF', display: 'flex', flexDirection: 'column', height: '100dvh' },
                     wrapper: { width: '100%', maxWidth: '1000px' }
                 }}
                 className="product-drawer-wide"
             >
                 {/* Header personalizado - Solo botón volver */}
-                <div className="flex items-center px-5 py-4 border-b border-bioflora-morado/15 bg-[#070F0A] flex-shrink-0">
+                <div className="flex items-center px-5 py-4 border-b border-gray-100 bg-white flex-shrink-0">
                     <button
                         onClick={handleClose}
-                        className="flex items-center gap-1.5 text-bioflora-arena/70 hover:text-bioflora-arena transition-colors p-1.5 -ml-1.5 rounded-lg hover:bg-white/5 group"
+                        className="flex items-center gap-1.5 text-gray-500 hover:text-gray-950 transition-colors p-1.5 -ml-1.5 rounded-lg hover:bg-gray-50 group"
                     >
                         <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
                         <span className="text-xs font-sans uppercase tracking-wider">
@@ -195,12 +195,12 @@ export default function ProductDrawer() {
                     </button>
                     
                 </div>
-
+ 
                 {/* Contenido - Layout de dos columnas en tablet/desktop */}
-                <div className="flex-1 overflow-y-auto lg:overflow-hidden">
+                <div className="flex-1 overflow-y-auto lg:overflow-hidden bg-white">
                     <div className="flex flex-col lg:flex-row lg:h-full">
                         {/* Nombre del producto - Solo en móvil */}
-                        <div className="lg:hidden px-5 py-3 bg-[#070F0A]">
+                        <div className="lg:hidden px-5 py-3 bg-white">
                             <AnimatePresence mode="wait">
                                 {!showCheckout ? (
                                     <motion.h1
@@ -208,7 +208,7 @@ export default function ProductDrawer() {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
-                                        className="font-serif font-bold text-lg text-bioflora-arena text-center leading-tight"
+                                        className="font-serif font-bold text-lg text-gray-900 text-center leading-tight"
                                     >
                                         {selectedProduct.name}
                                     </motion.h1>
@@ -220,9 +220,9 @@ export default function ProductDrawer() {
                                         exit={{ opacity: 0, y: 8 }}
                                         className="flex flex-col gap-3"
                                     >
-                                        <span className="font-serif font-bold text-xl text-bioflora-arena">Finalizar Compra</span>
+                                        <span className="font-serif font-bold text-xl text-gray-900">Finalizar Compra</span>
                                         <div className="flex items-center gap-4">
-                                            <div className="w-20 h-20 rounded-xl overflow-hidden border border-bioflora-verde/30 flex-shrink-0 shadow-lg">
+                                            <div className="w-20 h-20 rounded-xl overflow-hidden border border-gray-200 flex-shrink-0 shadow-sm">
                                                 <img
                                                     src={images[0]}
                                                     alt={selectedProduct.name}
@@ -230,8 +230,8 @@ export default function ProductDrawer() {
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-1">
-                                                <span className="font-serif font-semibold text-sm text-bioflora-arena leading-snug">{selectedProduct.name}</span>
-                                                <span className="text-bioflora-naranja font-sans font-bold text-lg">
+                                                <span className="font-serif font-semibold text-sm text-gray-900 leading-snug">{selectedProduct.name}</span>
+                                                <span className="text-[#69358C] font-sans font-bold text-lg">
                                                     {formatPrice(selectedProduct.price, selectedProduct.currency)}
                                                 </span>
                                             </div>
@@ -240,9 +240,9 @@ export default function ProductDrawer() {
                                 )}
                             </AnimatePresence>
                         </div>
-
+ 
                         {/* Columna Izquierda - Galería de Imágenes */}
-                        <div className={`relative bg-[#050b07] lg:w-[55%] flex items-center justify-center lg:p-8 lg:py-12 transition-all duration-300 ${showCheckout ? 'lg:flex hidden' : ''}`}>
+                        <div className={`relative bg-gray-50 lg:w-[55%] flex items-center justify-center lg:p-8 lg:py-12 transition-all duration-300 ${showCheckout ? 'lg:flex hidden' : ''}`}>
                             {/* Móvil: Imagen simple */}
                             <div className="lg:hidden relative w-full aspect-square">
                                 <AnimatePresence mode="wait">
@@ -315,7 +315,7 @@ export default function ProductDrawer() {
                                     <div className="flex items-center justify-between">
                                         <button
                                             onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                                            className="w-9 h-9 rounded-full bg-[#070F0A]/80 backdrop-blur-sm border border-bioflora-morado/40 flex items-center justify-center text-bioflora-arena active:bg-bioflora-morado active:text-white transition-all z-20 relative"
+                                            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm border border-[#00A7D0]/40 flex items-center justify-center text-gray-800 active:bg-[#00A7D0] active:text-white transition-all z-20 relative"
                                             type="button"
                                         >
                                             <ChevronLeft className="w-4 h-4" />
@@ -337,7 +337,7 @@ export default function ProductDrawer() {
 
                                         <button
                                             onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                                            className="w-9 h-9 rounded-full bg-[#070F0A]/80 backdrop-blur-sm border border-bioflora-morado/40 flex items-center justify-center text-bioflora-arena active:bg-bioflora-morado active:text-white transition-all z-20 relative"
+                                            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm border border-[#00A7D0]/40 flex items-center justify-center text-gray-800 active:bg-[#00A7D0] active:text-white transition-all z-20 relative"
                                             type="button"
                                         >
                                             <ChevronRight className="w-4 h-4" />
@@ -377,7 +377,7 @@ export default function ProductDrawer() {
                     </div>
 
                         {/* Columna Derecha - Info del Producto o Checkout */}
-                        <div className="p-5 sm:p-6 lg:w-[45%] bg-[#070F0A] flex flex-col lg:h-full lg:overflow-hidden relative">
+                        <div className="p-5 sm:p-6 lg:w-[45%] bg-white flex flex-col lg:h-full lg:overflow-hidden relative">
                             <AnimatePresence mode="wait">
                                 {!showCheckout ? (
                                     <motion.div
@@ -390,41 +390,41 @@ export default function ProductDrawer() {
                                     >
                                         {/* Nombre del producto - Solo en desktop, en la columna de texto */}
                                         <div className="hidden lg:block mb-4 flex-shrink-0">
-                                            <h1 className="font-serif font-bold text-xl text-bioflora-arena leading-tight">
+                                            <h1 className="font-serif font-bold text-xl text-gray-900 leading-tight">
                                                 {selectedProduct.name}
                                             </h1>
                                         </div>
 
                                         {/* Categoría + ML + Rating en una línea */}
                                         <div className="flex items-center gap-2.5 mb-3 flex-shrink-0">
-                                            <span className="text-bioflora-naranja font-sans text-xs tracking-[0.2em] uppercase font-bold">
+                                            <span className="text-[#00A7D0] font-sans text-xs tracking-[0.2em] uppercase font-bold">
                                                 {selectedProduct.category}
                                             </span>
-                                            <span className="w-px h-3.5 bg-bioflora-arena/20" />
-                                            <span className="text-bioflora-arena/70 font-sans text-[11px] tracking-[0.1em] uppercase">
+                                            <span className="w-px h-3.5 bg-gray-200" />
+                                            <span className="text-gray-500 font-sans text-[11px] tracking-[0.1em] uppercase">
                                                 {selectedProduct.ml || 'Maceta 6"'}
                                             </span>
                                             <div className="ml-auto flex items-center gap-1.5">
-                                                <div className="flex text-bioflora-naranja text-[11px]">
+                                                <div className="flex text-amber-400 text-[11px]">
                                                     {[...Array(5)].map((_, i) => (
                                                         <StarFilled key={i} />
                                                     ))}
                                                 </div>
-                                                <span className="text-bioflora-arena/50 text-[10px] font-sans">(128)</span>
+                                                <span className="text-gray-400 text-[10px] font-sans">(128)</span>
                                             </div>
                                         </div>
 
                                         {/* Ficha de Cuidados */}
-                                        <span className="inline-block text-bioflora-naranja/80 font-sans text-[10px] tracking-[0.2em] uppercase font-semibold mb-1 flex-shrink-0">
+                                        <span className="inline-block text-[#00A7D0]/80 font-sans text-[10px] tracking-[0.2em] uppercase font-semibold mb-1 flex-shrink-0">
                                             Ficha de Cuidados
                                         </span>
-                                        <p className="text-bioflora-arena/90 italic font-serif text-[12px] mb-4 flex-shrink-0">
+                                        <p className="text-gray-600 italic font-serif text-[12px] mb-4 flex-shrink-0">
                                             "{selectedProduct.notes || 'Riego moderado, luz indirecta, humedad media.'}"
                                         </p>
 
                                         {/* Precio */}
                                         <div className="mb-5 flex-shrink-0">
-                                            <span className="font-serif font-bold text-2xl sm:text-3xl text-bioflora-naranja">
+                                            <span className="font-serif font-bold text-2xl sm:text-3xl text-[#69358C]">
                                                 {formatPrice(selectedProduct.price, selectedProduct.currency)}
                                             </span>
                                         </div>
@@ -434,16 +434,16 @@ export default function ProductDrawer() {
                                             <button
                                                 disabled={isOutOfStock}
                                                 onClick={handleAddToCart}
-                                                className="h-12 border-2 border-bioflora-naranja text-bioflora-arena text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-bioflora-naranja hover:text-white transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="h-12 border-2 border-[#69358C] text-[#69358C] text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-[#69358C] hover:text-white transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
-                                                <ShoppingBag className="w-4 h-4" />
-                                                Añadir a la Bolsa
+                                                <ShoppingCart className="w-4 h-4" />
+                                                Añadir al Carrito
                                             </button>
 
                                             <button
                                                 disabled={isOutOfStock}
                                                 onClick={handleBuyNow}
-                                                className="h-12 bg-bioflora-morado text-white text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-bioflora-morado/80 transition-all flex items-center justify-center shadow-lg shadow-bioflora-morado/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="h-12 bg-[#00A7D0] text-white text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-[#69358C] transition-all flex items-center justify-center shadow-lg shadow-[#00A7D0]/20 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 {isOutOfStock ? 'Agotado' : 'Comprar Ahora'}
                                             </button>
@@ -457,9 +457,9 @@ export default function ProductDrawer() {
                                             items={[
                                                 {
                                                     key: '1',
-                                                    label: <span className="font-sans font-semibold text-bioflora-arena text-xs uppercase tracking-wider">Descripción Botánica</span>,
+                                                    label: <span className="font-sans font-semibold text-gray-700 text-xs uppercase tracking-wider">Descripción Botánica</span>,
                                                     children: (
-                                                        <Paragraph className="!text-bioflora-arena/70 !text-sm !font-light leading-relaxed !mb-0">
+                                                        <Paragraph className="!text-gray-500 !text-sm !font-light leading-relaxed !mb-0">
                                                             {selectedProduct.description || "Una especie botánica exótica, cultivada bajo los más altos estándares de calidad orgánica."}
                                                         </Paragraph>
                                                     )
@@ -468,18 +468,18 @@ export default function ProductDrawer() {
                                         />
 
                                         {/* Trust Badges - Mover al final */}
-                                        <div className="flex items-center justify-between py-4 border-y border-bioflora-arena/10 mt-auto flex-shrink-0">
+                                        <div className="flex items-center justify-between py-4 border-y border-gray-100 mt-auto flex-shrink-0">
                                             <div className="flex flex-col items-center gap-1 flex-1">
-                                                <SafetyCertificateOutlined className="text-base text-bioflora-verde" />
-                                                <span className="text-[9px] uppercase tracking-tighter text-bioflora-arena/70">100% Orgánico</span>
+                                                <SafetyCertificateOutlined className="text-base text-[#00A7D0]" />
+                                                <span className="text-[9px] uppercase tracking-tighter text-gray-500">100% Orgánico</span>
                                             </div>
-                                            <div className="flex flex-col items-center gap-1 flex-1 border-x border-bioflora-arena/10">
-                                                <CodeSandboxOutlined className="text-base text-bioflora-verde" />
-                                                <span className="text-[9px] uppercase tracking-tighter text-bioflora-arena/70">Envío Seguro</span>
+                                            <div className="flex flex-col items-center gap-1 flex-1 border-x border-gray-100">
+                                                <CodeSandboxOutlined className="text-base text-[#00A7D0]" />
+                                                <span className="text-[9px] uppercase tracking-tighter text-gray-500">Envío Seguro</span>
                                             </div>
                                             <div className="flex flex-col items-center gap-1 flex-1">
-                                                <StarFilled className="text-base text-bioflora-verde" />
-                                                <span className="text-[9px] uppercase tracking-tighter text-bioflora-arena/70">Exótica VIP</span>
+                                                <StarFilled className="text-base text-[#00A7D0]" />
+                                                <span className="text-[9px] uppercase tracking-tighter text-gray-500">Exótica VIP</span>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -490,7 +490,7 @@ export default function ProductDrawer() {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -20 }}
                                         transition={{ duration: 0.3 }}
-                                        className="flex-1 overflow-hidden p-5 sm:p-6 bg-[#070F0A]"
+                                        className="flex-1 overflow-hidden p-5 sm:p-6 bg-white"
                                     >
                                         <CheckoutForm
                                             items={[{ ...selectedProduct, quantity: 1 }]}

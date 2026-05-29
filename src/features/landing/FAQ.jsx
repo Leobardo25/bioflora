@@ -54,68 +54,68 @@ export default function FAQ() {
     }
 
     return (
-        <section id="faq" className="relative py-16 sm:py-24 bg-bioflora-bosque overflow-hidden">
-            {/* Elementos decorativos - Glows botánicos */}
-            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] rounded-full bg-bioflora-morado/15 blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-bioflora-naranja/10 blur-[100px] pointer-events-none" />
+        <section id="faq" className="relative py-20 sm:py-28 bg-[#F4F9FA] overflow-hidden">
+            {/* Elementos decorativos - Glows suaves */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#00A7D0]/5 blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-[#8B198A]/5 blur-[100px] pointer-events-none" />
 
-            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 {/* Header */}
                 <motion.div
                     ref={headerRef}
-                    className="text-center mx-auto mb-16"
+                    className="text-center mx-auto mb-14 sm:mb-16"
                     initial={{ opacity: 0, y: 25 }}
                     animate={headerInView ? { opacity: 1, y: 0 } : {}}
                     transition={VALEX_TRANSITION}
                 >
-                    <span className="inline-block text-bioflora-naranja font-sans font-semibold text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-6">
+                    <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4">
                         Resolvemos tus Dudas
                     </span>
-                    <h2 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-bioflora-arena leading-[1.1] mb-6">
+                    <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-[1.05] tracking-tight mb-5">
                         Preguntas{' '}
-                        <span className="text-bioflora-fucsia italic font-medium">Frecuentes</span>
+                        <span className="text-[#00A7D0] italic font-medium">Frecuentes</span>
                     </h2>
-                    <p className="text-bioflora-arena/60 text-sm md:text-base font-light max-w-lg mx-auto leading-relaxed">
+                    <p className="text-gray-600 text-sm md:text-base font-light max-w-lg mx-auto leading-relaxed">
                         Todo lo que necesita saber para el cuidado, envío y cultivo de sus orquídeas y plantas exóticas de colección.
                     </p>
                 </motion.div>
 
                 {/* Acordeones */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                     {faqs.map((faq, idx) => (
                         <motion.div
                             key={idx}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.08, duration: 0.5 }}
+                            transition={{ delay: idx * 0.06, duration: 0.45 }}
                         >
                             <div
-                                className={`rounded-2xl border transition-all duration-500 overflow-hidden ${
+                                className={`rounded-xl border transition-all duration-400 overflow-hidden ${
                                     openIndex === idx
-                                        ? 'bg-bioflora-tarjeta border-bioflora-morado/40 shadow-[0_8px_30px_rgba(102,45,145,0.15)]'
-                                        : 'bg-bioflora-tarjeta/50 border-bioflora-arena/5 hover:border-bioflora-naranja/20 hover:bg-bioflora-tarjeta'
+                                        ? 'bg-white border-valex-bronce/30 shadow-lg'
+                                        : 'bg-white/80 border-gray-200/60 hover:border-valex-bronce/20 hover:bg-white hover:shadow-md'
                                 }`}
                             >
                                 {/* Pregunta */}
                                 <button
                                     onClick={() => toggle(idx)}
-                                    className="w-full flex items-center justify-between gap-4 px-6 sm:px-8 py-5 sm:py-6 text-left cursor-pointer focus:outline-none"
+                                    className="w-full flex items-center justify-between gap-4 px-5 sm:px-7 py-4 sm:py-5 text-left cursor-pointer focus:outline-none"
                                 >
-                                    <span className={`font-serif font-bold text-base sm:text-lg transition-colors duration-300 ${
-                                        openIndex === idx ? 'text-bioflora-naranja' : 'text-bioflora-arena'
+                                    <span className={`font-sans font-medium text-sm sm:text-base transition-colors duration-300 leading-snug ${
+                                        openIndex === idx ? 'text-[#00A7D0]' : 'text-gray-800'
                                     }`}>
                                         {faq.question}
                                     </span>
                                     <motion.div
                                         animate={{ rotate: openIndex === idx ? 180 : 0 }}
                                         transition={{ duration: 0.3 }}
-                                        className={`flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full ${
-                                            openIndex === idx ? 'bg-bioflora-naranja/10' : 'bg-bioflora-arena/5'
+                                        className={`flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-300 ${
+                                            openIndex === idx ? 'bg-[#00A7D0]/10' : 'bg-gray-100'
                                         }`}
                                     >
-                                        <ChevronDown className={`w-5 h-5 transition-colors duration-300 ${
-                                            openIndex === idx ? 'text-bioflora-naranja' : 'text-bioflora-arena/40'
+                                        <ChevronDown className={`w-4 h-4 transition-colors duration-300 ${
+                                            openIndex === idx ? 'text-[#00A7D0]' : 'text-gray-400'
                                         }`} />
                                     </motion.div>
                                 </button>
@@ -129,9 +129,9 @@ export default function FAQ() {
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.35, ease: 'easeInOut' }}
                                         >
-                                            <div className="px-6 sm:px-8 pb-6 sm:pb-8">
-                                                <div className="h-px w-full bg-gradient-to-r from-bioflora-morado/20 via-bioflora-naranja/20 to-transparent mb-5" />
-                                                <p className="text-bioflora-arena/70 text-sm sm:text-base font-light leading-relaxed whitespace-pre-line">
+                                            <div className="px-5 sm:px-7 pb-5 sm:pb-6">
+                                                <div className="h-px w-full bg-gradient-to-r from-valex-bronce/20 to-transparent mb-4" />
+                                                <p className="text-gray-600 text-sm sm:text-[15px] font-light leading-relaxed whitespace-pre-line">
                                                     {faq.answer}
                                                 </p>
                                             </div>

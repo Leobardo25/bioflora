@@ -55,26 +55,26 @@ function SectionCard({ icon: Icon, title, accent, children }) {
 }
 
 const LANDING_DEFAULTS = {
-    heroTitle: 'Innovación Agrobiotecnológica & *Soluciones Verdes',
+    heroTitle: 'Exóticas Colecciones Botánicas',
     heroSubtitle: '',
     stat1Value: '150+', stat1Label: 'Especies',
     stat2Value: '1K+', stat2Label: 'Coleccionistas',
     stat3Value: '5+',  stat3Label: 'Años de Cultivo',
-    collectionTitle: 'Producción Sostenible',
-    collectionText: 'Nuestra operación productiva se desarrolla en La Perla de Guácimo, Limón, donde producimos orquídeas, vainilla y plantas ornamentales tropicales bajo un enfoque de innovación y bioeconomía.',
-    missionTitle: 'Misión', missionText: 'Bioflora Centro de Jardinería es el brazo comercial de Flores y Follajes del Caribe S.A. Nuestra misión está orientada a la producción, comercialización y asesoría especializada en orquídeas, integrando investigación, innovación agrobiotecnológica y sostenibilidad.',
-    visionTitle: 'Visión', visionText: 'Consolidarse como una plataforma agroempresarial líder e innovadora en Costa Rica, reconocida por integrar investigación, producción ornamental sostenible, agronegocios y servicios especializados de jardinería, promoviendo el desarrollo territorial rural.',
+    collectionTitle: 'Especies Selectas',
+    collectionText: 'Explore las orquídeas y plantas exóticas más exclusivas de nuestra colección, cultivadas con paciencia y rigor técnico.',
+    missionTitle: 'Misión', missionText: 'Bioflora, es una empresa agro-turística innovadora la cual contribuye con la conservación del medio ambiente mediante la bio-alfabetización de nuestros visitantes y utilizando agro-tecnologías sostenibles.',
+    visionTitle: 'Visión', visionText: 'Bioflora, será un empresa agro-turística líder en Costa Rica que promoverá mediante la bio-alfabetización y la recreación sana, contribuir a la conservación del medio ambiente, mitigar el cambio climático, preservar y reproducir especies de plantas tropicales en riesgo de extinción, especialmente orquídeas. Creando actividades productivas que fomenten un trabajo justo y solidarias el cual contribuya al crecimiento personal de nuestros colaboradores y el retorno del capital a sus accionistas.',
 };
 
 const DEFAULT_FAQ_ITEMS = [
-    { question: '¿Cómo garantizan el traslado seguro de las plantas exóticas?', answer: 'En Caribbean Botanical Garden, empaquetamos cada ejemplar de forma meticulosa utilizando soportes térmicos e hidratación controlada para proteger sus raíces y hojas. Realizamos los envíos de lunes a miércoles para evitar que los seres vivos queden retenidos durante el fin de semana.' },
+    { question: '¿Cómo garantizan el traslado seguro de las plantas exóticas?', answer: 'En Bioflora, empaquetamos cada ejemplar de forma meticulosa utilizando soportes térmicos e hidratación controlada para proteger sus raíces y hojas. Realizamos los envíos de lunes a miércoles para evitar que los seres vivos queden retenidos durante el fin de semana.' },
     { question: '¿Hacen envíos a todo Costa Rica?', answer: '¡Sí! Realizamos envíos express y seguros a todo el territorio nacional mediante Correos de Costa Rica y servicios de transporte especial para plantas de colección grandes.' },
     { question: '¿Ofrecen asesoramiento para el cuidado de orquídeas y plantas exóticas?', answer: '¡Por supuesto! Su experiencia no termina con la compra. Le ofrecemos asesoramiento botánico post-venta continuo a través de WhatsApp para guiarle en el riego, iluminación, control de plagas y sustrato adecuado de su planta.' },
 ];
 
 const GLOBAL_DEFAULTS = {
     whatsapp: '', instagram: '', facebook: '', tiktok: '',
-    brandName: 'Bioflora Garden Center', brandTagline: 'Innovación Agrobiotecnológica & Soluciones Verdes',
+    brandName: 'Bioflora', brandTagline: 'Vivero Boutique & Especies Exóticas',
 };
 
 const LANDING_KEYS = new Set(Object.keys(LANDING_DEFAULTS));
@@ -350,7 +350,7 @@ export default function LandingEditor() {
                 {/* Fila 1: Marca + Contacto */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <SectionCard icon={Tag} title="Marca" accent="#00A94F">
-                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="Caribbean Botanical Garden" />
+                        <Field label="Nombre de la tienda" name="brandName" value={form.brandName} onChange={handleChange} placeholder="Bioflora" />
                         <Field label="Tagline" name="brandTagline" value={form.brandTagline} onChange={handleChange} placeholder="Vivero Boutique" />
                     </SectionCard>
 

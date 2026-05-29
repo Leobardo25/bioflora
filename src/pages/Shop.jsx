@@ -4,7 +4,7 @@ import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { Layout, Row, Col, Card, Button, Badge, Skeleton, Radio, Checkbox, Slider, Collapse, Typography, FloatButton, Drawer, notification, ConfigProvider, theme as antTheme, Grid, Input } from 'antd';
 import { FilterOutlined, SearchOutlined, PictureOutlined, BgColorsOutlined } from '@ant-design/icons';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -138,24 +138,24 @@ export default function Shop() {
                 
                 {/* CATEGORÍA */}
                 <div className="space-y-4">
-                    <h3 className="text-valex-hueso font-serif tracking-widest text-lg border-b border-valex-gris/10 pb-2">CATEGORÍA</h3>
+                    <h3 className="text-gray-900 font-serif tracking-widest text-lg border-b border-gray-200 pb-2">CATEGORÍA</h3>
                     <Radio.Group 
                         className="grid grid-cols-2 gap-3 w-full" 
                         value={filterCategory} 
                         onChange={e => setFilterCategory(e.target.value)}
                     >
                         {CATEGORIES.map(cat => (
-                            <Radio key={cat} value={cat} className="text-valex-gris">{cat}</Radio>
+                            <Radio key={cat} value={cat} className="text-gray-600">{cat}</Radio>
                         ))}
                     </Radio.Group>
                 </div>
 
                 {/* FAMILIA BOTÁNICA */}
                 <div className="space-y-4">
-                    <h3 className="text-valex-hueso font-serif tracking-widest text-lg border-b border-valex-gris/10 pb-2">FAMILIA BOTÁNICA</h3>
+                    <h3 className="text-gray-900 font-serif tracking-widest text-lg border-b border-gray-200 pb-2">FAMILIA BOTÁNICA</h3>
                     <Checkbox.Group 
                         className="grid grid-cols-2 gap-3 w-full"
-                        options={FAMILIES.map(f => ({ label: <span className="text-valex-gris">{f.label}</span>, value: f.value }))}
+                        options={FAMILIES.map(f => ({ label: <span className="text-gray-600">{f.label}</span>, value: f.value }))}
                         value={filterFamilies}
                         onChange={setFilterFamilies}
                     />
@@ -163,7 +163,7 @@ export default function Shop() {
 
                 {/* PRECIO */}
                 <div className="space-y-4">
-                    <h3 className="text-valex-hueso font-serif tracking-widest text-lg border-b border-valex-gris/10 pb-2">PRECIO</h3>
+                    <h3 className="text-gray-900 font-serif tracking-widest text-lg border-b border-gray-200 pb-2">PRECIO</h3>
                     <div className="px-1 pt-2">
                         <div className="valex-range-wrap">
                             <input 
@@ -196,7 +196,7 @@ export default function Shop() {
                                 />
                             </div>
                         </div>
-                        <div className="flex justify-between text-bioflora-naranja text-sm mt-4 font-sans font-medium">
+                        <div className="flex justify-between text-bioflora-fucsia text-sm mt-4 font-sans font-medium">
                             <span>{formatPrice(filterPrice[0], isColones)}</span>
                             <span>{formatPrice(filterPrice[1], isColones)}</span>
                         </div>
@@ -205,10 +205,10 @@ export default function Shop() {
             </div>
 
             {/* Action buttons pinned at bottom */}
-            <div className="flex-shrink-0 pt-4 pb-4 mt-2 border-t border-valex-gris/10 flex gap-3">
+            <div className="flex-shrink-0 pt-4 pb-4 mt-2 border-t border-gray-200 flex gap-3">
                  <Button 
                     onClick={() => { setFilterCategory('Todos'); setFilterFamilies([]); setFilterPrice([0, maxBoundary]); setDrawerVisible(false); }} 
-                    className="flex-1 h-12 bg-transparent text-valex-gris border-bioflora-morado/30 hover:!border-bioflora-morado hover:!text-bioflora-morado font-serif tracking-widest text-xs"
+                    className="flex-1 h-12 bg-transparent text-gray-500 border-gray-200 hover:!border-bioflora-morado hover:!text-bioflora-morado font-serif tracking-widest text-xs"
                  >
                      LIMPIAR
                  </Button>
@@ -225,13 +225,13 @@ export default function Shop() {
     return (
         <ConfigProvider
             theme={{
-                algorithm: antTheme.darkAlgorithm,
+                algorithm: antTheme.defaultAlgorithm,
                 token: {
-                    colorPrimary: '#7C3AED',       // Morado Principal Bioflora
-                    colorBgBase: '#070F0A',        // Verde Bosque Nocturno ultra-oscuro
-                    colorBgContainer: '#0D1C13',   // Cards background (Tarjetas Bosque)
-                    colorTextBase: '#F9F9F6',      // Blanco Hueso / Arena
-                    colorTextSecondary: '#A3B899', // Verde Salvia Elegante
+                    colorPrimary: '#69358C',       // Morado Clásico Bioflora (#69358C)
+                    colorBgBase: '#FFFFFF',        // Fondo blanco puro
+                    colorBgContainer: '#FFFFFF',   // Fondo contenedor blanco
+                    colorTextBase: '#050B14',      // Texto base oscuro
+                    colorTextSecondary: '#4B5563', // Texto secundario (gray-600)
                     fontFamily: '"Poppins", "Outfit", sans-serif',
                 },
                 components: {
@@ -240,7 +240,7 @@ export default function Shop() {
                 }
             }}
         >
-            <div className="min-h-screen bg-valex-negro flex flex-col">
+            <div className="min-h-screen bg-[#F4F9FA] flex flex-col">
                 <Navbar 
                     menuOpen={menuOpen} 
                     setMenuOpen={setMenuOpen} 
@@ -254,7 +254,7 @@ export default function Shop() {
                     setIsCompactView={setIsCompactView}
                 />
                 
-                <main className="flex-1 pt-[140px] md:pt-[120px] bg-valex-negro max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <main className="flex-1 pt-[140px] md:pt-[120px] bg-[#F4F9FA] max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 pb-16">
                     <div className="w-full h-8" />
  
                         {/* Contenedor Flex para Contenido Principal */}
@@ -266,7 +266,7 @@ export default function Shop() {
                                     <Row gutter={[16, 24]}>
                                         {[1, 2, 3, 4].map(i => (
                                             <Col xs={isCompactView ? 12 : 24} sm={12} xl={8} key={i}>
-                                                <Card style={{ backgroundColor: '#0D1C13', border: '1px solid rgba(163,184,153,0.1)' }}>
+                                                <Card style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)' }}>
                                                     <Skeleton.Image active className="w-full !h-[300px] mb-4" />
                                                     <Skeleton active paragraph={{ rows: 2 }} />
                                                 </Card>
@@ -274,8 +274,8 @@ export default function Shop() {
                                         ))}
                                     </Row>
                                 ) : filteredProducts.length === 0 ? (
-                                    <div className="text-center py-24 border border-valex-gris/10 rounded-2xl bg-[#0D1C13]">
-                                        <p className="text-valex-gris text-xl font-serif">No se encontraron plantas exóticas con esta selección.</p>
+                                    <div className="text-center py-24 border border-gray-200 rounded-2xl bg-white">
+                                        <p className="text-gray-500 text-xl font-serif">No se encontraron plantas exóticas con esta selección.</p>
                                         <Button type="link" onClick={() => { setFilterCategory('Todos'); setFilterFamilies([]); setFilterPrice([0, maxBoundary]); }}>
                                             Limpiar filtros
                                         </Button>
@@ -330,7 +330,7 @@ export default function Shop() {
                                                                 <Col xs={12} key={product.id}>
                                                                     <div className="h-full">
                                                                         <CardBadgeWrap product={product}>
-                                                                            <MobileCompactCard product={product} useBg={useBgImages} />
+                                                                            <MobileCompactCard product={product} useBg={useBgImages} onAddToCart={handleAddToCart} />
                                                                         </CardBadgeWrap>
                                                                     </div>
                                                                 </Col>
@@ -384,59 +384,58 @@ const CardBadgeWrap = ({ product, children }) => {
 //  1. TARJETA PC (Desktop) — 4 columnas, compacta
 // ══════════════════════════════════════════════════
 const DesktopCard = ({ product, useBg, onAddToCart }) => {
-    const navigate = useNavigate();
     const { openProductDrawer } = useProductDrawer();
     const isOutOfStock = product.stock === 'Agotado' || product.stock === 0;
     const hasBg = product.galleryImages && product.galleryImages.length > 0;
     const imgUrl = useBg && hasBg ? product.galleryImages[0] : (product.coverImage || product.imageUrl);
 
     return (
-        <Card
-            hoverable
+        <div
             onClick={() => openProductDrawer(product)}
-            className="overflow-hidden border-valex-gris/10 group bg-bioflora-tarjeta h-full flex flex-col transition-all duration-500 hover:border-bioflora-verde/30 shadow-none hover:shadow-[0_8px_30px_rgba(0,169,79,0.2)] cursor-pointer"
-            cover={
-                <div className="relative aspect-square overflow-hidden bg-transparent">
-                    {imgUrl ? (
-                        <img 
-                            src={imgUrl}
-                            alt={product.name}
-                            loading="lazy"
-                            className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                            style={{ filter: isOutOfStock ? 'grayscale(100%) opacity(70%)' : 'none' }}
-                        />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-valex-negro">
-                            <span className="text-valex-gris/30 font-serif italic text-sm">Sin imagen</span>
-                        </div>
-                    )}
-                </div>
-            }
-            styles={{ body: { flex: 1, display: 'flex', flexDirection: 'column', padding: '12px 16px' } }}
+            className="overflow-hidden border border-[#00A7D0]/20 group bg-gradient-to-br from-white via-white to-[#E6F6F9] h-full flex flex-col p-3 rounded-2xl transition-all duration-500 hover:border-[#00A7D0]/50 shadow-sm hover:shadow-[0_12px_36px_rgba(0,167,208,0.16)] hover:-translate-y-1 cursor-pointer"
         >
-            <div className="text-[10px] font-sans tracking-[0.2em] text-valex-gris uppercase mb-0.5">{product.category}</div>
-            <Typography.Title level={5} className="!font-sans !font-semibold !text-valex-hueso !mt-0 !mb-0.5 group-hover:!text-bioflora-fucsia transition-colors !text-sm lg:!text-base">
-                {product.name}
-            </Typography.Title>
-            <div className="text-[11px] text-valex-gris/60 font-sans tracking-wide mb-2">{product.family || '—'}</div>
-            <div className="mt-auto flex items-center justify-between pt-2 border-t border-valex-gris/10">
-                <span className="font-sans font-medium text-bioflora-naranja text-base tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
-                <div className="flex items-center gap-3">
-                    <button 
-                        onClick={(e) => { e.stopPropagation(); openProductDrawer(product); }}
-                        className="bg-transparent border border-bioflora-naranja/60 text-bioflora-naranja hover:bg-bioflora-naranja hover:text-bioflora-bosque rounded-full px-5 py-1.5 text-[9px] font-sans font-extrabold tracking-[0.2em] uppercase transition-all duration-300"
-                    >VER</button>
-                    <button
-                        onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
-                        disabled={isOutOfStock}
-                        className="flex items-center justify-center bg-bioflora-naranja text-bioflora-bosque h-8 w-8 rounded-full hover:bg-bioflora-fucsia hover:text-bioflora-arena transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-bioflora-naranja/20"
-                        title="Añadir a Bolsa"
-                    >
-                        <ShoppingBag className="w-[16px] h-[16px]" />
-                    </button>
+            <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-50/50 border border-[#00A7D0]/5">
+                {imgUrl ? (
+                    <img 
+                        src={imgUrl}
+                        alt={product.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+                        style={{ filter: isOutOfStock ? 'grayscale(100%) opacity(70%)' : 'none' }}
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                        <span className="text-gray-400 font-serif italic text-xs">Sin imagen</span>
+                    </div>
+                )}
+            </div>
+
+            <div className="flex-1 flex flex-col pt-3 px-1">
+                <span className="text-[9px] font-sans tracking-[0.2em] text-gray-500 uppercase mb-0.5">{product.category}</span>
+                <h3 className="font-sans font-semibold text-gray-900 mt-0 mb-0.5 group-hover:text-[#00A7D0] transition-colors text-xs lg:text-sm line-clamp-2 min-h-[32px] leading-tight">
+                    {product.name}
+                </h3>
+                <span className="text-[10px] text-gray-400/80 font-sans tracking-wide mb-3 block">{product.family || '—'}</span>
+                
+                <div className="mt-auto flex items-center justify-between pt-3 border-t border-gray-100/65">
+                    <span className="font-sans font-bold text-[#69358C] text-sm lg:text-base tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                    <div className="flex items-center gap-2">
+                        <button 
+                            onClick={(e) => { e.stopPropagation(); openProductDrawer(product); }}
+                            className="bg-transparent border border-[#00A7D0] text-[#00A7D0] hover:bg-[#00A7D0] hover:text-white rounded-full px-5 h-9 flex items-center justify-center text-[10px] font-sans font-extrabold tracking-[0.15em] uppercase transition-all duration-300"
+                        >VER</button>
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
+                            disabled={isOutOfStock}
+                            className="flex items-center justify-center bg-[#69358C] text-white hover:bg-[#00A7D0] rounded-full w-9 h-9 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:scale-105 shrink-0"
+                            title="Añadir al carrito"
+                        >
+                            <ShoppingCart className="w-[15px] h-[15px]" />
+                        </button>
+                    </div>
                 </div>
             </div>
-        </Card>
+        </div>
     );
 };
 
@@ -445,7 +444,6 @@ const DesktopCard = ({ product, useBg, onAddToCart }) => {
 //     Imagen 4:5, info compacta y legible
 // ══════════════════════════════════════════════════
 const MobileCard = ({ product, useBg, onAddToCart }) => {
-    const navigate = useNavigate();
     const { openProductDrawer } = useProductDrawer();
     const isOutOfStock = product.stock === 'Agotado' || product.stock === 0;
     const hasBg = product.galleryImages && product.galleryImages.length > 0;
@@ -453,11 +451,10 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
 
     return (
         <div 
-            className="overflow-hidden rounded-lg border border-valex-gris/10 bg-bioflora-tarjeta cursor-pointer group"
             onClick={() => openProductDrawer(product)}
+            className="overflow-hidden rounded-2xl border border-[#00A7D0]/20 bg-gradient-to-br from-white via-white to-[#E6F6F9] cursor-pointer group shadow-sm transition-all duration-300 hover:border-[#00A7D0]/50 hover:shadow-[0_10px_25px_rgba(0,167,208,0.12)] p-3.5 flex flex-col gap-3.5 active:scale-[0.98]"
         >
-            {/* Imagen — aspect ratio 4:5 */}
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-50/50 border border-[#00A7D0]/5">
                 {imgUrl ? (
                     <img 
                         src={imgUrl}
@@ -467,39 +464,44 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
                         style={{ filter: isOutOfStock ? 'grayscale(100%) opacity(70%)' : 'none' }}
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-valex-negro">
-                        <span className="text-valex-gris/30 font-serif italic text-sm">Sin imagen</span>
+                    <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                        <span className="text-gray-400 font-serif italic text-sm">Sin imagen</span>
                     </div>
                 )}
             </div>
 
-            {/* Info */}
-            <div className="px-4 py-4 flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 px-1">
                 <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-sans tracking-[0.2em] text-valex-gris uppercase">{product.category}</span>
-                    <span className="text-[10px] font-sans tracking-wide text-valex-gris/50">{product.family || ''}</span>
+                    <span className="text-[9px] font-sans tracking-[0.2em] text-gray-500 uppercase">{product.category}</span>
+                    <span className="text-[9px] font-sans tracking-wide text-gray-400">{product.family || ''}</span>
                 </div>
-                <h3 className="font-sans font-medium text-valex-hueso text-xs leading-snug group-hover:text-bioflora-fucsia transition-colors line-clamp-2">
+                <h3 className="font-sans font-semibold text-gray-900 text-sm leading-snug group-hover:text-[#00A7D0] transition-colors line-clamp-2">
                     {product.name}
                 </h3>
-                <p className="text-sm font-light text-valex-gris/60 line-clamp-3 leading-relaxed">
-                    {product.description || product.notes || '—'}
-                </p>
-                <div className="flex items-center justify-between pt-3 border-t border-valex-gris/10 mt-2">
-                    <span className="font-sans font-semibold text-bioflora-naranja text-xl tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                {product.description && (
+                    <p className="text-[11px] font-light text-gray-500/80 line-clamp-2 leading-relaxed">
+                        {product.description}
+                    </p>
+                )}
+                
+                <div className="flex items-center justify-between pt-3.5 border-t border-gray-100 mt-2">
+                    <div className="flex flex-col">
+                        <span className="text-[8px] text-gray-400 font-sans tracking-wider uppercase">Precio</span>
+                        <span className="font-sans font-bold text-[#69358C] text-lg tracking-wide leading-none">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                    </div>
                     <div className="flex items-center gap-2">
                         <button 
                             onClick={(e) => { e.stopPropagation(); openProductDrawer(product); }}
-                            className="bg-transparent border border-bioflora-naranja/60 text-bioflora-naranja hover:bg-bioflora-naranja hover:text-bioflora-bosque rounded-full px-5 h-8 flex items-center justify-center text-[9px] font-sans font-extrabold tracking-[0.2em] uppercase transition-all duration-300"
+                            className="bg-transparent border border-[#00A7D0] text-[#00A7D0] hover:bg-[#00A7D0] hover:text-white rounded-full px-4 h-8.5 flex items-center justify-center text-[10px] font-sans font-bold tracking-[0.15em] uppercase transition-all duration-300"
                         >VER</button>
                         <button 
                             onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
                             disabled={isOutOfStock}
-                            className="flex items-center justify-center bg-bioflora-naranja text-bioflora-bosque h-8 px-5 rounded-full hover:bg-bioflora-fucsia hover:text-bioflora-arena transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-bioflora-naranja/20"
-                            title="Añadir a Bolsa"
+                            className="flex items-center justify-center bg-[#69358C] text-white h-8.5 px-4 rounded-full hover:bg-[#00A7D0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                            title="Añadir al carrito"
                         >
-                            <ShoppingBag className="w-[15px] h-[15px] mr-2" />
-                            <span className="text-[9px] uppercase font-sans tracking-[0.2em] font-extrabold mt-[1px]">AÑADIR</span>
+                            <ShoppingCart className="w-[14px] h-[14px] mr-1.5" />
+                            <span className="text-[10px] uppercase font-sans tracking-[0.15em] font-extrabold mt-[0.5px]">AÑADIR</span>
                         </button>
                     </div>
                 </div>
@@ -511,44 +513,53 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
 // ══════════════════════════════════════════════════
 //  3. TARJETA MÓVIL CUADRÍCULA — 2 columnas, mini
 // ══════════════════════════════════════════════════
-const MobileCompactCard = ({ product, useBg }) => {
-    const navigate = useNavigate();
+const MobileCompactCard = ({ product, useBg, onAddToCart }) => {
     const { openProductDrawer } = useProductDrawer();
     const isOutOfStock = product.stock === 'Agotado' || product.stock === 0;
     const hasBg = product.galleryImages && product.galleryImages.length > 0;
     const imgUrl = useBg && hasBg ? product.galleryImages[0] : (product.coverImage || product.imageUrl);
 
     return (
-        <Card
-            hoverable
+        <div
             onClick={() => openProductDrawer(product)}
-            className="overflow-hidden border-valex-gris/10 group bg-bioflora-tarjeta h-full flex flex-col shadow-none cursor-pointer"
-            cover={
-                <div className="relative aspect-square overflow-hidden bg-transparent">
-                    {imgUrl ? (
-                        <img 
-                            src={imgUrl}
-                            alt={product.name}
-                            loading="lazy"
-                            className="w-full h-full object-cover"
-                            style={{ filter: isOutOfStock ? 'grayscale(100%) opacity(70%)' : 'none' }}
-                        />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-valex-negro">
-                            <span className="text-valex-gris/30 font-serif italic text-xs">Sin imagen</span>
-                        </div>
-                    )}
-                </div>
-            }
-            styles={{ body: { padding: '8px 10px' } }}
+            className="overflow-hidden border border-[#00A7D0]/20 bg-gradient-to-br from-white via-white to-[#E6F6F9] h-full flex flex-col p-2.5 rounded-2xl shadow-sm hover:border-[#00A7D0]/48 active:scale-[0.97] transition-all duration-300 cursor-pointer gap-2"
         >
-            <Typography.Title level={5} className="!font-sans !font-semibold !text-valex-hueso !mt-0 !mb-0.5 !text-xs">
-                {product.name}
-            </Typography.Title>
-            <div className="flex items-center justify-between mt-1 border-t border-valex-gris/10 pt-2">
-                <span className="font-sans font-medium text-bioflora-naranja text-sm">{formatPrice(product.price, product.currency === 'CRC')}</span>
-                <button className="text-[8px] font-sans font-extrabold uppercase tracking-[0.2em] text-bioflora-naranja border border-bioflora-naranja/50 rounded-full px-3 py-1 hover:bg-bioflora-naranja hover:text-bioflora-bosque transition-colors mt-1">VER</button>
+            <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-50/50 border border-[#00A7D0]/5">
+                {imgUrl ? (
+                    <img 
+                        src={imgUrl}
+                        alt={product.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                        style={{ filter: isOutOfStock ? 'grayscale(100%) opacity(70%)' : 'none' }}
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                        <span className="text-gray-400 font-serif italic text-[10px]">Sin imagen</span>
+                    </div>
+                )}
             </div>
-        </Card>
+
+            <div className="flex flex-col flex-1 px-1 justify-between gap-2">
+                <div className="flex flex-col gap-0.5">
+                    <span className="text-[8px] font-sans tracking-[0.2em] text-gray-500 uppercase block">{product.category}</span>
+                    <h3 className="font-sans font-semibold text-gray-900 text-xs leading-snug line-clamp-2 min-h-[32px] tracking-wide">
+                        {product.name}
+                    </h3>
+                </div>
+                
+                <div className="pt-2 border-t border-gray-100/65 flex items-center justify-between mt-auto">
+                    <span className="font-sans font-bold text-[#69358C] text-xs leading-none">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                    <button 
+                        onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
+                        disabled={isOutOfStock}
+                        className="h-7 w-7 rounded-full bg-[#69358C] text-white flex items-center justify-center hover:bg-[#00A7D0] active:scale-90 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                        title="Añadir al carrito"
+                    >
+                        <ShoppingCart className="w-[12px] h-[12px]" />
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 };

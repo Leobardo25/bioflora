@@ -11,7 +11,7 @@ const { Content } = Layout;
 export const DEFAULT_POLICIES = {
     refunds: {
         title: 'Política de Reembolsos y Garantía Botánica',
-        content: `En Caribbean Botanical Garden, nos esforzamos por ofrecer plantas y orquídeas exóticas de la más alta calidad. Debido a la naturaleza delicada de los seres vivos, aplicamos las siguientes políticas de reembolso y garantía.
+        content: `En Bioflora, nos esforzamos por ofrecer plantas y orquídeas exóticas de la más alta calidad. Debido a la naturaleza delicada de los seres vivos, aplicamos las siguientes políticas de reembolso y garantía.
 
 **Garantía de Llegada Segura**
 - Garantizamos que todas nuestras plantas y orquídeas llegan sanas y salvas a su destino.
@@ -28,7 +28,7 @@ export const DEFAULT_POLICIES = {
     },
     shipping: {
         title: 'Política de Envíos de Seres Vivos',
-        content: `En Caribbean Botanical Garden optimizamos nuestro proceso de embalaje y logística para que sus orquídeas y plantas exóticas viajen con el menor estrés posible.
+        content: `En Bioflora optimizamos nuestro proceso de embalaje y logística para que sus orquídeas y plantas exóticas viajen con el menor estrés posible.
 
 **Horarios y Logística de Envío**
 - Para proteger la salud de las plantas, los despachos de seres vivos se realizan de lunes a miércoles. Esto evita que los paquetes queden retenidos en bodegas de mensajería durante el fin de semana.
@@ -47,7 +47,7 @@ export const DEFAULT_POLICIES = {
     },
     privacy: {
         title: 'Política de Privacidad',
-        content: `En Caribbean Botanical Garden, valoramos y respetamos su privacidad. Esta política detalla cómo recopilamos, protegemos y utilizamos su información personal.
+        content: `En Bioflora, valoramos y respetamos su privacidad. Esta política detalla cómo recopilamos, protegemos y utilizamos su información personal.
 
 **Información que Recopilamos**
 - Datos de contacto: nombre completo, número de teléfono, dirección física exacta para entregas y correo electrónico.
@@ -64,10 +64,10 @@ export const DEFAULT_POLICIES = {
     },
     terms: {
         title: 'Términos de Servicio',
-        content: `Al acceder y utilizar la plataforma web de Caribbean Botanical Garden, usted acepta los siguientes términos y condiciones.
+        content: `Al acceder y utilizar la plataforma web de Bioflora, usted acepta los siguientes términos y condiciones.
 
 **Uso de la Plataforma**
-- Este sitio web es operado por Caribbean Botanical Garden. Al realizar compras de plantas y orquídeas exóticas, usted declara ser mayor de edad o contar con la supervisión de un tutor legal.
+- Este sitio web es operado por Bioflora. Al realizar compras de plantas y orquídeas exóticas, usted declara ser mayor de edad o contar con la supervisión de un tutor legal.
 
 **Productos Botánicos y Precios**
 - Las plantas y orquídeas son seres vivos, por lo que cada ejemplar es único en forma, cantidad de hojas, flores y color. Las imágenes mostradas en el catálogo son de carácter referencial y representan fielmente la especie y calidad que recibirá.
@@ -112,64 +112,67 @@ export default function PolicyPage() {
         if (!text) return null;
         return text.split('\n').map((line, i) => {
             if (line.startsWith('**') && line.endsWith('**')) {
-                return <h3 key={i} className="font-sans font-semibold text-valex-hueso text-base mt-8 mb-3">{line.replace(/\*\*/g, '')}</h3>;
+                return <h3 key={i} className="font-sans font-semibold text-gray-900 text-base mt-8 mb-3">{line.replace(/\*\*/g, '')}</h3>;
             }
             if (line.startsWith('- ')) {
-                return <li key={i} className="text-valex-gris/70 text-sm font-light leading-relaxed ml-4 list-disc">{line.slice(2)}</li>;
+                return <li key={i} className="text-gray-700 text-sm font-light leading-relaxed ml-4 list-disc">{line.slice(2)}</li>;
             }
             if (/^\d+\.\s/.test(line)) {
-                return <li key={i} className="text-valex-gris/70 text-sm font-light leading-relaxed ml-4 list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;
+                return <li key={i} className="text-gray-700 text-sm font-light leading-relaxed ml-4 list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;
             }
             if (line.trim() === '') {
                 return <div key={i} className="h-2" />;
             }
-            return <p key={i} className="text-valex-gris/70 text-sm font-light leading-relaxed">{line}</p>;
+            return <p key={i} className="text-gray-700 text-sm font-light leading-relaxed">{line}</p>;
         });
     };
 
     return (
         <ConfigProvider
             theme={{
-                algorithm: antTheme.darkAlgorithm,
+                algorithm: antTheme.defaultAlgorithm,
                 token: {
-                    colorPrimary: '#00A94F',
-                    colorBgBase: '#070F0A',
-                    fontFamily: '"Poppins", sans-serif',
+                    colorPrimary: '#69358C',
+                    colorBgBase: '#FFFFFF',
+                    colorBgContainer: '#FFFFFF',
+                    colorTextBase: '#050B14',
+                    colorTextSecondary: '#4B5563',
+                    fontFamily: '"Poppins", "Outfit", sans-serif',
                 }
             }}
         >
-            <div className="min-h-screen bg-valex-negro flex flex-col">
+            <div className="min-h-screen bg-[#F4F9FA] flex flex-col">
                 <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-                <Content className="flex-1 pt-[80px] lg:pt-[110px] px-4 sm:px-6 lg:px-8 max-w-3xl w-full mx-auto pb-24">
+                <Content className="flex-1 pt-[120px] px-4 sm:px-6 lg:px-8 max-w-3xl w-full mx-auto pb-24">
                     {/* Back button */}
                     <button
                         onClick={() => navigate(-1)}
-                        className="flex items-center text-valex-gris mb-8 hover:text-valex-bronce text-sm transition-colors"
+                        className="flex items-center text-gray-500 mb-8 hover:text-[#69358C] text-sm transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" /> Volver
                     </button>
 
                     {loading ? (
                         <div className="flex justify-center py-20">
-                            <div className="w-8 h-8 border-2 border-valex-bronce/30 border-t-valex-bronce rounded-full animate-spin" />
+                            <div className="w-8 h-8 border-2 border-gray-200 border-t-[#69358C] rounded-full animate-spin" />
                         </div>
                     ) : policy ? (
-                        <div className="animate-in fade-in">
-                            <span className="inline-block text-valex-bronce font-sans text-[10px] tracking-[0.3em] uppercase font-bold mb-4">
+                        <div className="animate-in fade-in bg-white border border-gray-200 dark:border-white/5 rounded-2xl p-6 sm:p-8 shadow-sm">
+                            <span className="inline-block text-[#69358C] font-sans text-[10px] tracking-[0.3em] uppercase font-bold mb-4">
                                 Políticas de Tienda
                             </span>
-                            <h1 className="font-sans font-semibold text-3xl lg:text-4xl text-valex-hueso mb-8 leading-tight">
+                            <h1 className="font-sans font-semibold text-3xl lg:text-4xl text-gray-900 mb-8 leading-tight">
                                 {policy.title}
                             </h1>
-                            <div className="border-t border-valex-bronce/20 pt-8">
+                            <div className="border-t border-gray-100 pt-8">
                                 {renderContent(policy.content)}
                             </div>
 
                             {/* Última actualización */}
-                            <div className="mt-16 pt-6 border-t border-valex-gris/10">
-                                <p className="text-valex-gris/30 text-xs">
-                                    Última actualización: Mayo 2026 — Caribbean Botanical Garden
+                            <div className="mt-16 pt-6 border-t border-gray-100">
+                                <p className="text-gray-400 text-xs">
+                                    Última actualización: Mayo 2026 — Bioflora
                                 </p>
                             </div>
                         </div>

@@ -12,7 +12,7 @@ export default function Footer() {
     const hasSocials = whatsapp || instagram || facebook || tiktok
 
     return (
-        <footer id="contacto" className="relative bg-valex-negro border-t border-valex-gris/10">
+        <footer id="contacto" className="relative bg-[#062919] border-t border-valex-gris/10">
             {/* Top accent line */}
             <div className="h-[2px] bg-gradient-to-r from-transparent via-bioflora-naranja to-transparent opacity-80" />
 
@@ -33,7 +33,7 @@ export default function Footer() {
                                         href={instagram.startsWith('http') ? instagram : `https://instagram.com/${instagram}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        className="w-10 h-10 rounded-lg bg-white/5 border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
                                         aria-label="Instagram"
                                     >
                                         <Instagram className="w-5 h-5" />
@@ -44,7 +44,7 @@ export default function Footer() {
                                         href={facebook.startsWith('http') ? facebook : `https://facebook.com/${facebook}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        className="w-10 h-10 rounded-lg bg-white/5 border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
                                         aria-label="Facebook"
                                     >
                                         <FaFacebook className="w-5 h-5" />
@@ -55,7 +55,7 @@ export default function Footer() {
                                         href={tiktok.startsWith('http') ? tiktok : `https://tiktok.com/@${tiktok}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        className="w-10 h-10 rounded-lg bg-white/5 border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
                                         aria-label="TikTok"
                                     >
                                         <FaTiktok className="w-5 h-5" />
@@ -66,7 +66,7 @@ export default function Footer() {
                                         href={`https://wa.me/${whatsapp}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-lg bg-valex-negro-alt border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
+                                        className="w-10 h-10 rounded-lg bg-white/5 border border-valex-gris/10 flex items-center justify-center text-valex-gris hover:text-bioflora-naranja hover:border-bioflora-naranja/30 hover:bg-bioflora-naranja/5 transition-all duration-300"
                                         aria-label="WhatsApp"
                                     >
                                         <FaWhatsapp className="w-5 h-5" />
@@ -78,7 +78,7 @@ export default function Footer() {
 
                     {/* Navigation column */}
                     <div className="space-y-5">
-                        <h3 className="font-serif font-semibold text-lg text-valex-hueso">
+                        <h3 className="font-serif font-semibold text-lg text-bioflora-naranja">
                             Navegación
                         </h3>
                         <div className="flex flex-col gap-3">
@@ -96,7 +96,7 @@ export default function Footer() {
 
                     {/* Policies column */}
                     <div className="space-y-5">
-                        <h3 className="font-serif font-semibold text-lg text-valex-hueso">
+                        <h3 className="font-serif font-semibold text-lg text-bioflora-naranja">
                             Políticas de Tienda
                         </h3>
                         <div className="flex flex-col gap-3">

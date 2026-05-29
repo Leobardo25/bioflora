@@ -55,7 +55,7 @@ export default function FeaturedProducts() {
     if (!loading && featuredProducts.length === 0) return null;
 
     return (
-        <section id="colecciones" className="relative lg:min-h-[85vh] w-full bg-valex-hueso overflow-x-hidden border-t border-valex-bronce/10 flex items-center py-16 lg:py-12">
+        <section id="colecciones" className="relative lg:min-h-[85vh] w-full bg-valex-hueso overflow-hidden border-t border-valex-bronce/10 flex items-center py-16 lg:py-12">
             {/* Destellos de iluminación de fondo */}
             <div className="absolute top-1/2 right-1/4 w-[40vw] h-[40vw] rounded-full bg-valex-bronce/5 blur-[120px] pointer-events-none" />
 
@@ -72,7 +72,7 @@ export default function FeaturedProducts() {
                     }}
                     className="w-full lg:w-[35%] flex flex-col justify-center text-center lg:text-left"
                 >
-                    <div className="inline-block text-bioflora-naranja font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4 sm:mb-6">
+                    <div className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4 sm:mb-6">
                         Colección Selecta
                     </div>
                     <h2 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-valex-negro leading-[1.05] tracking-tight">
@@ -194,7 +194,7 @@ function ProductCard({ product }) {
     }).format(Number(product.price));
 
     return (
-        <div className="w-full h-full bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-valex-negro/5 border border-valex-gris/10 flex flex-col md:flex-row group hover:shadow-valex-bronce/20 hover:border-valex-bronce/40 transition-all duration-500 cursor-pointer">
+        <div className="w-full h-full bg-gradient-to-br from-white via-white to-[#E6F6F9] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-[#00A7D0]/5 border border-[#00A7D0]/20 flex flex-col md:flex-row group hover:shadow-[#00A7D0]/16 hover:border-[#00A7D0]/50 transition-all duration-500 cursor-pointer">
             {/* Imagen — object-cover en todas las resoluciones para cubrir sin barras */}
             <div className="h-[40%] sm:h-[40%] md:h-full md:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b md:border-b-0 md:border-r border-valex-gris/5 shrink-0">
                 <img
@@ -209,13 +209,13 @@ function ProductCard({ product }) {
             <div className="flex-1 md:h-full md:w-[50%] w-full flex flex-col bg-white relative">
                 <div className="p-4 sm:p-6 md:p-8 xl:p-10 flex flex-col h-full"> 
                     <div className="flex-1 flex flex-col justify-center min-w-0">
-                        <span className="inline-block text-bioflora-naranja font-sans text-[10px] md:text-xs tracking-[0.25em] uppercase font-extrabold mb-1 md:mb-3">
+                        <span className="inline-block text-valex-bronce font-sans text-[10px] md:text-xs tracking-[0.25em] uppercase font-extrabold mb-1 md:mb-3">
                             {product.category || 'Premium Collection'}
                         </span>
                         <h3 className="font-serif font-bold text-xl sm:text-2xl md:text-3xl text-valex-negro mb-1 md:mb-2 leading-tight line-clamp-2">
                             {product.name}
                         </h3>
-                        <p className="text-bioflora-naranja/90 italic font-serif text-xs md:text-sm line-clamp-2 mb-2 md:mb-4">
+                        <p className="text-valex-bronce/90 italic font-serif text-xs md:text-sm line-clamp-2 mb-2 md:mb-4">
                             "{product.notes}"
                         </p>
                         <p className="text-valex-negro/60 text-[12px] md:text-[14px] font-light line-clamp-3 md:line-clamp-5 leading-relaxed">
@@ -224,10 +224,10 @@ function ProductCard({ product }) {
                     </div>
 
                     <div className="mt-auto flex items-center justify-between border-t border-valex-gris/10 pt-3 md:pt-6 w-full">
-                        <span className="font-serif font-bold text-xl md:text-3xl text-bioflora-naranja">
+                        <span className="font-serif font-bold text-xl md:text-3xl text-valex-bronce">
                             {formattedPrice}
                         </span>
-                        <Link to="/tienda" className="font-sans text-[10px] md:text-[11px] font-extrabold tracking-[0.15em] text-valex-negro uppercase hover:text-white transition-colors bg-valex-bronce/5 px-5 md:px-7 py-2.5 md:py-3.5 rounded-full hover:bg-bioflora-naranja">
+                        <Link to="/tienda" className="font-sans text-[10px] md:text-[11px] font-extrabold tracking-[0.15em] text-valex-negro uppercase hover:text-white transition-colors bg-valex-bronce/5 px-5 md:px-7 py-2.5 md:py-3.5 rounded-full hover:bg-valex-bronce">
                             Adquirir
                         </Link>
                     </div>

@@ -6,7 +6,7 @@ import Navbar from '../components/layout/Navbar'
 import Hero from '../features/landing/Hero'
 import FeaturedProducts from '../features/landing/FeaturedProducts'
 import Moodboard from '../features/landing/Moodboard'
-import Services from '../features/landing/Services'
+// import Services from '../features/landing/Services'  // DESACTIVADO: Turismo va separado (reactivar cuando se integre)
 import FAQ from '../features/landing/FAQ'
 import Footer from '../components/layout/Footer'
 import { useSiteConfig } from '../context/SiteConfigContext'
@@ -53,7 +53,7 @@ export default function Landing() {
                 <Hero />
                 <FeaturedProducts />
                 <Moodboard />
-                <Services />
+                {/* <Services /> */}{/* DESACTIVADO: Turismo va separado */}
                 <FAQ />
             </main>
             
