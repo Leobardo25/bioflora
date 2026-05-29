@@ -150,12 +150,7 @@ export default function FeaturedProducts() {
                     )}
                 </motion.div>
                 
-                {/* Resumen descriptivo y Botón Ir a Tienda exclusivos para la base en móviles */}
-                <div className="lg:hidden w-full flex flex-col items-center text-center px-4 mt-4">
-                    <Link to="/tienda" className="inline-block py-3 px-10 border border-valex-bronce bg-transparent text-valex-negro font-sans hover:bg-valex-bronce hover:text-valex-hueso transition-all duration-500 tracking-[0.2em] text-[10px] font-bold uppercase rounded-full shadow-lg">
-                        Ver Catálogo Completo
-                    </Link>
-                </div>
+
             </div>
         </section>
     )
@@ -196,7 +191,7 @@ function ProductCard({ product }) {
     return (
         <div className="w-full h-full bg-gradient-to-br from-white via-white to-[#E6F6F9] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-[#00A7D0]/5 border border-[#00A7D0]/20 flex flex-col md:flex-row group hover:shadow-[#00A7D0]/16 hover:border-[#00A7D0]/50 transition-all duration-500 cursor-pointer">
             {/* Imagen — object-cover en todas las resoluciones para cubrir sin barras */}
-            <div className="h-[40%] sm:h-[40%] md:h-full md:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b md:border-b-0 md:border-r border-valex-gris/5 shrink-0">
+            <div className="h-[55%] sm:h-[55%] md:h-full md:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b md:border-b-0 md:border-r border-valex-gris/5 shrink-0">
                 <img
                     src={displayImg}
                     alt={product.name}

@@ -392,9 +392,9 @@ const DesktopCard = ({ product, useBg, onAddToCart }) => {
     return (
         <div
             onClick={() => openProductDrawer(product)}
-            className="overflow-hidden border border-[#00A7D0]/20 group bg-gradient-to-br from-white via-white to-[#E6F6F9] h-full flex flex-col p-3 rounded-2xl transition-all duration-500 hover:border-[#00A7D0]/50 shadow-sm hover:shadow-[0_12px_36px_rgba(0,167,208,0.16)] hover:-translate-y-1 cursor-pointer"
+            className="overflow-hidden border border-[#00A7D0]/20 group bg-gradient-to-br from-white via-white to-[#E6F6F9] h-full flex flex-col rounded-2xl transition-all duration-500 hover:border-[#00A7D0]/50 shadow-sm hover:shadow-[0_12px_36px_rgba(0,167,208,0.16)] hover:-translate-y-1 cursor-pointer"
         >
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-50/50 border border-[#00A7D0]/5">
+            <div className="relative aspect-square overflow-hidden rounded-t-2xl bg-gray-50/50">
                 {imgUrl ? (
                     <img 
                         src={imgUrl}
@@ -410,7 +410,7 @@ const DesktopCard = ({ product, useBg, onAddToCart }) => {
                 )}
             </div>
 
-            <div className="flex-1 flex flex-col pt-3 px-1">
+            <div className="flex-1 flex flex-col pt-3 px-3 pb-3">
                 <span className="text-[9px] font-sans tracking-[0.2em] text-gray-500 uppercase mb-0.5">{product.category}</span>
                 <h3 className="font-sans font-semibold text-gray-900 mt-0 mb-0.5 group-hover:text-[#00A7D0] transition-colors text-xs lg:text-sm line-clamp-2 min-h-[32px] leading-tight">
                     {product.name}
@@ -452,9 +452,9 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
     return (
         <div 
             onClick={() => openProductDrawer(product)}
-            className="overflow-hidden rounded-2xl border border-[#00A7D0]/20 bg-gradient-to-br from-white via-white to-[#E6F6F9] cursor-pointer group shadow-sm transition-all duration-300 hover:border-[#00A7D0]/50 hover:shadow-[0_10px_25px_rgba(0,167,208,0.12)] p-3.5 flex flex-col gap-3.5 active:scale-[0.98]"
+            className="overflow-hidden rounded-2xl border border-[#00A7D0]/20 bg-gradient-to-br from-white via-white to-[#E6F6F9] cursor-pointer group shadow-sm transition-all duration-300 hover:border-[#00A7D0]/50 hover:shadow-[0_10px_25px_rgba(0,167,208,0.12)] flex flex-col active:scale-[0.98]"
         >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-50/50 border border-[#00A7D0]/5">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl bg-gray-50/50">
                 {imgUrl ? (
                     <img 
                         src={imgUrl}
@@ -470,7 +470,7 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
                 )}
             </div>
 
-            <div className="flex flex-col gap-1.5 px-1">
+            <div className="flex flex-col gap-1.5 px-3.5 pt-3.5 pb-3.5">
                 <div className="flex items-center justify-between">
                     <span className="text-[9px] font-sans tracking-[0.2em] text-gray-500 uppercase">{product.category}</span>
                     <span className="text-[9px] font-sans tracking-wide text-gray-400">{product.family || ''}</span>
@@ -522,9 +522,9 @@ const MobileCompactCard = ({ product, useBg, onAddToCart }) => {
     return (
         <div
             onClick={() => openProductDrawer(product)}
-            className="overflow-hidden border border-[#00A7D0]/20 bg-gradient-to-br from-white via-white to-[#E6F6F9] h-full flex flex-col p-2.5 rounded-2xl shadow-sm hover:border-[#00A7D0]/48 active:scale-[0.97] transition-all duration-300 cursor-pointer gap-2"
+            className="overflow-hidden border border-[#00A7D0]/20 bg-gradient-to-br from-white via-white to-[#E6F6F9] h-full flex flex-col rounded-2xl shadow-sm hover:border-[#00A7D0]/48 active:scale-[0.97] transition-all duration-300 cursor-pointer"
         >
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-50/50 border border-[#00A7D0]/5">
+            <div className="relative aspect-square overflow-hidden rounded-t-2xl bg-gray-50/50">
                 {imgUrl ? (
                     <img 
                         src={imgUrl}
@@ -540,7 +540,7 @@ const MobileCompactCard = ({ product, useBg, onAddToCart }) => {
                 )}
             </div>
 
-            <div className="flex flex-col flex-1 px-1 justify-between gap-2">
+            <div className="flex flex-col flex-1 px-2.5 pt-2.5 pb-2.5 justify-between gap-2">
                 <div className="flex flex-col gap-0.5">
                     <span className="text-[8px] font-sans tracking-[0.2em] text-gray-500 uppercase block">{product.category}</span>
                     <h3 className="font-sans font-semibold text-gray-900 text-xs leading-snug line-clamp-2 min-h-[32px] tracking-wide">
