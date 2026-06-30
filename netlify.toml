@@ -1,0 +1,6 @@
+# Solo declara el directorio de funciones serverless. El build (command/publish)
+# se mantiene como esté configurado en el panel de Netlify para no romperlo.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["firebase-admin"]

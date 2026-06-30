@@ -1,7 +1,10 @@
 // src/services/aiChatService.js
 // Servicio de IA para el Asistente Administrativo de Bioflora — Powered by OpenRouter
+// La API key vive SOLO en el backend (Netlify Function 'openrouter'); el navegador
+// llama a /.netlify/functions/openrouter con el Firebase ID token del admin.
+import { auth } from '../firebase/firebase';
 
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+const AI_PROXY_URL = '/.netlify/functions/openrouter';
 // Lista de modelos en orden de prioridad. Si el primero falla, salta al siguiente automáticamente.
 const FALLBACK_MODELS = [
   'deepseek/deepseek-v4-flash', // Modelo principal (Rápido)
@@ -84,11 +87,11 @@ ${ctx.lowStockDetail || 'Ninguno'}
  * @returns {Promise<string>} La respuesta del asistente
  */
 export const sendChatMessage = async (messages, businessContext = null) => {
-  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-
-  if (!apiKey) {
-    throw new Error('No se ha configurado la clave API de OpenRouter (VITE_OPENROUTER_API_KEY).');
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error('Debes iniciar sesión para usar el asistente.');
   }
+  const idToken = await user.getIdToken();
 
   const systemMessage = {
     role: 'system',
@@ -101,13 +104,11 @@ export const sendChatMessage = async (messages, businessContext = null) => {
   for (const modelId of FALLBACK_MODELS) {
     try {
       console.log(`Intentando conectar con modelo: ${modelId}...`);
-      
-      const response = await fetch(OPENROUTER_API_URL, {
+
+      const response = await fetch(AI_PROXY_URL, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'HTTP-Referer': 'https://bioflora.com',
-          'X-Title': 'Bioflora Admin',
+          'Authorization': `Bearer ${idToken}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -121,7 +122,7 @@ export const sendChatMessage = async (messages, businessContext = null) => {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error?.message || `Error HTTP ${response.status}`);
+        throw new Error(errorData.error?.message || errorData.error || `Error HTTP ${response.status}`);
       }
 
       const data = await response.json();
