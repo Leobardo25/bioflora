@@ -72,21 +72,18 @@ function HeroTitle() {
     const title = heroTitle || ''
     const subtitle = heroSubtitle || ''
     
-    // Mejor lógica de separación: Si el usuario usa un "*", lo usamos como separador de color.
-    // Si no, tomamos las últimas 2 o 3 palabras para que sean naranjas, evitando que desaparezcan.
-    let main = ''
+    // Separamos por '*' para permitir renglones independientes dinámicos
+    const parts = title.split('*').map(p => p.trim()).filter(Boolean)
+    let lines = []
     let accent = ''
 
-    if (title.includes('*')) {
-        const parts = title.split('*')
-        main = parts[0].trim()
-        accent = parts[1]?.trim() || ''
-    } else {
-        const words = title.split(' ')
-        // Si hay más de 3 palabras, las últimas 3 van en naranja (ej: "en su hogar").
-        // Si hay menos, la mitad.
+    if (parts.length > 1) {
+        accent = parts[parts.length - 1]
+        lines = parts.slice(0, parts.length - 1)
+    } else if (parts.length === 1) {
+        const words = parts[0].split(' ')
         const splitIndex = words.length > 3 ? words.length - 3 : Math.max(1, words.length - 1)
-        main = words.slice(0, splitIndex).join(' ')
+        lines = [words.slice(0, splitIndex).join(' ')]
         accent = words.slice(splitIndex).join(' ')
     }
 
@@ -100,7 +97,14 @@ function HeroTitle() {
             className="flex flex-col items-start pt-6 justify-start w-full text-left"
         >
             <h1 className="text-valex-hueso leading-[1.15] tracking-tight drop-shadow-lg flex flex-col gap-2 sm:gap-4 w-full text-left">
-                <span className="block font-serif font-bold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl animate-glow-white break-words whitespace-normal text-left">{main}</span>
+                {lines.map((line, idx) => (
+                    <span 
+                        key={idx} 
+                        className="block font-serif font-bold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl animate-glow-white break-words whitespace-normal text-left"
+                    >
+                        {line}
+                    </span>
+                ))}
                 {accent && (
                     <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#00A7D0] animate-glow break-words whitespace-normal mt-[-0.2em] sm:mt-0 text-left">
                         {accent}
