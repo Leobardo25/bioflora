@@ -47,6 +47,6 @@ export const staggerContainer = {
 
 // Hero-specific slow reveal
 export const heroReveal = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, x: -60 },
+    visible: { opacity: 1, x: 0 },
 }

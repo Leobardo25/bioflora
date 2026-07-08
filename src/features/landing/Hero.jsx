@@ -26,14 +26,14 @@ export default function Hero() {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 w-full max-w-5xl mx-auto mt-0 lg:-mt-16 pb-12 lg:pb-0">
+            <div className="relative z-10 flex flex-col items-start justify-center text-left px-4 sm:px-6 lg:px-8 w-full max-w-[96%] mx-auto mt-0 lg:-mt-16 pb-12 lg:pb-0">
                 <HeroTitle />
-                <div className="mt-10 w-full flex justify-center">
+                <div className="mt-10 w-full flex justify-start">
                     <HeroCTA />
                 </div>
 
                 {/* Redes Móviles Integradas (Inmediatamente debajo del CTA para evitar problemas de Overflow/Scroll) */}
-                <div className="flex justify-center mt-6 lg:hidden w-full">
+                <div className="flex justify-start mt-6 lg:hidden w-full">
                     <HeroSocials />
                 </div>
 
@@ -97,18 +97,18 @@ function HeroTitle() {
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
             transition={VALEX_SLOW}
-            className="flex flex-col items-center pt-6 justify-center w-full"
+            className="flex flex-col items-start pt-6 justify-start w-full text-left"
         >
-            <h1 className="text-valex-hueso leading-[1.15] tracking-tight drop-shadow-lg flex flex-col gap-2 sm:gap-4 w-full">
-                <span className="block font-serif font-bold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl animate-glow-white break-words whitespace-normal">{main}</span>
+            <h1 className="text-valex-hueso leading-[1.15] tracking-tight drop-shadow-lg flex flex-col gap-2 sm:gap-4 w-full text-left">
+                <span className="block font-serif font-bold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl animate-glow-white break-words whitespace-normal text-left">{main}</span>
                 {accent && (
-                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#00A7D0] animate-glow break-words whitespace-normal mt-[-0.2em] sm:mt-0">
+                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#00A7D0] animate-glow break-words whitespace-normal mt-[-0.2em] sm:mt-0 text-left">
                         {accent}
                     </span>
                 )}
             </h1>
             {subtitle && (
-                <p className="mt-4 font-sans text-valex-hueso/70 text-xs sm:text-sm md:text-base tracking-[0.2em] uppercase max-w-2xl drop-shadow-md">
+                <p className="mt-4 font-sans text-valex-hueso/70 text-xs sm:text-sm md:text-base tracking-[0.2em] uppercase max-w-2xl drop-shadow-md text-left">
                     {subtitle}
                 </p>
             )}
@@ -125,7 +125,7 @@ function HeroCTA() {
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
             transition={VALEX_SLOW}
-            className="flex flex-col sm:flex-row gap-4 pt-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 pt-4 justify-start w-full sm:w-auto"
         >
             <Link to="/tienda" className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-sm px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg bg-[#00A7D0]/40 border border-[#00A7D0]/50 text-white hover:bg-[#00A7D0]/55 hover:border-[#00A7D0] shadow-lg hover:shadow-[#00A7D0]/20 transition-all duration-300 tracking-wide w-full sm:w-auto">
                 Tienda
