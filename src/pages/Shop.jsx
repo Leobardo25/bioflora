@@ -472,7 +472,7 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
             onClick={() => openProductDrawer(product)}
             className="overflow-hidden rounded-2xl border border-[#00A7D0]/20 bg-gradient-to-br from-white via-white to-[#E6F6F9] cursor-pointer group shadow-sm transition-all duration-300 hover:border-[#00A7D0]/50 hover:shadow-[0_10px_25px_rgba(0,167,208,0.12)] flex flex-col active:scale-[0.98]"
         >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl bg-gray-50/50">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-t-2xl bg-gray-50/50">
                 {imgUrl ? (
                     <img 
                         src={imgUrl}

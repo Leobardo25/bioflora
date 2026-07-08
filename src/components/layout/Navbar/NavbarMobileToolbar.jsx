@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, SlidersHorizontal, AlignJustify, LayoutGrid } from 'lucide-react';
+import { Search, X, SlidersHorizontal, Square, LayoutGrid } from 'lucide-react';
 
 export default function NavbarMobileToolbar({
     shopSearchQuery,
@@ -63,7 +63,7 @@ export default function NavbarMobileToolbar({
                  className="h-11 w-11 flex-shrink-0 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0] transition-all duration-300"
                  aria-label="Cambiar vista"
              >
-                 {isCompactView ? <AlignJustify className="w-4 h-4 text-[#69358C]" /> : <LayoutGrid className="w-4 h-4 text-[#69358C]" />}
+                 {isCompactView ? <Square className="w-4 h-4 text-[#69358C]" /> : <LayoutGrid className="w-4 h-4 text-[#69358C]" />}
              </button>
         </div>
     );
