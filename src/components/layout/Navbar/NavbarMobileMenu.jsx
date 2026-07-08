@@ -46,7 +46,7 @@ export default function NavbarMobileMenu({ menuOpen, setMenuOpen, scrollToTop, g
             transition={{ duration: 0.3 }}
         >
             <div 
-                className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
+                className="absolute inset-0 bg-black/55" 
                 onClick={() => setMenuOpen(false)}
             />
             
@@ -55,7 +55,7 @@ export default function NavbarMobileMenu({ menuOpen, setMenuOpen, scrollToTop, g
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ type: 'spring', damping: 26, stiffness: 280 }}
             >
                 <div className="h-full flex flex-col px-5 overflow-y-auto pb-8">
                 <div className="flex items-center justify-between pt-5 pb-8 border-b border-gray-100">

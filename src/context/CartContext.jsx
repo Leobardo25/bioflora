@@ -144,7 +144,7 @@ export function CartProvider({ children }) {
                             handleSetIsCartDrawerOpen(true);
                             setCustomNotification(null);
                         }}
-                        className="fixed top-0 left-1/2 z-[3000] w-[90%] max-w-[360px] bg-white/95 backdrop-blur-md border border-[#1EBE5D]/30 rounded-2xl shadow-[0_15px_35px_rgba(0,167,208,0.18)] p-3 cursor-pointer hover:border-[#1EBE5D]/50 transition-all duration-300 flex items-center gap-3 select-none active:scale-[0.98]"
+                        className="fixed top-0 left-1/2 z-[3000] w-[90%] max-w-[360px] bg-white border border-[#1EBE5D]/30 rounded-2xl shadow-[0_15px_35px_rgba(0,167,208,0.18)] p-3 cursor-pointer hover:border-[#1EBE5D]/50 transition-all duration-300 flex items-center gap-3 select-none active:scale-[0.98]"
                     >
                         {/* Imagen del producto mini */}
                         <div className="w-11 h-11 rounded-xl border border-gray-100 overflow-hidden flex-shrink-0 bg-gray-50">

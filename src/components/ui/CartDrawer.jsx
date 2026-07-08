@@ -236,9 +236,9 @@ export default function CartDrawer() {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
                         >
-                            {/* Backdrop overlay */}
+                            {/* Backdrop overlay (sin blur para evitar lag al abrir) */}
                             <div 
-                                className="absolute inset-0 bg-black/50 backdrop-blur-[4px]" 
+                                className="absolute inset-0 bg-black/55" 
                                 onClick={() => setIsCartDrawerOpen(false)}
                             />
                             
@@ -278,6 +278,7 @@ export default function CartDrawer() {
                     styles={{ 
                         header: { display: 'none' }, 
                         body: { padding: '0', backgroundColor: '#FFFFFF', display: 'flex', flexDirection: 'column', height: '100dvh' },
+                        content: { borderRadius: '24px 0 0 24px', overflow: 'hidden' }
                     }}
                 >
                     {renderCartContent()}

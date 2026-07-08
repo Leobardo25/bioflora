@@ -38,9 +38,9 @@ export default function NavbarFilterOverlay({ onToggleMobileFilters, mobileFilte
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
         >
-            {/* Backdrop traslúcido para tapar el fondo */}
+            {/* Backdrop traslúcido para tapar el fondo (sin blur para evitar lag al abrir) */}
             <div 
-                className="absolute inset-0 bg-black/50 backdrop-blur-[4px]" 
+                className="absolute inset-0 bg-black/55" 
                 onClick={onToggleMobileFilters}
             />
             
@@ -52,7 +52,7 @@ export default function NavbarFilterOverlay({ onToggleMobileFilters, mobileFilte
                 dragConstraints={{ top: 0, bottom: 0 }}
                 dragElastic={{ top: 0.05, bottom: 0.55 }}
                 onDragEnd={handleDragEnd}
-                className="relative w-full max-w-[480px] md:w-[80vw] md:max-w-[340px] h-auto md:h-full bg-white shadow-2xl flex flex-col rounded-t-[28px] md:rounded-t-none border-t md:border-t-0 md:border-l border-gray-100 max-h-[85vh] md:max-h-none mt-auto md:mt-0 z-10 overflow-hidden"
+                className="relative w-full max-w-[480px] md:w-[80vw] md:max-w-[340px] h-auto md:h-full bg-white shadow-2xl flex flex-col rounded-t-[28px] md:rounded-t-none md:rounded-l-[24px] border-t md:border-t-0 md:border-l border-gray-100 max-h-[85vh] md:max-h-none mt-auto md:mt-0 z-10 overflow-hidden"
                 variants={sheetVariants}
                 initial="hidden"
                 animate="visible"
