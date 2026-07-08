@@ -15,7 +15,7 @@ export default function NavbarMobileToolbar({
              {/* 1. Botón de Filtros (Redondo, sin texto, con punto indicador) */}
              <button
                  onClick={onToggleMobileFilters}
-                 className={`relative h-11 w-11 flex-shrink-0 border flex items-center justify-center rounded-full transition-all duration-300 ${
+                 className={`relative h-11 w-11 flex-shrink-0 border flex items-center justify-center rounded-2xl transition-all duration-300 ${
                      isFilterMenuOpen 
                          ? 'bg-[#00A7D0] text-white border-[#00A7D0] shadow-md' 
                          : 'bg-white border-gray-200 text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0]'
@@ -40,7 +40,7 @@ export default function NavbarMobileToolbar({
              </button>
 
              {/* 2. Barra de Búsqueda Centrada (Redonda) */}
-             <div className="flex-1 bg-white border border-gray-200 rounded-full h-11 flex items-center px-4 focus-within:border-[#00A7D0] shadow-sm">
+             <div className="flex-1 bg-white border border-gray-200 rounded-2xl h-11 flex items-center px-4 focus-within:border-[#00A7D0] shadow-sm">
                  <Search className="w-4 h-4 text-gray-400 mr-2.5 flex-shrink-0" />
                  <input 
                      type="text"
@@ -60,7 +60,7 @@ export default function NavbarMobileToolbar({
              {/* 3. Botón de Cambiar Vista (Redondo) */}
              <button
                  onClick={() => setIsCompactView(!isCompactView)}
-                 className="h-11 w-11 flex-shrink-0 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0] transition-all duration-300"
+                 className="h-11 w-11 flex-shrink-0 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0] transition-all duration-300"
                  aria-label="Cambiar vista"
              >
                  {isCompactView ? <Square className="w-4 h-4 text-[#69358C]" /> : <LayoutGrid className="w-4 h-4 text-[#69358C]" />}

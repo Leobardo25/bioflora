@@ -177,7 +177,7 @@ export default function Shop() {
                                     key={cat}
                                     type="button"
                                     onClick={() => setFilterCategory(cat)}
-                                    className={`px-4 py-2 text-xs md:text-sm rounded-full font-medium transition-all duration-200 border cursor-pointer select-none ${
+                                    className={`px-4 py-2 text-xs md:text-sm rounded-xl font-medium transition-all duration-200 border cursor-pointer select-none ${
                                         isSelected 
                                             ? 'bg-bioflora-fucsia text-white border-bioflora-fucsia shadow-md shadow-bioflora-fucsia/10 scale-[1.03]' 
                                             : 'bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100/70 hover:border-gray-300'
@@ -207,7 +207,7 @@ export default function Shop() {
                                             setFilterFamilies([...filterFamilies, f.value]);
                                         }
                                     }}
-                                    className={`px-4 py-2 text-xs md:text-sm rounded-full font-medium transition-all duration-200 border cursor-pointer select-none ${
+                                    className={`px-4 py-2 text-xs md:text-sm rounded-xl font-medium transition-all duration-200 border cursor-pointer select-none ${
                                         isSelected 
                                             ? 'bg-bioflora-fucsia text-white border-bioflora-fucsia shadow-md shadow-bioflora-fucsia/10 scale-[1.03]' 
                                             : 'bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100/70 hover:border-gray-300'

@@ -24,7 +24,7 @@ export default function NavbarDesktopActions({
         <div className={`flex items-center gap-4 ml-6 border-l pl-6 h-full py-4 transition-colors duration-300 ${scrolled ? 'border-gray-200' : 'border-valex-gris/10'}`}>
             {isShopPage ? (
                 <div className="flex items-center gap-2">
-                    <div className={`w-56 xl:w-72 border rounded-full h-9 flex items-center px-3 transition-colors ${
+                    <div className={`w-56 xl:w-72 border rounded-xl h-9 flex items-center px-3 transition-colors ${
                         scrolled 
                             ? 'bg-gray-50 border-gray-200 focus-within:border-[#00A7D0]' 
                             : 'bg-bioflora-tarjeta border-bioflora-verde/20 focus-within:border-bioflora-verde'
@@ -48,7 +48,7 @@ export default function NavbarDesktopActions({
                     </div>
                     <button
                         onClick={onToggleMobileFilters}
-                        className={`h-9 px-4 border text-[10px] font-bold uppercase tracking-widest font-sans flex items-center justify-center rounded-full transition-all duration-300 ${
+                        className={`h-9 px-4 border text-[10px] font-bold uppercase tracking-widest font-sans flex items-center justify-center rounded-xl transition-all duration-300 ${
                             isFilterMenuOpen 
                                 ? 'bg-[#00A7D0] text-white border-[#00A7D0]' 
                                 : scrolled
