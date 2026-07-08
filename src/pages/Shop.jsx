@@ -12,6 +12,7 @@ import { useProductDrawer } from '../context/ProductDrawerContext';
 import { useSiteConfig } from '../context/SiteConfigContext';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import { CareGuideCompact } from '../components/ui/CareGuideBadges';
 
 const { Sider, Content } = Layout;
 const { Title, Text } = Typography;
@@ -19,12 +20,6 @@ const { useBreakpoint } = Grid;
 
 // --- DICCIONARIO DE FILTROS ---
 const CATEGORIES = ['Todos', 'Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios'];
-const FAMILIES = [
-    { label: 'Orchidaceae (Orquídeas)', value: 'Orchidaceae' },
-    { label: 'Orchidaceae (Flor Nacional)', value: 'Orchidaceae (Flor Nacional)' },
-    { label: 'Araceae (Monsteras/Anturios)', value: 'Araceae' },
-    { label: 'Insumos Profesionales', value: 'Insumos Profesionales' },
-];
 
 const formatPrice = (price, isCRC) => {
     return new Intl.NumberFormat(isCRC ? 'es-CR' : 'en-US', {
@@ -46,6 +41,31 @@ export default function Shop() {
     const { whatsapp } = useSiteConfig();
     const waNumber = whatsapp;
     const [showFloatingBtn, setShowFloatingBtn] = useState(false);
+
+    const [dbFamilies, setDbFamilies] = useState([
+        { label: 'Orchidaceae', value: 'Orchidaceae' },
+        { label: 'Araceae', value: 'Araceae' },
+        { label: 'Insumos Profesionales', value: 'Insumos Profesionales' }
+    ]);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'families'), (snapshot) => {
+            if (!snapshot.empty) {
+                const list = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    return {
+                        label: data.name,
+                        value: data.name
+                    };
+                });
+                list.sort((a, b) => a.label.localeCompare(b.label));
+                setDbFamilies(list);
+            }
+        }, (err) => {
+            console.error("Error al cargar familias dinámicas en tienda:", err);
+        });
+        return () => unsubscribe();
+    }, []);
 
     // --- ESTADO DE FILTROS ---
     const [filterCategory, setFilterCategory] = useState(() => sessionStorage.getItem('valex_category') || 'Todos');
@@ -124,7 +144,7 @@ export default function Shop() {
         if (isColones && filterPrice[1] <= 300) {
             setFilterPrice([0, maxBoundary]);
         }
-    }, [isColones, maxBoundary]);
+    }, [isColones, maxBoundary, filterPrice, setFilterPrice]);
 
     // --- ACCIONES ---
     const handleAddToCart = (product) => {
@@ -155,7 +175,7 @@ export default function Shop() {
                     <h3 className="text-gray-900 font-serif tracking-widest text-lg border-b border-gray-200 pb-2">FAMILIA BOTÁNICA</h3>
                     <Checkbox.Group 
                         className="grid grid-cols-2 gap-3 w-full"
-                        options={FAMILIES.map(f => ({ label: <span className="text-gray-600">{f.label}</span>, value: f.value }))}
+                        options={dbFamilies.map(f => ({ label: <span className="text-gray-600">{f.label}</span>, value: f.value }))}
                         value={filterFamilies}
                         onChange={setFilterFamilies}
                     />
@@ -415,8 +435,9 @@ const DesktopCard = ({ product, useBg, onAddToCart }) => {
                 <h3 className="font-sans font-semibold text-gray-900 mt-0 mb-0.5 group-hover:text-[#00A7D0] transition-colors text-xs lg:text-sm line-clamp-2 min-h-[32px] leading-tight">
                     {product.name}
                 </h3>
-                <span className="text-[10px] text-gray-400/80 font-sans tracking-wide mb-3 block">{product.family || '—'}</span>
-                
+                <span className="text-[10px] text-gray-400/80 font-sans tracking-wide mb-2 block">{product.family || '—'}</span>
+                <div className="mb-3"><CareGuideCompact careGuide={product.careGuide} size={17} /></div>
+
                 <div className="mt-auto flex items-center justify-between pt-3 border-t border-gray-100/65">
                     <span className="font-sans font-bold text-[#69358C] text-sm lg:text-base tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
                     <div className="flex items-center gap-2">
@@ -483,7 +504,8 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
                         {product.description}
                     </p>
                 )}
-                
+                <CareGuideCompact careGuide={product.careGuide} size={18} />
+
                 <div className="flex items-center justify-between pt-3.5 border-t border-gray-100 mt-2">
                     <div className="flex flex-col">
                         <span className="text-[8px] text-gray-400 font-sans tracking-wider uppercase">Precio</span>
@@ -492,16 +514,16 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
                     <div className="flex items-center gap-2">
                         <button 
                             onClick={(e) => { e.stopPropagation(); openProductDrawer(product); }}
-                            className="bg-transparent border border-[#00A7D0] text-[#00A7D0] hover:bg-[#00A7D0] hover:text-white rounded-full px-4 h-8.5 flex items-center justify-center text-[10px] font-sans font-bold tracking-[0.15em] uppercase transition-all duration-300"
+                            className="bg-transparent border-2 border-[#00A7D0] text-[#00A7D0] hover:bg-[#00A7D0] hover:text-white rounded-full px-5 h-10 flex items-center justify-center text-[11px] font-sans font-extrabold tracking-[0.15em] uppercase transition-all duration-300 active:scale-95"
                         >VER</button>
                         <button 
                             onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
                             disabled={isOutOfStock}
-                            className="flex items-center justify-center bg-[#69358C] text-white h-8.5 px-4 rounded-full hover:bg-[#00A7D0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                            className="flex items-center justify-center bg-[#69358C] text-white h-10 px-5 rounded-full hover:bg-[#00A7D0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md active:scale-95"
                             title="Añadir al carrito"
                         >
-                            <ShoppingCart className="w-[14px] h-[14px] mr-1.5" />
-                            <span className="text-[10px] uppercase font-sans tracking-[0.15em] font-extrabold mt-[0.5px]">AÑADIR</span>
+                            <ShoppingCart className="w-[15px] h-[15px] mr-1.5" />
+                            <span className="text-[11px] uppercase font-sans tracking-[0.15em] font-extrabold mt-[0.5px]">AÑADIR</span>
                         </button>
                     </div>
                 </div>
@@ -546,8 +568,9 @@ const MobileCompactCard = ({ product, useBg, onAddToCart }) => {
                     <h3 className="font-sans font-semibold text-gray-900 text-xs leading-snug line-clamp-2 min-h-[32px] tracking-wide">
                         {product.name}
                     </h3>
+                    <CareGuideCompact careGuide={product.careGuide} size={15} />
                 </div>
-                
+
                 <div className="pt-2 border-t border-gray-100/65 flex items-center justify-between mt-auto">
                     <span className="font-sans font-bold text-[#69358C] text-xs leading-none">{formatPrice(product.price, product.currency === 'CRC')}</span>
                     <button 
