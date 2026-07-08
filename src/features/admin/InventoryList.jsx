@@ -1,9 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getProducts, deleteProduct, updateProductField } from '../../services/productService';
 import { toast } from 'react-toastify';
-import { Plus, Search, Star, Edit2, Trash2, Package, LayoutGrid, List } from 'lucide-react';
+import { Plus, Search, Star, Edit2, Trash2, Package, LayoutGrid, List, Sliders } from 'lucide-react';
+import { db } from '../../firebase/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { getProductImage, formatPrice } from './inventoryUtils';
 import ProductEditSidebar from './ProductEditSidebar';
+import MetadataSidebar from './MetadataSidebar';
 import ProductCardMobile from './ProductCardMobile';
 import InventoryStats from './InventoryStats';
 import InventoryFilters from './InventoryFilters';
@@ -11,7 +14,6 @@ import StatusDropdown from './StatusDropdown';
 import QuantityControl from './QuantityControl';
 import DeleteConfirmDialog from './DeleteConfirmDialog';
 
-const CATEGORIES = ['Todos', 'Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios'];
 
 export default function InventoryList() {
     const [products, setProducts] = useState([]);
@@ -19,9 +21,38 @@ export default function InventoryList() {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeFilter, setActiveFilter] = useState(null);
     const [categoryFilter, setCategoryFilter] = useState('Todos');
+    const [familyFilter, setFamilyFilter] = useState('Todas');
+    const [dbFamilies, setDbFamilies] = useState(['Todas']);
     const [sidebarProduct, setSidebarProduct] = useState(null);
+    const [isMetadataSidebarOpen, setIsMetadataSidebarOpen] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState(null);
     const [viewMode, setViewMode] = useState(() => localStorage.getItem('adminInventoryView') || 'grid');
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'families'), (snapshot) => {
+            const list = snapshot.docs.map(doc => doc.data().name).filter(Boolean);
+            list.sort();
+            setDbFamilies(['Todas', ...list]);
+        }, (err) => {
+            console.error("Error al cargar familias en inventario admin:", err);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    const [dbCategories, setDbCategories] = useState(['Todos', 'Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios']);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'categories'), (snapshot) => {
+            if (!snapshot.empty) {
+                const list = snapshot.docs.map(doc => doc.data().name).filter(Boolean);
+                list.sort();
+                setDbCategories(['Todos', ...list]);
+            }
+        }, (err) => {
+            console.error("Error al cargar categorías dinámicas en inventario admin:", err);
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         localStorage.setItem('adminInventoryView', viewMode);
@@ -79,6 +110,12 @@ export default function InventoryList() {
             if (cat !== catMatch) return false;
         }
 
+        if (familyFilter !== 'Todas') {
+            const fam = (p.family || '').toLowerCase();
+            const famMatch = familyFilter.toLowerCase();
+            if (fam !== famMatch) return false;
+        }
+
         const q = searchTerm.toLowerCase();
         return !q || p.name?.toLowerCase().includes(q) || (p.category || '').toLowerCase().includes(q) || (p.family || '').toLowerCase().includes(q);
     });
@@ -90,13 +127,23 @@ export default function InventoryList() {
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100 font-serif">Inventario Botánico</h1>
                     <p className="text-gray-500 mt-1 text-sm">Gestiona plantas, stock y estados de Bioflora.</p>
                 </div>
-                <button
-                    onClick={() => setSidebarProduct('new')}
-                    className="flex items-center gap-2 bg-bioflora-verde text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/80 transition-colors self-start sm:self-auto shadow-lg shadow-bioflora-verde/15"
-                >
-                    <Plus className="w-4 h-4" />
-                    Nueva Planta / Insumo
-                </button>
+                <div className="flex items-center gap-2.5 self-start sm:self-auto">
+                    <button
+                        onClick={() => setIsMetadataSidebarOpen(true)}
+                        className="flex items-center gap-2 bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-200 px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm cursor-pointer"
+                        title="Gestionar Categorías y Familias"
+                    >
+                        <Sliders className="w-4 h-4" />
+                        Metadatos
+                    </button>
+                    <button
+                        onClick={() => setSidebarProduct('new')}
+                        className="flex items-center gap-2 bg-bioflora-verde text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/80 transition-colors shadow-lg shadow-bioflora-verde/15 cursor-pointer"
+                    >
+                        <Plus className="w-4 h-4" />
+                        Nueva Planta / Insumo
+                    </button>
+                </div>
             </header>
 
             <InventoryStats products={products} activeFilter={activeFilter} onFilterChange={handleFilterChange} />
@@ -132,21 +179,36 @@ export default function InventoryList() {
                 </div>
             </div>
 
-            {/* Píldoras de Categorías Botánicas */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-                {CATEGORIES.map(category => (
-                    <button
-                        key={category}
-                        onClick={() => setCategoryFilter(category)}
-                        className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
-                            categoryFilter === category 
-                                ? 'bg-bioflora-verde border-bioflora-verde text-white shadow-sm' 
-                                : 'bg-white dark:bg-[#0D1C13] border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-bioflora-verde/50 hover:text-bioflora-verde dark:hover:text-bioflora-verde font-sans'
-                        }`}
+            {/* Filtros de Categorías y Familias */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div className="flex flex-wrap items-center gap-2">
+                    {dbCategories.map(category => (
+                        <button
+                            key={category}
+                            onClick={() => setCategoryFilter(category)}
+                            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
+                                categoryFilter === category 
+                                    ? 'bg-bioflora-verde border-bioflora-verde text-white shadow-sm' 
+                                    : 'bg-white dark:bg-[#0D1C13] border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-bioflora-verde/50 hover:text-bioflora-verde dark:hover:text-bioflora-verde font-sans'
+                            }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+                
+                <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Familia:</span>
+                    <select
+                        value={familyFilter}
+                        onChange={e => setFamilyFilter(e.target.value)}
+                        className="bg-white dark:bg-[#070F0A] border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-bioflora-verde"
                     >
-                        {category}
-                    </button>
-                ))}
+                        {dbFamilies.map(fam => (
+                            <option key={fam} value={fam}>{fam}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
             <InventoryFilters activeFilter={activeFilter} onFilterChange={handleFilterChange} />
@@ -314,6 +376,11 @@ export default function InventoryList() {
                     onSaved={handleSaved}
                 />
             )}
+
+            <MetadataSidebar
+                isOpen={isMetadataSidebarOpen}
+                onClose={() => setIsMetadataSidebarOpen(false)}
+            />
         </div>
     );
 }

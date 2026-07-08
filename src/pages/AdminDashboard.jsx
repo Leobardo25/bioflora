@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet, NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Package, ShoppingBag, Settings, Menu, X, LogOut, Users, Sun, Moon, ArrowLeftRight } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingBag, Settings, Menu, X, LogOut, Users, Sun, Moon, ArrowLeftRight, Layers, Sliders } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { AdminThemeProvider, useAdminTheme } from '../context/AdminThemeContext';
 import AdminAIChat from '../features/admin/AdminAIChat';
