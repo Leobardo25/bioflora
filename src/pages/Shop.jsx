@@ -362,23 +362,7 @@ export default function Shop() {
                             </section>
                         </div>
 
-                    <AnimatePresence>
-                        {showFloatingBtn && !drawerVisible && !menuOpen && waNumber && (
-                            <motion.a
-                                href={`https://wa.me/${waNumber}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="fixed bottom-6 right-4 z-30 flex items-center justify-center w-14 h-14 bg-bioflora-verde rounded-full hover:scale-110 transition-transform duration-500 ease-out shadow-xl animate-glow-pulse"
-                                initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                                aria-label="Contactar por WhatsApp"
-                            >
-                                <FaWhatsapp className="w-7 h-7 text-white" />
-                            </motion.a>
-                        )}
-                    </AnimatePresence>
+
 
                 </main>
             </div>
