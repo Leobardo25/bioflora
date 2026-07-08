@@ -19,15 +19,10 @@ export default function Moodboard() {
         visionText = 'Bioflora, será un empresa agro-turística líder en Costa Rica que promoverá mediante la bio-alfabetización y la recreación sana, contribuir a la conservación del medio ambiente, mitigar el cambio climático, preservar y reproducir especies de plantas tropicales en riesgo de extinción, especialmente orquídeas. Creando actividades productivas que fomenten un trabajo justo y solidarias el cual contribuya al crecimiento personal de nuestros colaboradores y el retorno del capital a sus accionistas.'
     } = useSiteConfig();
 
-    // Motores de Scroll estáticos (uno para desktop sticky y otro para móvil en flujo natural)
-    const { scrollYProgress: desktopScroll } = useScroll({
+    // Motor Sticky Scroll: Mide el progreso dentro de la fase bloqueada de la sección
+    const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start start", "end end"]
-    })
-
-    const { scrollYProgress: mobileScroll } = useScroll({
-        target: sectionRef,
-        offset: ["start 90%", "end 10%"]
     })
 
     // Preload frames into Image objects (no DOM rendering)
@@ -110,88 +105,67 @@ export default function Moodboard() {
             ctx.globalAlpha = 1
         }
 
-        let unsubscribe
+        const unsubscribe = scrollYProgress.on('change', paint)
 
-        const checkMobileAndAnimate = () => {
-            const isMobile = window.innerWidth < 768
-            
-            // Limpiar suscripción previa si la hay
-            if (unsubscribe) {
-                unsubscribe()
-                unsubscribe = null
-            }
-
-            if (isMobile) {
-                // Sincronización al scroll en móviles (rango de visualización completo de la sección)
-                unsubscribe = mobileScroll.on('change', paint)
-                paint(mobileScroll.get())
-            } else {
-                // Sincronización con scroll en desktop (fase sticky)
-                unsubscribe = desktopScroll.on('change', paint)
-                paint(desktopScroll.get())
-            }
-        }
-
-        checkMobileAndAnimate()
-        setCanvasPainted(true)
-
-        // Registrar evento de resize para cambiar el modo de animación si el usuario cambia el tamaño de la pantalla
-        window.addEventListener('resize', checkMobileAndAnimate)
+        // Forzar un primer pintado inmediato (sin esperar a que el usuario haga scroll)
+        requestAnimationFrame(() => {
+            paint(scrollYProgress.get())
+            setCanvasPainted(true)
+        })
 
         return () => {
-            if (unsubscribe) unsubscribe()
+            unsubscribe()
             window.removeEventListener('resize', resizeCanvas)
-            window.removeEventListener('resize', checkMobileAndAnimate)
         }
-    }, [imagesReady, desktopScroll, mobileScroll])
+    }, [imagesReady, scrollYProgress])
 
     return (
         <section
             ref={sectionRef}
             id="nosotros"
-            className="relative bg-[#F4F9FA] h-auto md:h-[300vh]"
+            className="relative bg-[#F4F9FA] h-[180vh] md:h-[300vh]"
         >
-            {/* Contenedor Sticky: Se detiene justo debajo del navbar y ocupa el resto de la pantalla en desktop */}
-            <div className="relative md:sticky md:top-[80px] md:h-[calc(100vh-80px)] w-full flex flex-col md:overflow-hidden pt-6 md:pt-8 lg:pt-10">
+            {/* Contenedor Sticky: Se detiene justo debajo del navbar y ocupa el resto de la pantalla en todas las resoluciones */}
+            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-hidden pt-2 sm:pt-4 md:pt-8 lg:pt-10">
                 {/* Fondo limpio */}
                 <div className="absolute inset-0 bg-[#F4F9FA] pointer-events-none z-0" />
 
                 {/* Content on top */}
-                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-[4vh] lg:pt-0 pb-8 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
+                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 md:pt-[4vh] lg:pt-0 pb-6 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
                     
                     {/* Header */}
-                    <div className="text-center mb-6 md:mb-10 shrink-0">
-                        <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-2 md:mb-4">
+                    <div className="text-center mb-3 sm:mb-6 md:mb-10 shrink-0">
+                        <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-1 md:mb-4">
                             Nuestra Empresa
                         </span>
-                        <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-[1.05] tracking-tight">
+                        <h2 className="font-serif font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-[1.05] tracking-tight">
                             Bioflora{' '}
                             <span className="text-[#00A7D0] italic font-medium">Garden Center</span>
                         </h2>
                     </div>
 
                     {/* Contenedor Flex en Móvil / Grid en PC */}
-                    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-8 lg:flex-1 items-stretch">
+                    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 lg:flex-1 items-stretch">
                         
                         {/* Columna Izquierda: Misión y Visión */}
-                        <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col gap-4 lg:gap-6 shrink-0">
+                        <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col gap-2 sm:gap-4 lg:gap-6 shrink-0">
                             
                             {/* Misión Card */}
-                            <div className="bg-white/85 border border-gray-200/60 p-5 md:p-6 lg:p-8 rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300">
-                                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
-                                    <div className="w-1 h-4 md:h-6 bg-valex-bronce rounded-full" />
-                                    <h3 className="font-serif font-bold text-base md:text-xl text-gray-900 tracking-wide">{missionTitle}</h3>
+                            <div className="bg-white/85 border border-gray-200/60 p-3.5 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300">
+                                <div className="flex items-center gap-2 md:gap-3 mb-1 sm:mb-4">
+                                    <div className="w-1 h-3 sm:h-6 bg-valex-bronce rounded-full" />
+                                    <h3 className="font-serif font-bold text-sm sm:text-xl text-gray-900 tracking-wide">{missionTitle}</h3>
                                 </div>
-                                <p className="text-gray-600 text-xs sm:text-sm md:text-base font-light leading-relaxed">
+                                <p className="text-gray-600 text-[11px] sm:text-sm md:text-base font-light leading-relaxed">
                                     {missionText}
                                 </p>
                             </div>
 
                             {/* Visión Card */}
-                            <div className="bg-white/85 border border-gray-200/60 p-5 md:p-6 lg:p-8 rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300 flex-1">
-                                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
-                                    <div className="w-1 h-4 md:h-6 bg-valex-bronce rounded-full" />
-                                    <h3 className="font-serif font-bold text-base md:text-xl text-gray-900 tracking-wide">{visionTitle}</h3>
+                            <div className="bg-white/85 border border-gray-200/60 p-3.5 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300 flex-1">
+                                <div className="flex items-center gap-2 md:gap-3 mb-1 sm:mb-4">
+                                    <div className="w-1 h-3 sm:h-6 bg-valex-bronce rounded-full" />
+                                    <h3 className="font-serif font-bold text-sm sm:text-xl text-gray-900 tracking-wide">{visionTitle}</h3>
                                 </div>
                                 <p className="text-gray-600 text-[11px] sm:text-sm md:text-base font-light leading-relaxed">
                                     {visionText}
@@ -200,7 +174,7 @@ export default function Moodboard() {
                         </div>
 
                         {/* Columna Derecha: Animation Window */}
-                        <div className="order-1 lg:order-2 lg:col-span-6 bg-white rounded-3xl overflow-hidden relative flex items-center justify-center min-h-[250px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[450px] shrink-0 shadow-xl border border-gray-200/40">
+                        <div className="order-1 lg:order-2 lg:col-span-6 bg-white rounded-2xl sm:rounded-3xl overflow-hidden relative flex items-center justify-center h-[180px] sm:h-[240px] lg:h-auto shrink-0 shadow-lg border border-gray-200/40">
                             
                             {/* Fallback permanente: siempre visible debajo del canvas como red de seguridad */}
                             <img 
