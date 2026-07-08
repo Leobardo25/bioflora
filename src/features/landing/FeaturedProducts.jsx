@@ -15,9 +15,11 @@ export default function FeaturedProducts() {
     const [direction, setDirection] = useState(1)
 
     useEffect(() => {
+        let active = true;
         const fetchFeatured = async () => {
             try {
                 const allProducts = await getProducts();
+                if (!active) return;
                 const featured = allProducts.filter(p => 
                     p.isFeatured && 
                     p.stock !== 'Bóveda (Retirado)' &&
@@ -27,10 +29,11 @@ export default function FeaturedProducts() {
             } catch (error) {
                 console.error("Error cargando productos destacados:", error);
             } finally {
-                setLoading(false);
+                if (active) setLoading(false);
             }
         };
         fetchFeatured();
+        return () => { active = false; };
     }, [])
 
     const handleNext = useCallback(() => {
@@ -191,7 +194,7 @@ function ProductCard({ product }) {
     return (
         <div className="w-full h-full bg-gradient-to-br from-white via-white to-[#E6F6F9] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-[#00A7D0]/5 border border-[#00A7D0]/20 flex flex-col md:flex-row group hover:shadow-[#00A7D0]/16 hover:border-[#00A7D0]/50 transition-all duration-500 cursor-pointer">
             {/* Imagen — object-cover en todas las resoluciones para cubrir sin barras */}
-            <div className="h-[55%] sm:h-[55%] md:h-full md:w-[50%] w-full bg-[#0a0a0a] overflow-hidden relative border-b md:border-b-0 md:border-r border-valex-gris/5 shrink-0">
+            <div className="h-[60%] sm:h-[60%] md:h-full md:w-[55%] w-full bg-valex-hueso overflow-hidden relative shrink-0">
                 <img
                     src={displayImg}
                     alt={product.name}
@@ -201,7 +204,7 @@ function ProductCard({ product }) {
                 />
             </div>
             {/* Info — ajustada para que quepa todo el texto */}
-            <div className="flex-1 md:h-full md:w-[50%] w-full flex flex-col bg-white relative">
+            <div className="flex-1 md:h-full md:w-[45%] w-full flex flex-col bg-white relative">
                 <div className="p-4 sm:p-6 md:p-8 xl:p-10 flex flex-col h-full"> 
                     <div className="flex-1 flex flex-col justify-center min-w-0">
                         <span className="inline-block text-valex-bronce font-sans text-[10px] md:text-xs tracking-[0.25em] uppercase font-extrabold mb-1 md:mb-3">

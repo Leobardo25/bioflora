@@ -20,9 +20,9 @@ export default function Hero() {
                 >
                     <source src="/videos/hero_background_optimized.mp4" type="video/mp4" />
                 </video>
-                {/* Capa de desenfoque y tinte sutil para legibilidad sin oscurecer de más */}
+                {/* Capa de tinte sutil para legibilidad sin oscurecer de más (sin backdrop-blur para evitar drops de FPS) */}
                 <div className="absolute inset-0 w-full h-full bg-[#00A7D0]/10 mix-blend-overlay pointer-events-none" />
-                <div className="absolute inset-0 w-full h-full backdrop-blur-[2px] transform-gpu" />
+                <div className="absolute inset-0 w-full h-full bg-valex-negro/15 pointer-events-none" />
             </div>
 
             {/* Main Content */}
