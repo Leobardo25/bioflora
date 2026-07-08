@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { FaInstagram, FaTiktok, FaFacebookF, FaWhatsapp } from 'react-icons/fa'
+import { Home } from 'lucide-react'
 import { HERO_CONTENT } from '../../constants'
 import { useSiteConfig } from '../../context/SiteConfigContext'
 import { heroReveal, fadeInUp, VALEX_TRANSITION, VALEX_SLOW } from '../../constants/motion'
@@ -115,7 +116,7 @@ function HeroTitle() {
                     </span>
                 ))}
                 {accent && (
-                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#00A7D0] animate-glow break-words whitespace-normal mt-[-0.2em] sm:mt-0 text-left">
+                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#1EBE5D] animate-glow break-words whitespace-normal mt-[-0.2em] sm:mt-0 text-left">
                         {accent}
                     </span>
                 )}
@@ -141,6 +142,7 @@ function HeroCTA() {
             className="flex flex-row flex-wrap gap-3 pt-2 justify-start w-full sm:w-auto"
         >
             <Link to="/tienda" className="inline-flex items-center justify-center gap-1.5 font-sans font-semibold text-xs sm:text-sm px-5 py-2.5 sm:px-10 sm:py-4 rounded-lg bg-[#00A7D0]/60 border border-[#00A7D0]/70 text-white hover:bg-[#00A7D0]/75 hover:border-[#00A7D0] shadow-lg hover:shadow-[#00A7D0]/20 transition-all duration-300 tracking-wide w-auto">
+                <Home className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 Tienda
             </Link>
             {whatsapp && (
