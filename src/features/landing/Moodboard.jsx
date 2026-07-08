@@ -126,15 +126,15 @@ export default function Moodboard() {
             className="relative bg-[#F4F9FA] h-[180vh] md:h-[300vh]"
         >
             {/* Contenedor Sticky: Se detiene justo debajo del navbar y ocupa el resto de la pantalla en todas las resoluciones */}
-            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-hidden pt-1 sm:pt-4 md:pt-8 lg:pt-10">
+            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-hidden pt-1 sm:pt-4 md:pt-8 lg:pt-4">
                 {/* Fondo limpio */}
                 <div className="absolute inset-0 bg-[#F4F9FA] pointer-events-none z-0" />
 
                 {/* Content on top */}
-                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 md:pt-[4vh] lg:pt-0 pb-6 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
+                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 md:pt-[4vh] lg:pt-0 pb-4 lg:pb-6 min-h-0 flex-1 flex flex-col lg:justify-center">
                     
                     {/* Header */}
-                    <div className="text-center mb-6 sm:mb-10 shrink-0">
+                    <div className="text-center mb-6 lg:mb-6 shrink-0">
                         <span className="inline-block text-bioflora-fucsia font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
                             Nuestra Empresa
                         </span>
@@ -145,13 +145,13 @@ export default function Moodboard() {
                     </div>
 
                     {/* Contenedor Flex en Móvil / Grid en PC */}
-                    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 lg:flex-1 items-stretch">
+                    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-6 lg:flex-1 items-stretch">
                         
                         {/* Columna Izquierda: Misión y Visión */}
                         <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col gap-2 sm:gap-4 lg:gap-6 shrink-0">
                             
                             {/* Misión Card */}
-                            <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300">
+                            <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-5 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300">
                                 <div className="flex items-center gap-2 md:gap-3 mb-1.5 sm:mb-4">
                                     <div className="w-1 h-4 sm:h-6 bg-valex-bronce rounded-full" />
                                     <h3 className="font-serif font-bold text-base sm:text-xl text-gray-900 tracking-wide">{missionTitle}</h3>
@@ -162,7 +162,7 @@ export default function Moodboard() {
                             </div>
 
                             {/* Visión Card */}
-                            <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300 flex-1">
+                            <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-5 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300 flex-1">
                                 <div className="flex items-center gap-2 md:gap-3 mb-1.5 sm:mb-4">
                                     <div className="w-1 h-4 sm:h-6 bg-valex-bronce rounded-full" />
                                     <h3 className="font-serif font-bold text-base sm:text-xl text-gray-900 tracking-wide">{visionTitle}</h3>
