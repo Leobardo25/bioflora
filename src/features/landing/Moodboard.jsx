@@ -126,16 +126,16 @@ export default function Moodboard() {
             className="relative bg-[#F4F9FA] h-[180vh] md:h-[300vh]"
         >
             {/* Contenedor Sticky: Se detiene justo debajo del navbar y ocupa el resto de la pantalla en todas las resoluciones */}
-            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-hidden pt-2 sm:pt-4 md:pt-8 lg:pt-10">
+            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-hidden pt-1 sm:pt-4 md:pt-8 lg:pt-10">
                 {/* Fondo limpio */}
                 <div className="absolute inset-0 bg-[#F4F9FA] pointer-events-none z-0" />
 
                 {/* Content on top */}
-                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 md:pt-[4vh] lg:pt-0 pb-6 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
+                <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 md:pt-[4vh] lg:pt-0 pb-6 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
                     
                     {/* Header */}
-                    <div className="text-center mb-3 sm:mb-6 md:mb-10 shrink-0">
-                        <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-1 md:mb-4">
+                    <div className="text-center mb-2 sm:mb-6 md:mb-10 shrink-0">
+                        <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-0.5 md:mb-4">
                             Nuestra Empresa
                         </span>
                         <h2 className="font-serif font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-[1.05] tracking-tight">
@@ -151,7 +151,7 @@ export default function Moodboard() {
                         <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col gap-2 sm:gap-4 lg:gap-6 shrink-0">
                             
                             {/* Misión Card */}
-                            <div className="bg-white/85 border border-gray-200/60 p-3.5 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300">
+                            <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300">
                                 <div className="flex items-center gap-2 md:gap-3 mb-1 sm:mb-4">
                                     <div className="w-1 h-3 sm:h-6 bg-valex-bronce rounded-full" />
                                     <h3 className="font-serif font-bold text-sm sm:text-xl text-gray-900 tracking-wide">{missionTitle}</h3>
@@ -162,7 +162,7 @@ export default function Moodboard() {
                             </div>
 
                             {/* Visión Card */}
-                            <div className="bg-white/85 border border-gray-200/60 p-3.5 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300 flex-1">
+                            <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300 flex-1">
                                 <div className="flex items-center gap-2 md:gap-3 mb-1 sm:mb-4">
                                     <div className="w-1 h-3 sm:h-6 bg-valex-bronce rounded-full" />
                                     <h3 className="font-serif font-bold text-sm sm:text-xl text-gray-900 tracking-wide">{visionTitle}</h3>
@@ -174,7 +174,7 @@ export default function Moodboard() {
                         </div>
 
                         {/* Columna Derecha: Animation Window */}
-                        <div className="order-1 lg:order-2 lg:col-span-6 bg-white rounded-2xl sm:rounded-3xl overflow-hidden relative flex items-center justify-center h-[180px] sm:h-[240px] lg:h-auto shrink-0 shadow-lg border border-gray-200/40">
+                        <div className="order-1 lg:order-2 lg:col-span-6 bg-white rounded-2xl sm:rounded-3xl overflow-hidden relative flex items-center justify-center h-[260px] sm:h-[320px] lg:h-auto shrink-0 shadow-lg border border-gray-200/40">
                             
                             {/* Fallback permanente: siempre visible debajo del canvas como red de seguridad */}
                             <img 
