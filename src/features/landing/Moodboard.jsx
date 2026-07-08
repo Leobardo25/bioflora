@@ -70,7 +70,7 @@ export default function Moodboard() {
             const w = img.naturalWidth * s
             const h = img.naturalHeight * s
             const dx = (cw - w) / 2
-            const dy = (ch - h) / 2
+            const dy = (ch - h) * 0.25 // Alineación hacia arriba (recorta más la tierra del fondo y destaca el brote verde)
             ctx.globalAlpha = alpha
             
             ctx.save()
@@ -105,17 +105,56 @@ export default function Moodboard() {
             ctx.globalAlpha = 1
         }
 
-        const unsubscribe = scrollYProgress.on('change', paint)
+        let animationFrameId
+        let unsubscribe
 
-        // Forzar un primer pintado inmediato (sin esperar a que el usuario haga scroll)
-        requestAnimationFrame(() => {
-            paint(scrollYProgress.get())
-            setCanvasPainted(true)
-        })
+        const checkMobileAndAnimate = () => {
+            const isMobile = window.innerWidth < 768
+            
+            // Limpiar suscripciones previas si las hay
+            if (unsubscribe) {
+                unsubscribe()
+                unsubscribe = null
+            }
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId)
+                animationFrameId = null
+            }
+
+            if (isMobile) {
+                // Auto-reproducción suave en móviles (ciclo de 5 segundos de apertura y cierre)
+                let startTime = null
+                const duration = 5000 
+                
+                const animate = (timestamp) => {
+                    if (!startTime) startTime = timestamp
+                    const elapsed = timestamp - startTime
+                    const cycle = (elapsed % duration) / duration
+                    // Curva sinusoidal suave para el ping-pong (0 -> 1 -> 0)
+                    const progress = 0.5 - 0.5 * Math.cos(cycle * 2 * Math.PI)
+                    
+                    paint(progress)
+                    animationFrameId = requestAnimationFrame(animate)
+                }
+                animationFrameId = requestAnimationFrame(animate)
+            } else {
+                // Sincronización con scroll en desktop
+                unsubscribe = scrollYProgress.on('change', paint)
+                paint(scrollYProgress.get())
+            }
+        }
+
+        checkMobileAndAnimate()
+        setCanvasPainted(true)
+
+        // Registrar evento de resize para cambiar el modo de animación si el usuario cambia el tamaño de la pantalla
+        window.addEventListener('resize', checkMobileAndAnimate)
 
         return () => {
-            unsubscribe()
+            if (unsubscribe) unsubscribe()
+            if (animationFrameId) cancelAnimationFrame(animationFrameId)
             window.removeEventListener('resize', resizeCanvas)
+            window.removeEventListener('resize', checkMobileAndAnimate)
         }
     }, [imagesReady, scrollYProgress])
 
@@ -181,13 +220,14 @@ export default function Moodboard() {
                                 src="/images/frames_webp/1.webp" 
                                 alt="Bioflora Orquídea 3D" 
                                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                                style={{ objectPosition: '50% 25%' }}
                             />
 
                             {/* Canvas: pinta encima del fallback, tapa la imagen estática al renderizar */}
                             <canvas
                                 ref={canvasRef}
                                 className="relative w-full h-full object-cover"
-                                style={{ display: 'block' }}
+                                style={{ display: 'block', objectPosition: '50% 25%' }}
                             />
                         </div>
                     </div>
