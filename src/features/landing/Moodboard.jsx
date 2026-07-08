@@ -19,10 +19,15 @@ export default function Moodboard() {
         visionText = 'Bioflora, será un empresa agro-turística líder en Costa Rica que promoverá mediante la bio-alfabetización y la recreación sana, contribuir a la conservación del medio ambiente, mitigar el cambio climático, preservar y reproducir especies de plantas tropicales en riesgo de extinción, especialmente orquídeas. Creando actividades productivas que fomenten un trabajo justo y solidarias el cual contribuya al crecimiento personal de nuestros colaboradores y el retorno del capital a sus accionistas.'
     } = useSiteConfig();
 
-    // Motor Sticky Scroll: Mide el progreso dentro de los 300vh del contenedor principal
-    const { scrollYProgress } = useScroll({
+    // Motores de Scroll estáticos (uno para desktop sticky y otro para móvil en flujo natural)
+    const { scrollYProgress: desktopScroll } = useScroll({
         target: sectionRef,
-        offset: ["start start", "end end"] // Arranca cuando el top toca el top del viewport, termina cuando el bottom toca el bottom
+        offset: ["start start", "end end"]
+    })
+
+    const { scrollYProgress: mobileScroll } = useScroll({
+        target: sectionRef,
+        offset: ["start 90%", "end 10%"]
     })
 
     // Preload frames into Image objects (no DOM rendering)
@@ -105,42 +110,25 @@ export default function Moodboard() {
             ctx.globalAlpha = 1
         }
 
-        let animationFrameId
         let unsubscribe
 
         const checkMobileAndAnimate = () => {
             const isMobile = window.innerWidth < 768
             
-            // Limpiar suscripciones previas si las hay
+            // Limpiar suscripción previa si la hay
             if (unsubscribe) {
                 unsubscribe()
                 unsubscribe = null
             }
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId)
-                animationFrameId = null
-            }
 
             if (isMobile) {
-                // Auto-reproducción suave en móviles (ciclo de 5 segundos de apertura y cierre)
-                let startTime = null
-                const duration = 5000 
-                
-                const animate = (timestamp) => {
-                    if (!startTime) startTime = timestamp
-                    const elapsed = timestamp - startTime
-                    const cycle = (elapsed % duration) / duration
-                    // Curva sinusoidal suave para el ping-pong (0 -> 1 -> 0)
-                    const progress = 0.5 - 0.5 * Math.cos(cycle * 2 * Math.PI)
-                    
-                    paint(progress)
-                    animationFrameId = requestAnimationFrame(animate)
-                }
-                animationFrameId = requestAnimationFrame(animate)
+                // Sincronización al scroll en móviles (rango de visualización completo de la sección)
+                unsubscribe = mobileScroll.on('change', paint)
+                paint(mobileScroll.get())
             } else {
-                // Sincronización con scroll en desktop
-                unsubscribe = scrollYProgress.on('change', paint)
-                paint(scrollYProgress.get())
+                // Sincronización con scroll en desktop (fase sticky)
+                unsubscribe = desktopScroll.on('change', paint)
+                paint(desktopScroll.get())
             }
         }
 
@@ -152,11 +140,10 @@ export default function Moodboard() {
 
         return () => {
             if (unsubscribe) unsubscribe()
-            if (animationFrameId) cancelAnimationFrame(animationFrameId)
             window.removeEventListener('resize', resizeCanvas)
             window.removeEventListener('resize', checkMobileAndAnimate)
         }
-    }, [imagesReady, scrollYProgress])
+    }, [imagesReady, desktopScroll, mobileScroll])
 
     return (
         <section
