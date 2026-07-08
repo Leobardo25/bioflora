@@ -58,7 +58,7 @@ export default function FeaturedProducts() {
     if (!loading && featuredProducts.length === 0) return null;
 
     return (
-        <section id="colecciones" className="relative lg:min-h-[85vh] w-full bg-valex-hueso overflow-hidden border-t border-valex-bronce/10 flex items-center py-16 lg:py-12">
+        <section id="colecciones" className="relative lg:min-h-[85vh] w-full bg-[#F4F9FA] overflow-hidden flex items-center py-16 lg:py-12">
             {/* Destellos de iluminación de fondo */}
             <div className="absolute top-1/2 right-1/4 w-[40vw] h-[40vw] rounded-full bg-valex-bronce/5 blur-[120px] pointer-events-none" />
 

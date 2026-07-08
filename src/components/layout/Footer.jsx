@@ -12,7 +12,7 @@ export default function Footer() {
     const hasSocials = whatsapp || instagram || facebook || tiktok
 
     return (
-        <footer id="contacto" className="relative bg-[#062919] border-t border-valex-gris/10">
+        <footer id="contacto" className="relative bg-[#0A1A2A] border-t border-[#00A7D0]/10">
             {/* Top accent line */}
             <div className="h-[2px] bg-gradient-to-r from-transparent via-bioflora-naranja to-transparent opacity-80" />
 

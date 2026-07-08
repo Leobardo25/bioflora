@@ -127,12 +127,12 @@ export default function Moodboard() {
         <section
             ref={sectionRef}
             id="nosotros"
-            className="relative bg-white h-[150vh] md:h-[300vh]"
+            className="relative bg-[#F4F9FA] h-[150vh] md:h-[300vh]"
         >
             {/* Contenedor Sticky: Se detiene justo debajo del navbar y ocupa el resto de la pantalla */}
-            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-y-auto md:overflow-hidden border-t border-valex-bronce/10 pt-1 md:pt-8 lg:pt-10">
+            <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full flex flex-col overflow-y-auto md:overflow-hidden pt-1 md:pt-8 lg:pt-10">
                 {/* Fondo limpio */}
-                <div className="absolute inset-0 bg-white pointer-events-none z-0" />
+                <div className="absolute inset-0 bg-[#F4F9FA] pointer-events-none z-0" />
 
                 {/* Content on top */}
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-[6vh] lg:pt-0 pb-4 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
