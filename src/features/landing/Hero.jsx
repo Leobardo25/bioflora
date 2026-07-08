@@ -17,7 +17,7 @@ export default function Hero() {
                     loop
                     muted
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover select-none filter brightness-[0.85] contrast-[1.05] saturate-[1.1] transform-gpu"
+                    className="absolute inset-0 w-full h-full object-cover select-none transform-gpu"
                 >
                     <source src="/videos/hero_background_optimized.mp4" type="video/mp4" />
                 </video>
