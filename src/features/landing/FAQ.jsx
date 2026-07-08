@@ -42,11 +42,15 @@ export default function FAQ() {
     const { ref: headerRef, isInView: headerInView } = useScrollReveal(0.3)
 
     useEffect(() => {
+        let active = true;
         getSiteConfig('faq').then((data) => {
-            if (data?.items?.length > 0) {
+            if (active && data?.items?.length > 0) {
                 setFaqs(data.items)
             }
         })
+        return () => {
+            active = false;
+        }
     }, [])
 
     const toggle = (idx) => {
@@ -63,21 +67,18 @@ export default function FAQ() {
                 {/* Header */}
                 <motion.div
                     ref={headerRef}
-                    className="text-center mx-auto mb-14 sm:mb-16"
+                    className="text-center mx-auto mb-10 sm:mb-12"
                     initial={{ opacity: 0, y: 25 }}
                     animate={headerInView ? { opacity: 1, y: 0 } : {}}
                     transition={VALEX_TRANSITION}
                 >
-                    <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4">
+                    <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
                         Resolvemos tus Dudas
                     </span>
-                    <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-[1.05] tracking-tight mb-5">
+                    <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-valex-negro leading-[1.05] tracking-tight">
                         Preguntas{' '}
                         <span className="text-[#00A7D0] italic font-medium">Frecuentes</span>
                     </h2>
-                    <p className="text-gray-600 text-sm md:text-base font-light max-w-lg mx-auto leading-relaxed">
-                        Todo lo que necesita saber para el cuidado, envío y cultivo de sus orquídeas y plantas exóticas de colección.
-                    </p>
                 </motion.div>
 
                 {/* Acordeones */}

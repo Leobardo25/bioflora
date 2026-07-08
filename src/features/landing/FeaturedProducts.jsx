@@ -53,7 +53,7 @@ export default function FeaturedProducts() {
         if (featuredProducts.length <= 1) return;
         const timer = setInterval(handleNext, 12000); 
         return () => clearInterval(timer);
-    }, [handleNext, featuredProducts.length])
+    }, [handleNext, featuredProducts])
 
     if (!loading && featuredProducts.length === 0) return null;
 
@@ -75,11 +75,11 @@ export default function FeaturedProducts() {
                     }}
                     className="w-full lg:w-[35%] flex flex-col justify-center text-center lg:text-left"
                 >
-                    <div className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4 sm:mb-6">
+                    <div className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
                         Colección Selecta
                     </div>
-                    <h2 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-valex-negro leading-[1.05] tracking-tight">
-                        Especies <span className="text-bioflora-morado italic font-medium">Selectas</span>
+                    <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-valex-negro leading-[1.05] tracking-tight">
+                        Especies <span className="text-[#00A7D0] italic font-medium">Selectas</span>
                     </h2>
                     <p className="hidden lg:block text-valex-negro/50 mt-6 text-sm sm:text-base font-light mx-auto lg:mx-0 max-w-sm leading-relaxed">
                         {collectionText || 'Explore las orquídeas y especies exóticas más exclusivas de nuestra colección, cultivadas con esmero para embellecer su entorno.'}

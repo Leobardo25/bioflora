@@ -134,11 +134,11 @@ export default function Moodboard() {
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 md:pt-[4vh] lg:pt-0 pb-6 md:pb-8 min-h-0 flex-1 flex flex-col lg:justify-center">
                     
                     {/* Header */}
-                    <div className="text-center mb-2 sm:mb-6 md:mb-10 shrink-0">
-                        <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-0.5 md:mb-4">
+                    <div className="text-center mb-6 sm:mb-10 shrink-0">
+                        <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
                             Nuestra Empresa
                         </span>
-                        <h2 className="font-serif font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-[1.05] tracking-tight">
+                        <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-valex-negro leading-[1.05] tracking-tight">
                             Bioflora{' '}
                             <span className="text-[#00A7D0] italic font-medium">Garden Center</span>
                         </h2>
