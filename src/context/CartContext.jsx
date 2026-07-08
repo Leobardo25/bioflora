@@ -77,41 +77,45 @@ export function CartProvider({ children }) {
             description: (
                 <div className="flex items-center gap-4 -my-1">
                     {productImage ? (
-                        <div className="w-12 h-12 rounded-lg border border-[#E6F6F9] overflow-hidden flex-shrink-0 shadow-sm">
+                        <div className="w-12 h-12 rounded-lg border border-[#00A7D0]/20 overflow-hidden flex-shrink-0 shadow-sm">
                             <img src={productImage} alt={product.name} className="w-full h-full object-cover" />
                         </div>
                     ) : (
-                        <div className="w-12 h-12 rounded-lg bg-[#F4F9FA] border border-gray-100 flex items-center justify-center flex-shrink-0 text-[#69358C]">
+                        <div className="w-12 h-12 rounded-lg bg-[#E6F6F9] border border-gray-100 flex items-center justify-center flex-shrink-0 text-[#69358C]">
                             <ShoppingCart className="w-5 h-5" />
                         </div>
                     )}
-                    <div className="flex flex-col flex-1 justify-center">
-                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#69358C] font-bold mb-1">
-                            Añadido al Carrito
+                    <div className="flex flex-col flex-1 justify-center min-w-0">
+                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#1EBE5D] font-bold mb-0.5">
+                            ¡Añadido al Carrito!
                         </span>
-                        <span className="font-serif text-[13px] font-semibold text-gray-900 leading-tight line-clamp-1">
+                        <h4 className="font-serif text-[13px] font-semibold text-gray-900 leading-tight line-clamp-1 m-0">
                             {product.name}
-                        </span>
-                        <span className="font-sans text-[11px] text-gray-500 mt-0.5 font-medium">
-                            {quantity} {quantity === 1 ? 'unidad' : 'unidades'} • {product.category}
+                        </h4>
+                        <span className="font-sans text-[10px] text-[#69358C] font-semibold mt-1 flex items-center gap-1">
+                            Ver carrito →
                         </span>
                     </div>
                 </div>
             ),
-            placement: 'bottomRight',
-            icon: null,
-            style: { 
-                backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(105, 53, 140, 0.15)', 
-                borderRadius: '16px',
-                padding: '16px',
-                width: '340px',
-                boxShadow: '0 10px 30px -10px rgba(105, 53, 140, 0.15)'
+            placement: 'top',
+            onClick: () => {
+                handleSetIsCartDrawerOpen(true);
             },
-            closeIcon: <span className="text-gray-400 hover:text-gray-700 transition-colors mt-2 text-[16px]">✕</span>,
-            duration: 4,
+            style: { 
+                backgroundColor: 'rgba(255, 255, 255, 0.98)', 
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '2px solid rgba(30, 190, 93, 0.25)', 
+                borderRadius: '20px',
+                padding: '14px 18px',
+                width: '350px',
+                boxShadow: '0 12px 35px -10px rgba(30, 190, 93, 0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+            },
+            closeIcon: <span className="text-gray-400 hover:text-gray-700 transition-colors mt-1.5 text-[15px]">✕</span>,
+            duration: 3.5,
         });
     }, []);
 
