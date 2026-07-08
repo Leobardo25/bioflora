@@ -12,8 +12,36 @@ export default function NavbarMobileToolbar({
 }) {
     return (
         <div className="md:hidden w-full px-4 pb-4 flex justify-center items-center gap-2 transition-all duration-300">
-             <div className="flex-1 bg-white border border-gray-200 rounded-lg h-11 flex items-center px-4 focus-within:border-[#00A7D0] shadow-sm">
-                 <Search className="w-4 h-4 text-gray-400 mr-3 flex-shrink-0" />
+             {/* 1. Botón de Filtros (Redondo, sin texto, con punto indicador) */}
+             <button
+                 onClick={onToggleMobileFilters}
+                 className={`relative h-11 w-11 flex-shrink-0 border flex items-center justify-center rounded-full transition-all duration-300 ${
+                     isFilterMenuOpen 
+                         ? 'bg-[#00A7D0] text-white border-[#00A7D0] shadow-md' 
+                         : 'bg-white border-gray-200 text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0]'
+                 }`}
+                 aria-label="Filtros"
+             >
+                 <AnimatePresence mode="wait">
+                     <motion.div
+                         key={isFilterMenuOpen ? "close" : "filter"}
+                         initial={{ opacity: 0, scale: 0.8 }}
+                         animate={{ opacity: 1, scale: 1 }}
+                         exit={{ opacity: 0, scale: 0.8 }}
+                         transition={{ duration: 0.15 }}
+                         className="flex items-center justify-center"
+                     >
+                         {isFilterMenuOpen ? <X className="w-4 h-4" /> : <SlidersHorizontal className="w-4 h-4 text-[#00A7D0]" />}
+                     </motion.div>
+                 </AnimatePresence>
+                 {hasActiveFilters && !isFilterMenuOpen && (
+                     <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-[#D60C8C] rounded-full animate-pulse" />
+                 )}
+             </button>
+
+             {/* 2. Barra de Búsqueda Centrada (Redonda) */}
+             <div className="flex-1 bg-white border border-gray-200 rounded-full h-11 flex items-center px-4 focus-within:border-[#00A7D0] shadow-sm">
+                 <Search className="w-4 h-4 text-gray-400 mr-2.5 flex-shrink-0" />
                  <input 
                      type="text"
                      value={shopSearchQuery}
@@ -29,28 +57,10 @@ export default function NavbarMobileToolbar({
                  )}
              </div>
 
-             <button
-                 onClick={onToggleMobileFilters}
-                 className={`h-11 px-5 border text-[11px] sm:text-xs font-bold uppercase tracking-widest font-sans flex items-center justify-center rounded-lg transition-all duration-300 ${isFilterMenuOpen ? 'bg-[#00A7D0] text-white border-[#00A7D0] shadow-md' : 'bg-white border-gray-200 text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0]'}`}
-             >
-                 <AnimatePresence mode="wait">
-                     <motion.div
-                         key={isFilterMenuOpen ? "close" : "filter"}
-                         initial={{ opacity: 0, scale: 0.8 }}
-                         animate={{ opacity: 1, scale: 1 }}
-                         exit={{ opacity: 0, scale: 0.8 }}
-                         transition={{ duration: 0.15 }}
-                         style={{ display: 'flex', alignItems: 'center' }}
-                     >
-                         {isFilterMenuOpen ? <X className="w-4 h-4 mr-2" /> : <SlidersHorizontal className="w-4 h-4 mr-2 text-[#00A7D0]" />}
-                     </motion.div>
-                 </AnimatePresence>
-                 <span>FILTROS {hasActiveFilters && !isFilterMenuOpen && '•'}</span>
-             </button>
-
+             {/* 3. Botón de Cambiar Vista (Redondo) */}
              <button
                  onClick={() => setIsCompactView(!isCompactView)}
-                 className="h-11 w-11 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0] transition-all duration-300"
+                 className="h-11 w-11 flex-shrink-0 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:text-[#00A7D0] hover:border-[#00A7D0] transition-all duration-300"
                  aria-label="Cambiar vista"
              >
                  {isCompactView ? <AlignJustify className="w-4 h-4 text-[#69358C]" /> : <LayoutGrid className="w-4 h-4 text-[#69358C]" />}
