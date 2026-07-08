@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 
 export default function NavbarFilterOverlay({ onToggleMobileFilters, mobileFiltersNode }) {
-    const [isMobile, setIsMobile] = useState(true);
+    const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768); // 768px es el breakpoint md de Tailwind
