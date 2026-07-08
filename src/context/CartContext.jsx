@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { notification } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
 import { ShoppingCart } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const CartContext = createContext();
 
@@ -19,6 +18,7 @@ export function CartProvider({ children }) {
         }
     });
     const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+    const [customNotification, setCustomNotification] = useState(null);
     const isCartOpenRef = useRef(false);
     const isHydrated = useRef(false);
 
@@ -33,17 +33,14 @@ export function CartProvider({ children }) {
 
         window.addEventListener('popstate', handlePopState);
         return () => window.removeEventListener('popstate', handlePopState);
-    }, []); // Sin dependencias: usa ref para evitar closure stale
+    }, []);
 
     const handleSetIsCartDrawerOpen = useCallback((open) => {
         if (open) {
             isCartOpenRef.current = true;
-            window.history.pushState({ drawer: 'CartDrawer' }, '');
+            window.history.pushState({ cartOpen: true }, '');
         } else {
             isCartOpenRef.current = false;
-            if (window.history.state?.drawer === 'CartDrawer') {
-                window.history.back();
-            }
         }
         setIsCartDrawerOpen(open);
     }, []);
@@ -56,6 +53,18 @@ export function CartProvider({ children }) {
         }
         localStorage.setItem('valex_cart', JSON.stringify(cartItems));
     }, [cartItems]);
+
+    useEffect(() => {
+        let timer;
+        if (customNotification) {
+            timer = setTimeout(() => {
+                setCustomNotification(null);
+            }, 3500);
+        }
+        return () => {
+            if (timer) clearTimeout(timer);
+        };
+    }, [customNotification]);
 
     const addToCart = useCallback((product, quantity = 1) => {
         setCartItems(prevItems => {
@@ -70,92 +79,15 @@ export function CartProvider({ children }) {
             return [...prevItems, { ...product, quantity }];
         });
 
-        const productImage = product.galleryImages?.[0] || product.coverImage || product.imageUrl;
-        
-        notification.open({
-            message: null,
-            description: (
-                <div className="flex items-center gap-4 -my-1">
-                    {productImage ? (
-                        <div className="w-12 h-12 rounded-lg border border-[#00A7D0]/20 overflow-hidden flex-shrink-0 shadow-sm">
-                            <img src={productImage} alt={product.name} className="w-full h-full object-cover" />
-                        </div>
-                    ) : (
-                        <div className="w-12 h-12 rounded-lg bg-[#E6F6F9] border border-gray-100 flex items-center justify-center flex-shrink-0 text-[#69358C]">
-                            <ShoppingCart className="w-5 h-5" />
-                        </div>
-                    )}
-                    <div className="flex flex-col flex-1 justify-center min-w-0">
-                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#1EBE5D] font-bold mb-0.5">
-                            ¡Añadido al Carrito!
-                        </span>
-                        <h4 className="font-serif text-[13px] font-semibold text-gray-900 leading-tight line-clamp-1 m-0">
-                            {product.name}
-                        </h4>
-                        <span className="font-sans text-[10px] text-[#69358C] font-semibold mt-1 flex items-center gap-1">
-                            Ver carrito →
-                        </span>
-                    </div>
-                </div>
-            ),
-            placement: 'top',
-            onClick: () => {
-                handleSetIsCartDrawerOpen(true);
-            },
-            style: { 
-                backgroundColor: 'rgba(255, 255, 255, 0.98)', 
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: '2px solid rgba(30, 190, 93, 0.25)', 
-                borderRadius: '20px',
-                padding: '14px 18px',
-                width: '350px',
-                boxShadow: '0 12px 35px -10px rgba(30, 190, 93, 0.2)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-            },
-            closeIcon: <span className="text-gray-400 hover:text-gray-700 transition-colors mt-1.5 text-[15px]">✕</span>,
-            duration: 3.5,
+        // Activar nuestra notificación premium personalizada
+        setCustomNotification({
+            product,
+            quantity
         });
     }, []);
 
     const removeFromCart = useCallback((productId) => {
         setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
-        notification.open({
-            message: null,
-            description: (
-                <div className="flex items-center gap-4 -my-1">
-                    <div className="w-12 h-12 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center flex-shrink-0 text-red-500 shadow-sm">
-                        <DeleteOutlined className="text-[18px]" />
-                    </div>
-                    <div className="flex flex-col flex-1 justify-center">
-                        <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-red-500 font-bold mb-1">
-                            Retirado
-                        </span>
-                        <span className="font-serif text-[13px] font-semibold text-gray-900 leading-tight">
-                            Producto Eliminado
-                        </span>
-                        <span className="font-sans text-[11px] text-gray-500 mt-0.5 font-medium">
-                            Se ha quitado del carrito
-                        </span>
-                    </div>
-                </div>
-            ),
-            placement: 'bottomRight',
-            icon: null,
-            style: { 
-                backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(239, 68, 68, 0.15)', 
-                borderRadius: '16px',
-                padding: '16px',
-                width: '340px',
-                boxShadow: '0 10px 30px -10px rgba(239, 68, 68, 0.1)'
-            },
-            closeIcon: <span className="text-gray-400 hover:text-gray-700 transition-colors mt-2 text-[16px]">✕</span>,
-            duration: 3,
-        });
     }, []);
 
     const updateQuantity = useCallback((productId, delta) => {
@@ -199,6 +131,62 @@ export function CartProvider({ children }) {
     return (
         <CartContext.Provider value={value}>
             {children}
+            
+            {/* Notificación Premium Flotante (iOS style pill) */}
+            <AnimatePresence>
+                {customNotification && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -70, x: '-50%', scale: 0.9 }}
+                        animate={{ opacity: 1, y: 20, x: '-50%', scale: 1 }}
+                        exit={{ opacity: 0, y: -70, x: '-50%', scale: 0.9 }}
+                        transition={{ type: 'spring', damping: 22, stiffness: 280 }}
+                        onClick={() => {
+                            handleSetIsCartDrawerOpen(true);
+                            setCustomNotification(null);
+                        }}
+                        className="fixed top-0 left-1/2 z-[3000] w-[90%] max-w-[360px] bg-white/95 backdrop-blur-md border border-[#1EBE5D]/30 rounded-2xl shadow-[0_15px_35px_rgba(0,167,208,0.18)] p-3 cursor-pointer hover:border-[#1EBE5D]/50 transition-all duration-300 flex items-center gap-3 select-none active:scale-[0.98]"
+                    >
+                        {/* Imagen del producto mini */}
+                        <div className="w-11 h-11 rounded-xl border border-gray-100 overflow-hidden flex-shrink-0 bg-gray-50">
+                            {customNotification.product.galleryImages?.[0] || customNotification.product.coverImage || customNotification.product.imageUrl ? (
+                                <img 
+                                    src={customNotification.product.galleryImages?.[0] || customNotification.product.coverImage || customNotification.product.imageUrl} 
+                                    alt={customNotification.product.name} 
+                                    className="w-full h-full object-cover" 
+                                />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center text-[#69358C] bg-[#E6F6F9]">
+                                    <ShoppingCart className="w-4 h-4" />
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Detalle */}
+                        <div className="flex-1 min-w-0 flex flex-col justify-center">
+                            <span className="text-[9px] font-sans font-bold tracking-[0.2em] text-[#1EBE5D] uppercase">
+                                ¡Añadido al Carrito!
+                            </span>
+                            <h4 className="text-xs font-sans font-semibold text-gray-900 leading-tight truncate mt-0.5 m-0">
+                                {customNotification.product.name}
+                            </h4>
+                            <span className="text-[10px] text-[#69358C] font-semibold mt-1 flex items-center gap-1">
+                                Ver mi carrito →
+                            </span>
+                        </div>
+
+                        {/* Cerrar */}
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setCustomNotification(null);
+                            }}
+                            className="p-1.5 text-gray-400 hover:text-gray-950 transition-colors rounded-lg hover:bg-gray-100/50 flex items-center justify-center"
+                        >
+                            <span className="text-xs font-sans font-bold block leading-none">✕</span>
+                        </button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </CartContext.Provider>
     );
 }
