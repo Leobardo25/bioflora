@@ -4,7 +4,7 @@ import { Drawer, ConfigProvider, theme as antTheme } from 'antd';
 import { CreditCardOutlined } from '@ant-design/icons';
 import { Trash2, Minus, Plus, ShoppingCart, ChevronLeft, Maximize2, Minimize2 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import CheckoutForm from './CheckoutForm';
 
 const formatPrice = (price, isCRC) => {
@@ -30,6 +30,9 @@ export default function CartDrawer() {
     const [showCheckout, setShowCheckout] = useState(false);
     const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
     const [isExpanded, setIsExpanded] = useState(false);
+    
+    // Controles de arrastre de Framer Motion
+    const dragControls = useDragControls();
 
     const total = getCartTotal();
     const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -56,10 +59,38 @@ export default function CartDrawer() {
         return item.coverImage || item.imageUrl || '';
     };
 
+    // Manejar el gesto de arrastre vertical
+    const handleDragEnd = (event, info) => {
+        const offset = info.offset.y;
+        const velocity = info.velocity.y;
+
+        if (offset < -60 || velocity < -150) {
+            // Arrastre hacia arriba -> Expandir a pantalla completa
+            setIsExpanded(true);
+        } else if (offset > 60 || velocity > 150) {
+            // Arrastre hacia abajo
+            if (isExpanded) {
+                // Si estaba expandido, contraer a la mitad
+                setIsExpanded(false);
+            } else {
+                // Si estaba en la mitad, cerrar carrito
+                setIsCartDrawerOpen(false);
+            }
+        }
+    };
+
     const renderCartContent = () => (
         <>
-            {/* Header personalizado */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-white flex-shrink-0">
+            {/* Header personalizado (actúa también como zona de arrastre) */}
+            <div 
+                className="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-white flex-shrink-0 cursor-grab active:cursor-grabbing select-none"
+                onPointerDown={(e) => {
+                    // Solo iniciar arrastre si no se hace click en un botón interactivo
+                    if (e.target.tagName !== 'BUTTON' && !e.target.closest('button')) {
+                        dragControls.start(e);
+                    }
+                }}
+            >
                 <button
                     onClick={() => showCheckout ? setShowCheckout(false) : setIsCartDrawerOpen(false)}
                     className="flex items-center gap-1.5 text-gray-500 hover:text-gray-950 transition-colors p-1.5 -ml-1.5 rounded-lg hover:bg-gray-50 group"
@@ -226,7 +257,7 @@ export default function CartDrawer() {
             }}
         >
             {isMobile ? (
-                /* Custom Mobile Bottom Sheet Drawer */
+                /* Custom Mobile Bottom Sheet Drawer con soporte de arrastre gestual */
                 <AnimatePresence>
                     {isCartDrawerOpen && (
                         <motion.div
@@ -244,6 +275,12 @@ export default function CartDrawer() {
                             
                             {/* Bottom Sheet Container */}
                             <motion.div
+                                drag="y"
+                                dragControls={dragControls}
+                                dragListener={false}
+                                dragConstraints={{ top: 0, bottom: 0 }}
+                                dragElastic={{ top: 0.05, bottom: 0.55 }}
+                                onDragEnd={handleDragEnd}
                                 className={`relative w-full bg-white shadow-2xl flex flex-col border-t border-gray-100 mt-auto z-10 overflow-hidden ${
                                     isExpanded 
                                         ? 'h-[100dvh] max-h-[100dvh] rounded-t-none' 
@@ -252,12 +289,12 @@ export default function CartDrawer() {
                                 initial={{ y: '100%' }}
                                 animate={{ y: 0 }}
                                 exit={{ y: '100%' }}
-                                transition={{ duration: 0.35, ease: [0.32, 0.94, 0.6, 1] }}
+                                transition={{ type: 'spring', damping: 26, stiffness: 280 }}
                             >
-                                {/* Grabber bar for mobile bottom sheet */}
+                                {/* Grabber bar for mobile bottom sheet (tira para arriba o presiona) */}
                                 <div 
-                                    className="w-12 h-1 bg-gray-200 rounded-full mx-auto mt-3 flex-shrink-0 cursor-pointer hover:bg-gray-300 transition-colors"
-                                    onClick={() => setIsExpanded(!isExpanded)}
+                                    className="w-12 h-1 bg-gray-200 rounded-full mx-auto mt-3 flex-shrink-0 cursor-grab active:cursor-grabbing hover:bg-gray-300 transition-colors"
+                                    onPointerDown={(e) => dragControls.start(e)}
                                 />
                                 
                                 {renderCartContent()}
