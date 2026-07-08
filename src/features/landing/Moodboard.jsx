@@ -152,22 +152,22 @@ export default function Moodboard() {
                             
                             {/* Misión Card */}
                             <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300">
-                                <div className="flex items-center gap-2 md:gap-3 mb-1 sm:mb-4">
-                                    <div className="w-1 h-3 sm:h-6 bg-valex-bronce rounded-full" />
-                                    <h3 className="font-serif font-bold text-sm sm:text-xl text-gray-900 tracking-wide">{missionTitle}</h3>
+                                <div className="flex items-center gap-2 md:gap-3 mb-1.5 sm:mb-4">
+                                    <div className="w-1 h-4 sm:h-6 bg-valex-bronce rounded-full" />
+                                    <h3 className="font-serif font-bold text-base sm:text-xl text-gray-900 tracking-wide">{missionTitle}</h3>
                                 </div>
-                                <p className="text-gray-600 text-[11px] sm:text-sm md:text-base font-light leading-relaxed">
+                                <p className="text-gray-600 text-sm sm:text-base lg:text-[17px] font-light leading-relaxed">
                                     {missionText}
                                 </p>
                             </div>
 
                             {/* Visión Card */}
                             <div className="bg-white/85 border border-gray-200/60 p-3 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg hover:border-bioflora-morado/30 transition-all duration-300 flex-1">
-                                <div className="flex items-center gap-2 md:gap-3 mb-1 sm:mb-4">
-                                    <div className="w-1 h-3 sm:h-6 bg-valex-bronce rounded-full" />
-                                    <h3 className="font-serif font-bold text-sm sm:text-xl text-gray-900 tracking-wide">{visionTitle}</h3>
+                                <div className="flex items-center gap-2 md:gap-3 mb-1.5 sm:mb-4">
+                                    <div className="w-1 h-4 sm:h-6 bg-valex-bronce rounded-full" />
+                                    <h3 className="font-serif font-bold text-base sm:text-xl text-gray-900 tracking-wide">{visionTitle}</h3>
                                 </div>
-                                <p className="text-gray-600 text-[11px] sm:text-sm md:text-base font-light leading-relaxed">
+                                <p className="text-gray-600 text-sm sm:text-base lg:text-[17px] font-light leading-relaxed">
                                     {visionText}
                                 </p>
                             </div>
