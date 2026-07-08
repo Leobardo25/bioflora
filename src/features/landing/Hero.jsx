@@ -72,19 +72,28 @@ function HeroTitle() {
     const title = heroTitle || ''
     const subtitle = heroSubtitle || ''
     
-    // Separamos por '*' para permitir renglones independientes dinámicos
+    // Separamos por '*' para obtener el acento (ej. "Soluciones Verdes")
     const parts = title.split('*').map(p => p.trim()).filter(Boolean)
-    let lines = []
+    let mainText = ''
     let accent = ''
 
     if (parts.length > 1) {
         accent = parts[parts.length - 1]
-        lines = parts.slice(0, parts.length - 1)
+        mainText = parts.slice(0, parts.length - 1).join(' ')
     } else if (parts.length === 1) {
         const words = parts[0].split(' ')
         const splitIndex = words.length > 3 ? words.length - 3 : Math.max(1, words.length - 1)
-        lines = [words.slice(0, splitIndex).join(' ')]
+        mainText = words.slice(0, splitIndex).join(' ')
         accent = words.slice(splitIndex).join(' ')
+    }
+
+    // Dividimos el texto principal en renglones diferentes si contiene la frase "Innovación Agrobiotecnológica"
+    let lines = []
+    if (mainText.includes('Innovación Agrobiotecnológica')) {
+        const remainder = mainText.replace('Innovación Agrobiotecnológica', '').trim()
+        lines = ['Innovación', `Agrobiotecnológica ${remainder}`.trim()]
+    } else {
+        lines = [mainText]
     }
 
     return (

@@ -15,7 +15,7 @@ const db = getFirestore(app);
 
 async function main() {
   await setDoc(doc(db, 'site_config', 'landing'), {
-    heroTitle: 'Innovación * Agrobiotecnológica & * Soluciones Verdes',
+    heroTitle: 'Innovación Agrobiotecnológica & *Soluciones Verdes',
     heroSubtitle: 'Cultivamos con Ciencia',
   }, { merge: true });
 

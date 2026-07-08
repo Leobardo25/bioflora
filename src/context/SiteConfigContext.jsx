@@ -10,7 +10,7 @@ const DEFAULTS = {
     brandName: 'Bioflora Garden Center',
     brandTagline: 'Innovación Agrobiotecnológica & Soluciones Verdes',
     storeCurrency: 'CRC',
-    heroTitle: 'Innovación * Agrobiotecnológica & * Soluciones Verdes',
+    heroTitle: 'Innovación Agrobiotecnológica & *Soluciones Verdes',
     heroSubtitle: 'Cultivamos con Ciencia',
     collectionTitle: 'Producción Sostenible',
     collectionText: 'Nuestra operation productiva se desarrolla en La Perla de Guácimo, Limón, donde producimos orquídeas, vainilla y plantas ornamentales tropicales bajo un enfoque de innovación y bioeconomía.',
