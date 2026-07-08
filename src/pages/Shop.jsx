@@ -131,18 +131,14 @@ export default function Shop() {
             
             const matchCategory = filterCategory === 'Todos' || product.category === filterCategory;
             
-            const price = Number(product.price) || 0;
-            const matchPrice = price >= filterPrice[0] && price <= filterPrice[1];
-            
             let matchFamily = true;
             if (filterFamilies.length > 0) {
-                // filterFamilies contiene los values ej ['Amaderado', 'Oriental']
                 matchFamily = filterFamilies.includes(product.family);
             }
 
-            return matchSearch && matchCategory && matchPrice && matchFamily;
+            return matchSearch && matchCategory && matchFamily;
         });
-    }, [products, filterCategory, filterPrice, filterFamilies, searchQuery]);
+    }, [products, filterCategory, filterFamilies, searchQuery]);
 
     const { addToCart } = useCart();
 
@@ -168,72 +164,59 @@ export default function Shop() {
     // --- FILTROS (useMemo para evitar re-montar durante el drag del slider) ---
     const filtersNode = useMemo(() => (
         <div className="flex flex-col h-full w-full">
-            <div className="flex-1 flex flex-col gap-8 overflow-y-auto pr-2 pb-6">
+            <div className="flex-1 flex flex-col gap-6 overflow-y-auto pr-2 pb-6">
                 
                 {/* CATEGORÍA */}
-                <div className="space-y-4">
-                    <h3 className="text-gray-900 font-serif tracking-widest text-lg border-b border-gray-200 pb-2">CATEGORÍA</h3>
-                    <Radio.Group 
-                        className="grid grid-cols-2 gap-3 w-full" 
-                        value={filterCategory} 
-                        onChange={e => setFilterCategory(e.target.value)}
-                    >
-                        {dbCategories.map(cat => (
-                            <Radio key={cat} value={cat} className="text-gray-600">{cat}</Radio>
-                        ))}
-                    </Radio.Group>
+                <div className="space-y-3">
+                    <h3 className="text-gray-900 font-serif tracking-widest text-[15px] border-b border-gray-200 pb-2 font-semibold">CATEGORÍA</h3>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                        {dbCategories.map(cat => {
+                            const isSelected = filterCategory === cat;
+                            return (
+                                <button
+                                    key={cat}
+                                    type="button"
+                                    onClick={() => setFilterCategory(cat)}
+                                    className={`px-4 py-2 text-xs md:text-sm rounded-full font-medium transition-all duration-200 border cursor-pointer select-none ${
+                                        isSelected 
+                                            ? 'bg-bioflora-fucsia text-white border-bioflora-fucsia shadow-md shadow-bioflora-fucsia/10 scale-[1.03]' 
+                                            : 'bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100/70 hover:border-gray-300'
+                                    }`}
+                                >
+                                    {cat}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
 
                 {/* FAMILIA BOTÁNICA */}
-                <div className="space-y-4">
-                    <h3 className="text-gray-900 font-serif tracking-widest text-lg border-b border-gray-200 pb-2">FAMILIA BOTÁNICA</h3>
-                    <Checkbox.Group 
-                        className="grid grid-cols-2 gap-3 w-full"
-                        options={dbFamilies.map(f => ({ label: <span className="text-gray-600">{f.label}</span>, value: f.value }))}
-                        value={filterFamilies}
-                        onChange={setFilterFamilies}
-                    />
-                </div>
-
-                {/* PRECIO */}
-                <div className="space-y-4">
-                    <h3 className="text-gray-900 font-serif tracking-widest text-lg border-b border-gray-200 pb-2">PRECIO</h3>
-                    <div className="px-1 pt-2">
-                        <div className="valex-range-wrap">
-                            <input 
-                                type="range" 
-                                min={0} max={maxBoundary} step={isColones ? 1000 : 10}
-                                value={filterPrice[0]} 
-                                onChange={e => {
-                                    const val = Number(e.target.value);
-                                    if (val <= filterPrice[1]) setFilterPrice([val, filterPrice[1]]);
-                                }}
-                                className="valex-range valex-range--min"
-                            />
-                            <input 
-                                type="range" 
-                                min={0} max={maxBoundary} step={isColones ? 1000 : 10}
-                                value={filterPrice[1]} 
-                                onChange={e => {
-                                    const val = Number(e.target.value);
-                                    if (val >= filterPrice[0]) setFilterPrice([filterPrice[0], val]);
-                                }}
-                                className="valex-range valex-range--max"
-                            />
-                            <div className="valex-range-track">
-                                <div 
-                                    className="valex-range-fill"
-                                    style={{
-                                        left: `${(filterPrice[0] / maxBoundary) * 100}%`,
-                                        right: `${100 - (filterPrice[1] / maxBoundary) * 100}%`
+                <div className="space-y-3">
+                    <h3 className="text-gray-900 font-serif tracking-widest text-[15px] border-b border-gray-200 pb-2 font-semibold">FAMILIA BOTÁNICA</h3>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                        {dbFamilies.map(f => {
+                            const isSelected = filterFamilies.includes(f.value);
+                            return (
+                                <button
+                                    key={f.value}
+                                    type="button"
+                                    onClick={() => {
+                                        if (isSelected) {
+                                            setFilterFamilies(filterFamilies.filter(v => v !== f.value));
+                                        } else {
+                                            setFilterFamilies([...filterFamilies, f.value]);
+                                        }
                                     }}
-                                />
-                            </div>
-                        </div>
-                        <div className="flex justify-between text-bioflora-fucsia text-sm mt-4 font-sans font-medium">
-                            <span>{formatPrice(filterPrice[0], isColones)}</span>
-                            <span>{formatPrice(filterPrice[1], isColones)}</span>
-                        </div>
+                                    className={`px-4 py-2 text-xs md:text-sm rounded-full font-medium transition-all duration-200 border cursor-pointer select-none ${
+                                        isSelected 
+                                            ? 'bg-bioflora-fucsia text-white border-bioflora-fucsia shadow-md shadow-bioflora-fucsia/10 scale-[1.03]' 
+                                            : 'bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100/70 hover:border-gray-300'
+                                    }`}
+                                >
+                                    {f.label}
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -241,7 +224,7 @@ export default function Shop() {
             {/* Action buttons pinned at bottom */}
             <div className="flex-shrink-0 pt-4 pb-4 mt-2 border-t border-gray-200 flex gap-3">
                  <Button 
-                    onClick={() => { setFilterCategory('Todos'); setFilterFamilies([]); setFilterPrice([0, maxBoundary]); setDrawerVisible(false); }} 
+                    onClick={() => { setFilterCategory('Todos'); setFilterFamilies([]); setDrawerVisible(false); }} 
                     className="flex-1 h-12 bg-transparent text-gray-500 border-gray-200 hover:!border-bioflora-morado hover:!text-bioflora-morado font-serif tracking-widest text-xs"
                  >
                      LIMPIAR
@@ -254,7 +237,7 @@ export default function Shop() {
                  </Button>
             </div>
         </div>
-    ), [filterCategory, filterFamilies, filterPrice, drawerVisible]);
+    ), [filterCategory, filterFamilies, drawerVisible, dbCategories, dbFamilies]);
 
     return (
         <ConfigProvider
