@@ -135,7 +135,7 @@ export default function Moodboard() {
                     
                     {/* Header */}
                     <div className="text-center mb-6 sm:mb-10 shrink-0">
-                        <span className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
+                        <span className="inline-block text-bioflora-fucsia font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
                             Nuestra Empresa
                         </span>
                         <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-valex-negro leading-[1.05] tracking-tight">

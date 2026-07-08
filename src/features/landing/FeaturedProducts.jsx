@@ -75,7 +75,7 @@ export default function FeaturedProducts() {
                     }}
                     className="w-full lg:w-[35%] flex flex-col justify-center text-center lg:text-left"
                 >
-                    <div className="inline-block text-valex-bronce font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
+                    <div className="inline-block text-bioflora-fucsia font-sans font-medium text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4">
                         Colección Selecta
                     </div>
                     <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-valex-negro leading-[1.05] tracking-tight">
