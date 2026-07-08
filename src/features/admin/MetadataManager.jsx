@@ -270,13 +270,13 @@ export default function MetadataManager({ onClose }) {
         return date.toLocaleDateString('es-CR', { day: '2-digit', month: 'short', year: 'numeric' });
     };
 
-    const inputBase = "w-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#070F0A] text-gray-800 dark:text-gray-100 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600";
-    const labelBase = "text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1.5";
+    const inputBase = "w-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#18181A] text-gray-800 dark:text-gray-100 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bioflora-verde/40 focus:border-bioflora-verde transition-all placeholder:text-gray-400 dark:placeholder:text-gray-650 font-sans";
+    const labelBase = "text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-1";
 
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center py-20 gap-3">
-                <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
+                <Loader2 className="w-8 h-8 animate-spin text-bioflora-verde" />
                 <p className="text-sm text-gray-400 dark:text-gray-500 font-medium">Cargando clasificaciones globales...</p>
             </div>
         );
@@ -286,35 +286,27 @@ export default function MetadataManager({ onClose }) {
     const currentCounts = activeTab === 'categories' ? productCategoryCounts : productFamilyCounts;
 
     return (
-        <div className="space-y-6">
-            <header className="flex items-center justify-between gap-4 border-b border-gray-100 dark:border-white/5 pb-4">
-                <div>
-                    <h1 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 font-serif flex items-center gap-2.5">
-                        <Sliders className="w-6 h-6 text-indigo-500" />
-                        Gestionar Metadatos
-                    </h1>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
-                        Clasificaciones y filtros del catálogo de Bioflora.
-                    </p>
-                </div>
-                {onClose && (
+        <div className="space-y-5">
+            {onClose && (
+                <div className="flex items-center justify-between border-b border-gray-200 dark:border-white/5 pb-4">
+                    <h2 className="text-base font-bold font-sans text-gray-800 dark:text-gray-100">Gestionar Metadatos</h2>
                     <button 
                         onClick={onClose} 
-                        className="p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer"
+                        className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer"
                         title="Cerrar"
                     >
                         <X className="w-5 h-5" />
                     </button>
-                )}
-            </header>
+                </div>
+            )}
 
             {/* Selector de Pestañas (Tabs) */}
             <div className="flex border-b border-gray-200 dark:border-white/10 shrink-0">
                 <button
                     onClick={() => setActiveTab('categories')}
-                    className={`flex items-center gap-2 px-5 py-3 border-b-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                    className={`flex items-center gap-2 px-4 py-3 border-b-2 text-xs font-bold uppercase tracking-wider transition-all ${
                         activeTab === 'categories'
-                            ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400 bg-indigo-500/5'
+                            ? 'border-bioflora-verde text-bioflora-verde dark:text-bioflora-verde bg-bioflora-verde/5'
                             : 'border-transparent text-gray-500 hover:text-gray-800 dark:hover:text-gray-300'
                     }`}
                 >
@@ -323,88 +315,85 @@ export default function MetadataManager({ onClose }) {
                 </button>
                 <button
                     onClick={() => setActiveTab('families')}
-                    className={`flex items-center gap-2 px-5 py-3 border-b-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                    className={`flex items-center gap-2 px-4 py-3 border-b-2 text-xs font-bold uppercase tracking-wider transition-all ${
                         activeTab === 'families'
-                            ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400 bg-indigo-500/5'
+                            ? 'border-bioflora-verde text-bioflora-verde dark:text-bioflora-verde bg-bioflora-verde/5'
                             : 'border-transparent text-gray-500 hover:text-gray-800 dark:hover:text-gray-300'
                     }`}
                 >
                     <Layers className="w-4 h-4" />
-                    Familias Botánicas ({families.length})
+                    Familias ({families.length})
                 </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="space-y-6">
                 {/* FORMULARIO DE CREACIÓN */}
-                <div className="lg:col-span-1">
-                    <div className="bg-white dark:bg-[#1A1A1B] border border-gray-200/50 dark:border-white/5 rounded-2xl p-5 shadow-sm sticky top-6">
-                        <div className="flex items-center gap-2 mb-4 text-indigo-600 dark:text-indigo-400">
-                            <Plus className="w-5 h-5" />
-                            <h2 className="text-base font-bold font-serif text-gray-800 dark:text-gray-100">
-                                {activeTab === 'categories' ? 'Nueva Categoría' : 'Nueva Familia'}
-                            </h2>
+                <div className="bg-white dark:bg-[#1E1E20]/40 border border-gray-200/50 dark:border-white/5 rounded-2xl p-4 shadow-sm">
+                    <div className="flex items-center gap-2 mb-3 text-bioflora-verde">
+                        <Plus className="w-4 h-4" />
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                            {activeTab === 'categories' ? 'Nueva Categoría' : 'Nueva Familia Botánica'}
+                        </h3>
+                    </div>
+                    
+                    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3">
+                        <div className="flex-1">
+                            <label className={labelBase}>Nombre *</label>
+                            <input
+                                required
+                                type="text"
+                                value={newName}
+                                onChange={(e) => setNewName(e.target.value)}
+                                placeholder={activeTab === 'categories' ? "Ej. Exóticas, Orquídeas" : "Ej. Araceae, Gesneriaceae"}
+                                className={inputBase}
+                            />
                         </div>
-                        
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div>
-                                <label className={labelBase}>Nombre *</label>
+
+                        {activeTab === 'families' && (
+                            <div className="flex-1">
+                                <label className={labelBase}>Descripción Botánica</label>
                                 <input
-                                    required
                                     type="text"
-                                    value={newName}
-                                    onChange={(e) => setNewName(e.target.value)}
-                                    placeholder={activeTab === 'categories' ? "Ej. Exóticas, Accesorios" : "Ej. Araceae, Gesneriaceae"}
+                                    value={newDescription}
+                                    onChange={(e) => setNewDescription(e.target.value)}
+                                    placeholder="Ej. Hojas variegadas, trepadoras..."
                                     className={inputBase}
                                 />
                             </div>
+                        )}
 
-                            {activeTab === 'families' && (
-                                <div>
-                                    <label className={labelBase}>Descripción Botánica</label>
-                                    <textarea
-                                        value={newDescription}
-                                        onChange={(e) => setNewDescription(e.target.value)}
-                                        placeholder="Detalles taxonómicos o características botánicas..."
-                                        rows="4"
-                                        className={`${inputBase} resize-y min-h-[100px]`}
-                                    />
-                                </div>
+                        <button
+                            type="submit"
+                            disabled={isSaving}
+                            className="flex items-center justify-center gap-1.5 h-10 px-4 bg-bioflora-verde hover:bg-bioflora-verde/90 text-white font-bold text-xs rounded-xl transition-all shadow-md shadow-bioflora-verde/15 cursor-pointer disabled:opacity-50 sm:shrink-0"
+                        >
+                            {isSaving ? (
+                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            ) : (
+                                <>
+                                    <Plus className="w-3.5 h-3.5" />
+                                    <span>Crear</span>
+                                </>
                             )}
-
-                            <button
-                                type="submit"
-                                disabled={isSaving}
-                                className="w-full flex items-center justify-center gap-2 h-11 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-all shadow-md shadow-indigo-600/10 cursor-pointer disabled:opacity-50"
-                            >
-                                {isSaving ? (
-                                    <Loader2 className="w-4 h-4 animate-spin" />
-                                ) : (
-                                    <>
-                                        <Plus className="w-4 h-4" />
-                                        Crear clasificación
-                                    </>
-                                )}
-                            </button>
-                        </form>
-                    </div>
+                        </button>
+                    </form>
                 </div>
 
                 {/* LISTADO DE METADATOS */}
-                <div className="lg:col-span-2 space-y-4">
+                <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
+                        <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
                             {currentList.length} Registro{currentList.length !== 1 ? 's' : ''} Encontrado{currentList.length !== 1 ? 's' : ''}
                         </span>
                     </div>
 
                     {currentList.length === 0 ? (
-                        <div className="text-center py-16 border-2 border-dashed border-gray-200 dark:border-white/5 rounded-2xl bg-white dark:bg-white/[0.01]">
-                            <Sliders className="w-10 h-10 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">No hay clasificaciones registradas.</p>
-                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Crea una en el formulario de la izquierda.</p>
+                        <div className="text-center py-12 border-2 border-dashed border-gray-200 dark:border-white/5 rounded-2xl bg-white dark:bg-white/[0.01]">
+                            <Sliders className="w-8 h-8 text-gray-300 dark:text-gray-600 mx-auto mb-2" />
+                            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">No hay clasificaciones registradas.</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <AnimatePresence mode="popLayout">
                                 {currentList.map((item) => {
                                     const plantCount = currentCounts[item.name] || 0;
@@ -415,63 +404,62 @@ export default function MetadataManager({ onClose }) {
                                             initial={{ opacity: 0, scale: 0.95 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0.9 }}
-                                            className="bg-white dark:bg-[#1A1A1B] border border-gray-200/50 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all group relative overflow-hidden"
+                                            className="bg-white dark:bg-[#1E1E20]/45 border border-gray-200/50 dark:border-white/5 rounded-2xl p-3.5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all group relative overflow-hidden"
                                         >
                                             <div>
-                                                <div className="flex items-start justify-between gap-3 mb-2.5">
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="p-2 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-xl">
+                                                <div className="flex items-start justify-between gap-2 mb-2">
+                                                    <div className="flex items-center gap-2 min-w-0">
+                                                        <div className="p-1.5 bg-bioflora-verde/10 text-bioflora-verde rounded-lg shrink-0">
                                                             {activeTab === 'categories' ? (
-                                                                <Bookmark className="w-4 h-4" />
+                                                                <Bookmark className="w-3.5 h-3.5" />
                                                             ) : (
-                                                                <Layers className="w-4 h-4" />
+                                                                <Layers className="w-3.5 h-3.5" />
                                                             )}
                                                         </div>
-                                                        <h3 className="font-serif font-bold text-base text-gray-800 dark:text-gray-100">{item.name}</h3>
+                                                        <h3 className="font-sans font-bold text-sm text-gray-800 dark:text-gray-200 truncate" title={item.name}>{item.name}</h3>
                                                     </div>
                                                     
-                                                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                                                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all shrink-0">
                                                         <button
                                                             onClick={() => handleStartEdit(activeTab, item)}
-                                                            className="p-1.5 text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 rounded-lg transition-all cursor-pointer"
+                                                            className="p-1 text-gray-400 hover:text-bioflora-verde dark:hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-md transition-all cursor-pointer"
                                                             title="Editar"
                                                         >
-                                                            <Edit3 className="w-4 h-4" />
+                                                            <Edit3 className="w-3.5 h-3.5" />
                                                         </button>
                                                         {plantCount > 0 && (
                                                             <button
                                                                 onClick={() => handleStartMerge(activeTab, item)}
-                                                                className="p-1.5 text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-500/10 rounded-lg transition-all cursor-pointer"
+                                                                className="p-1 text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-500/10 rounded-md transition-all cursor-pointer"
                                                                 title="Mover plantas (Fusión)"
                                                             >
-                                                                <ArrowRightLeft className="w-4 h-4" />
+                                                                <ArrowRightLeft className="w-3.5 h-3.5" />
                                                             </button>
                                                         )}
                                                         <button
                                                             onClick={() => handleDelete(activeTab, item.id, item.name)}
-                                                            className="p-1.5 text-gray-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-all cursor-pointer"
+                                                            className="p-1 text-gray-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-md transition-all cursor-pointer"
                                                             title="Eliminar"
                                                         >
-                                                            <Trash2 className="w-4 h-4" />
+                                                            <Trash2 className="w-3.5 h-3.5" />
                                                         </button>
                                                     </div>
                                                 </div>
 
                                                 {activeTab === 'families' && (
-                                                    <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-3 mb-4 leading-relaxed font-sans">
+                                                    <p className="text-[10px] text-gray-500 dark:text-gray-400 line-clamp-2 mb-3 leading-relaxed font-sans">
                                                         {item.description || 'Sin descripción botánica registrada.'}
                                                     </p>
                                                 )}
                                             </div>
 
-                                            <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-white/5 text-[10px] text-gray-400 dark:text-gray-500">
-                                                <div className="flex items-center gap-1.5">
+                                            <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-white/5 text-[9px] text-gray-400 dark:text-gray-500">
+                                                <div className="flex items-center gap-1">
                                                     <Calendar className="w-3.5 h-3.5" />
                                                     <span>{formatDate(item.createdAt)}</span>
                                                 </div>
-                                                <div className="flex items-center gap-1.5 font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-1 rounded-full">
+                                                <div className="flex items-center gap-1 font-bold text-bioflora-verde bg-bioflora-verde/10 px-2 py-0.5 rounded-full shrink-0">
                                                     <span>{plantCount} Planta{plantCount !== 1 ? 's' : ''}</span>
-                                                    <ChevronRight className="w-3 h-3" />
                                                 </div>
                                             </div>
                                         </motion.div>
@@ -499,11 +487,11 @@ export default function MetadataManager({ onClose }) {
                             initial={{ opacity: 0, scale: 0.95, y: 10 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                            className="relative bg-white dark:bg-[#1A1A1B] border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-2xl max-w-md w-full z-10 space-y-4"
+                            className="relative bg-white dark:bg-[#1E1E20] border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-2xl max-w-md w-full z-10 space-y-4 animate-in fade-in zoom-in-95 duration-200"
                         >
                             <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-white/5">
-                                <h3 className="text-lg font-bold font-serif text-gray-800 dark:text-gray-100 flex items-center gap-2">
-                                    <Edit3 className="w-5 h-5 text-indigo-500" />
+                                <h3 className="text-base font-bold font-sans text-gray-800 dark:text-gray-100 flex items-center gap-2">
+                                    <Edit3 className="w-4 h-4 text-bioflora-verde" />
                                     Editar {editingItem.type === 'categories' ? 'Categoría' : 'Familia'}
                                 </h3>
                                 <button
@@ -532,8 +520,8 @@ export default function MetadataManager({ onClose }) {
                                         <textarea
                                             value={editDescription}
                                             onChange={(e) => setEditDescription(e.target.value)}
-                                            rows="4"
-                                            className={`${inputBase} resize-y min-h-[100px]`}
+                                            rows="3"
+                                            className={`${inputBase} resize-y min-h-[80px]`}
                                         />
                                     </div>
                                 )}
@@ -558,7 +546,7 @@ export default function MetadataManager({ onClose }) {
                                     type="button"
                                     onClick={handleSaveEdit}
                                     disabled={isSavingEdit}
-                                    className="px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all shadow-md shadow-indigo-600/15 cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+                                    className="px-4 py-2 text-xs font-semibold text-white bg-bioflora-verde hover:bg-bioflora-verde/90 rounded-xl transition-all shadow-md shadow-bioflora-verde/15 cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
                                 >
                                     {isSavingEdit ? (
                                         <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -586,11 +574,11 @@ export default function MetadataManager({ onClose }) {
                             initial={{ opacity: 0, scale: 0.95, y: 10 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                            className="relative bg-white dark:bg-[#1A1A1B] border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-2xl max-w-md w-full z-10 space-y-4"
+                            className="relative bg-white dark:bg-[#1E1E20] border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-2xl max-w-md w-full z-10 space-y-4 animate-in fade-in zoom-in-95 duration-200"
                         >
                             <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-white/5">
-                                <h3 className="text-lg font-bold font-serif text-gray-800 dark:text-gray-100 flex items-center gap-2">
-                                    <ArrowRightLeft className="w-5 h-5 text-amber-500" />
+                                <h3 className="text-base font-bold font-sans text-gray-800 dark:text-gray-100 flex items-center gap-2">
+                                    <ArrowRightLeft className="w-4 h-4 text-amber-500" />
                                     Mover Plantas (Fusión)
                                 </h3>
                                 <button
@@ -613,6 +601,7 @@ export default function MetadataManager({ onClose }) {
                                         onChange={(e) => setTargetName(e.target.value)}
                                         className={inputBase}
                                     >
+                                        <option value="">-- Selecciona el destino --</option>
                                         {(mergingItem.type === 'categories' ? categories : families)
                                             .filter(i => i.name !== mergingItem.name)
                                             .map(i => (

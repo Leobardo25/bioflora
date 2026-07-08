@@ -1,12 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import HeaderActions from '../../components/admin/HeaderActions';
+import MetadataManager from './MetadataManager';
+import ClassifierSidebar from './ClassifierSidebar';
 import { getProducts, deleteProduct, updateProductField } from '../../services/productService';
 import { toast } from 'react-toastify';
-import { Plus, Search, Star, Edit2, Trash2, Package, LayoutGrid, List, Sliders } from 'lucide-react';
+import { Plus, Search, Star, Edit2, Trash2, Package, LayoutGrid, List, Sliders, FolderOpen, ChevronDown } from 'lucide-react';
 import { db } from '../../firebase/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { getProductImage, formatPrice } from './inventoryUtils';
 import ProductEditSidebar from './ProductEditSidebar';
-import MetadataSidebar from './MetadataSidebar';
 import ProductCardMobile from './ProductCardMobile';
 import InventoryStats from './InventoryStats';
 import InventoryFilters from './InventoryFilters';
@@ -24,13 +27,18 @@ export default function InventoryList() {
     const [familyFilter, setFamilyFilter] = useState('Todas');
     const [dbFamilies, setDbFamilies] = useState(['Todas']);
     const [sidebarProduct, setSidebarProduct] = useState(null);
-    const [isMetadataSidebarOpen, setIsMetadataSidebarOpen] = useState(false);
+    const [isMetadataOpen, setIsMetadataOpen] = useState(false);
+    const [classifierProduct, setClassifierProduct] = useState(null);
+    const [showBotanicFilters, setShowBotanicFilters] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState(null);
     const [viewMode, setViewMode] = useState(() => localStorage.getItem('adminInventoryView') || 'grid');
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'families'), (snapshot) => {
-            const list = snapshot.docs.map(doc => doc.data().name).filter(Boolean);
+            const list = snapshot.docs
+                .map(doc => doc.data().name)
+                .filter(Boolean)
+                .filter(name => name.trim().toLowerCase() !== 'todas');
             list.sort();
             setDbFamilies(['Todas', ...list]);
         }, (err) => {
@@ -44,7 +52,10 @@ export default function InventoryList() {
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'categories'), (snapshot) => {
             if (!snapshot.empty) {
-                const list = snapshot.docs.map(doc => doc.data().name).filter(Boolean);
+                const list = snapshot.docs
+                    .map(doc => doc.data().name)
+                    .filter(Boolean)
+                    .filter(name => name.trim().toLowerCase() !== 'todos');
                 list.sort();
                 setDbCategories(['Todos', ...list]);
             }
@@ -122,103 +133,147 @@ export default function InventoryList() {
 
     return (
         <div>
-            <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100 font-serif">Inventario Botánico</h1>
-                    <p className="text-gray-500 mt-1 text-sm">Gestiona plantas, stock y estados de Bioflora.</p>
-                </div>
-                <div className="flex items-center gap-2.5 self-start sm:self-auto">
-                    <button
-                        onClick={() => setIsMetadataSidebarOpen(true)}
-                        className="flex items-center gap-2 bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-200 px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm cursor-pointer"
-                        title="Gestionar Categorías y Familias"
-                    >
-                        <Sliders className="w-4 h-4" />
-                        Metadatos
-                    </button>
-                    <button
-                        onClick={() => setSidebarProduct('new')}
-                        className="flex items-center gap-2 bg-bioflora-verde text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/80 transition-colors shadow-lg shadow-bioflora-verde/15 cursor-pointer"
-                    >
-                        <Plus className="w-4 h-4" />
-                        Nueva Planta / Insumo
-                    </button>
-                </div>
-            </header>
-
-            <InventoryStats products={products} activeFilter={activeFilter} onFilterChange={handleFilterChange} />
-
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2">
-                <div className="relative max-w-xs w-full">
-                    <Search className="w-4 h-4 absolute left-3 top-2.5 text-gray-400 pointer-events-none" />
+            {/* Buscador y Controles */}
+            <div className="grid grid-cols-2 md:flex md:flex-row md:items-center gap-3 mb-5 bg-white dark:bg-[#1E1E20]/40 border border-gray-150 dark:border-white/5 p-3 md:p-4 rounded-2xl shadow-sm">
+                {/* Buscador: Fila superior completa en móvil (col-span-2), y flexible en el centro en PC (md:flex-1) */}
+                <div className="col-span-2 md:flex-1 md:max-w-lg md:mx-auto w-full relative">
+                    <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     <input
                         type="text"
-                        placeholder="Buscar planta..."
+                        placeholder="Buscar especie botánica..."
                         value={searchTerm}
                         onChange={e => { setSearchTerm(e.target.value); setActiveFilter(null); }}
-                        className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-[#070F0A] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-bioflora-verde transition"
+                        className="w-full pl-11 pr-5 py-2 border border-gray-300 dark:border-white/10 rounded-full text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-[#18181A] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-bioflora-verde/40 focus:border-bioflora-verde transition-all shadow-sm font-sans"
                     />
                 </div>
-                
-                {/* Toggle Vista (Solo Desktop) */}
-                <div className="hidden md:flex items-center bg-gray-100 dark:bg-[#151517] p-1 rounded-lg border border-gray-200 dark:border-white/5">
-                    <button
-                        onClick={() => setViewMode('table')}
-                        className={`p-1.5 rounded-md transition-colors ${viewMode === 'table' ? 'bg-white dark:bg-[#1e1e20] text-gray-800 dark:text-gray-100 shadow-sm' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'}`}
-                        title="Vista de Lista"
-                    >
-                        <List className="w-4 h-4" />
-                    </button>
-                    <button
-                        onClick={() => setViewMode('grid')}
-                        className={`p-1.5 rounded-md transition-colors ${viewMode === 'grid' ? 'bg-white dark:bg-[#1e1e20] text-gray-800 dark:text-gray-100 shadow-sm' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'}`}
-                        title="Vista de Cuadrícula"
-                    >
-                        <LayoutGrid className="w-4 h-4" />
-                    </button>
-                </div>
-            </div>
 
-            {/* Filtros de Categorías y Familias */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                <div className="flex flex-wrap items-center gap-2">
-                    {dbCategories.map(category => (
+                {/* Controles de Vista y Metadatos: Columna izquierda en móvil, y orden izquierda en PC (md:order-first) */}
+                <div className="col-span-1 md:order-first flex items-center gap-2">
+                    <button
+                        onClick={() => setIsMetadataOpen(true)}
+                        className="flex items-center gap-1.5 bg-white dark:bg-[#1C1C1E] border border-gray-250 dark:border-white/10 text-gray-700 dark:text-gray-200 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm cursor-pointer w-full sm:w-auto justify-center"
+                        title="Gestionar Categorías y Familias"
+                    >
+                        <Sliders className="w-3.5 h-3.5 text-gray-500" />
+                        <span>Metadatos</span>
+                    </button>
+
+                    <div className="hidden md:flex items-center bg-gray-100 dark:bg-[#151517] p-1 rounded-xl border border-gray-200 dark:border-white/5">
                         <button
-                            key={category}
-                            onClick={() => setCategoryFilter(category)}
-                            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
-                                categoryFilter === category 
-                                    ? 'bg-bioflora-verde border-bioflora-verde text-white shadow-sm' 
-                                    : 'bg-white dark:bg-[#0D1C13] border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-bioflora-verde/50 hover:text-bioflora-verde dark:hover:text-bioflora-verde font-sans'
-                            }`}
+                            onClick={() => { setViewMode('table'); localStorage.setItem('adminInventoryView', 'table'); }}
+                            className={`p-1.5 rounded-lg transition-colors cursor-pointer ${viewMode === 'table' ? 'bg-white dark:bg-[#1e1e20] text-gray-800 dark:text-gray-100 shadow-sm animate-in fade-in duration-200' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'}`}
+                            title="Vista de Lista"
                         >
-                            {category}
+                            <List className="w-4 h-4" />
                         </button>
-                    ))}
+                        <button
+                            onClick={() => { setViewMode('grid'); localStorage.setItem('adminInventoryView', 'grid'); }}
+                            className={`p-1.5 rounded-lg transition-colors cursor-pointer ${viewMode === 'grid' ? 'bg-white dark:bg-[#1e1e20] text-gray-800 dark:text-gray-100 shadow-sm animate-in fade-in duration-200' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'}`}
+                            title="Vista de Cuadrícula"
+                        >
+                            <LayoutGrid className="w-4 h-4" />
+                        </button>
+                    </div>
                 </div>
-                
-                <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Familia:</span>
-                    <select
-                        value={familyFilter}
-                        onChange={e => setFamilyFilter(e.target.value)}
-                        className="bg-white dark:bg-[#070F0A] border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-bioflora-verde"
+
+                {/* Botón Nueva Planta: Columna derecha en móvil (col-span-1), y derecha en PC */}
+                <div className="col-span-1 flex justify-end md:w-auto">
+                    <button
+                        onClick={() => setSidebarProduct('new')}
+                        className="flex items-center gap-1.5 bg-bioflora-verde text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-bioflora-verde/90 transition-colors shadow-md shadow-bioflora-verde/15 cursor-pointer w-full sm:w-auto justify-center"
                     >
-                        {dbFamilies.map(fam => (
-                            <option key={fam} value={fam}>{fam}</option>
-                        ))}
-                    </select>
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Nueva Planta</span>
+                    </button>
                 </div>
             </div>
 
-            <InventoryFilters activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+            {/* Filtros de Existencias Centrados */}
+            <div className="flex justify-center mb-5">
+                <InventoryFilters activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+            </div>
+
+            {/* Botón para expandir/retraer filtros botánicos */}
+            <div className="flex justify-center mb-6">
+                <button
+                    onClick={() => setShowBotanicFilters(!showBotanicFilters)}
+                    className="flex items-center gap-1.5 text-xs font-bold text-gray-400 hover:text-bioflora-verde dark:hover:text-bioflora-verde transition-colors bg-transparent border-none cursor-pointer tracking-wider uppercase text-[10px]"
+                >
+                    <span>Filtros botánicos (Categorías y Familias)</span>
+                    <motion.span
+                        animate={{ rotate: showBotanicFilters ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <ChevronDown className="w-3.5 h-3.5" />
+                    </motion.span>
+                </button>
+            </div>
+
+            {/* Panel Retractable */}
+            <AnimatePresence>
+                {showBotanicFilters && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeInOut' }}
+                        className="overflow-hidden mb-6 bg-gray-50 dark:bg-white/[0.01] border border-gray-200 dark:border-white/5 rounded-2xl p-5 space-y-4"
+                    >
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                            {/* Categorías */}
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Filtrar por Categoría:</span>
+                                <div className="flex flex-wrap items-center gap-1.5">
+                                    <button
+                                        onClick={() => setCategoryFilter('Todos')}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
+                                            categoryFilter === 'Todos'
+                                                ? 'bg-bioflora-verde border-bioflora-verde text-white shadow-sm font-bold'
+                                                : 'bg-white dark:bg-white/5 border-gray-205 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-bioflora-verde/50 hover:text-bioflora-verde'
+                                        }`}
+                                    >
+                                        Todos
+                                    </button>
+                                    {dbCategories.map(category => (
+                                        <button
+                                            key={category}
+                                            onClick={() => setCategoryFilter(category)}
+                                            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
+                                                categoryFilter === category
+                                                    ? 'bg-bioflora-verde border-bioflora-verde text-white shadow-sm font-bold'
+                                                    : 'bg-white dark:bg-white/5 border-gray-205 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-bioflora-verde/50 hover:text-bioflora-verde'
+                                            }`}
+                                        >
+                                            {category}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            {/* Familias */}
+                            <div className="flex flex-col gap-2 min-w-[200px]">
+                                <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Filtrar por Familia:</span>
+                                <select
+                                    value={familyFilter}
+                                    onChange={e => setFamilyFilter(e.target.value)}
+                                    className="bg-white dark:bg-[#18181A] border border-gray-205 dark:border-white/10 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-xl text-xs font-bold focus:outline-none focus:ring-2 focus:ring-bioflora-verde cursor-pointer"
+                                >
+                                    {dbFamilies.map(fam => (
+                                        <option key={fam} value={fam}>{fam}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {loading ? (
                 <div className="flex items-center justify-center h-64">
                     <div className="w-8 h-8 border-2 border-bioflora-verde border-t-transparent rounded-full animate-spin" />
                 </div>
             ) : filteredProducts.length === 0 ? (
-                <div className="text-center py-20 bg-white dark:bg-[#0D1C13] border border-gray-200 dark:border-white/5 rounded-xl">
+                <div className="text-center py-20 bg-white dark:bg-[#1E1E20]/40 border border-gray-200 dark:border-white/5 rounded-xl animate-in fade-in duration-300">
                     <Package className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
                     <p className="text-gray-500 dark:text-gray-400 font-medium font-sans">No se encontraron especies botánicas.</p>
                     {searchTerm || activeFilter
@@ -325,6 +380,9 @@ export default function InventoryList() {
                                             </td>
                                             <td className="px-5 py-3 text-right">
                                                 <div className="flex items-center justify-end gap-1">
+                                                    <button onClick={() => setClassifierProduct(p)} className="p-2 text-gray-400 dark:text-gray-500 hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-lg transition-colors bg-transparent border-none cursor-pointer" title="Clasificar Metadatos">
+                                                        <FolderOpen className="w-4 h-4" />
+                                                    </button>
                                                     <button onClick={() => setSidebarProduct(p)} className="p-2 text-gray-400 dark:text-gray-500 hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-lg transition-colors bg-transparent border-none cursor-pointer" title="Editar">
                                                         <Edit2 className="w-4 h-4" />
                                                     </button>
@@ -353,6 +411,7 @@ export default function InventoryList() {
                                     onQuantityUpdated={val => updateLocal(p.id, 'quantity', val)}
                                     onPriceUpdated={val => updateLocal(p.id, 'price', val)}
                                     onFeaturedUpdated={val => updateLocal(p.id, 'isFeatured', val)}
+                                    onClassifier={() => setClassifierProduct(p)}
                                 />
                             ))}
                         </div>
@@ -376,11 +435,49 @@ export default function InventoryList() {
                     onSaved={handleSaved}
                 />
             )}
-
-            <MetadataSidebar
-                isOpen={isMetadataSidebarOpen}
-                onClose={() => setIsMetadataSidebarOpen(false)}
-            />
+            {/* Drawer Lateral del Gestor de Metadatos */}
+            <AnimatePresence>
+                {isMetadataOpen && (
+                    <div className="fixed inset-0 z-[150] flex justify-end">
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                            onClick={() => setIsMetadataOpen(false)}
+                        />
+                        
+                        {/* Drawer Content */}
+                        <motion.div
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            className="relative w-full max-w-2xl h-full bg-gray-50 dark:bg-[#111113] border-l border-gray-200 dark:border-white/10 shadow-2xl z-10 flex flex-col overflow-hidden p-5 sm:p-6"
+                        >
+                            <div className="flex-1 overflow-y-auto pr-1">
+                                <MetadataManager onClose={() => setIsMetadataOpen(false)} />
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+            {classifierProduct !== null && (
+                <ClassifierSidebar
+                    product={classifierProduct}
+                    onClose={() => setClassifierProduct(null)}
+                    onUpdateField={async (productId, field, value) => {
+                        try {
+                            await updateProductField(productId, field, value);
+                            updateLocal(productId, field, value);
+                        } catch (err) {
+                            console.error("Error al reclasificar:", err);
+                            toast.error("Error al actualizar la clasificación.");
+                        }
+                    }}
+                />
+            )}
         </div>
     );
 }

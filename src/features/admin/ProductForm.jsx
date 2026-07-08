@@ -1,10 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { createProduct, getProductById, updateProduct } from '../../services/productService';
 import { toast } from 'react-toastify';
-import { ImagePlus, Save, Trash2, Plus, Package, Tag, DollarSign, Layers, Image as ImageIcon, Star, ChevronDown } from 'lucide-react';
+import { db } from '../../firebase/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { ImagePlus, Save, Trash2, Plus, Package, Tag, DollarSign, Layers, Image as ImageIcon, Star } from 'lucide-react';
+import { LIGHT_LEVELS, WATERING_LEVELS, SUBSTRATE_PRESETS, DIFFICULTY_LEVELS, getLightLevel, getWateringLevel, getSubstratePreset } from '../../constants/careGuide';
+import { CareGuideFull } from '../../components/ui/CareGuideBadges';
+import { PRODUCT_FORM_TABS } from '../../constants/productFormTabs';
 
-export default function ProductForm({ productId: propProductId, onClose, onSaved, onDirtyChange, formId, onLoadingChange }) {
+export default function ProductForm({ productId: propProductId, onClose, onSaved, onDirtyChange, formId, onLoadingChange, activeTab: externalActiveTab, setActiveTab: externalSetActiveTab }) {
     const { id: paramId } = useParams();
     const id = propProductId ?? paramId;
     const isEditMode = Boolean(id);
@@ -33,7 +39,13 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
         isFeatured: false,
         quantity: 0,
         hasPresentations: false,
-        presentaciones: []
+        presentaciones: [],
+        careGuide: {
+            light: '', lightLabel: '',
+            watering: '', wateringLabel: '',
+            substrate: '', substrateLabel: '',
+            difficulty: ''
+        }
     });
     
     // Manejo de imágenes (Portada y Galería)
@@ -43,31 +55,52 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
     const [galleryPreviews, setGalleryPreviews] = useState([]); 
     const [oldGalleryUrls, setOldGalleryUrls] = useState([]);
 
-    // Secciones colapsables
-    const [openSections, setOpenSections] = useState({
-        info: true,
-        pricing: true,
-        presentations: true,
-        images: true,
-    });
+    // Pestaña activa (informacion | cuidados | precio | imagenes)
+    const [localActiveTab, setLocalActiveTab] = useState('informacion');
+    const activeTab = externalActiveTab ?? localActiveTab;
+    const setActiveTab = externalSetActiveTab ?? setLocalActiveTab;
 
     const initialDataRef = useRef(null);
     const dirtyInitRef = useRef(false);
 
-    // Familias Botánicas disponibles
-    const FAMILIES = ['Araceae', 'Orchidaceae', 'Bromeliaceae', 'Arecaceae', 'Insumos Profesionales'];
-    const CATEGORIES = ['Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios'];
+    // Familias Botánicas dinámicas desde Firestore
+    const [dbFamilies, setDbFamilies] = useState(['Araceae', 'Orchidaceae', 'Bromeliaceae', 'Arecaceae', 'Insumos Profesionales']);
+    const [dbCategories, setDbCategories] = useState(['Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios']);
 
-    const toggleSection = (key) => {
-        setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
-    };
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'families'), (snapshot) => {
+            if (!snapshot.empty) {
+                const list = snapshot.docs.map(d => d.data().name).filter(Boolean);
+                list.sort();
+                setDbFamilies(list);
+            }
+        }, (err) => {
+            console.error("Error al cargar familias dinámicas:", err);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'categories'), (snapshot) => {
+            if (!snapshot.empty) {
+                const list = snapshot.docs.map(d => d.data().name).filter(Boolean);
+                list.sort();
+                setDbCategories(list);
+            }
+        }, (err) => {
+            console.error("Error al cargar categorías dinámicas en formulario:", err);
+        });
+        return () => unsubscribe();
+    }, []);
 
     // Si es edición, cargar el producto por ID al montar
     useEffect(() => {
+        let active = true;
         if (isEditMode) {
             const fetchProduct = async () => {
                 try {
                     const data = await getProductById(id);
+                    if (!active) return;
                     if (data) {
                         setFormData({
                             name: data.name || '',
@@ -82,7 +115,13 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                             isFeatured: data.isFeatured || false,
                             quantity: data.quantity ?? 0,
                             hasPresentations: data.hasPresentations || (data.presentaciones && data.presentaciones.length > 0) || false,
-                            presentaciones: data.presentaciones || []
+                            presentaciones: data.presentaciones || [],
+                            careGuide: {
+                                light: data.careGuide?.light || '', lightLabel: data.careGuide?.lightLabel || '',
+                                watering: data.careGuide?.watering || '', wateringLabel: data.careGuide?.wateringLabel || '',
+                                substrate: data.careGuide?.substrate || '', substrateLabel: data.careGuide?.substrateLabel || '',
+                                difficulty: data.careGuide?.difficulty || ''
+                            }
                         });
                         
                         // Cargar portada principal
@@ -100,14 +139,21 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                         navigate('/admin/inventory');
                     }
                 } catch (error) {
-                    toast.error('Error al cargar la información del producto');
+                    if (active) {
+                        toast.error('Error al cargar la información del producto');
+                    }
                 } finally {
-                    setIsFetchingInfo(false);
+                    if (active) {
+                        setIsFetchingInfo(false);
+                    }
                 }
             };
             fetchProduct();
         }
-    }, [id, isEditMode, navigate]);
+        return () => {
+            active = false;
+        };
+    }, [id, isEditMode, navigate, getProductById, setFormData, setCoverPreview, setOldGalleryUrls, setGalleryPreviews, setIsFetchingInfo]);
 
     // Snapshot inicial para detectar cambios
     useEffect(() => {
@@ -168,6 +214,27 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                 return prevOld;
             }
         });
+    };
+
+    // Manejador de la Ficha de Cuidados (objeto anidado)
+    const handleCareGuideChange = (field, value) => {
+        setFormData(prev => ({
+            ...prev,
+            careGuide: { ...prev.careGuide, [field]: value }
+        }));
+    };
+
+    // Al elegir un nivel, autorellenar el label por defecto (si el admin no lo ha personalizado ya)
+    const handleCareLevelChange = (field, labelField, value, getPreset) => {
+        const preset = getPreset(value);
+        setFormData(prev => ({
+            ...prev,
+            careGuide: {
+                ...prev.careGuide,
+                [field]: value,
+                [labelField]: preset ? preset.label : ''
+            }
+        }));
     };
 
     // Manejadores de presentaciones
@@ -253,9 +320,6 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
     ═══════════════════════════════════════ */
     const inputBase = "w-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#070F0A] text-gray-800 dark:text-gray-100 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bioflora-verde/40 focus:border-bioflora-verde transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600";
     const labelBase = "text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1.5";
-    const sectionHeader = "flex items-center justify-between py-3 cursor-pointer select-none group";
-    const sectionTitle = "flex items-center gap-2.5 text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider";
-    const sectionIcon = "w-4 h-4 text-bioflora-verde";
 
     return (
         <div className={isSidebarMode ? '' : 'max-w-4xl mx-auto'}>
@@ -272,87 +336,188 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
             )}
 
             <form id={formId} onSubmit={handleSubmit} className="space-y-1">
-
-                {/* ═══ SWITCH DESTACADO ═══ */}
-                <div className="flex items-center justify-between bg-gradient-to-r from-amber-50/80 to-transparent dark:from-amber-500/5 dark:to-transparent p-3.5 rounded-xl border border-amber-200/60 dark:border-amber-500/10">
-                    <div className="flex items-center gap-2.5">
-                        <Star className={`w-4 h-4 transition-colors ${formData.isFeatured ? 'text-amber-500 fill-amber-500' : 'text-gray-300 dark:text-gray-600'}`} />
-                        <div>
-                            <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 block leading-tight">Producto Destacado</span>
-                            <span className="text-[11px] text-gray-400 dark:text-gray-500">Aparecerá en la portada y colecciones de la tienda.</span>
+                {/* ═══ SELECTOR DE PESTAÑAS (solo modo página completa; en modo sidebar lo pinta el padre) ═══ */}
+                {!isSidebarMode && (
+                    <div className="sticky top-0 z-30 bg-gray-50 dark:bg-[#111113] pb-4 pt-1 border-b border-gray-200/50 dark:border-white/5 mb-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 p-1.5 bg-gray-100 dark:bg-white/5 rounded-2xl gap-2">
+                            {PRODUCT_FORM_TABS.map((tab) => {
+                                const Icon = tab.icon;
+                                const isActive = activeTab === tab.id;
+                                return (
+                                    <button
+                                        key={tab.id}
+                                        type="button"
+                                        onClick={() => setActiveTab(tab.id)}
+                                        className={`relative flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer select-none border border-transparent ${
+                                            isActive
+                                                ? 'text-bioflora-verde font-black border-bioflora-verde/20'
+                                                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 bg-white/40 dark:bg-white/[0.01] hover:bg-white/60 dark:hover:bg-white/[0.03]'
+                                        }`}
+                                    >
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="activeTabIndicator"
+                                                className="absolute inset-0 bg-white dark:bg-[#1A1A1B] rounded-xl shadow-md border border-gray-200/20 dark:border-white/10"
+                                                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                            />
+                                        )}
+                                        <span className="relative z-10 flex items-center gap-2">
+                                            <Icon className="w-4 h-4" />
+                                            <span className="truncate">{tab.label}</span>
+                                        </span>
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
-                    <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
-                        <input type="checkbox" name="isFeatured" checked={formData.isFeatured} onChange={handleChange} className="sr-only peer" />
-                        <div className="w-10 h-[22px] bg-gray-200 dark:bg-zinc-700 rounded-full peer peer-checked:after:translate-x-[18px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all after:shadow-sm peer-checked:bg-amber-500" />
-                    </label>
-                </div>
+                )}
 
                 {/* ═══════════════════════════════════
-                    SECCIÓN: INFORMACIÓN GENERAL
+                    PESTAÑA: INFORMACIÓN
                 ═══════════════════════════════════ */}
-                <div className="border border-gray-100 dark:border-white/5 rounded-xl overflow-hidden">
-                    <button type="button" onClick={() => toggleSection('info')} className={`${sectionHeader} px-4 w-full hover:bg-gray-50 dark:hover:bg-white/[0.02] rounded-t-xl`}>
-                        <span className={sectionTitle}>
-                            <Tag className={sectionIcon} />
-                            Información General
-                        </span>
-                        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${openSections.info ? 'rotate-180' : ''}`} />
-                    </button>
-                    
-                    {openSections.info && (
-                        <div className="px-4 pb-5 space-y-4">
-                            {/* Nombre */}
-                            <div>
-                                <label className={labelBase}>Nombre de la Planta / Producto *</label>
-                                <input required type="text" name="name" value={formData.name} onChange={handleChange} className={inputBase} placeholder="Ej. Monstera Variegata Albo" />
-                            </div>
-
-                            {/* Categoría + Familia Botánica: en una fila */}
-                            <div className="grid grid-cols-2 gap-3">
+                {activeTab === 'informacion' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-4">
+                        {/* Switch Destacado */}
+                        <div className="flex items-center justify-between bg-gradient-to-r from-amber-50/80 to-transparent dark:from-amber-500/5 dark:to-transparent p-3.5 rounded-xl border border-amber-200/60 dark:border-amber-500/10">
+                            <div className="flex items-center gap-2.5">
+                                <Star className={`w-4 h-4 transition-colors ${formData.isFeatured ? 'text-amber-500 fill-amber-500' : 'text-gray-300 dark:text-gray-600'}`} />
                                 <div>
-                                    <label className={labelBase}>Categoría Botánica</label>
-                                    <select name="category" value={formData.category} onChange={handleChange} className={inputBase}>
-                                        {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className={labelBase}>Familia Botánica</label>
-                                    <select name="family" value={formData.family} onChange={handleChange} className={inputBase}>
-                                        {FAMILIES.map(fam => <option key={fam} value={fam}>{fam}</option>)}
-                                    </select>
+                                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 block leading-tight">Producto Destacado</span>
+                                    <span className="text-[11px] text-gray-400 dark:text-gray-500">Aparecerá en la portada y colecciones de la tienda.</span>
                                 </div>
                             </div>
+                            <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                                <input type="checkbox" name="isFeatured" checked={formData.isFeatured} onChange={handleChange} className="sr-only peer" />
+                                <div className="w-10 h-[22px] bg-gray-200 dark:bg-zinc-700 rounded-full peer peer-checked:after:translate-x-[18px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all after:shadow-sm peer-checked:bg-amber-500" />
+                            </label>
+                        </div>
 
-                            {/* Ficha de Cuidados Rápidos */}
+                        {/* Nombre */}
+                        <div>
+                            <label className={labelBase}>Nombre de la Planta / Producto *</label>
+                            <input required type="text" name="name" value={formData.name} onChange={handleChange} className={inputBase} placeholder="Ej. Monstera Variegata Albo" />
+                        </div>
+
+                        {/* Categoría + Familia Botánica: en una fila */}
+                        <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <label className={labelBase}>Ficha de Cuidados (Riego, Sol, Humedad)</label>
-                                <input type="text" name="notes" value={formData.notes} onChange={handleChange} className={inputBase} placeholder="Ej. Riego moderado · Sombra ligera · Humedad alta" />
+                                <label className={labelBase}>Categoría Botánica</label>
+                                <select name="category" value={formData.category} onChange={handleChange} className={inputBase}>
+                                    {dbCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                                </select>
                             </div>
-
-                            {/* Descripción */}
                             <div>
-                                <label className={labelBase}>Descripción Botánica</label>
-                                <textarea name="description" value={formData.description} onChange={handleChange} rows="4" className={`${inputBase} resize-y min-h-[100px]`} placeholder="Características, origen o especificaciones botánicas..." />
+                                <label className={labelBase}>Familia Botánica</label>
+                                <select name="family" value={formData.family} onChange={handleChange} className={inputBase}>
+                                    {dbFamilies.map(fam => <option key={fam} value={fam}>{fam}</option>)}
+                                </select>
                             </div>
                         </div>
-                    )}
-                </div>
+
+                        {/* Frase Corta */}
+                        <div>
+                            <label className={labelBase}>Frase Corta (aparece como cita destacada)</label>
+                            <input type="text" name="notes" value={formData.notes} onChange={handleChange} className={inputBase} placeholder="Ej. Riego moderado · Sombra ligera · Humedad alta" />
+                        </div>
+
+                        {/* Descripción */}
+                        <div>
+                            <label className={labelBase}>Descripción Botánica</label>
+                            <textarea name="description" value={formData.description} onChange={handleChange} rows="4" className={`${inputBase} resize-y min-h-[100px]`} placeholder="Características, origen o especificaciones botánicas..." />
+                        </div>
+                    </motion.div>
+                )}
 
                 {/* ═══════════════════════════════════
-                    SECCIÓN: PRECIO Y STOCK
+                    PESTAÑA: CUIDADOS
                 ═══════════════════════════════════ */}
-                <div className="border border-gray-100 dark:border-white/5 rounded-xl overflow-hidden">
-                    <button type="button" onClick={() => toggleSection('pricing')} className={`${sectionHeader} px-4 w-full hover:bg-gray-50 dark:hover:bg-white/[0.02] rounded-t-xl`}>
-                        <span className={sectionTitle}>
-                            <DollarSign className={sectionIcon} />
-                            Precio y Stock
-                        </span>
-                        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${openSections.pricing ? 'rotate-180' : ''}`} />
-                    </button>
+                {activeTab === 'cuidados' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-4">
+                        <p className="text-[11px] text-gray-400 dark:text-gray-500 -mt-1">Define los íconos de necesidades que verá el cliente en la tarjeta y ficha del producto.</p>
 
-                    {openSections.pricing && (
-                        <div className="px-4 pb-5 space-y-4">
+                            {/* Luminosidad */}
+                            <div className="grid grid-cols-2 gap-2.5">
+                                <div>
+                                    <label className={labelBase}>Luminosidad</label>
+                                    <select
+                                        value={formData.careGuide.light}
+                                        onChange={(e) => handleCareLevelChange('light', 'lightLabel', e.target.value, getLightLevel)}
+                                        className={inputBase}
+                                    >
+                                        <option value="">Sin definir</option>
+                                        {LIGHT_LEVELS.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className={labelBase}>Texto (opcional)</label>
+                                    <input type="text" value={formData.careGuide.lightLabel} onChange={(e) => handleCareGuideChange('lightLabel', e.target.value)} className={inputBase} placeholder="Personalizar texto" />
+                                </div>
+                            </div>
+
+                            {/* Riego */}
+                            <div className="grid grid-cols-2 gap-2.5">
+                                <div>
+                                    <label className={labelBase}>Riego</label>
+                                    <select
+                                        value={formData.careGuide.watering}
+                                        onChange={(e) => handleCareLevelChange('watering', 'wateringLabel', e.target.value, getWateringLevel)}
+                                        className={inputBase}
+                                    >
+                                        <option value="">Sin definir</option>
+                                        {WATERING_LEVELS.map(w => <option key={w.value} value={w.value}>{w.label}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className={labelBase}>Texto (opcional)</label>
+                                    <input type="text" value={formData.careGuide.wateringLabel} onChange={(e) => handleCareGuideChange('wateringLabel', e.target.value)} className={inputBase} placeholder="Personalizar texto" />
+                                </div>
+                            </div>
+
+                            {/* Sustrato */}
+                            <div className="grid grid-cols-2 gap-2.5">
+                                <div>
+                                    <label className={labelBase}>Sustrato</label>
+                                    <select
+                                        value={formData.careGuide.substrate}
+                                        onChange={(e) => handleCareLevelChange('substrate', 'substrateLabel', e.target.value, getSubstratePreset)}
+                                        className={inputBase}
+                                    >
+                                        <option value="">Sin definir</option>
+                                        {SUBSTRATE_PRESETS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className={labelBase}>Texto (opcional)</label>
+                                    <input type="text" value={formData.careGuide.substrateLabel} onChange={(e) => handleCareGuideChange('substrateLabel', e.target.value)} className={inputBase} placeholder="Personalizar texto" />
+                                </div>
+                            </div>
+
+                            {/* Dificultad */}
+                            <div>
+                                <label className={labelBase}>Dificultad de Cuido</label>
+                                <select
+                                    value={formData.careGuide.difficulty}
+                                    onChange={(e) => handleCareGuideChange('difficulty', e.target.value)}
+                                    className={inputBase}
+                                >
+                                    <option value="">Sin definir</option>
+                                    {DIFFICULTY_LEVELS.map(d => <option key={d.value} value={d.value}>{d.label}</option>)}
+                                </select>
+                            </div>
+
+                        {/* Preview en vivo */}
+                        <div>
+                            <label className={labelBase}>Vista Previa</label>
+                            <CareGuideFull careGuide={formData.careGuide} />
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* ═══════════════════════════════════
+                    PESTAÑA: PRECIO
+                ═══════════════════════════════════ */}
+                {activeTab === 'precio' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-4">
 
                             {/* Switch Múltiples Presentaciones */}
                             <div className="flex items-center justify-between bg-emerald-50/60 dark:bg-emerald-500/5 p-3.5 rounded-xl border border-emerald-200/50 dark:border-emerald-500/10">
@@ -365,13 +530,42 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                 </div>
                                 <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                                     <input type="checkbox" name="hasPresentations" checked={formData.hasPresentations || false} onChange={(e) => {
-                                        setFormData(prev => ({
-                                            ...prev,
-                                            hasPresentations: e.target.checked,
-                                            presentaciones: e.target.checked && prev.presentaciones.length === 0 
-                                                ? [{ id: Date.now().toString(), label: '', price: '', quantity: 0, stock: 'Disponible' }]
-                                                : prev.presentaciones
-                                        }));
+                                        setFormData(prev => {
+                                            const isChecked = e.target.checked;
+                                            let newPresentaciones = prev.presentaciones;
+                                            const firstPres = prev.presentaciones.length > 0 ? prev.presentaciones[0] : null;
+
+                                            if (isChecked) {
+                                                if (prev.presentaciones.length === 0) {
+                                                    newPresentaciones = [{ 
+                                                        id: Date.now().toString(), 
+                                                        label: prev.ml || '', 
+                                                        price: prev.price || '', 
+                                                        quantity: prev.quantity || 0, 
+                                                        stock: prev.stock || 'Disponible' 
+                                                    }];
+                                                } else {
+                                                    newPresentaciones = prev.presentaciones.map((p, idx) => idx === 0 ? {
+                                                        ...p,
+                                                        price: prev.price !== undefined && prev.price !== '' ? prev.price : p.price,
+                                                        quantity: prev.quantity !== undefined && prev.quantity !== 0 ? prev.quantity : p.quantity,
+                                                        stock: prev.stock || p.stock,
+                                                        label: p.label || prev.ml || ''
+                                                    } : p);
+                                                }
+                                            }
+
+                                            return {
+                                                ...prev,
+                                                hasPresentations: isChecked,
+                                                presentaciones: newPresentaciones,
+                                                // Si desactivamos, recuperamos el precio, stock y maceta de la primera variante a la raíz
+                                                price: isChecked ? prev.price : (firstPres ? firstPres.price : prev.price),
+                                                quantity: isChecked ? prev.quantity : (firstPres ? firstPres.quantity : prev.quantity),
+                                                stock: isChecked ? prev.stock : (firstPres ? firstPres.stock : prev.stock),
+                                                ml: isChecked ? prev.ml : (firstPres ? firstPres.label : prev.ml)
+                                            };
+                                        });
                                     }} className="sr-only peer" />
                                     <div className="w-10 h-[22px] bg-gray-200 dark:bg-zinc-700 rounded-full peer peer-checked:after:translate-x-[18px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all after:shadow-sm peer-checked:bg-bioflora-verde" />
                                 </label>
@@ -515,24 +709,14 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                     </div>
                                 </div>
                             )}
-                        </div>
-                    )}
-                </div>
+                    </motion.div>
+                )}
 
                 {/* ═══════════════════════════════════
-                    SECCIÓN: IMÁGENES
+                    PESTAÑA: IMÁGENES
                 ═══════════════════════════════════ */}
-                <div className="border border-gray-100 dark:border-white/5 rounded-xl overflow-hidden">
-                    <button type="button" onClick={() => toggleSection('images')} className={`${sectionHeader} px-4 w-full hover:bg-gray-50 dark:hover:bg-white/[0.02] rounded-t-xl`}>
-                        <span className={sectionTitle}>
-                            <ImageIcon className={sectionIcon} />
-                            Imágenes
-                        </span>
-                        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${openSections.images ? 'rotate-180' : ''}`} />
-                    </button>
-
-                    {openSections.images && (
-                        <div className="px-4 pb-5 space-y-4">
+                {activeTab === 'imagenes' && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-4">
                             {/* Portada */}
                             <div>
                                 <label className={labelBase}>Portada Principal *</label>
@@ -581,9 +765,8 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                     </div>
                                 )}
                             </div>
-                        </div>
-                    )}
-                </div>
+                    </motion.div>
+                )}
 
                 {/* ═══ BOTONES (solo modo página completa) ═══ */}
                 {!isSidebarMode && (

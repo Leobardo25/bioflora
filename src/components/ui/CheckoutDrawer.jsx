@@ -30,7 +30,7 @@ export default function CheckoutDrawer() {
                 placement="right"
                 onClose={closeCheckoutDrawer}
                 open={isOpen}
-                width={window.innerWidth <= 1024 ? '100%' : '700px'}
+                size={window.innerWidth <= 1024 ? 'default' : 'large'}
                 zIndex={2000}
                 styles={{
                     header: { display: 'none' },

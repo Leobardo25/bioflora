@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { Star, Edit2, Trash2, Package, Check, X, Edit3 } from 'lucide-react';
+import { Star, Edit2, Trash2, Package, Check, X, Edit3, FolderOpen } from 'lucide-react';
 import { getProductImage, formatPrice } from './inventoryUtils';
 import { updateProductField } from '../../services/productService';
 import { toast } from 'react-toastify';
 import StatusDropdown from './StatusDropdown';
 import QuantityControl from './QuantityControl';
 
-export default function ProductCardMobile({ product: p, onEdit, onDelete, onStatusUpdated, onQuantityUpdated, onPriceUpdated, onFeaturedUpdated }) {
+export default function ProductCardMobile({ product: p, onEdit, onDelete, onStatusUpdated, onQuantityUpdated, onPriceUpdated, onFeaturedUpdated, onClassifier }) {
     const isFeatured = p.isFeatured;
     const [isEditingPrice, setIsEditingPrice] = useState(false);
     const [tempPrice, setTempPrice] = useState(p.price || '');
     const [savingPrice, setSavingPrice] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleSavePrice = async () => {
         const val = Number(tempPrice);
@@ -33,9 +34,9 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
     };
 
     return (
-        <div className="bg-white dark:bg-[#1e1e20] border border-gray-150 dark:border-white/5 rounded-2xl shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md hover:border-bioflora-verde/30 dark:hover:border-bioflora-verde/20 p-3 md:p-0 gap-3 md:gap-0 h-full justify-between">
+        <div className={`bg-white dark:bg-[#1e1e20] border border-gray-150 dark:border-white/5 rounded-2xl shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md hover:border-bioflora-verde/30 dark:hover:border-bioflora-verde/20 p-0 gap-0 h-full justify-between relative ${isDropdownOpen ? 'z-20' : 'z-0'}`}>
             {/* Imagen Principal (Aspecto Cuadrado y Completa en Móvil, Cover en PC) */}
-            <div className="relative aspect-square md:aspect-auto md:h-48 overflow-hidden rounded-xl md:rounded-none bg-black/5 dark:bg-black/40 md:bg-gray-50 md:dark:bg-[#131315] border border-gray-100 dark:border-white/5 md:border-b md:border-gray-100 md:dark:border-white/5 flex items-center justify-center p-0 flex-shrink-0">
+            <div className="relative aspect-square md:aspect-auto md:h-64 overflow-hidden bg-black/5 dark:bg-black/40 md:bg-gray-50 md:dark:bg-[#131315] border border-gray-100 dark:border-white/5 md:border-b md:border-gray-100 md:dark:border-white/5 flex items-center justify-center p-0 flex-shrink-0">
                 {getProductImage(p) ? (
                     <img 
                         src={getProductImage(p)} 
@@ -43,23 +44,30 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
                         className="w-full h-full object-contain md:object-cover group-hover:scale-105 md:group-hover:scale-110 transition-transform duration-500" 
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-50 dark:bg-[#151517] rounded-xl md:rounded-none">
+                    <div className="w-full h-full flex items-center justify-center bg-gray-50 dark:bg-[#151517] rounded-none">
                         <Package className="w-10 h-10 text-gray-300 dark:text-gray-600" />
                     </div>
                 )}
 
-                {/* Acciones Flotantes de Admin (Arriba a la derecha) */}
-                <div className="absolute top-2 right-2 flex items-center gap-1 bg-white/95 dark:bg-black/70 backdrop-blur-md p-1 rounded-lg shadow-md border border-gray-250/20 dark:border-white/10 z-10">
+                {/* Acciones Flotantes de Admin (Centradas abajo de la imagen) */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-white/95 dark:bg-black/75 backdrop-blur-md p-1 rounded-full shadow-lg border border-gray-250/20 dark:border-white/10 z-10">
+                    <button 
+                        onClick={onClassifier} 
+                        className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-full transition-colors" 
+                        title="Clasificar Metadatos"
+                    >
+                        <FolderOpen className="w-3.5 h-3.5" />
+                    </button>
                     <button 
                         onClick={onEdit} 
-                        className="p-1 text-gray-500 dark:text-gray-400 hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-md transition-colors" 
+                        className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-bioflora-verde hover:bg-bioflora-verde/10 rounded-full transition-colors" 
                         title="Editar"
                     >
                         <Edit2 className="w-3.5 h-3.5" />
                     </button>
                     <button 
                         onClick={onDelete} 
-                        className="p-1 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/20 rounded-md transition-colors" 
+                        className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/20 rounded-full transition-colors" 
                         title="Eliminar"
                     >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -100,7 +108,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
             </div>
 
             {/* Información del Producto */}
-            <div className="flex flex-col flex-1 px-1 md:p-4 gap-1 md:gap-0 justify-between h-full">
+            <div className="flex flex-col flex-1 p-3 md:p-4 gap-2 md:gap-0 justify-between h-full">
                 <div>
                     <div className="mb-0.5 md:mb-1">
                         <span className="text-[8px] md:text-[10px] font-sans md:font-bold tracking-[0.2em] md:tracking-wider text-bioflora-verde md:text-gray-400 md:dark:text-gray-500 uppercase font-bold">
@@ -170,6 +178,7 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
                             productId={p.id}
                             currentStatus={p.stock || 'Disponible'}
                             onUpdated={onStatusUpdated}
+                            onOpenChange={setIsDropdownOpen}
                         />
                     </div>
                 </div>

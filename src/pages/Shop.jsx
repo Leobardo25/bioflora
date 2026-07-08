@@ -19,7 +19,6 @@ const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
 // --- DICCIONARIO DE FILTROS ---
-const CATEGORIES = ['Todos', 'Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios'];
 
 const formatPrice = (price, isCRC) => {
     return new Intl.NumberFormat(isCRC ? 'es-CR' : 'en-US', {
@@ -63,6 +62,21 @@ export default function Shop() {
             }
         }, (err) => {
             console.error("Error al cargar familias dinámicas en tienda:", err);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    const [dbCategories, setDbCategories] = useState(['Todos', 'Orquídeas', 'Exóticas', 'Flores Tropicales', 'Accesorios']);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'categories'), (snapshot) => {
+            if (!snapshot.empty) {
+                const list = snapshot.docs.map(doc => doc.data().name).filter(Boolean);
+                list.sort();
+                setDbCategories(['Todos', ...list]);
+            }
+        }, (err) => {
+            console.error("Error al cargar categorías dinámicas en tienda:", err);
         });
         return () => unsubscribe();
     }, []);
@@ -164,7 +178,7 @@ export default function Shop() {
                         value={filterCategory} 
                         onChange={e => setFilterCategory(e.target.value)}
                     >
-                        {CATEGORIES.map(cat => (
+                        {dbCategories.map(cat => (
                             <Radio key={cat} value={cat} className="text-gray-600">{cat}</Radio>
                         ))}
                     </Radio.Group>

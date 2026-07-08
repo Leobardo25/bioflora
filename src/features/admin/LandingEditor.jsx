@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import HeaderActions from '../../components/admin/HeaderActions';
 import { useNavigate } from 'react-router-dom';
 import { getSiteConfig, updateSiteConfig } from '../../services/siteConfigService';
 import { DEFAULT_POLICIES } from '../../pages/PolicyPage';
@@ -328,21 +329,17 @@ export default function LandingEditor() {
                 />
             )}
             {/* Header */}
-            <header className="mb-7 flex items-start justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">Configuración de Página</h1>
-                    <p className="text-gray-400 mt-1 text-sm">Contenido, contacto y redes sociales de la tienda.</p>
-                </div>
+            <HeaderActions>
                 <a
                     href="/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm font-medium text-gray-500 border border-gray-200 dark:border-white/10 px-3 py-2 rounded-xl hover:border-[#00A94F]/50 hover:text-[#00A94F] transition-colors flex-shrink-0"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 border border-gray-200 dark:border-white/10 px-3 py-2 rounded-lg hover:border-[#00A94F]/50 hover:text-[#00A94F] transition-colors flex-shrink-0"
                 >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    Ver página
+                    <span>Ver página</span>
                 </a>
-            </header>
+            </HeaderActions>
 
             {/* Grid de secciones */}
             <div className="space-y-4">

@@ -8,7 +8,7 @@ const DOT = { 'Disponible': 'bg-emerald-500', 'Agotado': 'bg-amber-500', 'Bóved
 const BADGE = { 'Disponible': 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400', 'Agotado': 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400', 'Bóveda (Retirado)': 'bg-gray-100 text-gray-500 dark:bg-gray-500/15 dark:text-gray-400' };
 const shortLabel = s => s === 'Bóveda (Retirado)' ? 'Retirado' : s;
 
-export default function StatusDropdown({ productId, currentStatus, onUpdated }) {
+export default function StatusDropdown({ productId, currentStatus, onUpdated, onOpenChange }) {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const ref = useRef(null);
@@ -18,6 +18,10 @@ export default function StatusDropdown({ productId, currentStatus, onUpdated }) 
         document.addEventListener('mousedown', handler);
         return () => document.removeEventListener('mousedown', handler);
     }, []);
+
+    useEffect(() => {
+        if (onOpenChange) onOpenChange(open);
+    }, [open, onOpenChange]);
 
     const handleSelect = async (status) => {
         if (status === currentStatus) { setOpen(false); return; }

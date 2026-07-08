@@ -7,6 +7,7 @@ import { useProductDrawer } from '../../context/ProductDrawerContext';
 import { useCart } from '../../context/CartContext';
 import { useCheckoutDrawer } from '../../context/CheckoutDrawerContext';
 import CheckoutForm from './CheckoutForm';
+import { CareGuideFull } from './CareGuideBadges';
 
 const { Paragraph, Text } = Typography;
 
@@ -422,6 +423,8 @@ export default function ProductDrawer() {
                                             "{selectedProduct.notes || 'Riego moderado, luz indirecta, humedad media.'}"
                                         </p>
 
+                                        <CareGuideFull careGuide={selectedProduct.careGuide} />
+
                                         {/* Precio */}
                                         <div className="mb-5 flex-shrink-0">
                                             <span className="font-serif font-bold text-2xl sm:text-3xl text-[#69358C]">
@@ -429,25 +432,25 @@ export default function ProductDrawer() {
                                             </span>
                                         </div>
 
-                                        {/* Botones de Acción */}
-                                        <div className="flex flex-col gap-2.5 mb-5 flex-shrink-0">
-                                            <button
-                                                disabled={isOutOfStock}
-                                                onClick={handleAddToCart}
-                                                className="h-12 border-2 border-[#69358C] text-[#69358C] text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-[#69358C] hover:text-white transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                                            >
-                                                <ShoppingCart className="w-4 h-4" />
-                                                Añadir al Carrito
-                                            </button>
+                                         {/* Botones de Acción */}
+                                         <div className="flex flex-col gap-3.5 mb-5 flex-shrink-0">
+                                             <button
+                                                 disabled={isOutOfStock}
+                                                 onClick={handleAddToCart}
+                                                 className="h-14 border-[2.5px] border-[#69358C] text-[#69358C] text-[12px] font-sans font-extrabold tracking-[0.18em] uppercase rounded-full hover:bg-[#69358C] hover:text-white hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed duration-300"
+                                             >
+                                                 <ShoppingCart className="w-[18px] h-[18px]" />
+                                                 Añadir al Carrito
+                                             </button>
 
-                                            <button
-                                                disabled={isOutOfStock}
-                                                onClick={handleBuyNow}
-                                                className="h-12 bg-[#00A7D0] text-white text-[11px] font-sans font-bold tracking-[0.15em] uppercase rounded-full hover:bg-[#69358C] transition-all flex items-center justify-center shadow-lg shadow-[#00A7D0]/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                                            >
-                                                {isOutOfStock ? 'Agotado' : 'Comprar Ahora'}
-                                            </button>
-                                        </div>
+                                             <button
+                                                 disabled={isOutOfStock}
+                                                 onClick={handleBuyNow}
+                                                 className="h-14 bg-[#00A7D0] hover:bg-[#69358C] text-white text-[12px] font-sans font-extrabold tracking-[0.18em] uppercase rounded-full hover:scale-[1.01] transition-all flex items-center justify-center shadow-lg shadow-[#00A7D0]/20 hover:shadow-[#69358C]/20 disabled:opacity-50 disabled:cursor-not-allowed duration-300"
+                                             >
+                                                 {isOutOfStock ? 'Agotado' : 'Comprar Ahora'}
+                                             </button>
+                                         </div>
 
                                         {/* Descripción - Acordeón colapsable */}
                                         <Collapse

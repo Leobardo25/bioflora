@@ -102,6 +102,14 @@ const AdminAIChat = memo(function AdminAIChat() {
         };
     }, []);
 
+    useEffect(() => {
+        const handleOpen = () => {
+            setIsOpen(prev => !prev);
+        };
+        window.addEventListener('open-admin-ai-chat', handleOpen);
+        return () => window.removeEventListener('open-admin-ai-chat', handleOpen);
+    }, []);
+
     // Scroll al último mensaje
     const scrollToBottom = useCallback(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -268,12 +276,16 @@ const AdminAIChat = memo(function AdminAIChat() {
 
     // Al abrir enfocamos el input (solo en desktop)
     useEffect(() => {
+        let timer;
         if (isOpen) {
             setPulse(false);
             if (window.innerWidth > 768) {
-                setTimeout(() => inputRef.current?.focus(), 300);
+                timer = setTimeout(() => inputRef.current?.focus(), 300);
             }
         }
+        return () => {
+            if (timer) clearTimeout(timer);
+        };
     }, [isOpen]);
 
     const handleSend = async (text) => {
@@ -317,27 +329,7 @@ const AdminAIChat = memo(function AdminAIChat() {
 
     return (
         <>
-            {/* ── Botón Flotante (Latido) ── */}
-            <AnimatePresence>
-                {!isOpen && (
-                    <motion.button
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0, opacity: 0 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={() => setIsOpen(true)}
-                        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white shadow-2xl flex items-center justify-center transition-colors cursor-pointer group hover:scale-105 active:scale-95"
-                        style={{ boxShadow: '0 10px 25px -5px rgba(99, 102, 241, 0.5)' }}
-                        title="Asistente IA"
-                    >
-                        {/* Anillo de aura vibrante (Latido) */}
-                        {pulse && (
-                            <div className="absolute inset-0 rounded-full bg-white/30 animate-ping" style={{ animationDuration: '2.5s' }} />
-                        )}
-                        <Sparkles className="w-7 h-7 drop-shadow-md relative z-10 group-hover:rotate-12 transition-transform duration-300" />
-                    </motion.button>
-                )}
-            </AnimatePresence>
+
 
             {/* ── Overlay ── */}
             <AnimatePresence>

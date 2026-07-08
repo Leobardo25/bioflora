@@ -61,7 +61,7 @@ export default function CartDrawer() {
                 placement="right"
                 onClose={() => setIsCartDrawerOpen(false)}
                 open={isCartDrawerOpen}
-                width={window.innerWidth <= 1024 ? '100%' : 420}
+                size="default"
                 zIndex={2000}
                 styles={{ 
                     header: { display: 'none' }, 

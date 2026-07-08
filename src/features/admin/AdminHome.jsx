@@ -28,7 +28,7 @@ const StatCard = ({ label, value, subtitle, icon: Icon, color, linkTo, loading }
                 <Icon className="w-5 h-5" />
             </div>
         </div>
-        <span className="mt-3 inline-flex items-center gap-1 text-[11px] text-indigo-600 dark:text-indigo-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="mt-3 inline-flex items-center gap-1 text-[11px] text-bioflora-verde font-medium opacity-0 group-hover:opacity-100 transition-opacity">
             Ver detalle <ArrowRight className="w-3 h-3" />
         </span>
     </Link>
@@ -46,7 +46,7 @@ const DashSection = ({ title, icon: Icon, linkTo, linkLabel, children }) => (
                 <h2 className="text-sm font-bold text-gray-700 dark:text-gray-200 tracking-wide">{title}</h2>
             </div>
             {linkTo && (
-                <Link to={linkTo} className="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium flex items-center gap-1">
+                <Link to={linkTo} className="text-[11px] text-bioflora-verde hover:text-bioflora-verde/80 font-medium flex items-center gap-1">
                     {linkLabel || 'Ver todo'} <ArrowRight className="w-3 h-3" />
                 </Link>
             )}
@@ -81,6 +81,7 @@ export default function AdminHome() {
     const adminName = userData?.nombre || userData?.email || 'Admin';
 
     useEffect(() => {
+        let active = true;
         const load = async () => {
             try {
                 const [products, orders, customers, movements] = await Promise.all([
@@ -89,6 +90,8 @@ export default function AdminHome() {
                     getCustomers(),
                     getRecentMovements(5),
                 ]);
+
+                if (!active) return;
 
                 const available = products.filter(p => p.stock === 'Disponible').length;
                 setAllProducts(products);
@@ -141,10 +144,13 @@ export default function AdminHome() {
             } catch (e) {
                 console.error(e);
             } finally {
-                setLoading(false);
+                if (active) setLoading(false);
             }
         };
         load();
+        return () => {
+            active = false;
+        };
     }, []);
 
     const handleStatusUpdated = (id, status) => {
@@ -154,10 +160,6 @@ export default function AdminHome() {
 
     return (
         <div className="space-y-6">
-            <header>
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">Dashboard</h1>
-                <p className="text-gray-400 dark:text-gray-500 mt-1 text-sm">Resumen general de la tienda.</p>
-            </header>
 
             {/* ── Stat Cards ── */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -166,7 +168,7 @@ export default function AdminHome() {
                     value={stats.total}
                     subtitle={`${stats.available} disponibles`}
                     icon={Package}
-                    color="bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400"
+                    color="bg-bioflora-verde/10 dark:bg-bioflora-verde/15 text-bioflora-verde"
                     linkTo="/admin/inventory"
                     loading={loading}
                 />
@@ -220,7 +222,7 @@ export default function AdminHome() {
                                             <div className="flex items-center gap-2">
                                                 <p className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate">{order.cliente || 'Sin nombre'}</p>
                                                 {order.orderId && (
-                                                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-500/15 text-indigo-500 dark:text-indigo-400 flex-shrink-0">{order.orderId}</span>
+                                                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-bioflora-verde/10 dark:bg-bioflora-verde/15 text-bioflora-verde flex-shrink-0">{order.orderId}</span>
                                                 )}
                                             </div>
                                             <p className="text-[11px] text-gray-400 mt-0.5">
@@ -357,7 +359,7 @@ export default function AdminHome() {
                     <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
                         {[
                             { key: 'nuevo', label: 'Nuevos', icon: Sparkles, iconColor: 'text-blue-500 dark:text-blue-400', bgColor: 'bg-blue-50 dark:bg-blue-500/10' },
-                            { key: 'confirmado', label: 'Confirmados', icon: ClipboardCheck, iconColor: 'text-indigo-500 dark:text-indigo-400', bgColor: 'bg-indigo-50 dark:bg-indigo-500/10' },
+                            { key: 'confirmado', label: 'Confirmados', icon: ClipboardCheck, iconColor: 'text-bioflora-verde', bgColor: 'bg-bioflora-verde/10 dark:bg-bioflora-verde/15' },
                             { key: 'preparando', label: 'Preparando', icon: ChefHat, iconColor: 'text-amber-500 dark:text-amber-400', bgColor: 'bg-amber-50 dark:bg-amber-500/10' },
                             { key: 'enviado', label: 'Enviados', icon: Truck, iconColor: 'text-purple-500 dark:text-purple-400', bgColor: 'bg-purple-50 dark:bg-purple-500/10' },
                             { key: 'entregado', label: 'Entregados', icon: PartyPopper, iconColor: 'text-emerald-500 dark:text-emerald-400', bgColor: 'bg-emerald-50 dark:bg-emerald-500/10' },

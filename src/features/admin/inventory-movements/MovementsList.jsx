@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import HeaderActions from '../../../components/admin/HeaderActions';
 import { AnimatePresence } from 'framer-motion';
 import { Plus, ArrowLeftRight, ArrowDownCircle, ArrowUpCircle, Package } from 'lucide-react';
 import { getMovements, MOVEMENT_TYPES } from '../../../services/movementService';
@@ -65,22 +66,15 @@ export default function MovementsList() {
     return (
         <div>
             {/* Header */}
-            <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3">
-                        <ArrowLeftRight className="w-7 h-7 text-bioflora-verde" />
-                        Entradas & Salidas
-                    </h1>
-                    <p className="text-gray-400 dark:text-gray-500 mt-1 text-sm">Trazabilidad completa del inventario.</p>
-                </div>
+            <HeaderActions>
                 <button
                     onClick={() => setShowForm(true)}
-                    className="flex items-center gap-2 bg-bioflora-verde text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/90 transition-colors self-start sm:self-auto shadow-sm"
+                    className="flex items-center gap-2 bg-bioflora-verde text-white px-3.5 py-2 rounded-lg text-xs font-bold hover:bg-bioflora-verde/90 transition-colors shadow-md shadow-bioflora-verde/15 cursor-pointer"
                 >
-                    <Plus className="w-4 h-4" />
-                    Registrar Movimiento
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Registrar Movimiento</span>
                 </button>
-            </header>
+            </HeaderActions>
 
             {/* Stats */}
             {!loading && <MovementStats movements={movements} />}

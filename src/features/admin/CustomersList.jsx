@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import HeaderActions from '../../components/admin/HeaderActions';
 import { Search, Plus, Trash2, Edit2, User, Phone, Mail, ShoppingBag, X, Check, FileText } from 'lucide-react';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { toast } from 'react-toastify';
@@ -123,19 +124,15 @@ export default function CustomersList() {
 
     return (
         <div className="relative">
-            <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">Clientes CRM</h1>
-                    <p className="text-gray-500 mt-1 text-sm">Gestiona prospectos, clientes e historial de actividad.</p>
-                </div>
+            <HeaderActions>
                 <button
                     onClick={openCreate}
-                    className="flex items-center gap-2 bg-bioflora-verde text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-bioflora-verde/90 transition-colors self-start sm:self-auto"
+                    className="flex items-center gap-2 bg-bioflora-verde text-white px-3.5 py-2 rounded-lg text-xs font-bold hover:bg-bioflora-verde/80 transition-colors shadow-md shadow-bioflora-verde/15 cursor-pointer"
                 >
-                    <Plus className="w-4 h-4" />
-                    Nuevo Cliente
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Nuevo Cliente</span>
                 </button>
-            </header>
+            </HeaderActions>
 
             <div className="mb-6 space-y-4">
                 <div className="relative max-w-sm w-full mx-auto sm:mx-0">

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle, X, Check } from 'lucide-react';
 import ProductForm from './ProductForm';
+import { PRODUCT_FORM_TABS } from '../../constants/productFormTabs';
 
 const FORM_ID = 'product-edit-sidebar-form';
 
@@ -9,6 +10,7 @@ export default function ProductEditSidebar({ productId, productName, onClose, on
     const [isDirty, setIsDirty] = useState(false);
     const [showUnsavedDialog, setShowUnsavedDialog] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [activeTab, setActiveTab] = useState('informacion');
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';
@@ -65,6 +67,40 @@ export default function ProductEditSidebar({ productId, productName, onClose, on
                         </button>
                     </div>
 
+                    {/* Fila de Selector de Pestañas Fijo */}
+                    <div className="px-6 pb-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 p-1.5 bg-gray-100 dark:bg-white/5 rounded-2xl gap-2">
+                            {PRODUCT_FORM_TABS.map((tab) => {
+                                const Icon = tab.icon;
+                                const isActive = activeTab === tab.id;
+                                return (
+                                    <button
+                                        key={tab.id}
+                                        type="button"
+                                        onClick={() => setActiveTab(tab.id)}
+                                        className={`relative flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer select-none border border-transparent ${
+                                            isActive
+                                                ? 'text-bioflora-verde font-black border-bioflora-verde/20'
+                                                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 bg-white/40 dark:bg-white/[0.01] hover:bg-white/60 dark:hover:bg-white/[0.03]'
+                                        }`}
+                                    >
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="activeTabIndicatorSidebar"
+                                                className="absolute inset-0 bg-white dark:bg-[#1A1A1B] rounded-xl shadow-md border border-gray-200/20 dark:border-white/10"
+                                                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                            />
+                                        )}
+                                        <span className="relative z-10 flex items-center gap-2">
+                                            <Icon className="w-4 h-4" />
+                                            <span className="truncate">{tab.label}</span>
+                                        </span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
                     {/* Form Container */}
                     <div className="flex-1 overflow-y-auto scrollbar-admin p-6 bg-white dark:bg-[#1A1A1B]">
                         <ProductForm
@@ -74,6 +110,8 @@ export default function ProductEditSidebar({ productId, productName, onClose, on
                             onDirtyChange={setIsDirty}
                             onLoadingChange={setIsSubmitting}
                             formId={FORM_ID}
+                            activeTab={activeTab}
+                            setActiveTab={setActiveTab}
                         />
                     </div>
 

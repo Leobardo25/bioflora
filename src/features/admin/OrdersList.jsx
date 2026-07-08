@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import HeaderActions from '../../components/admin/HeaderActions';
 import { ShoppingBag, ChevronDown, ChevronUp, FlaskConical, Mail, Package, FileText, Share2 } from 'lucide-react';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { getOrders } from '../../services/orderService';
@@ -209,10 +210,16 @@ export default function OrdersList() {
 
     return (
         <div>
-            <header className="mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">Pedidos</h1>
-                <p className="text-gray-500 mt-1 text-sm">Historial de pedidos recibidos por WhatsApp.</p>
-            </header>
+            <HeaderActions>
+                <button
+                    onClick={handleSeed}
+                    disabled={seeding || loading}
+                    className="flex items-center gap-2 bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-200 px-3 py-2 rounded-lg text-xs font-semibold hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm cursor-pointer disabled:opacity-50"
+                >
+                    <FlaskConical className="w-3.5 h-3.5" />
+                    <span>{seeding ? 'Generando...' : 'Generar Pedidos'}</span>
+                </button>
+            </HeaderActions>
 
             {!loading && orders.length > 0 && (
                 <>
