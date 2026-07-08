@@ -116,7 +116,7 @@ function HeroTitle() {
                     </span>
                 ))}
                 {accent && (
-                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#1EBE5D] animate-glow break-words whitespace-normal mt-[-0.2em] sm:mt-0 text-left">
+                    <span className="block font-serif italic font-medium text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#1EBE5D] animate-glow-green break-words whitespace-normal mt-[-0.2em] sm:mt-0 text-left">
                         {accent}
                     </span>
                 )}

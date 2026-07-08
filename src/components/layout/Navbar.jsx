@@ -199,11 +199,12 @@ export default function Navbar({
                     {/* Extracted Filter Overlay */}
                     {location.pathname === '/tienda' && (
                         <AnimatePresence>
-                            <NavbarFilterOverlay
-                                isFilterMenuOpen={isFilterMenuOpen}
-                                onToggleMobileFilters={onToggleMobileFilters}
-                                mobileFiltersNode={mobileFiltersNode}
-                            />
+                            {isFilterMenuOpen && (
+                                <NavbarFilterOverlay
+                                    onToggleMobileFilters={onToggleMobileFilters}
+                                    mobileFiltersNode={mobileFiltersNode}
+                                />
+                            )}
                         </AnimatePresence>
                     )}
                 </div>
