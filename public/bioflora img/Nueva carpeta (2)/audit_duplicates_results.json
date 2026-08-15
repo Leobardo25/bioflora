@@ -1,0 +1,1479 @@
+{
+  "total_products": 195,
+  "family_counts": {
+    "Orchidaceae (Cattleya)": 35,
+    "Orchidaceae": 104,
+    "Araceae": 6,
+    "Orchidaceae (Colección Exótica)": 6,
+    "Orchidaceae (Phalaenopsis)": 6,
+    "Orchidaceae (Stanhopea / Torito)": 4,
+    "Orchidaceae (Trichopilia)": 1,
+    "Orchidaceae (Flor del Espíritu Santo)": 1,
+    "Orchidaceae (Huntleya)": 1,
+    "Orchidaceae (Myrmecophila)": 1,
+    "Orchidaceae (Spathoglottis)": 2,
+    "Orchidaceae (Epidendrum)": 4,
+    "Gesneriaceae": 1,
+    "Orchidaceae (Orquídea Mariposa)": 1,
+    "Orchidaceae (Dendrobium)": 8,
+    "Orchidaceae (Bulbophyllum)": 1,
+    "Orchidaceae (Galeottia)": 1,
+    "Orchidaceae (Guarianthe)": 4,
+    "Marantaceae": 1,
+    "Orchidaceae (Vanilla / Vainilla)": 3,
+    "Orchidaceae (Gongora)": 1,
+    "Orchidaceae (Vanda)": 2,
+    "Apocynaceae": 1
+  },
+  "category_counts": {
+    "Orquídeas": 180,
+    "Exóticas": 15
+  },
+  "duplicate_groups": [
+    {
+      "group_id": 1,
+      "count": 2,
+      "products": [
+        {
+          "id": "0L5aCzAWEqVBNrVvZofQ",
+          "name": "cattleya Rex",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 150,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767459/bioflora_products/r0blvwzbfflkp5bwkjlg.jpg",
+          "description": "cattleya Rex. Espectacular orquídea del género Cattleya, apreciada mundialmente como la 'Reina de la...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "iOFO7xvEhLAFfLzaLcG7",
+          "name": "Cattleya dowiana X Cattleya Rex",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 150,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767452/bioflora_products/wyw8jeu9rtmbuetctwiq.jpg",
+          "description": "Cattleya dowiana X Cattleya Rex. Espectacular orquídea del género Cattleya, apreciada mundialmente c...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 2,
+      "count": 6,
+      "products": [
+        {
+          "id": "0YokmUNjUc59BBaVQ0WQ",
+          "name": "V. Patchara Delight",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786238034/bioflora_products/vzrag5xr10apisdydwz3.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "7diyhT5L8tetj7OSa9RC",
+          "name": "V. Pathai Delight",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235211/bioflora_products/aiftw6xqjibcn6kiaoej.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "O23uKOFkWUOdRp1pRPdX",
+          "name": "V. Delight",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235186/bioflora_products/suppt0zbsoydnstevto3.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "PU9NWvH2kIOusq7MhyEl",
+          "name": "V. Robert Delight",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235221/bioflora_products/t9n1fd0zrzt8qfvjpwq7.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "fb73XLYhLxPvCkDQad8v",
+          "name": "V. Boomerang Delight",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235181/bioflora_products/g0y0ijtwcokac9f9zyuh.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "v3BeXDEzn48ON6CrJZJK",
+          "name": "V. Patchara Delight (2)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235205/bioflora_products/ejlykqxobhav2g3zht3x.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 3,
+      "count": 4,
+      "products": [
+        {
+          "id": "0rtxOhaiUx4veN3GyodN",
+          "name": "V. Majik Fancy",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235202/bioflora_products/idu4vsmctrqs62itxxjj.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "PMaarLBHTFSAXs8ZSlQI",
+          "name": "V. Majik Fancy (2)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235197/bioflora_products/lgdk2tsgv3ekt9s8yf4j.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "ozBdFm4liWA4Gr4ugwk0",
+          "name": "V. Majik Fancy 1",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235198/bioflora_products/zu3lkxgvefumpnnvnlhr.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "qOfkuhuvE6sbp63vZCdR",
+          "name": "V. Majik Fancy 3",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235200/bioflora_products/blpruhjzyffuf52g6jfe.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 4,
+      "count": 4,
+      "products": [
+        {
+          "id": "17XRpibuynMcCu4c82Zx",
+          "name": "Cattleya brymeriana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235772/bioflora_products/hafv0sibnhcq2mwwpfli.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "TKKuNDsCjgSp8wkk8iBE",
+          "name": "Cattleya brymeriana X Cattleya gaskelliana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767451/bioflora_products/js70ys9sz16hk6vecelz.jpg",
+          "description": "Cattleya brymeriana X Cattleya gaskelliana. Espectacular orquídea del género Cattleya, apreciada mun...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "rLluuGOKuX9AS1ubVbMG",
+          "name": "Cattleya brymeriana X Cattleya dowiana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767450/bioflora_products/gnfcpbqzdbebgsgpjkmt.jpg",
+          "description": "Cattleya brymeriana X Cattleya dowiana. Espectacular orquídea del género Cattleya, apreciada mundial...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "zILbSqo5itadUyznl5dH",
+          "name": "Cattleya brymeriana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767451/bioflora_products/socjl5l4fwoqdgjjykyt.jpg",
+          "description": "Cattleya brymeriana. Espectacular orquídea del género Cattleya, apreciada mundialmente como la 'Rein...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 5,
+      "count": 2,
+      "products": [
+        {
+          "id": "1SmxdgJL6sXA5CfZ9uWC",
+          "name": "V. Kulwadee Fragrant",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235195/bioflora_products/dowgz4cknpvxhmdvbmzy.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "BMy3NVVlVuqnIAw0zjyg",
+          "name": "V. Kulwadee Fragrant (2)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235193/bioflora_products/sf4mgrk0tl3ji7gbadub.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 6,
+      "count": 2,
+      "products": [
+        {
+          "id": "1imTbwL3JCaZUfD3A33o",
+          "name": "V. Somsri Gold",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235227/bioflora_products/nstlo37kxvaja2mng0z7.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "ZkQ4ujwcZj1lmvWmno6G",
+          "name": "V. Yakkrit Gold",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235244/bioflora_products/dktpssavbciwavlhcmvo.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 7,
+      "count": 3,
+      "products": [
+        {
+          "id": "59svXmoNmjAKRqsY4sZe",
+          "name": "Dendrobium Patum Red",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 5500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235803/bioflora_products/dtngoobbxqq86x0cqa1e.jpg",
+          "description": "Orquídea de cañas erguidas de fácil cultivo. Produce racimos de múltiples flores que permanecen abie...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "VRCFi97DXBhqtZfuxGaR",
+          "name": "Den. Pusan Red",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235153/bioflora_products/pwdvevnaoqmui0gqmtyx.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "zrF0tb08j6vM180pwoKR",
+          "name": "D. Patum Red.",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Dendrobium)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767461/bioflora_products/fshmmtftmjarpjgvfum3.jpg",
+          "description": "D. Patum Red.. Orquídea epífita de gran vigor y profusa floración en cañas erectas. Sus racimos de f...",
+          "subfolderOrigin": "dendrobium"
+        }
+      ]
+    },
+    {
+      "group_id": 8,
+      "count": 5,
+      "products": [
+        {
+          "id": "8BhXlxDOXoCwLtzihXWE",
+          "name": "Tolu. Jairak Firm Cider",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235160/bioflora_products/nxhlvnzmjwxq1o2h2gkf.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "9VIr3UtreeoiVSidobeW",
+          "name": "Tolu. Jairak Firm Orange",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235161/bioflora_products/l5hy3aakakaymybbalmn.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "InUyR0WMrk0CBSYPcs2y",
+          "name": "Tolu. Jairak Firm Snow White",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235165/bioflora_products/idnlwvpdtx6hyfbjkqwq.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "MPIR178LqfPuTY9VyDSS",
+          "name": "Tolu. Jairak Firm White",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235166/bioflora_products/pznqnhfcfexcz6qfngkz.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "eX1KfPPyBOmP6WBrqsm3",
+          "name": "Tolu. Jairak Firm Red Bull",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235163/bioflora_products/kity0xw9g65yamldvcwb.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 9,
+      "count": 4,
+      "products": [
+        {
+          "id": "8xatC2N78rqHsWI6pbvj",
+          "name": "Den. Green Apple",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235148/bioflora_products/jiqlobvur9rhgmyd1sen.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "NTuCq69sNUtLbVFmjWh8",
+          "name": "Den. Green Burana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235150/bioflora_products/wfmambk1zhozf4yj5etc.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "eMopXbktVhUFwlQZvX1a",
+          "name": "D. Malaysia Green.",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Dendrobium)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767460/bioflora_products/vqx0f6qv1unjd2weyiki.jpg",
+          "description": "D. Malaysia Green.. Orquídea epífita de gran vigor y profusa floración en cañas erectas. Sus racimos...",
+          "subfolderOrigin": "dendrobium"
+        },
+        {
+          "id": "rY9ql8BTOiv3jci9pwjT",
+          "name": "Dendrobium Malaysia Green",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 5500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235800/bioflora_products/mdxduttuwwbzlmn5nbjg.jpg",
+          "description": "Orquídea de cañas erguidas de fácil cultivo. Produce racimos de múltiples flores que permanecen abie...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 10,
+      "count": 5,
+      "products": [
+        {
+          "id": "93eghx9sZcEa25xdE7Pk",
+          "name": "Cattleya dowiana X Cattleya warscewiczii",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 120,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767452/bioflora_products/huhh9efiw6mymyo0ma87.jpg",
+          "description": "Cattleya dowiana X Cattleya warscewiczii. Espectacular orquídea del género Cattleya, apreciada mundi...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "B3m94ytywBgMGUYK9IYe",
+          "name": "Cattleya warscewiczii var. coerulea X Cattleya dowiana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 100,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767457/bioflora_products/fxrdqcw2hhplzwkkt30m.jpg",
+          "description": "Cattleya warscewiczii var. coerulea X Cattleya dowiana. Espectacular orquídea del género Cattleya, a...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "H9oUZeWPXZXineQo75kI",
+          "name": "Cattleya dowiana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 100,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767452/bioflora_products/st3c99uuakljcyde9trk.jpg",
+          "description": "Cattleya dowiana. Espectacular orquídea del género Cattleya, apreciada mundialmente como la 'Reina d...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "KXyFqiQJ76a6FsgIPsON",
+          "name": "Cattleya warscewiczii",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 100,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767457/bioflora_products/s6k8dxp5fbmyw17cieqo.jpg",
+          "description": "Cattleya warscewiczii. Espectacular orquídea del género Cattleya, apreciada mundialmente como la 'Re...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "qMaO4hbDiSNNTXUXPr06",
+          "name": "Cattleya warscewiczii var. coerulea X Cattleya dowiana (1)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 100,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767457/bioflora_products/ycv5ajz3kfbaedkkob3g.jpg",
+          "description": "Cattleya warscewiczii var. coerulea X Cattleya dowiana (1). Espectacular orquídea del género Cattley...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 11,
+      "count": 3,
+      "products": [
+        {
+          "id": "99wFJBqCTbrjhBzJZavG",
+          "name": "Encyclia cordigera",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786237516/bioflora_products/s4nargnu5zgqr327mczk.jpg",
+          "description": "Hermosa especia botánica de alta calidad cultivada en invernadero. Sus flores destacan por sus color...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "bjD158dDwoXdXPhhnAJx",
+          "name": "Encyclia alata x Encyclia cordigera",
+          "category": "Exóticas",
+          "family": "Orchidaceae (Colección Exótica)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767465/bioflora_products/zimggorgxcv7wx9qvnyv.jpg",
+          "description": "Encyclia alata x Encyclia cordigera. Especie botánica de colección selecta. Destaca por su morfologí...",
+          "subfolderOrigin": "other Variants"
+        },
+        {
+          "id": "cQ48bQuHcBszl5acYF5e",
+          "name": "Encyclia cordigera var. rosea",
+          "category": "Exóticas",
+          "family": "Orchidaceae (Colección Exótica)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767466/bioflora_products/lazxnuoc9lye5c1grdoa.jpg",
+          "description": "Encyclia cordigera var. rosea. Especie botánica de colección selecta. Destaca por su morfología flor...",
+          "subfolderOrigin": "other Variants"
+        }
+      ]
+    },
+    {
+      "group_id": 12,
+      "count": 2,
+      "products": [
+        {
+          "id": "BrsvZQTaj2hX2ZpXB3N0",
+          "name": "Cattleya luedemannianna semialba X Cattleya dowiana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 80,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767454/bioflora_products/phw35nye8rmemntumzxt.jpg",
+          "description": "Cattleya luedemannianna semialba X Cattleya dowiana. Espectacular orquídea del género Cattleya, apre...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "eFRCD1LVdUqGbNn64JEh",
+          "name": "Cattleya dowiana X Cattleya Hardyana semialba",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 120,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767452/bioflora_products/rhjuwycxyznasrfrgmts.jpg",
+          "description": "Cattleya dowiana X Cattleya Hardyana semialba. Espectacular orquídea del género Cattleya, apreciada ...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 13,
+      "count": 4,
+      "products": [
+        {
+          "id": "CsWbYaRXh2Mg4vWqvaEE",
+          "name": "Tolu. Jairak Flyer Brown Spot",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235170/bioflora_products/kymfn2m88ggjlehviqav.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "NCoWNAs4whODnmv5hyKP",
+          "name": "Tolu. Jairak Flyer Big Bang",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235168/bioflora_products/wxm3nxjsf2kfbednrdkz.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "NG5Maz8zyBSzzXAcnH4I",
+          "name": "Tolu. Jairak Flyer Scatter",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235171/bioflora_products/z0xtbwy7a9lryymp4q9z.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "gGRAy1UFLErEyrRzkMfz",
+          "name": "Tolu. Jairak Flyer Velvet Red",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235174/bioflora_products/tp5uu7jw9ow2h1brvmnm.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 14,
+      "count": 2,
+      "products": [
+        {
+          "id": "DCBV3xgRhNos1VJliPk3",
+          "name": "Vanda tricolor suavis",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 10500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235848/bioflora_products/gqy8optrocgrgcwo5kk3.jpg",
+          "description": "Orquídea epífita apreciada por sus imponentes ramilletes florales y llamativos patrones de color. Re...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "fLykAea7EnM0sxCoAhwj",
+          "name": "Vanda tricolor suavis X Vanda usha",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Vanda)",
+          "price": 60,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767473/bioflora_products/nyaadojdaera8dvclzbu.jpg",
+          "description": "Vanda tricolor suavis X Vanda usha. Aristócrata del mundo de las orquídeas con porte monopodial y op...",
+          "subfolderOrigin": "vandas"
+        }
+      ]
+    },
+    {
+      "group_id": 15,
+      "count": 2,
+      "products": [
+        {
+          "id": "DELJWu3N9AAppqEp2d44",
+          "name": "Dendrobium Yellow with Red Lip - # 298",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 5500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235808/bioflora_products/olc2onurku2jvevu1sih.jpg",
+          "description": "Orquídea de cañas erguidas de fácil cultivo. Produce racimos de múltiples flores que permanecen abie...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "jUEEJWh1BWq8tzkIMXjp",
+          "name": "D. Yellow With Red Lip #298",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Dendrobium)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767462/bioflora_products/s1bkrlemprvaoy6v1skm.jpg",
+          "description": "D. Yellow With Red Lip #298. Orquídea epífita de gran vigor y profusa floración en cañas erectas. Su...",
+          "subfolderOrigin": "dendrobium"
+        }
+      ]
+    },
+    {
+      "group_id": 16,
+      "count": 2,
+      "products": [
+        {
+          "id": "EgHXD5gwAbFIsdVhUaYS",
+          "name": "Tolu. Jairak Breeze",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235156/bioflora_products/xdouah8xad9thondvy1c.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "te5VcpPzharVvPDJmnvp",
+          "name": "Tolu. Jairak Canary",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235158/bioflora_products/ruxvlwguu75aq1fptpgi.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 17,
+      "count": 2,
+      "products": [
+        {
+          "id": "FMGPXtBTPciRuR8lq6ds",
+          "name": "RIc. Waianae Leopard X Cattleya amethystoglossa",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767458/bioflora_products/npdqrdvvwkjrh3k22shb.jpg",
+          "description": "RIc. Waianae Leopard X Cattleya amethystoglossa. Espectacular orquídea del género Cattleya, apreciad...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "OPnDd7nEkdl7izdBqhnr",
+          "name": "RIc. Waianae Leopard",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767458/bioflora_products/an8cedlaiwxqygrlsrrc.jpg",
+          "description": "RIc. Waianae Leopard. Espectacular orquídea del género Cattleya, apreciada mundialmente como la 'Rei...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 18,
+      "count": 4,
+      "products": [
+        {
+          "id": "GGy9m29uJlEbRETxdpt3",
+          "name": "Stanhopea frymirei x Stanhopea ecornuta",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235826/bioflora_products/bl4kwovjygobccm0naxa.jpg",
+          "description": "Orquídea botánica fascinante cuyas varas florales emergen hacia abajo a través de la maceta. Produce...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "MGLCbyLn4IyFg2KzXDbG",
+          "name": "Stanhopea ecornuta",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 10500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786237522/bioflora_products/mofuphdjdsdwqflzx7ol.jpg",
+          "description": "Orquídea botánica fascinante cuyas varas florales emergen hacia abajo a través de la maceta. Produce...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "Q63dQYGnoLddjailBvdf",
+          "name": "Stanhopea wardii x Stanhopea ecornuta",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 10500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235832/bioflora_products/wvlmv6pd6hczigmu6b9o.jpg",
+          "description": "Orquídea botánica fascinante cuyas varas florales emergen hacia abajo a través de la maceta. Produce...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "Tc0mGtTsZUNXNxNo1kSr",
+          "name": "Stanhopea ecornuta",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Stanhopea / Torito)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767472/bioflora_products/ws5zthocpnibnvaajb9a.jpg",
+          "description": "Stanhopea ecornuta. Conocida popularmente como 'Torito' o 'Calavera'. Sus flores de arquitectura ali...",
+          "subfolderOrigin": "stanhopeas"
+        }
+      ]
+    },
+    {
+      "group_id": 19,
+      "count": 4,
+      "products": [
+        {
+          "id": "HZnLeT8Hd3w3Hn9HtpQC",
+          "name": "Guarianthe skinneri",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 5000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235815/bioflora_products/ypxjyvrr2zdqczjudysw.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "NmFGZKXMVw6k7eWLl45p",
+          "name": "Cattleya dowiana x Guarianthe skinneri",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235775/bioflora_products/drfn7qvobrosswj73pih.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "vvFCITGuhinKDL5IBJ1O",
+          "name": "Guarianthe skinneri var rosea",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Guarianthe)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767464/bioflora_products/i5gmkcem50zr6fpzolhd.jpg",
+          "description": "Guarianthe skinneri var rosea. Género nativo centroamericano estrechamente emparentado con Cattleya,...",
+          "subfolderOrigin": "guarianthes"
+        },
+        {
+          "id": "wYSmRc6q75h6G4gLabVA",
+          "name": "Guarianthe skinneri",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Guarianthe)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767464/bioflora_products/mbei2e5ehqgbolx4honq.jpg",
+          "description": "Guarianthe skinneri. Género nativo centroamericano estrechamente emparentado con Cattleya, famoso po...",
+          "subfolderOrigin": "guarianthes"
+        }
+      ]
+    },
+    {
+      "group_id": 20,
+      "count": 2,
+      "products": [
+        {
+          "id": "Ha3bnrYCwGMSsCYMxjpc",
+          "name": "V. Suksamran Sunlight (2)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235230/bioflora_products/zclxzlcf07ksbqxyxkxd.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "geFSatUkQ2M2McAgv7Eb",
+          "name": "V. Suksamran Sunlight",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235232/bioflora_products/nwunxtr92xvchhx7exoo.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 21,
+      "count": 2,
+      "products": [
+        {
+          "id": "Jo0gnpkBKetoxNwtK5dT",
+          "name": "Cattleya percivaliana X Victoria Regina",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767455/bioflora_products/wfjhoxglmjnc6un5zsce.jpg",
+          "description": "Cattleya percivaliana X Victoria Regina. Espectacular orquídea del género Cattleya, apreciada mundia...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "sVWMV8j6MXT3gVktofkV",
+          "name": "Cattleya percivaliana x Cattleya Victoria Regina",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 4500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235789/bioflora_products/immuajddjsejj5zpdara.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 22,
+      "count": 2,
+      "products": [
+        {
+          "id": "L8VguPRBFlEHMJnFwwrP",
+          "name": "Cattleya goldenzelle",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235777/bioflora_products/zpedsyxmuqkdc9qc9nbr.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "TSIuZanYAJeFh8u2HUxT",
+          "name": "Cattleya goldenzelle",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 100,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767453/bioflora_products/i60dsks0drcp80wul8a7.jpg",
+          "description": "Cattleya goldenzelle. Espectacular orquídea del género Cattleya, apreciada mundialmente como la 'Rei...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 23,
+      "count": 2,
+      "products": [
+        {
+          "id": "LGhAX5LmHZ7EgE4PAZFv",
+          "name": "D. CF-5, Pink stripe.",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Dendrobium)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767459/bioflora_products/yc5p7xrhrl75wg7ewwfl.jpg",
+          "description": "D. CF-5, Pink stripe.. Orquídea epífita de gran vigor y profusa floración en cañas erectas. Sus raci...",
+          "subfolderOrigin": "dendrobium"
+        },
+        {
+          "id": "bry6JKzhfp3xPOvjQu8M",
+          "name": "Dendrobium CF - 5 Pink Stripe",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 5500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235796/bioflora_products/x77k0v3wjfencp6yq1wj.jpg",
+          "description": "Orquídea de cañas erguidas de fácil cultivo. Produce racimos de múltiples flores que permanecen abie...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 24,
+      "count": 2,
+      "products": [
+        {
+          "id": "MId3rscdeOa8zZmw3xEy",
+          "name": "V. Pure Wax Blue",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235214/bioflora_products/rhkrrihitm9xqvlmtevn.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "n4cBxCLwAki5cpVUdd5v",
+          "name": "V. Pure Wax Red",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235216/bioflora_products/dbc5hajo3libjydgkfmj.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 25,
+      "count": 2,
+      "products": [
+        {
+          "id": "N4NIdWSBO2LVGhX8MYF2",
+          "name": "V. Kimikayo x V. Dr Anek",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235191/bioflora_products/smytdgzrno4wx3d8fcfb.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "cz4rYoBfoFCgCEg7IIm5",
+          "name": "V. Tristar Blue x V. Dr Anek",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235239/bioflora_products/awqzpwvhzaljko2llmxs.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 26,
+      "count": 2,
+      "products": [
+        {
+          "id": "NDAvhVtwUhdZnUVGNR57",
+          "name": "Cattleya lueddemanniana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 9000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235782/bioflora_products/uyeyppqykxiyjalesdjd.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "yuBcJ8cVfCuWyyiEAddp",
+          "name": "Cattleya lueddemanniana",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 80,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767454/bioflora_products/qjjuwxwwurprjjff6rpe.jpg",
+          "description": "Cattleya lueddemanniana. Espectacular orquídea del género Cattleya, apreciada mundialmente como la '...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 27,
+      "count": 2,
+      "products": [
+        {
+          "id": "O16kb2F31dT7yIyYVedD",
+          "name": "Cattleya mossiae var coerulea",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 80,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767456/bioflora_products/ebvend0zt2us00mrxbrm.jpg",
+          "description": "Cattleya mossiae var coerulea. Espectacular orquídea del género Cattleya, apreciada mundialmente com...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "UpSJdIqjddrbAc2874AR",
+          "name": "Cattleya mossiae x Cattleya tenebrosa",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786238256/bioflora_products/lxemc6cexmusiuiacvfi.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 28,
+      "count": 2,
+      "products": [
+        {
+          "id": "OMKmamYUPndoo5FQtvcP",
+          "name": "Vainilla sotoarenassii",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235839/bioflora_products/zdhxkkvtaahzafxv6t2t.jpg",
+          "description": "La única orquídea trepadora de importancia agrícola y ornamental. Desarrolla hojas suculentas sobre ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "tTfVXAoiWYrlaHkmEwxv",
+          "name": "Vainilla sotoarenassii",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235301/bioflora_products/q7e7mvu2cxpj7ooxnmty.jpg",
+          "description": "La única orquídea trepadora de importancia agrícola y ornamental. Desarrolla hojas suculentas sobre ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 29,
+      "count": 2,
+      "products": [
+        {
+          "id": "RBgOACBRBYmAUHCtYgwc",
+          "name": "V. Fuchs Blue",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235190/bioflora_products/qmoepfu8ziq9omlvazmm.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "WjSuSbo9pTkvYGuN2YFV",
+          "name": "Vanda Pachara Blue",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 31500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235846/bioflora_products/g9sviznswjqiiic9uspv.jpg",
+          "description": "Orquídea epífita apreciada por sus imponentes ramilletes florales y llamativos patrones de color. Re...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 30,
+      "count": 2,
+      "products": [
+        {
+          "id": "SDmEcvFJLxMkkllKNEOa",
+          "name": "Vanilla tahitiensis (V. planifolia x V. odorata)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786237528/bioflora_products/jbgqlbo9xzkn0xlctf1x.jpg",
+          "description": "La única orquídea trepadora de importancia agrícola y ornamental. Desarrolla hojas suculentas sobre ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "eXvgexNk6vmJgepCFaYR",
+          "name": "Vainilla planifolia",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Vanilla / Vainilla)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767474/bioflora_products/hrbh0vue2cu8asmgelln.jpg",
+          "description": "Vainilla planifolia. La única orquídea cultivada por su fruto aromático a nivel mundial. Como planta...",
+          "subfolderOrigin": "vanilla"
+        }
+      ]
+    },
+    {
+      "group_id": 31,
+      "count": 3,
+      "products": [
+        {
+          "id": "TiO1Xt0QL6EKwRgSkcEk",
+          "name": "V. Suksamran x V. Bitz Heartthrob",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235234/bioflora_products/jldo5ieowbfrurmxlpfx.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "hAUSNzezjfHnCcx8Xwui",
+          "name": "V. Yano Blue x Bitz Heartthrob",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235245/bioflora_products/aolvsqua4pi3jfl1ak8c.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "umE5jVM1rssbVhNyr4CS",
+          "name": "V. Yano Blue x V. Bitz Heartthrob",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235247/bioflora_products/lbz9f1qo4tkmnn6kvqiz.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 32,
+      "count": 2,
+      "products": [
+        {
+          "id": "X27bb9g6oIMAkuIhg3Wm",
+          "name": "Cattleya gaskelliana X Cattleya máxima",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 100,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767453/bioflora_products/eti9dopqy5ezsjpkh0ez.jpg",
+          "description": "Cattleya gaskelliana X Cattleya máxima. Espectacular orquídea del género Cattleya, apreciada mundial...",
+          "subfolderOrigin": "catteleyas"
+        },
+        {
+          "id": "yrk6GqT6RC4WcELQFi8m",
+          "name": "cattleya máxima",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 80,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767459/bioflora_products/jgghtszsezsacsji559l.jpg",
+          "description": "cattleya máxima. Espectacular orquídea del género Cattleya, apreciada mundialmente como la 'Reina de...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    },
+    {
+      "group_id": 33,
+      "count": 2,
+      "products": [
+        {
+          "id": "XGsjeGsK2QamAvvToJu3",
+          "name": "Encyclia alata",
+          "category": "Exóticas",
+          "family": "Orchidaceae (Colección Exótica)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767465/bioflora_products/bzyq1ouiw8auo5xg4ina.jpg",
+          "description": "Encyclia alata. Especie botánica de colección selecta. Destaca por su morfología floral y vegetativa...",
+          "subfolderOrigin": "other Variants"
+        },
+        {
+          "id": "mAnW6ImzxZOG5p2q6NKS",
+          "name": "Encyclia alata",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235810/bioflora_products/ei7unzktzjrkjndwroq8.jpg",
+          "description": "Hermosa especia botánica de alta calidad cultivada en invernadero. Sus flores destacan por sus color...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 34,
+      "count": 2,
+      "products": [
+        {
+          "id": "XXiyuQOGngRffKdRK2qf",
+          "name": "Epidendrum color rojo",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Epidendrum)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767462/bioflora_products/z3d6n22ubn4po78csbkw.jpg",
+          "description": "Epidendrum color rojo. Fascinante orquídea de hábito caespitoso con inflorescencias globulares reple...",
+          "subfolderOrigin": "epidendrum"
+        },
+        {
+          "id": "eQAgj7TXmPXga9x9GCuj",
+          "name": "Epidendrum color salmón",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Epidendrum)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767462/bioflora_products/ysamwvb2hhypdijqyoxt.jpg",
+          "description": "Epidendrum color salmón. Fascinante orquídea de hábito caespitoso con inflorescencias globulares rep...",
+          "subfolderOrigin": "epidendrum"
+        }
+      ]
+    },
+    {
+      "group_id": 35,
+      "count": 2,
+      "products": [
+        {
+          "id": "YkWQF1Q0pLtcpxf5uVva",
+          "name": "Dendrobium Spice Ice - # 260",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 5500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235805/bioflora_products/mf8on7cm67qwk5czxlrq.jpg",
+          "description": "Orquídea de cañas erguidas de fácil cultivo. Produce racimos de múltiples flores que permanecen abie...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "Zpw0x6NdYCwM6H9itIq8",
+          "name": "D. Spice Ice OT260",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Dendrobium)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767461/bioflora_products/myawnihbzkm2i4k3tege.jpg",
+          "description": "D. Spice Ice OT260. Orquídea epífita de gran vigor y profusa floración en cañas erectas. Sus racimos...",
+          "subfolderOrigin": "dendrobium"
+        }
+      ]
+    },
+    {
+      "group_id": 36,
+      "count": 3,
+      "products": [
+        {
+          "id": "Yqxxc8pbvybFxPx7rOVh",
+          "name": "Dendrobium Liberty White",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 5500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235798/bioflora_products/tamhn8k7p4ro3iech7zb.jpg",
+          "description": "Orquídea de cañas erguidas de fácil cultivo. Produce racimos de múltiples flores que permanecen abie...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "YrMg3Nm6nRN6eSOqfWsr",
+          "name": "D. Liberty White.",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Dendrobium)",
+          "price": 40,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767460/bioflora_products/iwm3hba23lobxbpr0pjv.jpg",
+          "description": "D. Liberty White.. Orquídea epífita de gran vigor y profusa floración en cañas erectas. Sus racimos ...",
+          "subfolderOrigin": "dendrobium"
+        },
+        {
+          "id": "fFFTvWy3QfKSckeDKbN6",
+          "name": "Den. White",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235155/bioflora_products/g2d5orhrwqsdv5zwlrv7.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 37,
+      "count": 3,
+      "products": [
+        {
+          "id": "ZA5tAFKbM68B4XssLMdk",
+          "name": "V. Siriporn Pink",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235224/bioflora_products/ivkqhpdxiyrz68z1pkmh.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "fBdmNkyAlY3pHAV8xqPa",
+          "name": "V. Ratchaburi Pink",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235217/bioflora_products/zximl6zhuywwpecyk9au.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "zt9L9M09IOdQFjDT2HSe",
+          "name": "V. Visoot Pink",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235242/bioflora_products/hlxldy9rw4ggbhlgxoml.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 38,
+      "count": 2,
+      "products": [
+        {
+          "id": "dqiFx89JNoxfVgWuL8R0",
+          "name": "Vainilla x Costa Rica",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 6000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235841/bioflora_products/xdt0fayhzf3qr33ad24b.jpg",
+          "description": "La única orquídea trepadora de importancia agrícola y ornamental. Desarrolla hojas suculentas sobre ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "lNqM4TfvDz6aoQHsCEwB",
+          "name": "Vainilla X Costa Rica",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Vanilla / Vainilla)",
+          "price": 50,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767473/bioflora_products/xacchub4fxr38pm0sigt.jpg",
+          "description": "Vainilla X Costa Rica. La única orquídea cultivada por su fruto aromático a nivel mundial. Como plan...",
+          "subfolderOrigin": "vanilla"
+        }
+      ]
+    },
+    {
+      "group_id": 39,
+      "count": 2,
+      "products": [
+        {
+          "id": "fq1RV4xVxNnemwyZSX4Q",
+          "name": "Tolu. Jairak Rainbow Pink",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235176/bioflora_products/djdoy3k6wpy8da1nt0mb.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "kW9CrcGcHTWa41FfmOSH",
+          "name": "Tolu. Jairak Rainbow Soft Pink",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235178/bioflora_products/anjk54m0uhprnqw46gdv.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 40,
+      "count": 2,
+      "products": [
+        {
+          "id": "m32x6ZB6n0fFwhNPPRlM",
+          "name": "Mokaras",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 31500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235817/bioflora_products/cezqln6dyqd8msbppnzp.jpg",
+          "description": "Orquídea epífita apreciada por sus imponentes ramilletes florales y llamativos patrones de color. Re...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "vbtSiYsnCTzSbcA9rUMU",
+          "name": "Mokaras",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 16500,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235285/bioflora_products/qg2sjo56rwblhaafeekf.jpg",
+          "description": "Hermosa orquídea cultivada bajo estrictos estándares botánicos. Sus flores destacan por sus colores ...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        }
+      ]
+    },
+    {
+      "group_id": 41,
+      "count": 2,
+      "products": [
+        {
+          "id": "pVuld32Z0UwrdYWlnC56",
+          "name": "Cattleya luminosa (C. dowiana x C. tenebrosa)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae",
+          "price": 9000,
+          "currency": "CRC",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786235784/bioflora_products/kxkb5neuj2fdcyyywti1.jpg",
+          "description": "Conocida como la reina de las orquídeas. Presenta flores de gran tamaño con pétalos carnosos, aromas...",
+          "subfolderOrigin": "Catálogo 1 / Preexistente"
+        },
+        {
+          "id": "udQblwfUSKoCSi3voJ2I",
+          "name": "Cattleya luminosa (dowiana X tenebrosa)",
+          "category": "Orquídeas",
+          "family": "Orchidaceae (Cattleya)",
+          "price": 125,
+          "currency": "USD",
+          "coverImage": "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767455/bioflora_products/inm9ytmkcqkgyo7d4cqs.jpg",
+          "description": "Cattleya luminosa (dowiana X tenebrosa). Espectacular orquídea del género Cattleya, apreciada mundia...",
+          "subfolderOrigin": "catteleyas"
+        }
+      ]
+    }
+  ]
+}

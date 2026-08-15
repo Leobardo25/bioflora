@@ -33,6 +33,8 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
         notes: '',
         description: '',
         price: '',
+        wholesalePrice: '',
+        tamano: '',
         currency: 'CRC',
         ml: 'Maceta 6"', // Representa el tamaño o maceta de la planta
         stock: 'Disponible',
@@ -109,8 +111,10 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                             notes: data.notes || '',
                             description: data.description || '',
                             price: data.price || '',
+                            wholesalePrice: data.wholesalePrice || '',
+                            tamano: data.tamano || data.ml || '',
                             currency: data.currency || 'CRC',
-                            ml: data.ml || 'Maceta 6"',
+                            ml: data.ml || data.tamano || 'Maceta 6"',
                             stock: data.stock || 'Disponible',
                             isFeatured: data.isFeatured || false,
                             quantity: data.quantity ?? 0,
@@ -672,15 +676,22 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                             ) : (
                                 /* ── Campos individuales de precio/stock ── */
                                 <div className="space-y-4">
-                                    {/* Precio + Moneda */}
-                                    <div>
-                                        <label className={labelBase}>Precio *</label>
-                                        <div className="flex gap-2">
-                                            <select name="currency" value={formData.currency} onChange={handleChange} className={`${inputBase} !w-auto shrink-0 bg-white`}>
-                                                <option value="CRC">₡ CRC</option>
-                                                <option value="USD">$ USD</option>
-                                            </select>
-                                            <input required={!formData.hasPresentations} type="number" name="price" value={formData.price} onChange={handleChange} className={inputBase} placeholder={formData.currency === 'CRC' ? '45000' : '89.99'} />
+                                    {/* Precio al Detalle + Precio Mayoreo */}
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label className={labelBase}>Precio al Detalle *</label>
+                                            <div className="flex gap-2">
+                                                <select name="currency" value={formData.currency} onChange={handleChange} className={`${inputBase} !w-auto shrink-0 bg-white`}>
+                                                    <option value="CRC">₡ CRC</option>
+                                                    <option value="USD">$ USD</option>
+                                                </select>
+                                                <input required={!formData.hasPresentations} type="number" name="price" value={formData.price} onChange={handleChange} className={inputBase} placeholder={formData.currency === 'CRC' ? '16000' : '29.99'} />
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label className={labelBase}>Precio al por Mayor (Mayoreo)</label>
+                                            <input type="number" name="wholesalePrice" value={formData.wholesalePrice} onChange={handleChange} className={inputBase} placeholder={formData.currency === 'CRC' ? '14500' : '25.00'} />
                                         </div>
                                     </div>
 
@@ -700,11 +711,14 @@ export default function ProductForm({ productId: propProductId, onClose, onSaved
                                         </div>
                                     </div>
 
-                                    {/* Tamaño Maceta / Bolsa */}
+                                    {/* Tamaño / Altura Promedio */}
                                     <div>
-                                        <label className={labelBase}>Tamaño de Maceta o Bolsa</label>
+                                        <label className={labelBase}>Tamaño / Altura Promedio</label>
                                         <div className="relative">
-                                            <input type="text" name="ml" value={formData.ml} onChange={handleChange} className={inputBase} placeholder='Ej. Maceta 6"' />
+                                            <input type="text" name="tamano" value={formData.tamano} onChange={(e) => {
+                                                const val = e.target.value;
+                                                setFormData(prev => ({ ...prev, tamano: val, ml: val }));
+                                            }} className={inputBase} placeholder='Ej. Altura promedio 25 a 27 cms / Maceta 6"' />
                                         </div>
                                     </div>
                                 </div>

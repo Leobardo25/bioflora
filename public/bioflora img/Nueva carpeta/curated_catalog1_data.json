@@ -1,0 +1,583 @@
+[
+  {
+    "file": "Brassia gieroudiana.png",
+    "name": "Brassia gieroudiana",
+    "family": "Orchidaceae (Colección Exótica)",
+    "tamano": "12 a 17 cms",
+    "price": 3500,
+    "wholesalePrice": 3250,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "12 cms",
+        "price": 3500,
+        "wholesalePrice": 3250,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "17 cms",
+        "price": 6500,
+        "wholesalePrice": 5700,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Cattleya brymeriana.png",
+    "name": "Cattleya brymeriana",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "13 cms",
+    "price": 6500,
+    "wholesalePrice": 5700,
+    "currency": "CRC"
+  },
+  {
+    "file": "Cattleya dowiana x Guarianthe skinneri.png",
+    "name": "Cattleya dowiana x Guarianthe skinneri",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "12 a 14 cms",
+    "price": 6500,
+    "wholesalePrice": 5700,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "12 cms",
+        "price": 6500,
+        "wholesalePrice": 5700,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "14 cms",
+        "price": 8000,
+        "wholesalePrice": 7500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Cattleya goldenzelle.png",
+    "name": "Cattleya goldenzelle",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "10 a 15 cms",
+    "price": 6500,
+    "wholesalePrice": 5700,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "10 cms",
+        "price": 6500,
+        "wholesalePrice": 5700,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "15 cms",
+        "price": 9000,
+        "wholesalePrice": 8000,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Cattleya loddigesii.png",
+    "name": "Cattleya loddigesii",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "10 cms",
+    "price": 4500,
+    "wholesalePrice": 4000,
+    "currency": "CRC"
+  },
+  {
+    "file": "Cattleya lueddemanniana.png",
+    "name": "Cattleya lueddemanniana",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "15 cms",
+    "price": 9000,
+    "wholesalePrice": 8250,
+    "currency": "CRC"
+  },
+  {
+    "file": "Cattleya luminosa (C. dowiana x C. tenebrosa).png",
+    "name": "Cattleya luminosa (C. dowiana x C. tenebrosa)",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "14 a 20 cms",
+    "price": 9000,
+    "wholesalePrice": 8250,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "14 cms",
+        "price": 9000,
+        "wholesalePrice": 8250,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "20 cms",
+        "price": 13500,
+        "wholesalePrice": 12000,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Cattleya mossiae x Cattleya tenebrosa.png",
+    "name": "Cattleya mossiae x Cattleya tenebrosa",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "13 a 20 cms",
+    "price": 6500,
+    "wholesalePrice": 5700,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "13 cms",
+        "price": 6500,
+        "wholesalePrice": 5700,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "20 cms",
+        "price": 13500,
+        "wholesalePrice": 12000,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Cattleya percivaliana x Cattleya Victoria Regina.png",
+    "name": "Cattleya percivaliana x Cattleya Victoria Regina",
+    "family": "Orchidaceae (Cattleya)",
+    "tamano": "10 cms",
+    "price": 4500,
+    "wholesalePrice": 4000,
+    "currency": "CRC"
+  },
+  {
+    "file": "Dendrobium # 227.png",
+    "name": "Dendrobium # 227",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "13.5 cms",
+    "price": 7250,
+    "wholesalePrice": 6500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Dendrobium Anosmum.png",
+    "name": "Dendrobium Anosmum",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "11 a 24 cms",
+    "price": 5500,
+    "wholesalePrice": 5000,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "11 cms",
+        "price": 5500,
+        "wholesalePrice": 5000,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "24 cms",
+        "price": 9000,
+        "wholesalePrice": 8000,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Dendrobium CF - 5 Pink Stripe.png",
+    "name": "Dendrobium CF - 5 Pink Stripe",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "10 a 13 cms",
+    "price": 5500,
+    "wholesalePrice": 5000,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "10 cms",
+        "price": 5500,
+        "wholesalePrice": 5000,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "13 cms",
+        "price": 7250,
+        "wholesalePrice": 6500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Dendrobium Liberty White.png",
+    "name": "Dendrobium Liberty White",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "10 a 13 cms",
+    "price": 5500,
+    "wholesalePrice": 5000,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "10 cms",
+        "price": 5500,
+        "wholesalePrice": 5000,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "13 cms",
+        "price": 7250,
+        "wholesalePrice": 6500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Dendrobium Malaysia Green.png",
+    "name": "Dendrobium Malaysia Green",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "10 a 14 cms",
+    "price": 5500,
+    "wholesalePrice": 5000,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "10 cms",
+        "price": 5500,
+        "wholesalePrice": 5000,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "14 cms",
+        "price": 7250,
+        "wholesalePrice": 6500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Dendrobium Patum Red.png",
+    "name": "Dendrobium Patum Red",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "10 a 15 cms",
+    "price": 5500,
+    "wholesalePrice": 5000,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "10 cms",
+        "price": 5500,
+        "wholesalePrice": 5000,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "15 cms",
+        "price": 7250,
+        "wholesalePrice": 6500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Dendrobium Spice Ice - # 260.png",
+    "name": "Dendrobium Spice Ice - # 260",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "10 cms",
+    "price": 5500,
+    "wholesalePrice": 5000,
+    "currency": "CRC"
+  },
+  {
+    "file": "Dendrobium Yellow with Red Lip - # 298.png",
+    "name": "Dendrobium Yellow with Red Lip - # 298",
+    "family": "Orchidaceae (Dendrobium)",
+    "tamano": "10 cms",
+    "price": 5500,
+    "wholesalePrice": 5000,
+    "currency": "CRC"
+  },
+  {
+    "file": "Encyclia alata.png",
+    "name": "Encyclia alata",
+    "family": "Orchidaceae (Colección Exótica)",
+    "tamano": "25 a 27 cms",
+    "price": 16000,
+    "wholesalePrice": 14500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Encyclia cordigera.png",
+    "name": "Encyclia cordigera",
+    "family": "Orchidaceae (Colección Exótica)",
+    "tamano": "13 cms",
+    "price": 6500,
+    "wholesalePrice": 5700,
+    "currency": "CRC"
+  },
+  {
+    "file": "Guarianthe skinneri.png",
+    "name": "Guarianthe skinneri",
+    "family": "Orchidaceae (Guarianthe)",
+    "tamano": "10 a 16 cms",
+    "price": 5000,
+    "wholesalePrice": 4500,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "10 cms",
+        "price": 5000,
+        "wholesalePrice": 4500,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "16 cms",
+        "price": 6000,
+        "wholesalePrice": 5250,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Mokaras.png",
+    "name": "Mokaras",
+    "family": "Orchidaceae (Vanda)",
+    "tamano": "37 cms",
+    "price": 31500,
+    "wholesalePrice": 28500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Phalaenopsis salmón.png",
+    "name": "Phalaenopsis salmón",
+    "family": "Orchidaceae (Phalaenopsis)",
+    "tamano": "8 a 10 cms",
+    "price": 3500,
+    "wholesalePrice": 3000,
+    "currency": "CRC"
+  },
+  {
+    "file": "Rhynchostylis coelestis.png",
+    "name": "Rhynchostylis coelestis",
+    "family": "Orchidaceae (Vanda)",
+    "tamano": "30 cms",
+    "price": 31500,
+    "wholesalePrice": 28500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Stanhopea ecornuta.png",
+    "name": "Stanhopea ecornuta",
+    "family": "Orchidaceae (Stanhopea / Torito)",
+    "tamano": "17 a 22 cms",
+    "price": 10500,
+    "wholesalePrice": 9500,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "17 cms",
+        "price": 10500,
+        "wholesalePrice": 9500,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "22 cms",
+        "price": 16000,
+        "wholesalePrice": 14500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Stanhopea frymirei x Stanhopea ecornuta.png",
+    "name": "Stanhopea frymirei x Stanhopea ecornuta",
+    "family": "Orchidaceae (Stanhopea / Torito)",
+    "tamano": "19 cms",
+    "price": 16000,
+    "wholesalePrice": 14500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Stanhopea grandiflora.png",
+    "name": "Stanhopea grandiflora",
+    "family": "Orchidaceae (Stanhopea / Torito)",
+    "tamano": "13 cms",
+    "price": 7250,
+    "wholesalePrice": 6500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Stanhopea wardii x Stanhopea ecornuta.png",
+    "name": "Stanhopea wardii x Stanhopea ecornuta",
+    "family": "Orchidaceae (Stanhopea / Torito)",
+    "tamano": "14 a 19 cms",
+    "price": 10500,
+    "wholesalePrice": 9750,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "14 cms",
+        "price": 10500,
+        "wholesalePrice": 9750,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "19 cms",
+        "price": 16000,
+        "wholesalePrice": 14500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Tolumnia Flyer Red.png",
+    "name": "Tolumnia Flyer Red",
+    "family": "Orchidaceae (Tolumnia)",
+    "tamano": "Edad de Floración",
+    "price": 8500,
+    "wholesalePrice": 7500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Tolumnia Jairak Firm 'Crimson'.png",
+    "name": "Tolumnia Jairak Firm 'Crimson'",
+    "family": "Orchidaceae (Tolumnia)",
+    "tamano": "Edad de Floración",
+    "price": 8500,
+    "wholesalePrice": 7500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Vainilla sotoarenassii.png",
+    "name": "Vainilla sotoarenassii",
+    "family": "Orchidaceae (Vanilla / Vainilla)",
+    "tamano": "30 a 50 cms (con maceta #3 y tutor)",
+    "price": 6000,
+    "wholesalePrice": 5200,
+    "currency": "CRC"
+  },
+  {
+    "file": "Vainilla x Costa Rica.png",
+    "name": "Vainilla x Costa Rica",
+    "family": "Orchidaceae (Vanilla / Vainilla)",
+    "tamano": "30 a 50 cms (con maceta #3 y tutor)",
+    "price": 6000,
+    "wholesalePrice": 5200,
+    "currency": "CRC"
+  },
+  {
+    "file": "Vanda Bangkok star Boy Wuttiphan.png",
+    "name": "Vanda Bangkok star Boy Wuttiphan",
+    "family": "Orchidaceae (Vanda)",
+    "tamano": "30 cms",
+    "price": 31500,
+    "wholesalePrice": 28500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Vanda Pachara Blue.png",
+    "name": "Vanda Pachara Blue",
+    "family": "Orchidaceae (Vanda)",
+    "tamano": "30 cms",
+    "price": 31500,
+    "wholesalePrice": 28500,
+    "currency": "CRC"
+  },
+  {
+    "file": "Vanda tricolor suavis.png",
+    "name": "Vanda tricolor suavis",
+    "family": "Orchidaceae (Vanda)",
+    "tamano": "14 a 18 cms",
+    "price": 10500,
+    "wholesalePrice": 9750,
+    "currency": "CRC",
+    "hasPresentations": true,
+    "presentaciones": [
+      {
+        "id": "pres_1",
+        "label": "14 cms",
+        "price": 10500,
+        "wholesalePrice": 9750,
+        "quantity": 10,
+        "stock": "Disponible"
+      },
+      {
+        "id": "pres_2",
+        "label": "18 cms",
+        "price": 16250,
+        "wholesalePrice": 14500,
+        "quantity": 10,
+        "stock": "Disponible"
+      }
+    ]
+  },
+  {
+    "file": "Vanilla tahitiensis (V. planifolia x V. odorata).png",
+    "name": "Vanilla tahitiensis (V. planifolia x V. odorata)",
+    "family": "Orchidaceae (Vanilla / Vainilla)",
+    "tamano": "30 a 50 cms (con maceta #3 y tutor)",
+    "price": 6000,
+    "wholesalePrice": 5200,
+    "currency": "CRC"
+  }
+]

@@ -21,6 +21,7 @@ const { useBreakpoint } = Grid;
 // --- DICCIONARIO DE FILTROS ---
 
 const formatPrice = (price, isCRC) => {
+    if (!price || Number(price) === 0) return 'Por definir';
     return new Intl.NumberFormat(isCRC ? 'es-CR' : 'en-US', {
         style: 'currency',
         currency: isCRC ? 'CRC' : 'USD',
@@ -420,7 +421,14 @@ const DesktopCard = ({ product, useBg, onAddToCart }) => {
                 <div className="mb-3"><CareGuideCompact careGuide={product.careGuide} size={17} /></div>
 
                 <div className="mt-auto flex items-center justify-between pt-3 border-t border-gray-100/65">
-                    <span className="font-sans font-bold text-[#69358C] text-sm lg:text-base tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                    <div className="flex flex-col">
+                        <span className="font-sans font-bold text-[#69358C] text-sm lg:text-base tracking-wide">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                        {product.wholesalePrice && Number(product.wholesalePrice) > 0 && (
+                            <span className="text-[10px] text-emerald-600 font-sans font-semibold tracking-tight">
+                                Mayoreo: {formatPrice(product.wholesalePrice, product.currency === 'CRC')}
+                            </span>
+                        )}
+                    </div>
                     <div className="flex items-center gap-2">
                         <button 
                             onClick={(e) => { e.stopPropagation(); openProductDrawer(product); }}
@@ -491,6 +499,11 @@ const MobileCard = ({ product, useBg, onAddToCart }) => {
                     <div className="flex flex-col">
                         <span className="text-[8px] text-gray-400 font-sans tracking-wider uppercase">Precio</span>
                         <span className="font-sans font-bold text-[#69358C] text-lg tracking-wide leading-none">{formatPrice(product.price, product.currency === 'CRC')}</span>
+                        {product.wholesalePrice && Number(product.wholesalePrice) > 0 && (
+                            <span className="text-[10px] text-emerald-600 font-sans font-semibold tracking-tight mt-1">
+                                Mayoreo: {formatPrice(product.wholesalePrice, product.currency === 'CRC')}
+                            </span>
+                        )}
                     </div>
                     <div className="flex items-center gap-2">
                         <button 

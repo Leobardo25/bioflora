@@ -338,6 +338,11 @@ export default function InventoryList() {
                                             </td>
                                             <td className="px-5 py-3">
                                                 <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{formatPrice(p.price, p.currency)}</p>
+                                                {p.wholesalePrice && Number(p.wholesalePrice) > 0 && (
+                                                    <span className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 block mt-0.5">
+                                                        Mayor: {formatPrice(p.wholesalePrice, p.currency)}
+                                                    </span>
+                                                )}
                                             </td>
                                             <td className="px-5 py-3">
                                                 <QuantityControl

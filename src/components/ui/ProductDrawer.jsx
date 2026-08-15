@@ -12,6 +12,7 @@ import { CareGuideFull } from './CareGuideBadges';
 const { Paragraph, Text } = Typography;
 
 const formatPrice = (price, currency) => {
+    if (!price || Number(price) === 0) return 'Por definir';
     const isCRC = currency === 'CRC';
     return new Intl.NumberFormat(isCRC ? 'es-CR' : 'en-US', {
         style: 'currency',
@@ -403,7 +404,7 @@ export default function ProductDrawer() {
                                             </span>
                                             <span className="w-px h-3.5 bg-gray-200" />
                                             <span className="text-gray-500 font-sans text-[11px] tracking-[0.1em] uppercase">
-                                                {selectedProduct.ml || 'Maceta 6"'}
+                                                {selectedProduct.tamano || selectedProduct.ml || 'Maceta 6"'}
                                             </span>
                                             <div className="ml-auto flex items-center gap-1.5">
                                                 <div className="flex text-amber-400 text-[11px]">
@@ -425,11 +426,23 @@ export default function ProductDrawer() {
 
                                         <CareGuideFull careGuide={selectedProduct.careGuide} />
 
-                                        {/* Precio */}
-                                        <div className="mb-5 flex-shrink-0">
-                                            <span className="font-serif font-bold text-2xl sm:text-3xl text-[#69358C]">
-                                                {formatPrice(selectedProduct.price, selectedProduct.currency)}
-                                            </span>
+                                        {/* Precio Detalle y Precio Mayoreo */}
+                                        <div className="mb-5 flex-shrink-0 flex items-baseline gap-3 flex-wrap">
+                                            <div>
+                                                <span className="text-[10px] text-gray-400 font-sans tracking-wider uppercase block">Precio Detalle</span>
+                                                <span className="font-serif font-bold text-2xl sm:text-3xl text-[#69358C]">
+                                                    {formatPrice(selectedProduct.price, selectedProduct.currency)}
+                                                </span>
+                                            </div>
+
+                                            {selectedProduct.wholesalePrice && Number(selectedProduct.wholesalePrice) > 0 && (
+                                                <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200/60 dark:border-emerald-500/20 px-3 py-1 rounded-xl">
+                                                    <span className="text-[9px] text-emerald-700 dark:text-emerald-400 font-sans font-bold tracking-wider uppercase block">Precio al por mayor</span>
+                                                    <span className="font-serif font-bold text-lg text-emerald-700 dark:text-emerald-400">
+                                                        {formatPrice(selectedProduct.wholesalePrice, selectedProduct.currency)}
+                                                    </span>
+                                                </div>
+                                            )}
                                         </div>
 
                                          {/* Botones de Acción */}

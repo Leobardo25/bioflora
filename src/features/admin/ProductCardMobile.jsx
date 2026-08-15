@@ -157,11 +157,18 @@ export default function ProductCardMobile({ product: p, onEdit, onDelete, onStat
                                     </button>
                                 </div>
                             ) : (
-                                <div className="group/price flex items-center gap-1.5 cursor-pointer" onClick={() => { setTempPrice(p.price); setIsEditingPrice(true); }}>
-                                    <span className="font-sans font-bold text-bioflora-verde text-[14px] md:text-lg md:font-black tracking-tight md:tracking-wide">
-                                        {formatPrice(p.price, p.currency || 'CRC')}
-                                    </span>
-                                    <Edit3 className="w-3 h-3 text-gray-400 dark:text-gray-500 opacity-60 md:opacity-0 md:group-hover/price:opacity-100 transition-opacity" />
+                                <div className="group/price flex flex-col cursor-pointer" onClick={() => { setTempPrice(p.price); setIsEditingPrice(true); }}>
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="font-sans font-bold text-bioflora-verde text-[14px] md:text-lg md:font-black tracking-tight md:tracking-wide">
+                                            {formatPrice(p.price, p.currency || 'CRC')}
+                                        </span>
+                                        <Edit3 className="w-3 h-3 text-gray-400 dark:text-gray-500 opacity-60 md:opacity-0 md:group-hover/price:opacity-100 transition-opacity" />
+                                    </div>
+                                    {p.wholesalePrice && Number(p.wholesalePrice) > 0 && (
+                                        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium -mt-0.5">
+                                            Mayor: {formatPrice(p.wholesalePrice, p.currency || 'CRC')}
+                                        </span>
+                                    )}
                                 </div>
                             )}
                         </div>
