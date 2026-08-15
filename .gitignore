@@ -27,3 +27,6 @@ dist-ssr/
 *.sln
 *.sw?
 *.exe
+
+# Carpetas de trabajo temporal y assets ya alojados en Cloudinary CDN
+public/bioflora img/

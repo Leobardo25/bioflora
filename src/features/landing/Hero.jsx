@@ -16,49 +16,49 @@ const HERO_BOTANICAL_SLIDES = [
         name: "Cattleya Rex",
         family: "Orchidaceae (Cattleya)",
         highlight: "Joya Botánica Imperial",
-        image: "/bioflora img/Nueva carpeta (2)/procesadas/catteleyas/cattleya Rex.png"
+        image: "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767459/bioflora_products/r0blvwzbfflkp5bwkjlg.jpg"
     },
     {
         id: 2,
         name: "Peristeria elata",
         family: "Flor del Espíritu Santo",
         highlight: "Colección Exótica de Conservación",
-        image: "/bioflora img/Nueva carpeta (2)/procesadas/other Variants/Peristeria elata.png"
+        image: "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767468/bioflora_products/qutwa3dzd8lqzp4wk5y0.jpg"
     },
     {
         id: 3,
         name: "Vanda tricolor x usha",
         family: "Orchidaceae (Vanda)",
         highlight: "Híbrido Selecto de Alta Gama",
-        image: "/bioflora img/Nueva carpeta (2)/procesadas/vandas/Vanda tricolor suavis X Vanda usha.png"
+        image: "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767473/bioflora_products/nyaadojdaera8dvclzbu.jpg"
     },
     {
         id: 4,
         name: "Cattleya trianae",
         family: "Orchidaceae (Cattleya)",
         highlight: "Especie Emblema de Colección",
-        image: "/bioflora img/Nueva carpeta (2)/procesadas/catteleyas/Cattleya trianae.png"
+        image: "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767457/bioflora_products/xthdklhjq8odt7y2crci.jpg"
     },
     {
         id: 5,
         name: "Stanhopea confusa",
         family: "Orchidaceae (Stanhopea / Torito)",
         highlight: "Floración Péndula Perfumada",
-        image: "/bioflora img/Nueva carpeta (2)/procesadas/stanhopeas/Stanhopea confusa.png"
+        image: "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767471/bioflora_products/hldjvi8lygreoj7ufpun.jpg"
     },
     {
         id: 6,
         name: "Vanilla tahitensis",
         family: "Orchidaceae (Vainilla)",
         highlight: "Orquídea Trepadora Aromática",
-        image: "/bioflora img/Nueva carpeta (2)/procesadas/vanilla/Vanilla tahitensis.png"
+        image: "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767474/bioflora_products/ce0zhsojsxoptxi0r227.jpg"
     },
     {
         id: 7,
         name: "Trichopilia suavis",
         family: "Orchidaceae (Colección Exótica)",
         highlight: "Fragancia Floral Exquisita",
-        image: "/bioflora img/Nueva carpeta (2)/procesadas/other Variants/Trichopilia suavis.png"
+        image: "https://res.cloudinary.com/dwlziwajv/image/upload/v1786767468/bioflora_products/bxikzs1tnujohdytivp6.jpg"
     }
 ]
 
